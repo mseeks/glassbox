@@ -190,7 +190,7 @@ For EACH hit, Read the surrounding context. Some are forgotten cruft (a stray \`
 
 // ── Agent's job (quality bar lives here) ──────────────────────────────────
 function systemPrompt(scope: string): string {
-  return `You are the debug-cruft mapper for the Interactive Lessons repository (React 19 + Vite + JavaScript — thirteen self-contained lessons, each with a pure \`engine/index.js\`; tests run under Vitest, with Playwright smoke specs in \`tests/e2e/\`). The harness has scanned \`${scope}\` for leftover debug statements and intentional/forgotten test skips (console.log / console.debug / debugger, plus .only / .skip / .todo / x*) and given you a candidate list. Your job: turn it into a curated map of what to act on.
+  return `You are the debug-cruft mapper for the Glassbox repository (React 19 + Vite + JavaScript — self-contained lessons, each with a pure \`engine/index.js\`; tests run under Vitest, with Playwright smoke specs in \`tests/e2e/\`). The harness has scanned \`${scope}\` for leftover debug statements and intentional/forgotten test skips (console.log / console.debug / debugger, plus .only / .skip / .todo / x*) and given you a candidate list. Your job: turn it into a curated map of what to act on.
 
 Your only tools are Read / Grep / Glob — you can investigate but you CANNOT edit any file. The human deletes / re-enables what they agree is worth it.
 

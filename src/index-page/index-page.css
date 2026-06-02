@@ -57,8 +57,8 @@
   font-family: 'Fraunces', Georgia, serif;
   font-variation-settings: 'opsz' 144;
   font-weight: 300;
-  font-size: clamp(56px, 10vw, 124px);
-  line-height: 0.92;
+  font-size: clamp(46px, 8vw, 100px);
+  line-height: 0.94;
   letter-spacing: -0.025em;
   margin: 0;
 }
@@ -76,6 +76,15 @@
   color: var(--ink-dim);
   max-width: 640px;
   margin: 32px 0 0;
+}
+.idx-tagline {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(19px, 2.3vw, 27px);
+  line-height: 1.4;
+  color: var(--ink-dim);
+  margin: 18px 0 0;
 }
 .idx-rule {
   height: 1px;
@@ -230,5 +239,263 @@
   .idx-card:hover,
   .idx-card:focus-visible {
     transform: none;
+  }
+}
+
+/* ── Hero layout: copy beside the glass-cube stage ──────────────────────── */
+.idx-hero {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 3vw, 48px);
+}
+/* Copy grows but only up to a capped width, so the cube parks partway between
+   centre and the far-right edge (splitting the difference) rather than at
+   either extreme. The remaining space falls to the right of the cube. */
+.idx-hero-copy {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: clamp(460px, 44vw, 560px);
+}
+.idx-hero-stage {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 880px) {
+  .idx-hero {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .idx-hero-stage {
+    align-self: center;
+  }
+}
+
+/* ── The glass cube ─────────────────────────────────────────────────────── */
+/* One knob (--gb-size) sets the whole piece; translateZ uses half the edge to
+   push each face out from the cube's centre. */
+.gb-stage {
+  --gb-size: clamp(150px, 19vw, 224px);
+  --gb-half: calc(var(--gb-size) / 2);
+  position: relative;
+  width: var(--gb-size);
+  height: var(--gb-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tight chromatic bloom behind the cube, echoing the page's accent washes —
+   a focused glow, not a wide haze (kept off the glass to avoid a cloudy read). */
+.gb-glow {
+  position: absolute;
+  inset: -16%;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(154, 184, 232, 0.26), transparent 52%),
+    radial-gradient(circle at 40% 62%, rgba(94, 234, 212, 0.14), transparent 56%),
+    radial-gradient(circle at 62% 58%, rgba(196, 181, 253, 0.16), transparent 56%);
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gb-scene {
+  position: relative;
+  z-index: 1;
+  width: var(--gb-size);
+  height: var(--gb-size);
+  perspective: 1100px;
+  perspective-origin: 50% 42%;
+}
+
+.gb-cube {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+  /* Resting frame is rotateY(-32deg); the spin sweeps a full turn back to it,
+     so reduced-motion (which collapses the animation to its last frame) lands
+     on this same pleasing 3/4 corner view. */
+  animation: gb-spin 30s linear infinite;
+}
+
+@keyframes gb-spin {
+  from {
+    transform: rotateX(-24deg) rotateY(-32deg);
+  }
+  to {
+    transform: rotateX(-24deg) rotateY(328deg);
+  }
+}
+
+/* Each face: a bright parchment edge framing a near-clear pane. Kept barely
+   tinted (no frosting, no backdrop-blur) so the glass reads polished and you
+   see the nebula sharply through it. Faces stay double-sided (default
+   backface-visibility) so the far walls show through the near ones — the
+   see-straight-through depth that names the brand. */
+.gb-face {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--gb-size);
+  height: var(--gb-size);
+  margin: calc(var(--gb-half) * -1) 0 0 calc(var(--gb-half) * -1);
+  border: 1px solid rgba(232, 222, 200, 0.38);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 252, 240, 0.3),
+    inset 0 0 16px rgba(154, 184, 232, 0.05);
+  background: linear-gradient(135deg, rgba(154, 184, 232, 0.05), rgba(196, 181, 253, 0.035));
+}
+
+/* A thin, bright specular sweep reads as a glancing reflection on polished glass. */
+.gb-face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background: linear-gradient(
+    125deg,
+    transparent 45%,
+    rgba(255, 252, 240, 0.13) 49.5%,
+    transparent 54%
+  );
+}
+
+.gb-front {
+  transform: translateZ(var(--gb-half));
+}
+.gb-back {
+  transform: rotateY(180deg) translateZ(var(--gb-half));
+}
+.gb-right {
+  transform: rotateY(90deg) translateZ(var(--gb-half));
+  background: linear-gradient(135deg, rgba(94, 234, 212, 0.055), rgba(154, 184, 232, 0.02));
+}
+.gb-left {
+  transform: rotateY(-90deg) translateZ(var(--gb-half));
+  background: linear-gradient(135deg, rgba(196, 181, 253, 0.055), rgba(154, 184, 232, 0.02));
+}
+/* Top catches the most light; bottom is dimmest — a gentle vertical key. */
+.gb-top {
+  transform: rotateX(90deg) translateZ(var(--gb-half));
+  background: linear-gradient(135deg, rgba(232, 222, 200, 0.1), rgba(154, 184, 232, 0.04));
+  border-color: rgba(232, 222, 200, 0.46);
+}
+.gb-bottom {
+  transform: rotateX(-90deg) translateZ(var(--gb-half));
+  background: linear-gradient(135deg, rgba(154, 184, 232, 0.03), rgba(10, 10, 15, 0.1));
+  border-color: rgba(232, 222, 200, 0.18);
+}
+
+/* ── The nebula inside ──────────────────────────────────────────────────── */
+/* A small cloud of glowing gas suspended in the cube, built in two parallax
+   layers — a dim, wide cloud set behind centre and a bright, hot core set in
+   front — so the cube's rotation reveals real depth. background-blend-mode:
+   screen makes the coloured blobs add like light rather than paint over. */
+.gb-nebula {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+  background-blend-mode: screen;
+}
+
+.gb-nebula-back {
+  width: 82%;
+  height: 82%;
+  margin: -41% 0 0 -41%;
+  filter: blur(9px);
+  opacity: 0.5;
+  background:
+    radial-gradient(circle at 32% 40%, rgba(196, 181, 253, 0.85), transparent 48%),
+    radial-gradient(circle at 70% 62%, rgba(94, 234, 212, 0.6), transparent 50%),
+    radial-gradient(circle at 56% 28%, rgba(154, 184, 232, 0.7), transparent 46%),
+    radial-gradient(circle at 64% 74%, rgba(253, 164, 175, 0.42), transparent 50%);
+  animation: gb-neb-back 24s ease-in-out infinite alternate;
+}
+
+.gb-nebula-front {
+  width: 66%;
+  height: 66%;
+  margin: -33% 0 0 -33%;
+  filter: blur(5px);
+  background:
+    radial-gradient(circle at 52% 50%, rgba(255, 252, 240, 1), rgba(255, 252, 240, 0) 15%),
+    radial-gradient(circle at 38% 36%, rgba(196, 181, 253, 0.95), transparent 44%),
+    radial-gradient(circle at 66% 54%, rgba(94, 234, 212, 0.82), transparent 46%),
+    radial-gradient(circle at 56% 70%, rgba(253, 164, 175, 0.6), transparent 46%),
+    radial-gradient(circle at 48% 26%, rgba(154, 184, 232, 0.9), transparent 44%),
+    radial-gradient(circle at 70% 32%, rgba(244, 114, 182, 0.5), transparent 38%);
+  box-shadow:
+    0 0 20px 2px rgba(154, 184, 232, 0.32),
+    0 0 44px 8px rgba(196, 181, 253, 0.12);
+  animation:
+    gb-neb-front 19s ease-in-out infinite alternate,
+    gb-neb-pulse 7s ease-in-out infinite;
+}
+
+/* drift keyframes carry the base translateZ so the parallax depth is preserved;
+   they oscillate toward centre, so reduced-motion rests on the centred frame. */
+@keyframes gb-neb-back {
+  from {
+    transform: translateZ(calc(var(--gb-half) * -0.45)) translate(3%, -2%) scale(1.05);
+  }
+  to {
+    transform: translateZ(calc(var(--gb-half) * -0.45)) translate(0, 0) scale(1);
+  }
+}
+@keyframes gb-neb-front {
+  from {
+    transform: translateZ(calc(var(--gb-half) * 0.42)) translate(-4%, 3%) scale(0.95);
+  }
+  to {
+    transform: translateZ(calc(var(--gb-half) * 0.42)) translate(0, 0) scale(1);
+  }
+}
+@keyframes gb-neb-pulse {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* A faint scatter of stars across the cloud (each a sub-pixel radial dot),
+   sitting at z = 0 so they parallax against the two nebula layers. */
+.gb-stars {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 92%;
+  height: 92%;
+  margin: -46% 0 0 -46%;
+  border-radius: 50%;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.4px 1.4px at 22% 30%, rgba(255, 252, 240, 0.95), transparent 60%),
+    radial-gradient(1.1px 1.1px at 70% 24%, rgba(255, 252, 240, 0.85), transparent 60%),
+    radial-gradient(1px 1px at 38% 66%, rgba(255, 252, 240, 0.8), transparent 60%),
+    radial-gradient(1.3px 1.3px at 80% 60%, rgba(196, 181, 253, 0.9), transparent 60%),
+    radial-gradient(1px 1px at 56% 46%, rgba(255, 252, 240, 0.9), transparent 60%),
+    radial-gradient(1.1px 1.1px at 28% 48%, rgba(154, 184, 232, 0.85), transparent 60%),
+    radial-gradient(1px 1px at 64% 76%, rgba(255, 252, 240, 0.75), transparent 60%),
+    radial-gradient(1.2px 1.2px at 48% 18%, rgba(94, 234, 212, 0.8), transparent 60%),
+    radial-gradient(1px 1px at 74% 44%, rgba(255, 252, 240, 0.7), transparent 60%);
+  animation: gb-stars-twinkle 5.5s ease-in-out infinite;
+}
+@keyframes gb-stars-twinkle {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.95;
   }
 }

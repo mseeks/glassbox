@@ -11,7 +11,7 @@
  * Usage: tsx test-backfill.ts <scope>    (scope REQUIRED — one area at a time)
  *   e.g.: src/lessons/bloom-filters/engine/   src/lessons/trie/engine/
  *
- * NOTE: interactive-lessons gates coverage on the pure engines only
+ * NOTE: glassbox gates coverage on the pure engines only
  * (`src/lessons/*​/engine/**` per vite.config.js) — the React/CSS layer is
  * covered by the Playwright smoke, not line coverage. So the coverage signal,
  * and the useful scopes for this loop, are the per-lesson engines.
@@ -179,7 +179,7 @@ ${fnList || "    (no named-function gaps; statement-level only)"}`;
 
 // ── The agent's job (the quality bar IS this prompt) ──────────────────────
 function systemPrompt(scope: string): string {
-  return `You are the test-backfill mapper for the Interactive Lessons repository (a React 19 + Vite + JavaScript app — thirteen self-contained lessons, each with a pure \`engine/index.js\` that is the unit-tested layer). The harness has run vitest with coverage and given you a prioritized list of uncovered functions in \`${scope}\` (with per-file churn). Your job: turn this into a curated map of HIGH-VALUE missing tests + plain-English descriptions of exactly what to test.
+  return `You are the test-backfill mapper for the Glassbox repository (a React 19 + Vite + JavaScript app — self-contained lessons, each with a pure \`engine/index.js\` that is the unit-tested layer). The harness has run vitest with coverage and given you a prioritized list of uncovered functions in \`${scope}\` (with per-file churn). Your job: turn this into a curated map of HIGH-VALUE missing tests + plain-English descriptions of exactly what to test.
 
 The engines are pure functions (no React / no DOM), so most worthwhile tests need NO mocking — call the function, assert the output. A React component or CSS gap is NOT a coverage target here (that layer is covered by the Playwright smoke); if the only "gap" is render/markup, it is a SKIP.
 

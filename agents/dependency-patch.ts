@@ -32,7 +32,7 @@ const ALLOWED_TOOLS = [
 ];
 
 function systemPrompt(limit: number | null): string {
-  return `You are the dependency-patch operator for the Interactive Lessons repository (a React 19 + Vite + JavaScript app). Keep dependencies current and safe, using the test suite as the safety check.
+  return `You are the dependency-patch operator for the Glassbox repository (a React 19 + Vite + JavaScript app). Keep dependencies current and safe, using the test suite as the safety check.
 
 GOAL: find available PATCH-LEVEL upgrades and apply the ones that keep the suite green.
 

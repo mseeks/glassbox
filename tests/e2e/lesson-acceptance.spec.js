@@ -29,8 +29,8 @@ test.describe('lesson acceptance', () => {
     await page.goBack();
 
     await expect(page).toHaveURL(/\/$/);
-    await expect(page).toHaveTitle('Interactive Lessons');
-    await expect(page.getByRole('main', { name: 'Interactive Lessons' })).toBeVisible();
+    await expect(page).toHaveTitle('Glassbox');
+    await expect(page.getByRole('main', { name: 'Glassbox' })).toBeVisible();
     assertNoRuntimeErrors();
   });
 

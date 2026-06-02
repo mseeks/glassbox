@@ -7,7 +7,7 @@ import { lazy } from 'react';
 // specs that read lesson metadata) — unlike import.meta.glob.
 const lazyLesson = (id) => lazy(() => import(`./lessons/${id}/index.js`));
 
-// Eighteen lessons, in nav/index order. Each entry is plain metadata keyed by
+// The lessons, in nav/index order. Each entry is plain metadata keyed by
 // `id` — which is also the lesson's folder under src/lessons/ — and the lazy
 // Component is derived from that id below, so the id is the single source of
 // truth. Each lesson carries its own typographic + chromatic identity; the
@@ -258,7 +258,7 @@ export const lessons = lessonMeta.map((lesson) => ({
 export const indexPage = {
   id: 'index',
   label: 'Index',
-  title: 'Interactive Lessons',
+  title: 'Glassbox',
 };
 
 export const pages = [indexPage, ...lessons];

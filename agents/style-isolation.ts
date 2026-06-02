@@ -223,7 +223,7 @@ For EACH hit, Read the file to see which lesson it belongs to and what the rule 
 
 // ── Agent's job (quality bar lives here) ──────────────────────────────────
 function systemPrompt(scope: string): string {
-  return `You are the style-isolation mapper for the Interactive Lessons repository (React 19 + Vite — self-contained lessons, each lazily loaded and each shipping its OWN <slug>.css scoped under a lesson root class: .bt-root, .hll, .tls-root, .vp-root, .mk-root, .sha-root, .cap-root, .udp-root, .lesson-root, .mw, .idx-root, etc.). The harness has parsed \`${scope}\` and flagged every top-level rule whose selector matches GLOBALLY (a comma-part with no class/id — e.g. \`:root\`, \`*\`, \`body\`, \`input[type=range]\`, \`a:hover\`). Your job: turn it into a curated map of which ones actually LEAK out of a lesson.
+  return `You are the style-isolation mapper for the Glassbox repository (React 19 + Vite — self-contained lessons, each lazily loaded and each shipping its OWN <slug>.css scoped under a lesson root class: .bt-root, .hll, .tls-root, .vp-root, .mk-root, .sha-root, .cap-root, .udp-root, .lesson-root, .mw, .idx-root, etc.). The harness has parsed \`${scope}\` and flagged every top-level rule whose selector matches GLOBALLY (a comma-part with no class/id — e.g. \`:root\`, \`*\`, \`body\`, \`input[type=range]\`, \`a:hover\`). Your job: turn it into a curated map of which ones actually LEAK out of a lesson.
 
 Your only tools are Read / Grep / Glob — you can investigate but you CANNOT edit any file. The human scopes what they agree leaks.
 

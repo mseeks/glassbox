@@ -268,7 +268,7 @@ For EACH signal, Read the surrounding context and classify it into ONE of the th
 
 // ── Agent's job (quality bar lives here) ──────────────────────────────────
 function systemPrompt(scope: string): string {
-  return `You are the promise-hygiene mapper for the Interactive Lessons repository (React 19 + Vite + JavaScript — thirteen self-contained lessons; pure synchronous \`engine/*.js\` plus a React/labs layer where the async surface lives). The harness has scanned \`${scope}\` for floating promises and async-correctness hazards and given you a candidate list (uncaught \`.then\` chains, floating \`new Promise\`, and per-file \`async\` markers). Your job: turn it into a curated map of real hazards worth fixing — filtering out the safe cases.
+  return `You are the promise-hygiene mapper for the Glassbox repository (React 19 + Vite + JavaScript — self-contained lessons; pure synchronous \`engine/*.js\` plus a React/labs layer where the async surface lives). The harness has scanned \`${scope}\` for floating promises and async-correctness hazards and given you a candidate list (uncaught \`.then\` chains, floating \`new Promise\`, and per-file \`async\` markers). Your job: turn it into a curated map of real hazards worth fixing — filtering out the safe cases.
 
 Your only tools are Read / Grep / Glob — you can investigate but you CANNOT edit any file. The human adds the awaits / catches they agree are worth it.
 

@@ -40,7 +40,7 @@ const ALLOWED_TOOLS = [
   "Bash(npx vite build *)",
 ];
 
-const SYSTEM_PROMPT = `You are the security-patch operator for the Interactive Lessons repository (a React 19 + Vite + JavaScript app). Reduce dependency vulnerabilities, applying ONLY non-breaking fixes and leaning on the test suite as the safety check.
+const SYSTEM_PROMPT = `You are the security-patch operator for the Glassbox repository (a React 19 + Vite + JavaScript app). Reduce dependency vulnerabilities, applying ONLY non-breaking fixes and leaning on the test suite as the safety check.
 
 Your tools are already approved: Bash for npm/npx and read-only git, plus Read/Grep/Glob/WebFetch. Do NOT try to change settings or request additional permissions — just run the commands.
 

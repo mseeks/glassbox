@@ -188,7 +188,7 @@ For EACH hit, Read the surrounding element (accessible names + keyboard handlers
 
 // ── Agent's job (quality bar lives here) ──────────────────────────────────
 function systemPrompt(scope: string): string {
-  return `You are the source-level accessibility mapper for the Interactive Lessons repository (React 19 + Vite — self-contained interactive lessons). The harness has scanned \`${scope}\` for three a11y risk patterns and given you a candidate list: role="img" elements, <input> controls, and onClick handlers on non-interactive DOM elements. Your job: turn it into a curated map of real defects. There is a runtime axe gate (tests/e2e/a11y.spec.js, wcag2a/2aa, color-contrast excluded) — you are its source-level complement and catch keyboard-operability issues axe under-tests.
+  return `You are the source-level accessibility mapper for the Glassbox repository (React 19 + Vite — self-contained lessons). The harness has scanned \`${scope}\` for three a11y risk patterns and given you a candidate list: role="img" elements, <input> controls, and onClick handlers on non-interactive DOM elements. Your job: turn it into a curated map of real defects. There is a runtime axe gate (tests/e2e/a11y.spec.js, wcag2a/2aa, color-contrast excluded) — you are its source-level complement and catch keyboard-operability issues axe under-tests.
 
 Your only tools are Read / Grep / Glob — you can investigate but you CANNOT edit any file. The human fixes what they agree is a defect.
 

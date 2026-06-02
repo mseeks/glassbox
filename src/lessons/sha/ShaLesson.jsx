@@ -14,7 +14,7 @@ import './sha.css';
 
 /* ════════════════════════════════════════════════════════════════════════
    SHA — THE ONE-WAY MACHINE
-   An interactive lesson on the Secure Hash Algorithms.
+   A Glassbox lesson on the Secure Hash Algorithms.
    Aesthetic: an engineer's plate. Warm near-black, molten copper, cool steel,
    cerise for danger. Slab display (Zilla Slab), Hanken Grotesk body,
    JetBrains Mono for digests.

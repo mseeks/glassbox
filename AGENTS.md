@@ -1,8 +1,8 @@
-# Interactive Lessons: Agent Notes
+# Glassbox: Agent Notes
 
 ## Project shape
 
-- React 19 + Vite single-page app. Eighteen lessons, one shell.
+- React 19 + Vite single-page app. A collection of lessons, one shell.
 - `src/App.jsx` is the shell: sticky lesson nav, `?lesson=` routing
   (history/popstate, no router lib), and focus management. The landing index is
   a separate component under `src/index-page/`. The lesson registry lives in
@@ -34,7 +34,7 @@
 
 ## Lesson grammar
 
-Treat the eighteen lessons as a _collection_, not a _template_. They are
+Treat the lessons as a _collection_, not a _template_. They are
 intentionally unique:
 
 | Lesson                  | Accent                          | Display font                  | Personality                                                                |
@@ -77,8 +77,8 @@ strongest piece of connective tissue across the collection.
 - When adding interactive content, extract pure-function logic from React
   render code into the lesson's `engine/index.js` so it can be unit-tested
   independently. `src/lessons/bloom-filters/engine/index.js` (tested in
-  `tests/bloom-math.test.js`) is the canonical example. All eighteen lessons now
-  follow this. Each engine is pure (no React/DOM), Prettier-clean, and backed by
+  `tests/bloom-math.test.js`) is the canonical example. Every lesson now follows
+  this. Each engine is pure (no React/DOM), Prettier-clean, and backed by
   a `tests/<lesson>-engine.test.js` suite. Mirror it for any new logic.
 - Don't re-implement reveal-on-scroll, TOC scroll-spy, or the reading-progress
   bar per lesson. Use the shared `src/shared/reveal.jsx` (`useRevealRoot` for a
@@ -173,8 +173,8 @@ Open items:
 - **Entry chunk size.** The shared entry bundle is ~212 kB (≈68 kB gzip);
   the index page + `Glyph` ship in it eagerly. Consider lazy-loading the index.
 
-Done (kept so the record stays accurate): engine extraction for **all
-eighteen** lessons (incl. `concurrency-foundations`, whose store-buffer machine
+Done (kept so the record stays accurate): engine extraction for **all**
+lessons (incl. `concurrency-foundations`, whose store-buffer machine
 now lives in `engine/index.js`) each with a Vitest suite (incl.
 `memory`-engine); a jsdom + Testing-Library component tier and v8 coverage gated
 at 90% (`vite.config.js`); the single-source lesson registry (`lessonMeta` keyed
@@ -189,7 +189,7 @@ headless index ↔ lesson round trip per lesson).
 ## Repository home
 
 This lesson app is developed as a self-contained project inside the **`zo`**
-workspace at `projects/interactive-lessons`. Keep it self-contained: don't
+workspace at `projects/glassbox`. Keep it self-contained: don't
 reference workspace-parent paths, and don't commit workspace-level changes
 (infra, other projects) from here. (Earlier notes referenced an `arlo`
 workspace and a separate standalone repo; the current home is the `zo`
