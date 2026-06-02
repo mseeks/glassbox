@@ -154,11 +154,23 @@ npm run loop:console-runtime <scope>   # console warnings fired during the test 
 npm run loop:motion-gate <scope>       # ungated JS/SMIL autoplay-on-mount motion map
 npm run loop:style-isolation <scope>   # CSS selectors that leak out of a lesson root
 npm run loop:a11y-source <scope>       # source-level a11y debt (names + keyboard paths)
+npm run loop:content-accuracy [ids…]   # deep per-lesson accuracy review (opus·effort:max; heavy)
 ```
 
 The loops verify their work against the app's **outside reference**:
 `vitest run` + `eslint .` + `vite build`. For the mutating two, they leave any
 survivors uncommitted for you to review. See `agents/README.md` for per-loop detail.
+
+`loop:content-accuracy` is the exception to that shape: the **deep-honesty pass**.
+It is read-only, per-lesson, and fanned out **in parallel** (one `opus` +
+`effort:"max"` agent per lesson) to check that each lesson's prose, engine logic,
+labs, animations, and visuals are *correct for the topic* and faithful to its
+canonical source. There is no `vitest` outside reference for truth, so it only ever
+**maps** (cite-or-omit, with a bucket for honest-vs-misleading pedagogical
+simplification); the human fixes what they agree with. It is the heaviest loop, and
+not routine. Default is all lessons; pass ids (or `--limit` / `--concurrency` /
+`--budget`) to bound it, and `--dry-run` to preview scope and the cost ceiling.
+See `agents/README.md`.
 
 ## Known follow-ups
 

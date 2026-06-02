@@ -252,3 +252,40 @@ color-contrast is out of scope by design.
 - Uses **opus** (must resist the prior that a flagged control is unlabeled).
 
 Run from the app root as `npm run loop:a11y-source <scope>`, or here as `npm run a11y-source <scope>`.
+
+### `npm run content-accuracy [lesson-ids…]`: content-accuracy loop
+
+**Read-only. The deep-honesty pass, and by far the heaviest loop.** Every other
+loop guards the *machinery*; this one guards the *truth of the teaching*. Is what
+each lesson asserts (in its prose, its numbers, the algorithm its `engine/`
+implements, and what its **labs and animations visually claim**) actually correct
+for the topic it promises, and faithful to the canonical source named in its
+eyebrow (RFC 8446, Bayer & McCreight 1970, Flajolet et al. 2007)?
+
+Unlike the scope-required mappers, this loop is **per-lesson and runs the lessons
+in parallel**: one agent per lesson on the most capable model at the highest
+reasoning effort (**`opus` + `effort: "max"`**). Each agent reads the lesson's whole
+content corpus (`sections/` prose, `labs/` interactives, the pure `engine/index.js`
+that drives every visualization, `components/`, the engine's test, and the catalog
+framing) and emits a strict three-bucket map: **Inaccuracy/error (cite-or-omit) /
+Verified correct / Pedagogical simplification (honest vs misleading)**. The hard
+discipline is the last bucket. A deliberate teaching simplification is *not* a bug,
+and the prompt is built to keep the agent from flagging it as one.
+
+- **No `<scope>`; default is all lessons** (the deliberate inversion of the other
+  loops, since this one fans out per lesson). Pass lesson ids to review a subset:
+  `npm run content-accuracy swim tls`. Bound a run with `--limit N`,
+  `--concurrency N` (default 3), and `--budget N` (per-lesson USD cap, default 6).
+  Preview scope and the cost ceiling first with `--dry-run`, which launches nothing.
+- **Read-only. Read / Grep / Glob only;** structurally cannot edit. The human
+  corrects what they agree with. There is no verify-and-revert here. Accuracy is not
+  something `vitest` / `eslint` / `vite` can assert, so the "outside reference" is the
+  canonical literature of each topic, brought by a domain-expert reviewer. Every
+  finding is anchored to a quoted line, which is *why* it only ever maps.
+- **Heavy and occasional.** N max-effort Opus agents, each reading a full lesson;
+  cost scales with lesson count (worst case is lessons × budget). It is **not** a
+  routine loop. Run it to stay honest, or scope it to the lesson(s) you just touched.
+- Uses **opus** at **`effort: "max"`** (a wrong accuracy call is the most expensive
+  false positive of any loop, so it gets the deepest reasoning available).
+
+Run from the app root as `npm run loop:content-accuracy [ids…]`, or here as `npm run content-accuracy [ids…]`.
