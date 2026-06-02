@@ -1,0 +1,17 @@
+node_modules/
+dist/
+coverage/
+test-results/
+playwright-report/
+.DS_Store
+.env*
+
+# Local-only visual-regression safety net (not part of CI; env-specific baselines)
+tests/e2e/visual.spec.js
+tests/e2e/__screenshots__/
+tests/e2e/*-snapshots/
+
+# Showcase-reel build artifacts: capture venv, fetched fonts, intermediate
+# recordings, and the rendered MP4. The pipeline that produces them lives in
+# scripts/ and is committed; the heavy binary outputs are not.
+artifacts/

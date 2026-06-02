@@ -1,0 +1,219 @@
+/* Shared utility classes scoped to .lesson-shell.
+   Extracted from src/App.jsx so it can be cached, linted, and edited as CSS. */
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: var(--paper);
+}
+body {
+  overflow-x: hidden;
+}
+
+.lesson-shell .relative {
+  position: relative;
+}
+.lesson-shell .absolute {
+  position: absolute;
+}
+.lesson-shell .fixed {
+  position: fixed;
+}
+.lesson-shell .inset-0 {
+  inset: 0;
+}
+.lesson-shell .z-10 {
+  z-index: 10;
+}
+.lesson-shell .z-20 {
+  z-index: 20;
+}
+.lesson-shell .pointer-events-none {
+  pointer-events: none;
+}
+.lesson-shell .overflow-hidden {
+  overflow: hidden;
+}
+.lesson-shell .overflow-x-auto {
+  overflow-x: auto;
+}
+.lesson-shell .hidden {
+  display: none;
+}
+.lesson-shell .block {
+  display: block;
+}
+.lesson-shell .grid {
+  display: grid;
+}
+.lesson-shell .flex {
+  display: flex;
+}
+.lesson-shell .flex-wrap {
+  flex-wrap: wrap;
+}
+.lesson-shell .flex-1 {
+  flex: 1 1 0%;
+}
+.lesson-shell .items-center {
+  align-items: center;
+}
+.lesson-shell .items-baseline {
+  align-items: baseline;
+}
+.lesson-shell .items-stretch {
+  align-items: stretch;
+}
+.lesson-shell .justify-between {
+  justify-content: space-between;
+}
+.lesson-shell .text-center {
+  text-align: center;
+}
+.lesson-shell .mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.lesson-shell .ml-auto {
+  margin-left: auto;
+}
+.lesson-shell .max-w-3xl {
+  max-width: 48rem;
+}
+.lesson-shell .max-w-4xl {
+  max-width: 56rem;
+}
+.lesson-shell .max-w-6xl {
+  max-width: 72rem;
+}
+.lesson-shell .px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.lesson-shell .px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.lesson-shell .py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.lesson-shell .pb-2 {
+  padding-bottom: 0.5rem;
+}
+.lesson-shell .mt-0\.5 {
+  margin-top: 0.125rem;
+}
+.lesson-shell .mt-1 {
+  margin-top: 0.25rem;
+}
+.lesson-shell .mt-2 {
+  margin-top: 0.5rem;
+}
+.lesson-shell .mt-3 {
+  margin-top: 0.75rem;
+}
+.lesson-shell .mt-4 {
+  margin-top: 1rem;
+}
+.lesson-shell .mt-8 {
+  margin-top: 2rem;
+}
+.lesson-shell .mt-10 {
+  margin-top: 2.5rem;
+}
+.lesson-shell .mt-12 {
+  margin-top: 3rem;
+}
+.lesson-shell .mt-16 {
+  margin-top: 4rem;
+}
+.lesson-shell .mt-20 {
+  margin-top: 5rem;
+}
+.lesson-shell .mb-1 {
+  margin-bottom: 0.25rem;
+}
+.lesson-shell .mb-2 {
+  margin-bottom: 0.5rem;
+}
+.lesson-shell .mb-3 {
+  margin-bottom: 0.75rem;
+}
+.lesson-shell .mb-4 {
+  margin-bottom: 1rem;
+}
+.lesson-shell .mb-5 {
+  margin-bottom: 1.25rem;
+}
+.lesson-shell .mb-6 {
+  margin-bottom: 1.5rem;
+}
+.lesson-shell .my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.lesson-shell .gap-1 {
+  gap: 0.25rem;
+}
+.lesson-shell .gap-1\.5 {
+  gap: 0.375rem;
+}
+.lesson-shell .gap-2 {
+  gap: 0.5rem;
+}
+.lesson-shell .gap-3 {
+  gap: 0.75rem;
+}
+.lesson-shell .gap-4 {
+  gap: 1rem;
+}
+.lesson-shell .gap-6 {
+  gap: 1.5rem;
+}
+.lesson-shell .gap-8 {
+  gap: 2rem;
+}
+.lesson-shell .space-y-1\.5 > * + * {
+  margin-top: 0.375rem;
+}
+.lesson-shell [id] {
+  scroll-margin-top: 64px;
+}
+
+@media (min-width: 768px) {
+  .lesson-shell .md\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  .lesson-shell .md\:py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  .lesson-shell .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .lesson-shell .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .lesson-shell .xl\:block {
+    display: block;
+  }
+}
+
+/* Respect users who request less motion across the shell. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

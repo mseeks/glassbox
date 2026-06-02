@@ -1,0 +1,31 @@
+{
+  "name": "interactive-lessons-agents",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Many Hands Engineering — autonomous maintenance loops for the Interactive Lessons app. Self-contained; its dependencies never enter the app's graph.",
+  "scripts": {
+    "deps": "tsx dependency-patch.ts",
+    "security": "tsx security-patch.ts",
+    "deadcode": "tsx dead-code.ts",
+    "test-backfill": "tsx test-backfill.ts",
+    "doc-coherence": "tsx doc-coherence.ts",
+    "suppression-debt": "tsx suppression-debt.ts",
+    "comment-debt": "tsx comment-debt.ts",
+    "console-runtime": "tsx console-runtime.ts",
+    "debug-cruft": "tsx debug-cruft.ts",
+    "promise-hygiene": "tsx promise-hygiene.ts",
+    "motion-gate": "tsx motion-gate.ts",
+    "style-isolation": "tsx style-isolation.ts",
+    "a11y-source": "tsx a11y-source.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.3.152"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

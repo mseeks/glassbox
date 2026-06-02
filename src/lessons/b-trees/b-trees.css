@@ -1,0 +1,547 @@
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Libre+Franklin:wght@300;400;500;600;700&display=swap');
+
+.bt-root {
+  --paper: #e8e2d2;
+  --paper-2: #ded6c2;
+  --card: #f4efe2;
+  --card-2: #ebe4d3;
+  --ink: #2a241d;
+  --ink-2: #6b6053;
+  --ink-3: #938778;
+  --oak: #5c3f27;
+  --oak-2: #79573a;
+  --oak-deep: #4a3220;
+  --blue: #1e4f62;
+  --blue-2: #2c748c;
+  --blue-wash: rgba(30, 79, 98, 0.1);
+  --stamp: #b23728;
+  --stamp-2: #c9543f;
+  --stamp-wash: rgba(178, 55, 40, 0.1);
+  --brass: #9c7a35;
+  --brass-2: #b89243;
+  --rule: rgba(42, 36, 29, 0.16);
+  --rule-2: rgba(42, 36, 29, 0.3);
+
+  /* lesson-kit token contract — maps the kit to this light card-catalog palette.
+     Only the Callout is adopted from the kit (see components/Callout.jsx); the
+     bt-read/bt-chip/bt-slider widgets stay bespoke. */
+  --lk-accent: var(--brass);
+  --lk-accent-tint: rgba(156, 122, 53, 0.08);
+  --lk-ink: var(--ink);
+  --lk-ink-dim: var(--ink-2);
+  --lk-ink-faint: var(--ink-3);
+  --lk-panel: var(--card);
+  --lk-rule: var(--rule);
+  --lk-radius: 4px;
+  --lk-display: 'Zilla Slab', serif;
+  --lk-callout-pad: 12px 16px;
+  --lk-callout-radius: 0 4px 4px 0;
+  --lk-callout-body-size: 14.5px;
+  --lk-callout-body-color: var(--ink);
+
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Libre Franklin', system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.66;
+  letter-spacing: 0.005em;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+.bt-root * {
+  box-sizing: border-box;
+}
+.bt-display {
+  font-family: 'Zilla Slab', serif;
+}
+.bt-mono {
+  font-family: var(--font-mono);
+}
+
+/* paper grain + faint horizontal rule texture, like aged card stock */
+.bt-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.55;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+.bt-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--stamp);
+  z-index: 50;
+  transition: width 0.1s linear;
+}
+
+.bt-wrap {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+.bt-section {
+  padding: 54px 0;
+  border-top: 1px solid var(--rule);
+}
+.bt-section:first-of-type {
+  border-top: none;
+}
+
+.bt-kicker {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--stamp);
+  font-weight: 700;
+}
+.bt-roman {
+  font-family: 'Zilla Slab', serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--oak-2);
+}
+.bt-h2 {
+  font-family: 'Zilla Slab', serif;
+  font-weight: 600;
+  font-size: clamp(27px, 5.4vw, 40px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0.32em 0 0.1em;
+  color: var(--ink);
+}
+.bt-lead {
+  font-size: clamp(16px, 2.3vw, 18.5px);
+  color: var(--ink);
+  margin: 0.7em 0;
+}
+.bt-p {
+  font-size: 16px;
+  color: var(--ink);
+  margin: 0.95em 0;
+}
+.bt-p strong,
+.bt-lead strong {
+  font-weight: 600;
+  color: #1c1812;
+}
+.bt-em {
+  font-style: italic;
+}
+.bt-blue {
+  color: var(--blue);
+  font-weight: 600;
+}
+.bt-stampc {
+  color: var(--stamp);
+  font-weight: 600;
+}
+.bt-mono-in {
+  font-family: var(--font-mono);
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0 5px;
+  font-size: 0.92em;
+}
+
+/* index-card surface */
+.bt-card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 2px 7px rgba(42, 36, 29, 0.07),
+    0 14px 30px -22px rgba(42, 36, 29, 0.45);
+  position: relative;
+}
+
+/* a lab is framed like a catalog drawer with a guide-card tab */
+.bt-lab {
+  position: relative;
+  margin: 30px 0 8px;
+  background: linear-gradient(180deg, var(--card), var(--card-2));
+  border: 1px solid var(--rule-2);
+  border-radius: 5px;
+  box-shadow:
+    0 2px 8px rgba(42, 36, 29, 0.08),
+    0 22px 44px -30px rgba(42, 36, 29, 0.5);
+}
+.bt-lab-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  position: absolute;
+  top: -13px;
+  left: 18px;
+  background: var(--oak);
+  color: #f3e9d8;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 4px;
+  box-shadow: 0 3px 8px -3px rgba(42, 36, 29, 0.6);
+}
+.bt-lab-tab svg {
+  width: 13px;
+  height: 13px;
+}
+.bt-lab-body {
+  padding: 26px 18px 18px;
+}
+.bt-lab-cap {
+  font-size: 13px;
+  color: var(--ink-2);
+  font-style: italic;
+  margin-top: 12px;
+  min-height: 2.2em;
+  line-height: 1.5;
+}
+
+/* controls */
+.bt-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.bt-btn {
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--rule-2);
+  background: var(--paper);
+  color: var(--ink);
+  padding: 8px 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.14s ease;
+  user-select: none;
+}
+.bt-btn:hover {
+  border-color: var(--oak-2);
+  background: var(--card);
+}
+.bt-btn:active {
+  transform: translateY(1px);
+}
+.bt-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.bt-btn svg {
+  width: 15px;
+  height: 15px;
+}
+.bt-btn-stamp {
+  background: var(--stamp);
+  color: #fbefe6;
+  border-color: var(--stamp);
+}
+.bt-btn-stamp:hover {
+  background: var(--stamp-2);
+  border-color: var(--stamp-2);
+}
+.bt-btn-blue {
+  background: var(--blue);
+  color: #eaf3f5;
+  border-color: var(--blue);
+}
+.bt-btn-blue:hover {
+  background: var(--blue-2);
+  border-color: var(--blue-2);
+}
+.bt-btn-ghost {
+  background: transparent;
+}
+
+.bt-keypill {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  border: 1px solid var(--rule-2);
+  background: var(--card);
+  color: var(--ink);
+  width: 38px;
+  height: 34px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.bt-keypill:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+.bt-keypill:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+.bt-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--oak) 0%, var(--brass) 100%);
+  outline: none;
+}
+.bt-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 3px solid var(--stamp);
+  cursor: pointer;
+  box-shadow: 0 2px 6px -1px rgba(42, 36, 29, 0.5);
+}
+.bt-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 3px solid var(--stamp);
+  cursor: pointer;
+}
+
+/* readouts */
+.bt-readgrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.bt-read {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 11px 12px;
+  text-align: center;
+}
+.bt-read-n {
+  font-family: 'Zilla Slab', serif;
+  font-weight: 700;
+  font-size: clamp(22px, 5vw, 30px);
+  line-height: 1;
+  color: var(--ink);
+  transition: color 0.2s;
+}
+.bt-read-l {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 6px;
+}
+
+/* Callout: structure + most styling come from the lesson kit via the --lk-*
+   tokens above. These two rules pin the few bits the kit doesn't tokenize:
+   the label's bold weight + 4px gap, and the italic body. */
+.bt-root .lk-callout-label {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.bt-root .lk-callout-body {
+  font-style: italic;
+}
+
+.bt-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 20px;
+  border: 1px solid var(--rule-2);
+}
+.bt-chip-blue {
+  color: var(--blue);
+  border-color: rgba(30, 79, 98, 0.4);
+  background: var(--blue-wash);
+}
+.bt-chip-stamp {
+  color: var(--stamp);
+  border-color: rgba(178, 55, 40, 0.4);
+  background: var(--stamp-wash);
+}
+.bt-chip-ink {
+  color: var(--ink-2);
+}
+
+/* reveal on scroll */
+.bt-rev {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.bt-rev.in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes btpulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.06);
+  }
+}
+@keyframes btflash {
+  0% {
+    background: var(--stamp-wash);
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+/* leaf-chain strip for the B+ range lab */
+.bt-strip {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: auto;
+  padding: 6px 2px 12px;
+}
+.bt-leafcard {
+  flex: 0 0 auto;
+  background: var(--card);
+  border: 1.5px solid var(--rule-2);
+  border-radius: 5px;
+  padding: 8px 6px;
+  min-width: 54px;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+.bt-leafcard.scan {
+  border-color: var(--blue);
+  background: var(--blue-wash);
+  box-shadow: 0 0 0 3px var(--blue-wash);
+}
+.bt-leafarrow {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  color: var(--ink-3);
+  padding: 0 3px;
+  transition: color 0.25s;
+}
+.bt-leafarrow.scan {
+  color: var(--blue);
+}
+.bt-leafkey {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 2px 0;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+.bt-leafkey.hit {
+  background: var(--stamp);
+  color: #fff;
+}
+
+/* hero cabinet */
+.bt-hero {
+  padding-top: 46px;
+}
+.bt-cabinet {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+  max-width: 330px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, var(--oak-2), var(--oak));
+  padding: 13px;
+  border-radius: 7px;
+  box-shadow:
+    0 3px 0 var(--oak-deep),
+    0 30px 60px -30px rgba(42, 36, 29, 0.85),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+}
+.bt-drawer {
+  background: linear-gradient(180deg, #caa877, #b6915f);
+  border-radius: 4px;
+  padding: 9px 7px 11px;
+  position: relative;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 3px rgba(74, 50, 32, 0.35);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.bt-drawer.open {
+  transform: translateY(-7px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 10px 18px -8px rgba(42, 36, 29, 0.6);
+}
+.bt-drawer-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #4a3220;
+  text-align: center;
+  background: #f0e7d5;
+  border-radius: 2px;
+  padding: 2px 0;
+  margin-bottom: 8px;
+  box-shadow: inset 0 0 0 1px rgba(74, 50, 32, 0.2);
+}
+.bt-knob {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--brass-2), #6e5320);
+  margin: 0 auto;
+  box-shadow: 0 1px 2px rgba(42, 36, 29, 0.6);
+}
+
+@media (max-width: 760px) {
+  .bt-wrap {
+    padding: 0 16px;
+  }
+  .bt-section {
+    padding: 42px 0;
+  }
+  .bt-readgrid {
+    gap: 7px;
+  }
+  .bt-read {
+    padding: 9px 6px;
+  }
+  .bt-lab-body {
+    padding: 24px 12px 16px;
+  }
+  .bt-grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+}

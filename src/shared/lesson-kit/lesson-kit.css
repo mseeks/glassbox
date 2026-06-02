@@ -1,0 +1,190 @@
+/* ════════════════════════════════════════════════════════════════════════
+   LESSON KIT — the shared structural UI system AGENTS anticipated ("until/
+   unless we extract a shared system"). These components ship one DOM shape and
+   one base stylesheet; each lesson keeps its identity by declaring the --lk-*
+   token contract on its root, so the kit inherits the lesson's accent, ink,
+   panel, rule, radius, and display font. The mono is always the family-glue
+   --font-mono (never varied per lesson).
+
+   Token contract (every token falls back to a family-glue default, so the kit
+   is usable with zero setup and degrades sensibly):
+
+     --lk-accent        primary accent (default: --ink)
+     --lk-accent-tint   low-alpha accent wash for fills (default: --rule-soft)
+     --lk-ink           body text       (default: --ink)
+     --lk-ink-dim       secondary text  (default: rgba parchment .72)
+     --lk-ink-faint     tertiary/labels (default: rgba parchment .45)
+     --lk-panel         raised surface  (default: --rule-soft)
+     --lk-rule          hairline border (default: --rule)
+     --lk-radius        corner radius   (default: 10px)
+     --lk-display       display font for numerics/headings (default: inherit)
+
+   Class prefix is `lk-` — it does not collide with any per-lesson prefix.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.lk-callout,
+.lk-slider,
+.lk-seg,
+.lk-statgrid,
+.lk-chip {
+  --_accent: var(--lk-accent, var(--ink, #e8dec8));
+  --_accent-tint: var(--lk-accent-tint, var(--rule-soft, rgba(232, 222, 200, 0.06)));
+  --_ink: var(--lk-ink, var(--ink, #e8dec8));
+  --_ink-dim: var(--lk-ink-dim, rgba(232, 222, 200, 0.72));
+  --_ink-faint: var(--lk-ink-faint, rgba(232, 222, 200, 0.45));
+  --_panel: var(--lk-panel, var(--rule-soft, rgba(232, 222, 200, 0.06)));
+  --_rule: var(--lk-rule, var(--rule, rgba(232, 222, 200, 0.16)));
+  --_radius: var(--lk-radius, 10px);
+  --_display: var(--lk-display, inherit);
+}
+
+/* ── Callout: an accent-barred, tinted aside with a mono label ───────────── */
+.lk-callout {
+  border-left: var(--lk-callout-bar, 3px) solid var(--_accent);
+  background: linear-gradient(90deg, var(--_accent-tint), transparent);
+  padding: var(--lk-callout-pad, 13px 16px);
+  margin: var(--lk-callout-margin, 20px 0);
+  border-radius: var(--lk-callout-radius, 0 var(--_radius) var(--_radius) 0);
+}
+.lk-callout-label {
+  font-family: var(--font-mono);
+  font-size: var(--lk-callout-label-size, 11px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lk-callout-label-color, var(--_accent));
+  margin-bottom: 5px;
+}
+.lk-callout-body {
+  font-size: var(--lk-callout-body-size, 15px);
+  line-height: 1.55;
+  color: var(--lk-callout-body-color, var(--_ink-dim));
+}
+.lk-callout-body :where(p):first-child {
+  margin-top: 0;
+}
+.lk-callout-body :where(p):last-child {
+  margin-bottom: 0;
+}
+
+/* ── Slider: a labelled range with a value readout ───────────────────────── */
+.lk-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.lk-slider-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--_ink-faint);
+}
+.lk-slider-top b {
+  color: var(--_accent);
+  font-size: 14px;
+  font-weight: 600;
+}
+.lk-slider input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 3px;
+  background: var(--_rule);
+  outline: none;
+}
+.lk-slider input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--_accent);
+  border: 2px solid var(--lk-thumb-ring, var(--paper, #0a0a0f));
+  cursor: pointer;
+}
+.lk-slider input[type='range']::-moz-range-thumb {
+  width: 17px;
+  height: 17px;
+  border: 2px solid var(--lk-thumb-ring, var(--paper, #0a0a0f));
+  border-radius: 50%;
+  background: var(--_accent);
+  cursor: pointer;
+}
+
+/* ── SegmentedControl: a row of mutually-exclusive pills ─────────────────── */
+.lk-seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--lk-seg-gap, 7px);
+}
+.lk-seg-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  padding: 8px 13px;
+  border-radius: var(--lk-seg-radius, 7px);
+  cursor: pointer;
+  transition: all 0.16s ease;
+  background: var(--_panel);
+  border: 1px solid var(--_rule);
+  color: var(--_ink-dim);
+  white-space: nowrap;
+}
+.lk-seg-btn:hover {
+  color: var(--_ink);
+  border-color: var(--_accent);
+}
+.lk-seg-btn[aria-pressed='true'] {
+  background: var(--_accent-tint);
+  border-color: var(--_accent);
+  color: var(--_accent);
+}
+
+/* ── StatGrid / Stat: a row of value + label readouts ────────────────────── */
+.lk-statgrid {
+  display: grid;
+  grid-template-columns: repeat(var(--lk-stat-cols, 3), 1fr);
+  gap: var(--lk-stat-gap, 10px);
+}
+.lk-stat {
+  background: var(--_panel);
+  border: 1px solid var(--_rule);
+  border-radius: var(--_radius);
+  padding: 11px 13px;
+  text-align: var(--lk-stat-align, left);
+}
+.lk-stat-value {
+  font-family: var(--_display);
+  font-weight: 600;
+  line-height: 1;
+  font-size: var(--lk-stat-value-size, 26px);
+  color: var(--lk-stat-value-color, var(--_ink));
+  font-variant-numeric: tabular-nums;
+}
+.lk-stat-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--_ink-faint);
+  margin-top: 5px;
+}
+
+/* ── Chip: a small mono pill ─────────────────────────────────────────────── */
+.lk-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  padding: 5px 11px;
+  border-radius: var(--lk-chip-radius, 999px);
+  border: 1px solid var(--_rule);
+  color: var(--_ink-dim);
+  background: var(--_panel);
+}

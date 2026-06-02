@@ -1,0 +1,15 @@
+export const CHAPTERS = [
+  { id: 'hero', num: '·', short: 'Open', label: 'The Bloom Clock' },
+  { id: 'ch1', num: 'I', short: 'Question', label: 'The Question' },
+  { id: 'ch2', num: 'II', short: 'Vector', label: 'Vector Clocks' },
+  { id: 'ch3', num: 'III', short: 'Trade', label: 'The Trade' },
+  { id: 'ch4', num: 'IV', short: 'Construct', label: 'Construction' },
+  { id: 'ch5', num: 'V', short: 'Merge', label: 'The Merge' },
+  { id: 'ch6', num: 'VI', short: 'Verdicts', label: 'The Verdicts' },
+  { id: 'ch7', num: 'VII', short: 'Asymmetry', label: 'The Asymmetry' },
+  { id: 'ch8', num: 'VIII', short: 'Saturation', label: 'Weight & Saturation' },
+  { id: 'ch9', num: 'IX', short: 'Aging', label: 'Aging' },
+  { id: 'ch10', num: 'X', short: 'Family', label: 'The Family' },
+  { id: 'ch11', num: 'XI', short: 'In Practice', label: 'In Practice' },
+  { id: 'close', num: '∎', short: 'Coda', label: 'Coda' },
+];

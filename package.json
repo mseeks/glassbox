@@ -1,0 +1,58 @@
+{
+  "name": "interactive-lessons",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "ci": "npm run lint && npm run format:check && npm test && npm run build",
+    "loop:deps": "npm --prefix agents run deps",
+    "loop:security": "npm --prefix agents run security",
+    "loop:deadcode": "npm --prefix agents run deadcode",
+    "loop:test-backfill": "npm --prefix agents run test-backfill",
+    "loop:doc-coherence": "npm --prefix agents run doc-coherence",
+    "loop:suppression-debt": "npm --prefix agents run suppression-debt",
+    "loop:comment-debt": "npm --prefix agents run comment-debt",
+    "loop:console-runtime": "npm --prefix agents run console-runtime",
+    "loop:debug-cruft": "npm --prefix agents run debug-cruft",
+    "loop:promise-hygiene": "npm --prefix agents run promise-hygiene",
+    "loop:motion-gate": "npm --prefix agents run motion-gate",
+    "loop:style-isolation": "npm --prefix agents run style-isolation",
+    "loop:a11y-source": "npm --prefix agents run a11y-source"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "dependencies": {
+    "lucide-react": "^1.14.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
+    "@eslint/js": "^9.11.0",
+    "@playwright/test": "^1.60.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@vitejs/plugin-react": "^6.0.2",
+    "@vitest/coverage-v8": "^4.1.8",
+    "eslint": "^9.11.0",
+    "eslint-plugin-react": "^7.37.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "globals": "^15.9.0",
+    "jsdom": "^26.1.0",
+    "knip": "^6.14.2",
+    "prettier": "3.8.3",
+    "vite": "^8.0.16",
+    "vitest": "^4.1.8"
+  }
+}
