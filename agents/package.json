@@ -18,6 +18,7 @@
     "motion-gate": "tsx motion-gate.ts",
     "style-isolation": "tsx style-isolation.ts",
     "a11y-source": "tsx a11y-source.ts",
+    "content-accuracy": "tsx content-accuracy.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

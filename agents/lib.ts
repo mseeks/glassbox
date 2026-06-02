@@ -12,7 +12,7 @@
  * anything not in the loop's allowlist (no callback, no hand-rolled blocking), and
  * the SDK splits compound commands so an allowed prefix can't smuggle a denied one.
  */
-import { query } from "@anthropic-ai/claude-agent-sdk";
+import { query, type EffortLevel } from "@anthropic-ai/claude-agent-sdk";
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -197,6 +197,24 @@ export async function runLoop(opts: {
    * pattern-matching priors can override fresh observation in that mode).
    */
   model?: "sonnet" | "opus" | "haiku";
+  /**
+   * Reasoning-effort level (SDK-native). Omitted by default (the model's own
+   * default applies). Set `"max"` for loops that need the deepest reasoning the
+   * model can give — e.g. the content-accuracy pass, where a missed inaccuracy
+   * is worse than spent tokens. Silently downgraded by the SDK on models that
+   * don't support the requested level.
+   */
+  effort?: EffortLevel;
+  /**
+   * Prefix for the live tool-use stream (e.g. a lesson id). Loops that fan out
+   * MANY agents in parallel set this so the interleaved `· ToolName` markers on
+   * one stdout stay attributable to their agent. Omitted → the plain `  · ` form.
+   */
+  label?: string;
+  /** Override the default turn cap (250). Higher for deep, many-file reads. */
+  maxTurns?: number;
+  /** Override the default per-run USD budget ($3). Higher for heavy loops. */
+  maxBudgetUsd?: number;
 }): Promise<{ agentRun: string; agentSummary: string }> {
   const token = resolveOAuthToken();
   let agentRun = "completed";
@@ -207,8 +225,9 @@ export async function runLoop(opts: {
       options: {
         cwd: APP_ROOT,
         model: opts.model ?? "sonnet",
-        maxTurns: 250,
-        maxBudgetUsd: 3,
+        ...(opts.effort ? { effort: opts.effort } : {}),
+        maxTurns: opts.maxTurns ?? 250,
+        maxBudgetUsd: opts.maxBudgetUsd ?? 3,
         permissionMode: "dontAsk",
         settingSources: [],
         env: loopEnv(token),
@@ -223,7 +242,9 @@ export async function runLoop(opts: {
         // text is captured into `agentSummary` and printed once by `report`.
         // (Streaming text AND echoing the summary caused the map to print twice.)
         for (const block of msg.message.content) {
-          if (block.type === "tool_use") process.stdout.write(`  · ${block.name}\n`);
+          if (block.type === "tool_use") {
+            process.stdout.write(`${opts.label ? `  ${opts.label} · ` : "  · "}${block.name}\n`);
+          }
         }
       } else if (msg.type === "result" && "result" in msg && typeof msg.result === "string") {
         agentSummary = msg.result;

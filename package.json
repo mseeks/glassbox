@@ -27,7 +27,8 @@
     "loop:promise-hygiene": "npm --prefix agents run promise-hygiene",
     "loop:motion-gate": "npm --prefix agents run motion-gate",
     "loop:style-isolation": "npm --prefix agents run style-isolation",
-    "loop:a11y-source": "npm --prefix agents run a11y-source"
+    "loop:a11y-source": "npm --prefix agents run a11y-source",
+    "loop:content-accuracy": "npm --prefix agents run content-accuracy"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
