@@ -1,21 +1,21 @@
 import { lessons } from '../lesson-catalog.js';
 import Glyph from './Glyph.jsx';
+import GlassCube from './GlassCube.jsx';
 import './index-page.css';
 
 function IndexPage({ onSelectLesson }) {
   return (
     <main className="idx-root">
       <div className="idx-content">
-        <p className="idx-eyebrow">Interactive Lessons · 2026</p>
-        <h1 className="idx-h1">
-          Eighteen lessons.
-          <br />
-          <em>One idea.</em>
-        </h1>
-        <p className="idx-lede">
-          Hard topics get clearer when you can poke them. Each lesson stands on its own — its own
-          paper, its own questions — but they keep each other company.
-        </p>
+        <div className="idx-hero">
+          <div className="idx-hero-copy">
+            <h1 className="idx-h1">Glassbox</h1>
+            <p className="idx-tagline">hard topics, made clear</p>
+          </div>
+          <div className="idx-hero-stage">
+            <GlassCube />
+          </div>
+        </div>
 
         <div className="idx-rule" />
 
@@ -48,7 +48,7 @@ function IndexPage({ onSelectLesson }) {
           ))}
         </div>
 
-        <p className="idx-footer">A small library of interactive systems lessons</p>
+        <p className="idx-footer">Glassbox</p>
       </div>
     </main>
   );

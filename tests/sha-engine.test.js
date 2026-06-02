@@ -39,7 +39,7 @@ describe('sha-engine · NIST FIPS 180-4 vectors', () => {
   });
 
   it('is deterministic', () => {
-    expect(sha256Hex('Interactive Lessons')).toBe(sha256Hex('Interactive Lessons'));
+    expect(sha256Hex('Glassbox')).toBe(sha256Hex('Glassbox'));
   });
 });
 

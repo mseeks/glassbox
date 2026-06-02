@@ -1,6 +1,6 @@
-# interactive-lessons-agents
+# glassbox-agents
 
-Autonomous maintenance loops for the Interactive Lessons app, built on the
+Autonomous maintenance loops for the Glassbox app, built on the
 [Claude Agent SDK](https://github.com/anthropics/claude-agent-sdk-typescript).
 
 This is a **separate, self-contained package** — its dependencies (the Agent SDK,
@@ -93,7 +93,7 @@ hands a prioritized candidate list to the agent. The agent (Read / Grep / Glob o
 classifies each into **Worth testing / Skip / Hard** with a strict articulate-the-value
 bar.
 
-- **The coverage signal is the engines.** interactive-lessons gates coverage on
+- **The coverage signal is the engines.** glassbox gates coverage on
   `src/lessons/*/engine/**` only (the pure, unit-tested layer); the React/CSS layer
   is covered by the Playwright smoke, not line coverage. So the useful scopes are the
   per-lesson engines, e.g. `src/lessons/bloom-filters/engine/`.

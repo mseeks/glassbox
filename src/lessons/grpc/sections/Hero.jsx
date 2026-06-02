@@ -9,7 +9,7 @@ export default function Hero() {
       style={{ paddingTop: 64, paddingBottom: 30, textAlign: 'center' }}
     >
       <div className="gx-fade in" style={{ display: 'inline-block' }}>
-        <Eyebrow>An interactive lesson · to the byte</Eyebrow>
+        <Eyebrow>Google · 2015 · to the byte</Eyebrow>
       </div>
       <h1
         style={{

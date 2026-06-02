@@ -29,8 +29,8 @@ export default function Coda() {
       <Reveal>
         <hr className="rule" style={{ margin: '34px 0 18px' }} />
         <p style={{ fontSize: 13, color: 'var(--ink-dim)', margin: '0 0 50px' }} className="mono">
-          An interactive lesson · drawn as an atlas of words · every route, station, and count above
-          is computed from a live trie of nine words.
+          Drawn as an atlas of words · every route, station, and count above is computed from a live
+          trie of nine words.
         </p>
       </Reveal>
     </section>

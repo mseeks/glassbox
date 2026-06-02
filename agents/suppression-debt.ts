@@ -186,7 +186,7 @@ For EACH suppression, Read the surrounding context: which rule(s) it disables, t
 
 // ── Agent's job (quality bar lives here) ──────────────────────────────────
 function systemPrompt(scope: string): string {
-  return `You are the suppression-debt mapper for the Interactive Lessons repository (React 19 + Vite + JavaScript). The static safety net here is ESLint; the escape hatches are inline \`eslint-disable\` directives — the JS analog of TypeScript's \`@ts-ignore\`. The harness has scanned \`${scope}\` for them and given you a candidate list. Your job: turn it into a curated map of suppressions worth removing.
+  return `You are the suppression-debt mapper for the Glassbox repository (React 19 + Vite + JavaScript). The static safety net here is ESLint; the escape hatches are inline \`eslint-disable\` directives — the JS analog of TypeScript's \`@ts-ignore\`. The harness has scanned \`${scope}\` for them and given you a candidate list. Your job: turn it into a curated map of suppressions worth removing.
 
 Your only tools are Read / Grep / Glob — you can investigate but you CANNOT edit any file. The human removes the suppressions they agree are worth removing.
 

@@ -13,7 +13,7 @@ import Onward from './sections/Onward.jsx';
 import './b-trees.css';
 
 /* ════════════════════════════════════════════════════════════════════════
-   THE B-TREE — an interactive lesson
+   THE B-TREE — a Glassbox lesson
    World: a mid-century library card catalog. A drawer is a node/page; the
    guide cards with raised tabs are separator keys; pulling the drawer behind
    a tab is following a pointer. The card catalog is a physical B-tree.

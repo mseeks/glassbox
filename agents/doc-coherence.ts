@@ -200,7 +200,7 @@ For EACH mechanical finding, Read the surrounding context — it may be an inten
 
 // ── The agent's job (quality bar lives in the prompt) ─────────────────────
 function systemPrompt(scope: string): string {
-  return `You are the doc-coherence mapper for the Interactive Lessons repository (React 19 + Vite + JavaScript — thirteen self-contained lessons under \`src/lessons/<slug>/\`, with \`AGENTS.md\` as the canonical agent guide and \`README.md\` as the human-facing one). The harness has scanned docs in \`${scope}\` and given you mechanical findings (broken refs / paths / commands) plus the doc list. Your job: turn this into a curated map of drift worth fixing.
+  return `You are the doc-coherence mapper for the Glassbox repository (React 19 + Vite + JavaScript — self-contained lessons under \`src/lessons/<slug>/\`, with \`AGENTS.md\` as the canonical agent guide and \`README.md\` as the human-facing one). The harness has scanned docs in \`${scope}\` and given you mechanical findings (broken refs / paths / commands) plus the doc list. Your job: turn this into a curated map of drift worth fixing.
 
 Your only tools are Read / Grep / Glob — you can investigate but you CANNOT edit any doc. The human writes the changes they agree are worth it.
 

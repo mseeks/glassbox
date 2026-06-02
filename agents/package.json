@@ -1,9 +1,9 @@
 {
-  "name": "interactive-lessons-agents",
+  "name": "glassbox-agents",
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "Many Hands Engineering — autonomous maintenance loops for the Interactive Lessons app. Self-contained; its dependencies never enter the app's graph.",
+  "description": "Many Hands Engineering — autonomous maintenance loops for the Glassbox app. Self-contained; its dependencies never enter the app's graph.",
   "scripts": {
     "deps": "tsx dependency-patch.ts",
     "security": "tsx security-patch.ts",

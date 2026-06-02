@@ -164,7 +164,7 @@ For EACH marker, Read the surrounding context. Some are real, fixable debt; some
 
 // ── Agent's job (quality bar lives here) ──────────────────────────────────
 function systemPrompt(scope: string): string {
-  return `You are the comment-debt mapper for the Interactive Lessons repository (React 19 + Vite + JavaScript — thirteen self-contained lessons under \`src/lessons/<slug>/\`). The harness has scanned \`${scope}\` for in-code comment debt (TODO / FIXME / HACK / XXX markers) and given you a candidate list. Your job: turn it into a curated map of which markers to act on.
+  return `You are the comment-debt mapper for the Glassbox repository (React 19 + Vite + JavaScript — self-contained lessons under \`src/lessons/<slug>/\`). The harness has scanned \`${scope}\` for in-code comment debt (TODO / FIXME / HACK / XXX markers) and given you a candidate list. Your job: turn it into a curated map of which markers to act on.
 
 Your only tools are Read / Grep / Glob — you can investigate but you CANNOT edit any file. The human deletes / lifts / fixes the markers they agree are worth it.
 
@@ -190,7 +190,7 @@ For EACH candidate, classify it into EXACTLY ONE of three buckets:
 
 KNOWN-CONTEXT AWARENESS for this repo:
 - \`AGENTS.md\` is the canonical agent guide and where long-form, tracked follow-ups belong (its "Known follow-ups" / "Open items" section). If a marker's content is already tracked there, treat it as KEPT (or a lift-and-delete action), not net-new debt to enumerate.
-- The thirteen lessons are intentionally unique (each its own engine / CSS prefix / fonts). A marker that documents a per-lesson choice is design rationale, not debt — verify before flagging.
+- The lessons are intentionally unique (each its own engine / CSS prefix / fonts). A marker that documents a per-lesson choice is design rationale, not debt — verify before flagging.
 
 WHEN THE HARNESS REPORTS 0 MARKERS (clean mechanical scan):
 The DEFAULT, EXPECTED output is a clean map. Sample at most 2-3 files briefly to confirm the regex didn't miss something subtle, then output:

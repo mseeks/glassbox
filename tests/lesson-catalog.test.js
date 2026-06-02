@@ -17,7 +17,7 @@ describe('lesson catalog', () => {
     expect(indexPage).toMatchObject({
       id: 'index',
       label: 'Index',
-      title: 'Interactive Lessons',
+      title: 'Glassbox',
     });
     expect(lessons).toHaveLength(18);
     expect(pages.map((page) => page.id)).toEqual([

@@ -19,7 +19,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url)); // the agents/ package dir
-export const APP_ROOT = resolve(HERE, ".."); // the Interactive Lessons app repo
+export const APP_ROOT = resolve(HERE, ".."); // the Glassbox app repo
 
 /** `--limit N` or `--limit=N`, if present. */
 export function argLimit(): number | null {
@@ -153,7 +153,7 @@ function suiteGreen(): boolean {
     }
   };
   // The JS-stack outside reference. Revisionist used `nuxt typecheck` as its
-  // static gate; interactive-lessons is pure JS, so the standing static gates are
+  // static gate; glassbox is pure JS, so the standing static gates are
   // ESLint (the project's lint) and a real `vite build` (catches module-resolution
   // / transform breakage a dep bump can introduce, the nearest thing to a compile).
   // Style-only `prettier --check` is deliberately excluded — a dep bump can't

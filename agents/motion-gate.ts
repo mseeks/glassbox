@@ -193,7 +193,7 @@ For EACH hit, Read the surrounding context and determine whether the motion (a) 
 
 // ── Agent's job (quality bar lives here) ──────────────────────────────────
 function systemPrompt(scope: string): string {
-  return `You are the motion-gate (reduced-motion) mapper for the Interactive Lessons repository (React 19 + Vite + JavaScript — a collection of animation-heavy, self-contained lessons). The harness has scanned \`${scope}\` for JS-driven motion (requestAnimationFrame / setInterval / setTimeout loops) and SVG SMIL (<animate> / <animateTransform> / <animateMotion> / <set>) and given you a candidate list. Your job: turn it into a curated map of which motion needs a reduced-motion gate.
+  return `You are the motion-gate (reduced-motion) mapper for the Glassbox repository (React 19 + Vite + JavaScript — a collection of animation-heavy, self-contained lessons). The harness has scanned \`${scope}\` for JS-driven motion (requestAnimationFrame / setInterval / setTimeout loops) and SVG SMIL (<animate> / <animateTransform> / <animateMotion> / <set>) and given you a candidate list. Your job: turn it into a curated map of which motion needs a reduced-motion gate.
 
 Your only tools are Read / Grep / Glob — you can investigate but you CANNOT edit any file. The human adds the gates they agree are worth it.
 

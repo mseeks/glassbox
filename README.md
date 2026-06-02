@@ -1,7 +1,8 @@
-# Interactive Lessons
+# Glassbox
 
-A small library of interactive systems lessons — local Vite + React. Hard topics
-get clearer when you can poke them.
+**The black box, made of glass.** A small library of systems lessons you can
+poke, prod, and see straight through — local Vite + React. The hardest ideas in
+computing usually arrive sealed shut, taken on faith; Glassbox cracks them open.
 
 ## The collection
 

@@ -148,7 +148,7 @@ For EACH emission, Read the named test file to understand what it exercises, the
 
 // ── Agent's job (quality bar lives here) ──────────────────────────────────
 function systemPrompt(scope: string): string {
-  return `You are the console-runtime mapper for the Interactive Lessons repository (React 19 + Vite + JavaScript). The harness ran \`vitest run --reporter=verbose\`, captured the \`console.warn\` / \`console.error\` emissions each test produced, and filtered them to \`${scope}\`. Your job: trace each emission to its origin and turn the list into a curated map.
+  return `You are the console-runtime mapper for the Glassbox repository (React 19 + Vite + JavaScript). The harness ran \`vitest run --reporter=verbose\`, captured the \`console.warn\` / \`console.error\` emissions each test produced, and filtered them to \`${scope}\`. Your job: trace each emission to its origin and turn the list into a curated map.
 
 Your only tools are Read / Grep / Glob — you can investigate but you CANNOT edit any file. The human fixes the source-side calls they agree are worth it.
 
