@@ -6,16 +6,17 @@ export default function Closing() {
     <section className="chapter foot">
       <div className="endmark">The single idea</div>
       <div className="pull" style={{ borderColor: 'var(--brass)', marginTop: 18 }}>
-        The rarest run of leading zeros betrays how many distinct things you've seen. Split the hash
-        across a bank of registers, combine their runs with a harmonic mean, and you trade a sliver
-        of accuracy for <em>fixed memory and effortless merging</em>.
+        The rarest run of leading zeros betrays how many distinct things you've seen. Split that
+        hash across a bank of registers, combine their runs with a harmonic mean, and you trade a
+        sliver of accuracy for <em>fixed memory and effortless merging</em>. One sketch, billions
+        counted.
       </div>
       <p style={{ marginTop: 24 }}>
         One distinction worth carrying away. Some sketches give a <em className="k">one-sided</em>{' '}
-        guarantee — a Bloom filter is never wrong when it says “no.” HyperLogLog is different: its
+        guarantee. A Bloom filter is never wrong when it says "no." HyperLogLog is different. Its
         error is <strong>two-sided and relative</strong>, roughly plus or minus a percent in either
-        direction, with no hard verdict at all. That is the right shape of error for a count, and
-        recognizing which shape a problem wants is half of choosing the right tool.
+        direction, with no hard verdict at all. That is the right shape of error for a count.
+        Recognizing which shape a problem wants is half of choosing the right tool.
       </p>
       <h3
         style={{
@@ -33,12 +34,12 @@ export default function Closing() {
         <div className="nx">
           <h4>MinHash + LSH</h4>
           <p>
-            Estimates how much two sets <b>overlap</b>, not how big they are — the natural partner
-            for the intersections HyperLogLog can't do well.
+            Estimates how much two sets <b>overlap</b> rather than how big they are, the natural
+            partner for exactly the intersections that HyperLogLog can't do well on its own.
           </p>
         </div>
         <div className="nx">
-          <h4>Count–Min Sketch</h4>
+          <h4>Count&ndash;Min Sketch</h4>
           <p>
             Trades distinctness for <b>frequency</b>: not how many distinct items, but how often
             each one appears. The heavy-hitter finder.
@@ -47,7 +48,7 @@ export default function Closing() {
         <div className="nx">
           <h4>t-digest</h4>
           <p>
-            Approximate <b>quantiles</b> in a stream — medians and tail percentiles. Together these
+            Approximate <b>quantiles</b> in a stream: medians and tail percentiles. Together these
             three summarize a firehose you can never store.
           </p>
         </div>

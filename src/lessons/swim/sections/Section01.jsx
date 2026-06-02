@@ -28,15 +28,15 @@ export function Section01() {
             <p>
               The naive answer is <em>everyone pings everyone</em>. Every node, every second, sends
               a heartbeat to every other. It works, technically. It also burns N·(N−1) messages each
-              round. At a thousand nodes that is a million packets a second across the cluster —
-              before anything useful has happened.
+              round. At a thousand nodes that is a million packets a second across the cluster. All
+              of it spent before anything useful has happened.
             </p>
             <p>
               The second naive answer is <em>elect a watcher</em>. One node pings all others;
-              everyone reports to it. The arithmetic looks better — O(N) — but now the watcher is a
-              single point of failure, a hot spot for traffic, and the cluster needs a way to
-              reliably detect <em>its</em> demise. The problem has not been solved; it has been
-              recursed.
+              everyone reports to it. The arithmetic looks better, O(N), but the cost moves rather
+              than vanishes. Now the watcher is a single point of failure, a hot spot for traffic,
+              and the cluster needs a way to reliably detect <em>its</em> demise. The problem has
+              not been solved. It has been recursed.
             </p>
             <p>
               SWIM does neither. Every node performs{' '}

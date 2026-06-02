@@ -110,7 +110,7 @@ export default function ReadLab() {
           const reached = !!t;
           let verdict = null;
           if (t?.bloom === 'no') verdict = 'bloom: definitely not here';
-          if (t?.bloom === 'maybe') verdict = 'bloom: maybe — open it';
+          if (t?.bloom === 'maybe') verdict = 'bloom: maybe, open it';
           if (t?.bloom === 'fp') verdict = 'bloom: maybe (false positive)';
           return (
             <div
@@ -279,21 +279,20 @@ export default function ReadLab() {
           color: 'var(--ink)',
         }}
       >
-        {!trace.length &&
-          'pick a key — the read drills from the surface down, newest stratum first'}
+        {!trace.length && 'pick a key. the read drills from the surface down, newest stratum first'}
         {done?.found && (
           <>
             <strong style={{ fontStyle: 'normal' }}>
-              found “{q}” at {done.at}.
+              found "{q}" at {done.at}.
             </strong>{' '}
-            {skipped > 0 && `${skipped} level(s) skipped by Bloom — `}opened {opened} of{' '}
+            {skipped > 0 && `${skipped} level(s) skipped by Bloom. `}opened {opened} of{' '}
             {READ_LV.length}.
           </>
         )}
         {done && !done.found && (
           <>
             <strong style={{ fontStyle: 'normal' }}>not found.</strong> {skipped} level(s) skipped
-            by Bloom; the drill paid only for strata Bloom couldn’t rule out.
+            by Bloom; the drill paid only for strata Bloom couldn't rule out.
           </>
         )}
       </div>

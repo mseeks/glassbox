@@ -44,7 +44,7 @@ export default function MitmLab() {
               <div className="tls-mono" style={{ fontSize: 12, color: 'var(--aqua-bright)' }}>
                 shares secret = {mitm ? K1.toString() : Kee.toString()}
               </div>
-              <div style={{ fontSize: 13, color: 'var(--bone)' }}>sends “{MSG}”</div>
+              <div style={{ fontSize: 13, color: 'var(--bone)' }}>sends "{MSG}"</div>
             </div>
           </div>
         </div>
@@ -73,12 +73,12 @@ export default function MitmLab() {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}>
                 <Eye size={13} style={{ color: 'var(--verm)' }} />
-                <span style={{ fontSize: 13, color: 'var(--bone)' }}>reads: “{MSG}”</span>
+                <span style={{ fontSize: 13, color: 'var(--bone)' }}>reads: "{MSG}"</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}>
                 <PenLine size={13} style={{ color: 'var(--verm)' }} />
                 <span style={{ fontSize: 13, color: 'var(--verm-bright)' }}>
-                  rewrites → “{MSG_TAMPERED}”
+                  rewrites → "{MSG_TAMPERED}"
                 </span>
               </div>
             </div>
@@ -101,7 +101,7 @@ export default function MitmLab() {
                 shares secret = {mitm ? K2.toString() : Kee.toString()}
               </div>
               <div style={{ fontSize: 13, color: mitm ? 'var(--verm-bright)' : 'var(--bone)' }}>
-                receives “{mitm ? MSG_TAMPERED : MSG}”
+                receives "{mitm ? MSG_TAMPERED : MSG}"
               </div>
             </div>
           </div>
@@ -119,16 +119,16 @@ export default function MitmLab() {
         <p className="tls-prose" style={{ fontSize: 13.5, margin: 0, lineHeight: 1.55 }}>
           {mitm ? (
             <>
-              Both padlocks are shut. Both ends believe the channel is private — and it <em>is</em>,
+              Both padlocks are shut. Both ends believe the channel is private, and it <em>is</em>,
               to the attacker. The two secrets ({K1.toString()} and {K2.toString()}) never match,
               yet neither side can tell. Diffie–Hellman proved they agreed a secret with{' '}
               <em>whoever answered</em>. It never checked <strong>who</strong> answered.
             </>
           ) : (
             <>
-              One shared secret ({Kee.toString()}), end to end — but only because nobody sat in the
-              middle. Nothing in the exchange <strong>proved who was on the other side.</strong>{' '}
-              Flip the switch above.
+              One shared secret ({Kee.toString()}), held end to end, but only because nobody chose
+              to sit in the middle and split the exchange in two. Nothing here{' '}
+              <strong>proved who was on the other side.</strong> Flip the switch above.
             </>
           )}
         </p>

@@ -5,17 +5,17 @@ export default function Anatomy() {
     {
       k: 'memtable',
       where: 'in memory',
-      d: 'A small sorted structure — a skip-list — that catches every write. This is the surface of the core, where new sediment lands and is kept in order. Fast, and volatile: it vanishes on crash.',
+      d: 'A small sorted structure, a skip-list, that catches every write. This is the surface of the core. New sediment lands here and is kept in order. Fast, and volatile: it vanishes on crash.',
     },
     {
       k: 'write-ahead log',
       where: 'on disk',
-      d: 'The memtable’s insurance. Every write is appended here, sequentially, before it is acknowledged. If the process dies, the log replays into a fresh memtable and nothing is lost.',
+      d: "The memtable's insurance. Every write is appended here, sequentially, before it is acknowledged. If the process dies, the log replays into a fresh memtable and nothing is lost.",
     },
     {
       k: 'sstable',
       where: 'on disk',
-      d: 'When the memtable fills, it is frozen and written out as one immutable Sorted-String Table — a finished stratum. From that instant it is read-only forever. Compaction may merge it into a new file, but never edits it.',
+      d: 'When the memtable fills, it is frozen and written out as one immutable Sorted-String Table: a finished stratum. From that instant it is read-only forever. Compaction may merge it into a new file, but never edits it.',
     },
   ];
   return (

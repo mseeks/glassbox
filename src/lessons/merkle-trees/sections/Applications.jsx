@@ -4,15 +4,15 @@ import SectionHeader from '../components/SectionHeader.jsx';
 const APPS = [
   [
     'Git',
-    'Every commit is a Merkle root over your file tree, chained to its parent. Change one byte of history and every later commit hash changes. That is why a repository can verify its own integrity.',
+    'Every commit is a Merkle root over your file tree, chained back to its parent and so to all of history. Change one byte. Every later commit hash changes, which is why a repository can verify its own integrity.',
   ],
   [
     'Bitcoin & light wallets',
-    'Each block header carries a Merkle root over its transactions. A light client trusts only headers and asks for a log-sized proof that its own transaction was included. It never downloads the chain.',
+    'Each block header carries a Merkle root over its transactions. A light client trusts only the headers, then asks for a log-sized proof that its own transaction was included in a given block. It never downloads the chain.',
   ],
   [
     'Ethereum',
-    'Three Patricia tries per block: state, transactions, receipts. The state root is a single commitment to every account on the network, enabling proofs about any slice of world state.',
+    'Every block carries three Patricia tries, one each for state, for transactions, for receipts. The state root is a single commitment to every account on the network. From it you can prove anything about any slice of world state.',
   ],
   [
     'Certificate Transparency',
@@ -20,11 +20,11 @@ const APPS = [
   ],
   [
     'IPFS & content addressing',
-    'Files are chunked, hashed, and woven into a Merkle DAG. The address you link to IS the root hash. The name of the data is also the proof of its integrity.',
+    'Files are chunked, then hashed, then woven into a Merkle DAG. The address you link to IS the root hash. The name of the data is also the proof of its integrity.',
   ],
   [
     'Database anti-entropy',
-    'Replicated stores keep Merkle trees over their key ranges and reconcile divergence by exchanging roots and descending only into mismatches. Bandwidth stays proportional to the drift.',
+    'Replicated stores keep Merkle trees over their key ranges and reconcile divergence by exchanging roots and descending only into the parts that disagree. Bandwidth stays proportional to the drift. Nothing more.',
   ],
 ];
 
@@ -36,8 +36,9 @@ export default function Applications() {
       <Reveal base="mk-reveal" className="mk-prose">
         <p className="lead">
           Once you can commit to a dataset in one fingerprint and prove any part in a logarithm, the
-          same shape reappears across the whole field. It turns up in version control, blockchains,
-          transparency logs, storage, and databases.
+          same shape reappears across the whole field. You find it in version control. It runs
+          through blockchains and transparency logs, through content storage, and deep in the guts
+          of distributed databases.
         </p>
       </Reveal>
       <Reveal base="mk-reveal">

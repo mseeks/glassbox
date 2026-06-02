@@ -215,7 +215,7 @@ export const AsymmetryVisualization = () => (
           }}
         >
           <XIcon size={16} color="#fb7185" />
-          <span style={{ fontSize: 14, color: '#fb7185' }}>yes — possible</span>
+          <span style={{ fontSize: 14, color: '#fb7185' }}>yes, possible</span>
         </div>
         <div
           data-asym-label="false negative?"

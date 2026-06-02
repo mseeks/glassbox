@@ -135,7 +135,7 @@ export const MYTHS = [
     myth: '"Stronger consistency is always better."',
     short: 'Pick the strongest level you can.',
     truth:
-      'Every step up the consistency lattice costs round-trips, throughput, or availability — sometimes catastrophically. Most applications don\'t need linearizability; they need read-your-writes plus causal order, which is far cheaper to provide. "Stronger" without "needed" is engineering tax.',
+      'Every step up the consistency lattice costs round-trips, throughput, or availability. Sometimes catastrophically. Most applications don\'t need linearizability; they need read-your-writes plus causal order, which is far cheaper to provide. "Stronger" without "needed" is engineering tax.',
   },
 ];
 
@@ -159,14 +159,14 @@ export const WIDER_FIELD = [
     name: 'Harvest and Yield',
     year: '1999',
     by: 'Fox · Brewer',
-    body: "A pre-CAP framing from the same authors. Harvest is the fraction of data reflected in a response; yield is the fraction of requests that get a response at all. Under partition, you trade these against each other — a search engine might reduce harvest (return results from only the partitions it can reach) to preserve yield (still answer every query). A subtler decomposition than CAP's binary letters.",
+    body: "A pre-CAP framing from the same authors. Harvest is the fraction of data reflected in a response; yield is the fraction of requests that get a response at all. Under partition, you trade these against each other. A search engine might reduce harvest (return results from only the partitions it can reach) to preserve yield (still answer every query). A subtler decomposition than CAP's binary letters.",
   },
   {
     glyph: '◇',
     name: 'CALM Theorem',
     year: '2010',
     by: 'Hellerstein · Ameloot',
-    body: 'Consistency As Logical Monotonicity. A computation can run without coordination if and only if it is "monotonic" — meaning adding more input only ever produces more output, never retracts something already said. Counting (a counter only goes up), set-union (a set only grows), and minimum-finding (the min only gets smaller) are monotonic. Bank-balance updates are not (you can both add and subtract). CALM is the formal basis for "design your data to be CRDT-shaped" — it tells you precisely which problems consensus is avoidable for, and which truly require it.',
+    body: 'Consistency As Logical Monotonicity. A computation can run without coordination if and only if it is "monotonic," meaning adding more input only ever produces more output, never retracts something already said. Counting (a counter only goes up), set-union (a set only grows), and minimum-finding (the min only gets smaller) are monotonic. Bank-balance updates are not (you can both add and subtract). CALM is the formal basis for "design your data to be CRDT-shaped." It tells you precisely which problems consensus is avoidable for, and which truly require it.',
   },
   {
     glyph: '◴',
@@ -180,7 +180,7 @@ export const WIDER_FIELD = [
     name: 'Gray Failures',
     year: '2017',
     by: 'Huang et al.',
-    body: 'CAP\'s partition is a clean cut: messages either flow or they don\'t. Real failures are messier — a node responds to pings but drops writes, a link works for small packets and times out on large ones, a process pauses for a GC long enough to look dead. Gray failures hurt CP systems disproportionately, because they cannot distinguish "I am isolated" from "my peer is slow." The cleanest theorems describe the messiest reality only approximately.',
+    body: 'CAP\'s partition is a clean cut: messages either flow or they don\'t. Real failures are messier. A node responds to pings but drops writes, a link works for small packets and times out on large ones, a process pauses for a GC long enough to look dead. Gray failures hurt CP systems disproportionately, because they cannot distinguish "I am isolated" from "my peer is slow." The cleanest theorems describe the messiest reality only approximately.',
   },
   {
     glyph: '◌',

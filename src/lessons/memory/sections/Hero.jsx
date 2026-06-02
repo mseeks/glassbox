@@ -133,9 +133,9 @@ export default function Hero() {
               color: '#d8d1c2',
             }}
           >
-            It began as something you could hold. A wire threaded by hand through a ring of iron,
+            It began as something you could hold: a wire threaded by hand through a ring of iron,
             one bit at a time. In a single lifetime it became an ocean nobody can picture. This is
-            the story of how, and what each drop of it once let a machine do.
+            the story of how. And of what each drop of it once let a machine do.
           </p>
           <div
             style={{

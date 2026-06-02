@@ -16,9 +16,9 @@ export default function Proof() {
         <p>
           Pick any leaf below. The <span style={{ color: 'var(--gold-bright)' }}>gold</span> nodes
           are the siblings handed to the verifier; the{' '}
-          <span style={{ color: 'var(--patina)' }}>green</span> path is what they recompute. If
-          their recomputed root matches the trusted one, the item is proven. No access to anything
-          else in the tree is needed.
+          <span style={{ color: 'var(--patina)' }}>green</span> path is what they recompute,
+          climbing one level at a time until they reach a root of their own. Does it match the
+          trusted root? Then the item is proven. They never touched anything else in the tree.
         </p>
       </Reveal>
 
@@ -31,8 +31,8 @@ export default function Proof() {
           Notice what the verifier never saw: the other seven transactions. They learned that
           <em> their</em> item is in a tree of eight, holding only three hashes and the root. The
           dataset could have a million leaves and the proof would still be twenty hashes. This is
-          the logarithm at work. It is why light wallets, transparency logs, and content-addressed
-          storage can verify membership without downloading the world.
+          the logarithm at work. It is why a light wallet, a transparency log, or a
+          content-addressed store can verify membership without ever downloading the world.
         </p>
         <div className="mk-marginalia">
           The asymmetry to feel: the verifier does a handful of cheap hashes. To <em>forge</em> a

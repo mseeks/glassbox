@@ -25,8 +25,9 @@ export default function PrefixLab() {
         <span className="lab-title">Every word under one roof</span>
       </div>
       <div className="lab-sub">
-        Travel to a prefix, and <em>everything downstream of you</em> is a word that starts with it.
-        This single move, "give me the region below here," is what a hash table can never do.
+        Travel to a prefix. Then look down. <em>Everything downstream of you</em> is a word that
+        starts with that prefix, sitting in the region below the node you stopped on, and this one
+        move, "give me the region below here," is the thing a hash table can never do.
       </div>
       <div
         style={{

@@ -34,7 +34,7 @@ export default function AvalancheDemo() {
           marginBottom: 10,
         }}
       >
-        Try it — type, or flip a single character
+        Try it: type, or flip a single character
       </div>
       <input
         className="mk-input"
@@ -74,7 +74,7 @@ export default function AvalancheDemo() {
         </button>
       </div>
       <div className="mk-mono" style={{ fontSize: 11, color: 'var(--paper-faint)', marginTop: 10 }}>
-        gold digits differ from the original input's fingerprint — a tiny change scatters everywhere
+        gold digits differ from the original input's fingerprint. A tiny change scatters everywhere.
       </div>
     </Plate>
   );

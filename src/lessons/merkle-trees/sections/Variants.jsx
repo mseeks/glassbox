@@ -8,25 +8,25 @@ const VARIANTS = [
     icon: KeyRound,
     name: 'Sparse Merkle Tree',
     tag: 'proves absence',
-    body: 'A tree over an enormous key space (say, 2²⁵⁶ slots) that is mostly empty. Because every empty subtree shares one cached hash, you can prove a key is NOT present. That is a non-membership proof, not just a proof that the key exists. Vital for revocation lists and account states.',
+    body: 'A tree over an enormous key space (say, 2²⁵⁶ slots) that is mostly empty. Because every empty subtree collapses to one cached hash, the whole vast emptiness costs almost nothing to commit to, and that is what lets you prove a key is NOT present. Absence, provably. That is a non-membership proof, not just a proof that the key exists. Vital for revocation lists and account states.',
   },
   {
     icon: Binary,
     name: 'Merkle Patricia Trie',
     tag: 'Ethereum state',
-    body: "A Merkle tree married to a radix trie: the structure follows the key's digits, so it is at once an indexed map and a commitment. Ethereum commits its entire world state, every balance and every contract, to one such root per block.",
+    body: "A Merkle tree married to a radix trie. The structure follows the key's digits, so it is at once an indexed map and a commitment. Ethereum leans on this. It commits its entire world state, every balance and every contract, to one such root per block.",
   },
   {
     icon: Layers,
     name: 'Merkle Mountain Range',
     tag: 'append-only',
-    body: 'A forest of perfect trees that only ever grows on the right, needing no rebalancing on insert. It gives cheap appends plus consistency proofs: proof that one log is a strict extension of an earlier snapshot. Used in transparency logs and some chains.',
+    body: 'A forest of perfect trees that only ever grows on the right, needing no rebalancing on insert. Appends stay cheap. Better still, it gives consistency proofs: proof that one log is a strict extension of an earlier snapshot. Used in transparency logs and some chains.',
   },
   {
     icon: Scale,
     name: 'Verkle Tree',
     tag: 'the frontier',
-    body: "Replaces each node's hash with a vector (polynomial) commitment. You no longer ship every sibling per level, so witnesses shrink dramatically. Ethereum is migrating to Verkle to make stateless clients practical. The cost is heavier cryptography.",
+    body: "Replaces each node's hash with a vector (polynomial) commitment. You no longer ship every sibling per level, so witnesses shrink dramatically. Ethereum is migrating to Verkle to make stateless clients practical. The price? Heavier cryptography.",
   },
 ];
 
@@ -37,8 +37,9 @@ export default function Variants() {
       <SectionHeader id="variants" kicker="The Family" title="Specialized descendants" />
       <Reveal base="mk-reveal" className="mk-prose">
         <p className="lead">
-          The plain binary tree is the seed. Real systems specialize it for their needs. They prove
-          absence, index by key, append forever, or shrink the proofs themselves.
+          The plain binary tree is the seed. From it, real systems grow specialized forms that bend
+          the same idea toward whatever a particular workload demands. They prove absence, index by
+          key, append forever, or shrink the proofs themselves.
         </p>
       </Reveal>
       <Reveal base="mk-reveal">

@@ -16,8 +16,8 @@ export default function ARX() {
           lede={
             <>
               Inside each stamp, SHA-2 leans on three humble operations, often called the
-              <span className="kw"> ARX</span> trinity. Stack sixty-four rounds of them and a single
-              changed bit becomes an unrecognizable output.
+              <span className="kw"> ARX</span> trinity. Stack sixty-four rounds of them on top of
+              one another and a single changed bit becomes an output you would never recognize.
             </>
           }
         />
@@ -72,11 +72,10 @@ export default function ARX() {
         </div>
 
         <p className="body">
-          Think of it as kneading dough: each round folds the loaf, redistributing whatever is
-          already there. No single fold does much; sixty-four folds make the dough uniform. The
-          visual below is the
-          <em> real</em> compression — two inputs differing by one bit — with each of the 256
-          working bits drawn as it diverges round by round.
+          Think of it as kneading dough. Each round folds the loaf, redistributing whatever is
+          already there. No single fold does much. Sixty-four folds make the dough uniform. The
+          visual below is the <em>real</em> compression, run on two inputs that differ by a single
+          bit, with each of the 256 working bits drawn as it diverges round by round.
         </p>
 
         <DiffusionLab />

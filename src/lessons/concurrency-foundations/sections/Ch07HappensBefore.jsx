@@ -57,12 +57,12 @@ export function Ch07HappensBefore() {
 
   return (
     <section className="section">
-      <div className="section-num">07.04 — the fix</div>
+      <div className="section-num">07.04 · the fix</div>
       <h2 className="section-title">
         <em>Happens-before</em>, made visible.
       </h2>
       <p className="prose">
-        The cure isn't to forbid reordering — that would cripple performance. The cure is to
+        The cure isn't to forbid reordering. That would cripple performance. The cure is to
         introduce <strong>specific points where ordering must be preserved</strong>. Synchronization
         primitives create these points. The relationship they create is called{' '}
         <strong>happens-before</strong>: if A happens-before B, then B is guaranteed to see A's
@@ -71,7 +71,7 @@ export function Ch07HappensBefore() {
       <p className="prose">
         Below, thread 1 prepares <code>data</code> and then publishes a flag. Thread 2 waits for the
         flag and reads <code>data</code>. Toggle the synchronization to watch what becomes{' '}
-        <em>guaranteed</em> — and what doesn't.
+        <em>guaranteed</em>, and what doesn't.
       </p>
 
       <div className="hb-card">
@@ -262,7 +262,7 @@ export function Ch07HappensBefore() {
               <strong className="rose">No happens-before edge exists.</strong> Thread 2 has no
               guarantee about anything Thread 1 did. The compiler and CPU may reorder writes across
               the threads as they please. Even after Thread 2 sees <code>flag == true</code>, the
-              value of <code>data</code> may still be stale or default-valued — the classic
+              value of <code>data</code> may still be stale or default-valued. That is the classic
               publication race.
             </React.Fragment>
           )}
@@ -273,8 +273,8 @@ export function Ch07HappensBefore() {
               <em>
                 Everything in the publish zone is now guaranteed visible to everything in the
                 receive zone
-              </em>{' '}
-              — including the write of <code>data = 42</code>, even though it's not the variable
+              </em>
+              . That includes the write of <code>data = 42</code>, even though it's not the variable
               being synchronized on.
             </React.Fragment>
           )}

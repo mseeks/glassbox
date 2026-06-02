@@ -11,7 +11,7 @@ export const DurabilitySection = forwardRef(function DurabilitySection(_props, r
           kicker="The persistence axis"
           name="Durability"
           accent="#fbbf24"
-          intro="Atomicity tells you the WAL becomes truth at commit time. Durability tells you *where the WAL lives* — and which kinds of failures it can outlive. fsync, replication, group commit: the layered defense behind the word *committed*."
+          intro="Atomicity tells you the WAL becomes truth at commit time. Durability tells you *where the WAL lives*, and which kinds of failures it can outlive. fsync, replication, group commit: the layered defense behind the word *committed*."
         />
       </div>
       <DurabilityBody />
@@ -70,7 +70,7 @@ function DurabilityBody() {
           }}
           dangerouslySetInnerHTML={{
             __html: renderProseMarkdown(
-              'Durability is the promise that **once a commit is acknowledged, it cannot be lost**. Atomicity tells you the WAL becomes the source of truth at commit time — but durability is about *where the WAL actually lives*, and which kinds of failures can wipe it.',
+              'Durability is the promise that **once a commit is acknowledged, it cannot be lost**. Ever. Atomicity tells you the WAL becomes the source of truth at commit time. Durability is about *where the WAL actually lives*, and which kinds of failures can wipe it.',
             ),
           }}
         />
@@ -80,7 +80,7 @@ function DurabilityBody() {
             label="Application memory"
             sublabel="volatile"
             description="The application calls COMMIT. Until the database confirms, it knows nothing."
-            survives="—"
+            survives="–"
             color="rgba(232, 222, 200, 0.35)"
           />
           <Arrow label="commit request" />
@@ -95,8 +95,8 @@ function DurabilityBody() {
           <Arrow
             label={
               <>
-                <strong style={{ color: '#fbbf24' }}>fsync()</strong> &nbsp;— the buffer is forced
-                to disk
+                <strong style={{ color: '#fbbf24' }}>fsync()</strong> &nbsp;&ndash; the buffer is
+                forced to disk
               </>
             }
           />
@@ -111,8 +111,8 @@ function DurabilityBody() {
           <Arrow
             label={
               <>
-                <strong style={{ color: '#5eead4' }}>replicate</strong> &nbsp;— send the entry to
-                other nodes
+                <strong style={{ color: '#5eead4' }}>replicate</strong> &nbsp;&ndash; send the entry
+                to other nodes
               </>
             }
           />
@@ -194,7 +194,7 @@ function DurabilityBody() {
             }}
             dangerouslySetInnerHTML={{
               __html: renderProseMarkdown(
-                "**Group commit** batches many transactions' WAL entries into a single fsync. fsync is expensive — it forces the OS to actually write to physical storage — so amortizing one fsync across many commits is a huge throughput win. The transactions still have individual COMMIT markers; they're just all flushed together.",
+                "**Group commit** batches many transactions' WAL entries into a single fsync. fsync is expensive, because it forces the OS to actually write to physical storage, so amortizing one fsync across many commits is a huge throughput win. The transactions still have individual COMMIT markers; they're just all flushed together.",
               ),
             }}
           />

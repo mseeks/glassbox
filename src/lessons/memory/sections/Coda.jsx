@@ -18,10 +18,10 @@ export default function Coda() {
             It just moved up the stack.
           </h2>
           <p style={{ color: '#cdc7ba' }}>
-            When memory was scarce, genius went into fitting a world into a shoebox. Now that it's
-            vast, genius goes into filling the ocean. We hold an entire artificial mind in memory at
-            once. Same instinct, four more orders of magnitude. The ring you wove at the top of this
-            page is still under all of it, by the trillion.
+            When memory was scarce, genius went into fitting a whole world into a shoebox. Now that
+            it is vast, genius goes into filling the ocean instead. We hold an entire artificial
+            mind in memory at once. Same instinct. Four more orders of magnitude. The ring you wove
+            at the top of this page is still down there under all of it, by the trillion.
           </p>
         </div>
 
@@ -33,7 +33,7 @@ export default function Coda() {
             {[
               [
                 'The memory hierarchy',
-                'Not all memory is equal. Registers, cache, RAM, and disk trade speed for size across six orders of magnitude. That is the reason "how much" is only half the story.',
+                'Not all memory is equal. From registers down through cache, then RAM, then disk, each layer trades speed for size across six orders of magnitude. That is the reason "how much" is only half the story.',
               ],
               [
                 "Moore's law and its end",

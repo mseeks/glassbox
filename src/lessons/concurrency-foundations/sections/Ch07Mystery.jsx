@@ -5,13 +5,13 @@ export function Ch07Mystery() {
   const [pick, setPick] = useState(null);
 
   const options = [
-    { key: 'no', label: 'No — impossible', tagline: 'at least one must see the other' },
-    { key: 'yes', label: 'Yes — possible', tagline: 'both can return false' },
+    { key: 'no', label: 'No, impossible', tagline: 'at least one must see the other' },
+    { key: 'yes', label: 'Yes, possible', tagline: 'both can return false' },
   ];
 
   return (
     <section className="section">
-      <div className="section-num">07.01 — the mystery</div>
+      <div className="section-num">07.01 · the mystery</div>
       <h2 className="section-title">
         A puzzle, before <em>theory</em>.
       </h2>
@@ -45,8 +45,8 @@ export function Ch07Mystery() {
 
       <p className="prose">
         Both threads <strong>write first, then read</strong>. So at least one thread's write must
-        happen before the other's read… right? Whichever thread "goes first," its write should be
-        visible to the other.
+        happen before the other's read, and whichever thread goes first ought to have its write
+        sitting there in memory for the other thread to see. Right?
       </p>
 
       <div className="quiz">
@@ -84,7 +84,7 @@ export function Ch07Mystery() {
           <div className="quiz-reveal">
             {pick === 'yes' ? (
               <span>
-                <strong>Correct — and unsettling.</strong> Both reads can return <code>false</code>,
+                <strong>Correct, and unsettling.</strong> Both reads can return <code>false</code>,
                 even though both threads wrote <code>true</code> first. Most engineers correctly
                 protest that this should be impossible; the next sections show you the machinery
                 that makes it routine.

@@ -52,21 +52,21 @@ export const ChapterEleven = () => (
       <UseCard
         tone="good"
         items={[
-          'Cluster is large or dynamic, and membership changes faster than you want to manage per-node slots.',
-          'Per-event payload budget is tight — gossip messages, replicated writes, network protocols where every byte counts.',
-          'The downstream use is "trigger conflict resolution when concurrency is detected" — over-serialization is acceptable.',
-          'You want a constant memory budget for causality tracking that you can size once and forget.',
+          'The cluster is large or dynamic, and membership churns faster than you ever want to manage a slot per node.',
+          'Every byte counts. Gossip messages, replicated writes, tight network protocols: the per-event payload budget is small.',
+          'You only need to trigger conflict resolution when concurrency shows up, and a little over-serialization is acceptable.',
+          'You want a fixed memory budget for causality. Size it once. Forget it.',
           "You're already comfortable with probabilistic structures and can tune m and k against your event rate.",
         ]}
       />
       <UseCard
         tone="bad"
         items={[
-          'N is small and stable — a vector clock costs nothing and pays you back in exactness.',
-          'Event rate is high without any aging strategy — FPR will silently saturate to 1.',
+          'N is small and stable. A vector clock costs nothing here and pays you back in full exactness.',
+          'Event rate is high and you have no aging strategy in place, which means FPR will silently saturate to 1.',
           'Application logic needs to enumerate or audit causal dependencies, not just compare them.',
-          'The cost of a false-positive ordering is correctness-critical and not merely a performance penalty.',
-          'You need total ordering across nodes — Bloom clocks give partial order only.',
+          'A false-positive ordering would be correctness-critical, not merely a performance penalty.',
+          'You need total ordering. Bloom clocks give partial order only.',
         ]}
       />
     </div>

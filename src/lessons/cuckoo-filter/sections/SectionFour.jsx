@@ -17,7 +17,7 @@ export function SectionFour() {
         </P>
         <P>
           To go from the first bucket to the second, take the exclusive-or with a hash of the
-          fingerprint. To go from the second back to the first, take the exclusive-or — with{' '}
+          fingerprint. To go from the second back to the first, take the exclusive-or with{' '}
           <em>the same hash</em>. There is only one operation; the same operation undoes itself.
         </P>
       </PageBlock>

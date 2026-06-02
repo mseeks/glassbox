@@ -355,7 +355,7 @@ export const VerdictLab = () => {
             'A really caused B, but the clock saw it differently.'}
           {scenario === 'concurrent' &&
             verdict === 'concurrent' &&
-            'A and B are independent — and the clock detected the concurrency exactly. This verdict is never wrong.'}
+            'A and B are independent, and the clock detected the concurrency exactly. This verdict is never wrong.'}
           {scenario === 'concurrent' &&
             verdict === 'before' &&
             'A and B are actually independent, but the clock thinks A → B. This is the kind of probabilistic error a Bloom clock allows.'}
@@ -364,7 +364,7 @@ export const VerdictLab = () => {
             'A and B are actually independent, but the clock thinks B → A.'}
           {scenario === 'fp' &&
             verdict === 'before' &&
-            'A and B are actually concurrent — but B is so much heavier than A that it accidentally dominates A in every position. The clock reports "A → B" with confidence, even though it\'s wrong. This is exactly the failure mode to understand.'}
+            'A and B are actually concurrent. But B is so much heavier than A that it accidentally dominates A in every position. The clock reports "A → B" with confidence, even though it\'s wrong. This is exactly the failure mode to understand.'}
           {scenario === 'fp' &&
             verdict === 'concurrent' &&
             'A and B are concurrent, and even with the weight imbalance, some position of A poked above B. The clock got lucky and detected the truth.'}
@@ -372,9 +372,9 @@ export const VerdictLab = () => {
       </div>
 
       <Callout title="The three verdicts" color="#b794f4">
-        <strong>Probabilistic:</strong> "A → B" or "B → A" — could be correct, could be concurrency
-        masquerading as causality. <strong>Exact:</strong> "A || B" (concurrent) — when neither
-        clock dominates the other, both are <em>certainly</em> concurrent. No false negatives. Ever.
+        <strong>Probabilistic:</strong> "A → B" or "B → A" could be correct, or could be concurrency
+        masquerading as causality. <strong>Exact:</strong> "A || B" (concurrent). When neither clock
+        dominates the other, both are <em>certainly</em> concurrent. No false negatives. Ever.
       </Callout>
     </div>
   );

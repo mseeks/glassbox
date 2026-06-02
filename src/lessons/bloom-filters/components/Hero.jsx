@@ -97,7 +97,7 @@ export function Hero() {
           >
             Ten bits to know if anything belongs. A complete tour of the data structure that traded
             certainty for memory, and changed how big systems answer the oldest question in
-            computing —
+            computing:
             <span className="bf-display-italic bf-mark-amber"> have I seen this before?</span>
           </p>
         </div>

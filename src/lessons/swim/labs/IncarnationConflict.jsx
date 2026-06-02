@@ -52,7 +52,7 @@ export function IncarnationConflict() {
         'Once any node receives dead(X, k), no incoming message can revive X. Even a future alive(X, 99) is ignored. X must rejoin as a new identity.',
       steps: [
         { who: 'A', view: { state: 'alive', i: 7 }, msg: null },
-        { who: 'A', view: { state: 'dead', i: 7 }, msg: 'Incoming: dead(X, 7) — confirmation' },
+        { who: 'A', view: { state: 'dead', i: 7 }, msg: 'Incoming: dead(X, 7), confirmation' },
         { who: 'A', view: { state: 'dead', i: 7 }, msg: 'Incoming: alive(X, 99) (somehow)' },
         {
           who: 'A',

@@ -75,7 +75,8 @@ export function Hero() {
               {' '}
               who is still here?
             </em>{' '}
-            This is a study of how it is asked, how it is answered, and how the answer travels.
+            One question. This is a study of how it is asked, how it is answered, and how the answer
+            travels.
           </p>
           <div style={{ marginTop: 44, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <span className="swim-chip" data-tone="alive">

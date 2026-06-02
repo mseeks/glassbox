@@ -34,8 +34,8 @@ export function SectionNine() {
       </div>
 
       <p>
-        Look at the special cases the dials produce. <code>R = W = 1</code> is maximum availability
-        — any single node can answer either request, so the system survives almost any failure but
+        Look at the special cases the dials produce. <code>R = W = 1</code> is maximum availability.
+        Any single node can answer either request, so the system survives almost any failure but
         offers no consistency guarantee. <code>W = N</code> means every write must reach every
         replica before it commits: high consistency, but a single failed replica kills writes.{' '}
         <code>R = W = ⌈(N+1)/2⌉</code>, read and write quora set to a strict majority, is the
@@ -43,7 +43,7 @@ export function SectionNine() {
         <strong>Raft</strong> (Paxos being the older, original consensus algorithm; Raft a more
         recent, more understandable reformulation). It tolerates ⌊(N-1)/2⌋ failures while staying
         strong. Different applications want different points on this surface, and many systems let
-        the application pick per query — strong for the checkout, fast for the product listing.
+        the application pick per query. Strong for the checkout. Fast for the product listing.
       </p>
     </section>
   );

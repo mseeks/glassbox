@@ -12,20 +12,20 @@ export default function Chapter06() {
       </p>
       <p>
         Two corrections handle the edges. At <strong>low cardinality</strong>, when many registers
-        are still empty, the estimator switches to <em className="k">linear counting</em> —
-        inferring the count from how many registers remain untouched, the way you'd estimate a crowd
-        from how many seats are still empty. At <strong>very high cardinality</strong>, a 32-bit
-        hash starts to collide; the modern <strong>HyperLogLog++</strong> (2013) simply uses a
-        64-bit hash to push that ceiling past anything you'll meet, adds empirical bias correction
-        in the awkward middle, and stores registers sparsely when the count is small. The instrument
-        below runs the real algorithm.
+        are still empty, the estimator switches to <em className="k">linear counting</em>. It infers
+        the count from how many registers remain untouched, the way you'd estimate a crowd from how
+        many seats are still empty. At <strong>very high cardinality</strong>, a 32-bit hash starts
+        to collide; the modern <strong>HyperLogLog++</strong> (2013) simply uses a 64-bit hash to
+        push that ceiling past anything you'll meet, adds empirical bias correction in the awkward
+        middle, and stores registers sparsely when the count is small. The instrument below runs the
+        real algorithm.
       </p>
       <MachineLab />
       <p>
-        Pour in a thousand or a hundred thousand, crank the duplicates — the error trace stays
-        inside its band. <strong>Accuracy depends on the register count alone</strong>, never on the
-        volume or the repetition of the stream. That invariance is what makes the structure
-        trustworthy at scale.
+        Pour in a thousand or a hundred thousand. Crank the duplicates. The error trace stays inside
+        its band. <strong>Accuracy depends on the register count alone</strong>, never on the volume
+        or the repetition of the stream. That invariance is what makes the structure trustworthy at
+        scale.
       </p>
     </Chapter>
   );

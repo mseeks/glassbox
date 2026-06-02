@@ -282,7 +282,7 @@ export const ConstructionLab = () => {
 
       <Callout title="What to notice" color="#b794f4">
         Every node maps to a <em>fixed set of k positions</em>, deterministic from its identity. Two
-        nodes can share positions — that's where the noise comes from later. But size never grows:
+        nodes can share positions. That's where the noise comes from later. But size never grows:
         you can pick m once and put a thousand nodes in your cluster without changing a single slot.
       </Callout>
     </div>

@@ -18,10 +18,11 @@ export default function Stops() {
         Consider <span className="tcode">car</span>, <span className="tcode">card</span>,{' '}
         <span className="tcode">care</span>, <span className="tcode">cart</span>. The point you
         reach after <span className="tcode">car</span> is a genuine word <em>and</em> a junction
-        that keeps going to three others. So a node needs one extra bit: a mark saying "a word ends
-        here." Reaching a node tells you the path exists; the mark tells you the path is a word.
-        Three different things can happen when you trace a query, and the gap between two of them is
-        exactly what that mark is for.
+        that keeps going to three others. So a node needs one extra bit, a mark that says "a word
+        ends here," and that mark is the whole difference between a path that merely exists and a
+        path that spells a real word. Reaching a node tells you the route is there. The mark tells
+        you a word ends on it. Three different things can happen when you trace a query, and the gap
+        between two of them is exactly what that mark is for.
       </Reveal>
       <Reveal>
         <SearchLab />

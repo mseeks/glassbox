@@ -3,7 +3,7 @@ import { Code } from '../components/Code.jsx';
 export function Ch04Select() {
   return (
     <section className="section">
-      <div className="section-num">04.05 — the unifying primitive</div>
+      <div className="section-num">04.05 · the unifying primitive</div>
       <h2 className="section-title">
         Go's <em>select</em>: composing channels.
       </h2>
@@ -33,16 +33,16 @@ export function Ch04Select() {
 
       <p className="prose">
         With <code>select</code>, timeouts and cancellation become the same shape as message
-        receiving. A pipeline stage doesn't need a separate timer thread; it selects between its
-        input channel, a context done channel, and a timer channel. The cases in a select compete;
-        whichever fires first wins, and the others stay armed for next time around.
+        receiving. No separate timer thread. A pipeline stage selects between its input channel, a
+        context done channel, and a timer channel, and the cases compete: whichever fires first
+        wins, and the others stay armed for next time around.
       </p>
       <p className="prose">
-        Other languages have analogues — Erlang's <code>receive</code>, Rust's{' '}
-        <code>tokio::select!</code>, and JavaScript's <code>Promise.race</code> for promise-level
-        coordination — but Go's version is unusual for being equally idiomatic at the language
-        level. The pattern of "many sources, one synchronizer" is concurrency's most reusable shape,
-        and <code>select</code> is its most direct expression.
+        Other languages have analogues. Erlang has <code>receive</code>, Rust has{' '}
+        <code>tokio::select!</code>, and JavaScript leans on <code>Promise.race</code> for
+        promise-level coordination. Go's version is unusual for being equally idiomatic at the
+        language level. The pattern of "many sources, one synchronizer" is concurrency's most
+        reusable shape, and <code>select</code> is its most direct expression.
       </p>
     </section>
   );

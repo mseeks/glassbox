@@ -84,8 +84,8 @@ export default function SearchLab() {
         if (!s.leaf && s.mu != null) shell = { x: s.node.vp.x, y: s.node.vp.y, r: s.mu };
         status = {
           text: s.improved
-            ? `Measured a vantage at range ${s.d.toFixed(1)} — our new closest contact.`
-            : `Measured a vantage at range ${s.d.toFixed(1)} — farther than our best (${tau.toFixed(
+            ? `Measured a vantage at range ${s.d.toFixed(1)}: our new closest contact.`
+            : `Measured a vantage at range ${s.d.toFixed(1)}, farther than our best (${tau.toFixed(
                 1,
               )}), so we keep what we hold.`,
           tone: '',
@@ -94,7 +94,7 @@ export default function SearchLab() {
         currentNode = s.node;
         pruneShell = { x: s.node.vp.x, y: s.node.vp.y, r: s.mu };
         status = {
-          text: `Pruned the ${s.side} region — even its nearest possible contact is ${s.bound.toFixed(
+          text: `Pruned the ${s.side} region: even its nearest possible contact is ${s.bound.toFixed(
             1,
           )} away, beyond our best (${s.tau.toFixed(1)}). ${s.skipped} contact${
             s.skipped === 1 ? '' : 's'
@@ -106,7 +106,7 @@ export default function SearchLab() {
         status = {
           text: `The ${s.side} region might still hide something closer than ${s.tau.toFixed(
             1,
-          )} — so we go in and look.`,
+          )}, so we go in and look.`,
           tone: '',
         };
       }
@@ -119,7 +119,7 @@ export default function SearchLab() {
       shell = null;
       pruneShell = null;
       status = {
-        text: `Nearest contact found at range ${search.tau.toFixed(1)} — using ${
+        text: `Nearest contact found at range ${search.tau.toFixed(1)}, using ${
           search.dcount
         } distance measurements, not ${FIELD.length}.`,
         tone: 'found',
@@ -244,7 +244,7 @@ export default function SearchLab() {
         </div>
         <div className="vp-statcell">
           <div className="k">Closest range</div>
-          <div className="v amber">{isFinite(F.tau) ? F.tau.toFixed(1) : '—'}</div>
+          <div className="v amber">{isFinite(F.tau) ? F.tau.toFixed(1) : '–'}</div>
         </div>
       </div>
 
@@ -304,12 +304,12 @@ export default function SearchLab() {
         <span className="pip" /> tap the scope to drop the query anywhere
       </div>
       <div className="vp-caption">
-        The dashed <span style={{ color: C.amber }}>amber circle</span> is our current best range —
-        it shrinks as we find closer contacts. At each vantage point we descend toward the query
+        The dashed <span style={{ color: C.amber }}>amber circle</span> is our current best range.
+        It shrinks as we find closer contacts. At each vantage point we descend toward the query
         first, then ask of the other side: could anything in there beat what we already hold? If the
         triangle inequality says no, the whole
-        <span style={{ color: C.coral }}> region is pruned</span> — skipped without a single
-        measurement. The pruning is provably safe: it only ever discards contacts that cannot win.
+        <span style={{ color: C.coral }}> region is pruned</span>, skipped without a single
+        measurement. The pruning is provably safe. It only ever discards contacts that cannot win.
       </div>
     </div>
   );

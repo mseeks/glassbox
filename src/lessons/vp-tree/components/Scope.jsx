@@ -17,7 +17,7 @@ export default function Scope({ children, onPick, pickable, scopeRef }) {
       preserveAspectRatio="xMidYMid meet"
       onPointerDown={handle}
       role={pickable ? 'application' : 'img'}
-      aria-label={pickable ? 'Sonar scope — tap to set the query position' : 'Sonar scope'}
+      aria-label={pickable ? 'Sonar scope. Tap to set the query position.' : 'Sonar scope'}
       style={{ cursor: pickable ? 'crosshair' : 'default' }}
     >
       <defs>

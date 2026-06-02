@@ -94,8 +94,8 @@ export const SectionSeven = () => {
       criteria: { reliability: 2, ordering: 3, latency: 5, throughput: 3, multicast: 0 },
       reasoning: (
         <>
-          Voice is a real-time stream. If a 20ms audio frame is lost, you can't replay it later —
-          that moment of conversation is already past. TCP would stall the whole call retransmitting
+          Voice is a real-time stream. If a 20ms audio frame is lost, you can't replay it later.
+          That moment of conversation is already past. TCP would stall the whole call retransmitting
           a packet whose contents are already obsolete. <strong>UDP wins.</strong> A brief glitch is
           acceptable; a frozen call is not.
         </>
@@ -125,7 +125,7 @@ export const SectionSeven = () => {
       reasoning: (
         <>
           The current position of every player is a constantly-updating stream. A position update
-          from 100ms ago is irrelevant — you only care about the freshest one. TCP's head-of-line
+          from 100ms ago is irrelevant. You only care about the freshest one. TCP's head-of-line
           blocking would freeze the whole game during a packet loss. <strong>UDP wins.</strong> Most
           games layer their own custom reliability on top for specific events (chat, kills) while
           letting positions flow unreliably.
@@ -156,8 +156,8 @@ export const SectionSeven = () => {
       criteria: { reliability: 5, ordering: 4, latency: 4, throughput: 4, multicast: 0 },
       reasoning: (
         <>
-          HTML, CSS, JS, images — none of it works partial. The page is broken without every byte.
-          HTTP/1.1 and HTTP/2 ride on TCP. <strong>TCP is correct here</strong> — though HTTP/3 has
+          HTML, CSS, JS, images. None of it works partial. The page is broken without every byte.
+          HTTP/1.1 and HTTP/2 ride on TCP. <strong>TCP is correct here</strong>, though HTTP/3 has
           moved to QUIC over UDP for other reasons we'll get to in section 10.
         </>
       ),
@@ -172,7 +172,7 @@ export const SectionSeven = () => {
         <>
           High-volume telemetry where missing some samples is statistically fine (you're watching
           trends, not auditing). The classic case is StatsD over UDP.{' '}
-          <strong>UDP wins on throughput</strong> — no per-connection overhead, no backpressure
+          <strong>UDP wins on throughput</strong>: no per-connection overhead, no backpressure
           delaying real workloads. Use TCP if every event must be retained (audit logs).
         </>
       ),
@@ -186,7 +186,7 @@ export const SectionSeven = () => {
       reasoning: (
         <>
           NTP measures network round-trip time as part of its protocol. It needs raw, unbuffered
-          packets with predictable timing — TCP's retransmits and buffering would corrupt the
+          packets with predictable timing. TCP's retransmits and buffering would corrupt the
           measurement. <strong>UDP wins.</strong> NTP retries at the protocol layer when packets are
           lost.
         </>
@@ -201,7 +201,7 @@ export const SectionSeven = () => {
       reasoning: (
         <>
           Designed for loss tolerance from day one. Each ping is small, frequent, and any single
-          drop is statistically irrelevant — the protocol re-checks naturally on the next round. TCP
+          drop is statistically irrelevant. The protocol re-checks naturally on the next round. TCP
           would explode at scale (N² connections) and would needlessly retransmit information that's
           about to be re-asserted anyway. <strong>UDP wins.</strong>
         </>
@@ -215,7 +215,7 @@ export const SectionSeven = () => {
       criteria: { reliability: 2, ordering: 2, latency: 4, throughput: 4, multicast: 5 },
       reasoning: (
         <>
-          TCP is intrinsically point-to-point — there is no way to TCP-send a single packet to many
+          TCP is intrinsically point-to-point. There is no way to TCP-send a single packet to many
           receivers. <strong>UDP is the only option</strong> for IP multicast, broadcast, and most
           pub/sub-style one-to-many distribution at the network layer.
         </>
@@ -246,7 +246,7 @@ export const SectionSeven = () => {
           lede={
             <>
               Reliability, ordering, latency, throughput, multicast. Different applications need
-              different things. Pick a workload — see which protocol matches and why.
+              different things. Pick a workload. See which protocol matches and why.
             </>
           }
         />

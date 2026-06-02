@@ -68,9 +68,9 @@ export const SectionOne = () => {
           title="The wire underneath everything."
           lede={
             <>
-              Before any protocol, there is <strong>IP</strong> — the best-effort delivery service
-              that the internet is actually built on. Packets are launched into it the way letters
-              are launched into the postal system: with hope, not a guarantee.
+              Before any protocol, there is <strong>IP</strong>. It is the best-effort delivery
+              service the internet is actually built on. Packets get launched into it the way
+              letters are launched into the postal system: with hope, not a guarantee.
             </>
           }
         />
@@ -87,23 +87,24 @@ export const SectionOne = () => {
           <div className="udp-prose">
             <p>
               Every packet that crosses the internet hops through a sequence of routers, each one
-              independently deciding where to forward it next. Routers have finite buffers, links
-              have finite bandwidth, and the choices made at each hop are guided by routing tables
-              that update continuously as the topology shifts.
+              independently deciding where to forward it next. Each hop is a fresh decision. Routers
+              have finite buffers, links have finite bandwidth, and the choices made at each hop are
+              guided by routing tables that update continuously as the topology shifts.
             </p>
             <p>
-              When a router's buffer is full, the simplest thing it can do is{' '}
-              <strong>drop the packet</strong>. When two paths exist, packets in the same
-              conversation may take <strong>different routes</strong> and arrive out of order. When
-              something goes briefly wrong, a copy can be made and <strong>duplicated</strong>.
+              When a router's buffer fills, the simplest thing it can do is{' '}
+              <strong>drop the packet</strong>. Just drop it. When two paths exist, packets in the
+              same conversation may take <strong>different routes</strong> and arrive out of order,
+              and when something goes briefly wrong a copy can get made and{' '}
+              <strong>duplicated</strong>.
             </p>
             <p>
               IP makes <em>no promises about any of this.</em> It promises only "best effort."
-              Reliability, ordering, deduplication — if you want them, you build them on top.
+              Reliability, ordering, deduplication: if you want them, you build them on top.
             </p>
             <p>
-              This is the substrate UDP exposes. Every guarantee TCP gives you is an elaborate
-              fiction layered on this same lossy reality.
+              This is the substrate UDP exposes. Every guarantee TCP hands you is an elaborate
+              fiction, painstakingly maintained, layered on top of this same lossy reality.
             </p>
           </div>
 
@@ -117,7 +118,7 @@ export const SectionOne = () => {
                   marginBottom: 18,
                 }}
               >
-                <Label>Fig. 1 — A packet's journey</Label>
+                <Label>Fig. 1: A packet's journey</Label>
                 <button
                   className="udp-btn udp-btn-primary"
                   onClick={send}
@@ -198,7 +199,7 @@ export const SectionOne = () => {
                       </div>
                       {isDropped && (
                         <Pill tone="lost" icon={XIcon}>
-                          Buffer full — drop
+                          Buffer full: drop
                         </Pill>
                       )}
                       {packet === 'arrived' && i === hops.length - 1 && (

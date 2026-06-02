@@ -202,7 +202,7 @@ export default function SpongeLab() {
           <div className="field-label">output squeezed</div>
           {out.length === 0 ? (
             <div style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--bone-faint)' }}>
-              — absorb, then squeeze —
+              absorb, then squeeze
             </div>
           ) : (
             <div className="digest" style={{ fontSize: 12 }}>

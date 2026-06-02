@@ -37,11 +37,11 @@ export default function DomainSepLab() {
         >
           {sep ? (
             <>
-              <ShieldCheck size={13} /> ON — leaves tagged 0x00, nodes 0x01
+              <ShieldCheck size={13} /> ON: leaves tagged 0x00, nodes 0x01
             </>
           ) : (
             <>
-              <ShieldAlert size={13} /> OFF — same hash for both
+              <ShieldAlert size={13} /> OFF: same hash for both
             </>
           )}
         </button>
@@ -119,12 +119,12 @@ export default function DomainSepLab() {
       >
         {collides ? (
           <>
-            <AlertTriangle size={15} /> COLLISION — the forged leaf and the real node share a
-            digest. The structure can be spoofed.
+            <AlertTriangle size={15} /> COLLISION: the forged leaf and the real node share a digest.
+            The structure can be spoofed.
           </>
         ) : (
           <>
-            <ShieldCheck size={15} /> SAFE — the 1-byte tag makes leaf and node digests live in
+            <ShieldCheck size={15} /> SAFE: the 1-byte tag makes leaf and node digests live in
             separate universes. No confusion possible.
           </>
         )}

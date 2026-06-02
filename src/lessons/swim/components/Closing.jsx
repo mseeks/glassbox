@@ -20,19 +20,19 @@ export function Closing() {
           <div className="swim-rule-short" style={{ margin: '28px 0' }} />
           <div className="swim-prose" style={{ fontSize: 17, lineHeight: 1.75 }}>
             <p>
-              A protocol that takes a structurally simple question — <em>who is here?</em> — and
+              A protocol that takes a structurally simple question, <em>who is here?</em>, and
               answers it across thousands of machines without ever asking everyone at once. The
-              cleverness is not in any one mechanism but in the way five small ideas compose. The
-              indirect probe kills false positives at constant cost. The suspicion state breaks the
-              tradeoff between detection speed and commitment. The incarnation number resolves
-              disagreement with the minimum information needed. The piggyback rides every packet
-              that was going out anyway. The epidemic spread reaches a thousand nodes in about ten
-              rounds.
+              cleverness is not in any one mechanism but in the way five small ideas compose. Count
+              them. The indirect probe kills false positives at constant cost. The suspicion state
+              breaks the tradeoff between detection speed and commitment. The incarnation number
+              resolves disagreement with the minimum information needed. The piggyback rides every
+              packet that was going out anyway. The epidemic spread reaches a thousand nodes in
+              about ten rounds.
             </p>
             <p>
               Each piece by itself is unsurprising. Each piece is doing something the others could
-              not. Together they describe a particular way of being correct in a network — one that
-              refuses to pay for properties it does not need, and uses the savings to scale.
+              not. Together they describe a particular way of being correct in a network. It refuses
+              to pay for properties it does not need, and uses the savings to scale.
             </p>
             <p>
               The protocol does not provide consensus, ordering, or moment-to-moment agreement. It

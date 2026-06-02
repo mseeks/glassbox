@@ -101,8 +101,8 @@ export default function TamperLab() {
             gap: 8,
           }}
         >
-          <ShieldAlert size={15} /> roots disagree — the dataset was altered, and anyone holding the
-          trusted root can tell
+          <ShieldAlert size={15} /> the roots no longer match. Something below was altered, and
+          anyone who holds the trusted root can tell at a glance. The forgery is exposed.
         </div>
       )}
     </Plate>

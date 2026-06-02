@@ -10,8 +10,9 @@ export default function Hash() {
       <SectionHeader id="hash" kicker="The Primitive" title="A hash is a fingerprint" />
       <Reveal base="mk-reveal" className="mk-prose">
         <p className="lead">
-          Everything rests on one tool: a <em>cryptographic hash function</em>. Feed it any data; it
-          returns a short, fixed-length string: a fingerprint of the input.
+          Everything rests on one tool: a <em>cryptographic hash function</em>. Feed it any data, a
+          single byte or a whole library, and it returns a short, fixed-length string that serves as
+          a fingerprint of the input.
         </p>
         <p>Three properties are all we need:</p>
       </Reveal>
@@ -56,7 +57,8 @@ export default function Hash() {
           style={{ marginTop: 16, fontSize: 15, color: 'var(--paper-faint)', fontStyle: 'italic' }}
         >
           (Real systems use SHA-256 or BLAKE3, producing 256-bit digests. This lesson uses a small
-          12-character hash so the trees stay readable. The behavior is the same.)
+          12-character hash so the trees stay readable. Nothing else changes. The behavior is the
+          same.)
         </p>
       </Reveal>
     </section>

@@ -174,13 +174,13 @@ const ProtocolLane = ({
         {showStall ? (
           <>
             <LegendRow color="var(--ok)" label="delivered to app" />
-            <LegendRow color="var(--lost)" label="lost — awaiting retransmit" />
+            <LegendRow color="var(--lost)" label="lost: awaiting retransmit" />
             <LegendRow color="var(--warn)" label="arrived but HELD in buffer" />
           </>
         ) : (
           <>
             <LegendRow color="var(--ok)" label="delivered to app immediately" />
-            <LegendRow color="var(--lost)" label="lost — gone forever" />
+            <LegendRow color="var(--lost)" label="lost: gone forever" />
           </>
         )}
       </div>
@@ -359,7 +359,7 @@ export const SectionSix = () => {
           >
             <ProtocolLane
               name="TCP"
-              tagline="Strict in-order delivery — stalls on loss"
+              tagline="Strict in-order delivery. Stalls on loss"
               color="var(--tcp)"
               borderColor="var(--tcp-edge)"
               delivered={tcpDelivered}
@@ -370,7 +370,7 @@ export const SectionSix = () => {
             />
             <ProtocolLane
               name="UDP"
-              tagline="No order guarantee — keeps flowing"
+              tagline="No order guarantee. Keeps flowing"
               color="var(--signal)"
               borderColor="var(--signal-edge)"
               delivered={udpDelivered}
@@ -406,9 +406,9 @@ export const SectionSix = () => {
                 OBSERVATION
               </div>
               On the <strong style={{ color: 'var(--tcp)' }}>TCP</strong> side, packets 6–10 had
-              already arrived at the receiver's kernel before packet 5 was even retransmitted. They
-              were held in the buffer because TCP refused to deliver them out of order. The
-              application sat blind for two seconds. On the{' '}
+              already arrived at the receiver's kernel before packet 5 was even retransmitted, yet
+              they were held in the buffer the whole time because TCP refused to deliver them out of
+              order. The application sat blind for two seconds. On the{' '}
               <strong style={{ color: 'var(--signal)' }}>UDP</strong> side, packets 6–10 went
               straight to the application as they arrived. Packet 5 is simply gone.{' '}
               <em>Whether that's a problem depends entirely on what you're doing.</em>
@@ -441,8 +441,9 @@ export const SectionSix = () => {
               UDP wins.
             </h3>
             <p style={{ fontSize: 14, color: 'var(--ink-dim)', margin: '8px 0 0 0' }}>
-              The moment packet 5 represented is already gone. By the time it arrives via
-              retransmit, it's old news. Better to show packet 6 now and let 5 be lost forever.
+              The moment packet 5 represented is already gone. By the time a retransmit drags it
+              back across the network, it is stale, useless, old news. Better to show packet 6 now
+              and let 5 be lost forever.
             </p>
           </div>
         </div>

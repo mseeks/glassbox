@@ -200,7 +200,7 @@ export function BlockedBFVisual() {
             <span className="bf-mono bf-mark-muted" style={{ fontSize: '0.72rem' }}>
               {standardHits.length > 0
                 ? `${stdLinesTouched} line${stdLinesTouched !== 1 ? 's' : ''} touched`
-                : '—'}
+                : '–'}
             </span>
           </div>
           {renderFilter(bits, standardHits, -1)}
@@ -227,7 +227,7 @@ export function BlockedBFVisual() {
               Blocked BF
             </span>
             <span className="bf-mono bf-mark-muted" style={{ fontSize: '0.72rem' }}>
-              {blockedHits.length > 0 ? `${blkLinesTouched} line touched` : '—'}
+              {blockedHits.length > 0 ? `${blkLinesTouched} line touched` : '–'}
             </span>
           </div>
           {renderFilter(bitsBlocked, blockedHits, blockedBlock)}
@@ -245,8 +245,8 @@ export function BlockedBFVisual() {
         className="bf-pullquote"
         style={{ fontSize: '1rem', margin: '1.5rem 0 0', padding: '1rem 0 0 1.25rem' }}
       >
-        For filters bigger than L1 cache, this is the dominant cost — and it's the reason most
-        production filters since ~2010 are blocked.
+        This cost dominates. For any filter bigger than L1 cache, it is the reason most production
+        filters since ~2010 are blocked.
       </div>
     </div>
   );

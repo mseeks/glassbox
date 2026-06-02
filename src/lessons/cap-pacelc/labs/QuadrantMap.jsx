@@ -233,7 +233,7 @@ export function QuadrantMap() {
               fontSize="11"
               fill="var(--ink-dim)"
             >
-              partition behavior — A (left) ⟷ C (right)
+              partition behavior: A (left) ⟷ C (right)
             </text>
             <text
               x="20"
@@ -245,7 +245,7 @@ export function QuadrantMap() {
               fill="var(--ink-dim)"
               transform="rotate(-90 20 190)"
             >
-              normal-op preference — L (bottom) ⟷ C (top)
+              normal-op preference: L (bottom) ⟷ C (top)
             </text>
 
             {/* System points */}

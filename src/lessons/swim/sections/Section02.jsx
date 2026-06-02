@@ -17,7 +17,7 @@ export function Section02() {
             questions that earlier protocols tangled together.
           </p>
           <p>
-            <em>Is X alive?</em> is a local question — one node can answer it with one probe.{' '}
+            <em>Is X alive?</em> is a local question. One node can answer it with one probe.{' '}
             <em>How does that answer reach everyone?</em> is a global question, and entirely
             different machinery is appropriate for it. Coupling the two is what forces O(N²) loads:
             if you learn X is dead only by missing its heartbeat, you must hear from X directly, and

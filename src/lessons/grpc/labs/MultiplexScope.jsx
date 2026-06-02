@@ -149,7 +149,7 @@ export default function MultiplexScope() {
         {mode === 'h1' ? (
           <>
             HTTP/1.1 sends one response to completion before the next starts. The big stream{' '}
-            <b style={{ color: 'var(--cyan)' }}>A</b> holds the line — small streams{' '}
+            <b style={{ color: 'var(--cyan)' }}>A</b> holds the line. Small streams{' '}
             <b style={{ color: 'var(--amber)' }}>B</b> (t=8) and{' '}
             <b style={{ color: 'var(--violet)' }}>C</b> (t=10) wait behind it. This is{' '}
             <em style={{ color: 'var(--cyan)', fontStyle: 'normal' }}>head-of-line blocking</em>.
@@ -160,9 +160,9 @@ export default function MultiplexScope() {
             <em style={{ color: 'var(--cyan)', fontStyle: 'normal' }}>frames</em> tagged with a
             stream id and <b>interleaves</b> them on one connection.{' '}
             <b style={{ color: 'var(--amber)' }}>B</b> finishes at t=5 and{' '}
-            <b style={{ color: 'var(--violet)' }}>C</b> at t=6 — no longer trapped behind{' '}
-            <b style={{ color: 'var(--cyan)' }}>A</b>. The honest cost: A finishes a touch later.
-            gRPC rides exactly this.
+            <b style={{ color: 'var(--violet)' }}>C</b> at t=6. Neither is trapped behind{' '}
+            <b style={{ color: 'var(--cyan)' }}>A</b> anymore. The honest cost: A finishes a touch
+            later. gRPC rides exactly this.
           </>
         )}
       </p>

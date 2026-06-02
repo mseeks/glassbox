@@ -20,21 +20,21 @@ const CHAIN_SCENARIOS = {
     leafName: 'yourbank.com',
     expired: true,
     rootTrusted: true,
-    err: 'ERR_CERT_DATE_INVALID — the certificate’s validity period has passed.',
+    err: "ERR_CERT_DATE_INVALID: the certificate's validity period has passed.",
   },
   wrongdomain: {
     firstFail: 3,
     leafName: 'othersite.com',
     expired: false,
     rootTrusted: true,
-    err: 'ERR_CERT_COMMON_NAME_INVALID — this certificate is for othersite.com, not yourbank.com.',
+    err: 'ERR_CERT_COMMON_NAME_INVALID: this certificate is for othersite.com, not yourbank.com.',
   },
   untrustedroot: {
     firstFail: 0,
     leafName: 'yourbank.com',
     expired: false,
     rootTrusted: false,
-    err: 'ERR_CERT_AUTHORITY_INVALID — the chain ends at a root your browser does not trust.',
+    err: 'ERR_CERT_AUTHORITY_INVALID: the chain ends at a root your browser does not trust.',
   },
 };
 
@@ -189,18 +189,18 @@ export default function ChainOfTrustLab() {
               : undefined
         }
       />
-      <Arrow i={1} label="root’s signature over the intermediate" />
+      <Arrow i={1} label="root's signature over the intermediate" />
       <Cert
         icon={Link2}
-        subject="Let’s Encrypt R10"
+        subject="Let's Encrypt R10"
         issuer="ISRG Root X1"
         accent={linkState(1) === 'ok' ? 'var(--aqua-deep)' : undefined}
       />
-      <Arrow i={2} label="intermediate’s signature over the leaf" />
+      <Arrow i={2} label="intermediate's signature over the leaf" />
       <Cert
         icon={ScrollText}
         subject={sc.leafName}
-        issuer="Let’s Encrypt R10"
+        issuer="Let's Encrypt R10"
         note={sc.expired ? 'validity: expired 2024' : 'validity: 2026 · ✓ in date'}
         noteColor={sc.expired ? 'var(--verm)' : 'var(--bone-faint)'}
         accent={
@@ -259,12 +259,13 @@ export default function ChainOfTrustLab() {
 
       <p className="tls-prose" style={{ fontSize: 12.5, marginTop: 14, lineHeight: 1.6 }}>
         Trust flows <em>downward</em> by signatures, from a root your browser already carries to the
-        site’s leaf — break any link and the padlock turns red. That leaf is{' '}
-        <strong>domain-validated</strong>: the issuer (here, Let’s Encrypt over the ACME protocol)
-        only checked that the requester controls the domain, nothing about the company’s honesty.
-        Because certificates are cheap, the defence against a wrongly-issued one is publicity: every
-        certificate is written to public, append-only <strong>Certificate Transparency</strong> logs
-        that owners watch for names they never requested.
+        site's leaf. Break any link and the padlock turns red. That leaf is{' '}
+        <strong>domain-validated</strong>: the issuer (here, Let's Encrypt over the ACME protocol)
+        only checked that the requester controls the domain, and it vouched for nothing about the
+        company behind it. Certificates are cheap. So the defence against a wrongly-issued one is
+        publicity. Every certificate gets written to public, append-only{' '}
+        <strong>Certificate Transparency</strong> logs that owners watch for names they never
+        requested.
       </p>
     </div>
   );

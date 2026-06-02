@@ -29,16 +29,16 @@ export function ProofLab() {
     5: {
       // chose a: return 0
       color: 'var(--coral)',
-      title: 'G2 returns 0 — the value it has.',
+      title: 'G2 returns 0, the value it has.',
       body: "G2 answers honestly with what it knows: x = 0. The system stays available (A), but Bob has now observed an older value after Alice's newer write completed. Linearizability is violated. Consistency (C) is sacrificed.",
       lost: 'C',
     },
     6: {
       // chose b: return 1
       color: 'var(--ink-faint)',
-      title: 'G2 returns 1 — the new value.',
+      title: 'G2 returns 1, the new value.',
       body: 'G2 has no way to know x = 1. The partition prevented the replication message from arriving; G2 has not received any update. To return 1 would be to invent information, to fabricate a value the node cannot have learned. This is not a real option. The model does not permit nodes to know what they have not been told.',
-      lost: '—',
+      lost: '',
     },
     7: {
       // chose c: refuse or hang
@@ -367,7 +367,7 @@ export function ProofLab() {
               fontSize="13"
               fill="var(--coral)"
             >
-              — silence —
+              · silence ·
             </text>
             <text
               x="460"
@@ -508,7 +508,7 @@ export function ProofLab() {
               >
                 OUTCOME
               </div>
-              {branchText.lost !== '—' && (
+              {branchText.lost !== '' && (
                 <div
                   style={{
                     fontFamily: 'Spectral, serif',

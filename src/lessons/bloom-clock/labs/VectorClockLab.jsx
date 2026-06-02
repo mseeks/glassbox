@@ -179,10 +179,10 @@ export const VectorClockLab = () => {
       </div>
 
       <Callout title="What to notice" color="#6ee7b7" tone="note">
-        Each row is one node's <em>view of the world</em>. Slot j in node i's vector is "how many
-        events from node j have I, transitively, heard about?" When you add a node, every existing
-        vector grows — and the bytes carried on every future event grow with it. This is the
-        exactness bill.
+        Each row is one node's <em>view of the world</em>. Slot j in node i's vector answers a
+        single question: how many events from node j have I, transitively, heard about? Now add a
+        node. Every existing vector grows, and the bytes carried on every future event grow right
+        along with it. This is the exactness bill.
       </Callout>
     </div>
   );

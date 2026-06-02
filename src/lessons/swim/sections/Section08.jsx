@@ -148,7 +148,7 @@ export function Section08() {
         <div className="swim-prose swim-mid">
           <p>
             What is <em>not</em> here matters as much as what is. SWIM does not provide agreement on
-            the membership view at any given moment — different nodes briefly see different things.
+            the membership view at any given moment. Different nodes briefly see different things.
             It does not detect Byzantine failures; a malicious node lying about its own incarnation
             can confuse the protocol. It does not order data, transactions, or anything other than
             the membership facts themselves. <em>Weak consistency is a feature</em>: it buys the

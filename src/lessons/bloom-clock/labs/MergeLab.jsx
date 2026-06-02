@@ -249,7 +249,7 @@ export const MergeLab = () => {
 
       <Callout title="The merge" color="#b794f4">
         At every position, the merged clock takes the <em>larger</em> of A's value and B's value.
-        Information flows monotonically — counters never decrease. This is what makes the merge
+        Information flows monotonically. Counters never decrease. This is what makes the merge
         associative, commutative, and idempotent: properties that let a whole cluster gossip clocks
         in any order and still converge.
       </Callout>

@@ -81,7 +81,7 @@ export default function RangeLab() {
       <div className="bt-lab-body">
         <div style={{ fontSize: 12.5, color: 'var(--ink-2)', marginBottom: 12 }}>
           A B+ tree keeps the real data only in the leaves and threads them into a chain. Pick a
-          range, then watch it locate the start leaf and simply walk.
+          range. Then watch it locate the start leaf and simply walk the chain to the far end.
         </div>
         <div
           style={{
@@ -189,7 +189,7 @@ export default function RangeLab() {
 
         <div className="bt-lab-cap" style={{ minHeight: '3em' }}>
           {!res ? (
-            'The leaves hold every key in sorted order, left to right, each pointing to the next. No climbing required to read a range.'
+            'The leaves hold every key in sorted order, left to right, with each one pointing to the next. No climbing. Reading a range is just a walk along the chain.'
           ) : pathShown < res.path.length ? (
             'Descending the signposts to find the leaf where the range begins…'
           ) : !done ? (
@@ -205,8 +205,8 @@ export default function RangeLab() {
               Done. <strong>{res.hits.length} keys</strong> returned by touching just{' '}
               <strong>
                 {res.visited.length} of {leaves.length} leaves
-              </strong>{' '}
-              — locate once, then a straight walk. This is the move behind{' '}
+              </strong>
+              . Locate once, then a straight walk. This is the move behind{' '}
               <span className="bt-em">&ldquo;everything between Garcia and Gomez.&rdquo;</span>
             </>
           )}

@@ -11,16 +11,16 @@ export function Ch07dRestOfFamily() {
       <p>
         <strong>Quotient Filter.</strong> Another fingerprint-based approach. The fingerprint splits
         into a <em>quotient</em> (used as the bucket address) and a <em>remainder</em> (stored in
-        the bucket). Fingerprints with the same quotient cluster into adjacent slots — excellent
-        disk locality. Supports deletion, merging, and resizing, all of which classical BFs cannot
-        do. Used in some LSM tree implementations precisely because merging quotient filters aligns
-        with SSTable compaction.
+        the bucket). Fingerprints with the same quotient cluster into adjacent slots, which gives
+        excellent disk locality. Supports deletion, merging, and resizing, all of which classical
+        BFs cannot do. Used in some LSM tree implementations precisely because merging quotient
+        filters aligns with SSTable compaction.
       </p>
       <p>
         <strong>XOR Filter and Ribbon Filter.</strong> For <em>static</em> sets known at
-        construction time. Both use a linear system over GF(2) — fingerprints at certain positions
+        construction time. Both use a linear system over GF(2): fingerprints at certain positions
         XOR together to equal each key's expected value. Significantly smaller than a Bloom filter
-        at the same FPR — XOR filters are ~25% smaller; Ribbon tighter still. Fatal limitation:
+        at the same FPR. XOR filters are ~25% smaller; Ribbon tighter still. Fatal limitation:
         cannot be updated after construction. Perfect for SSTables, which are themselves immutable.
         Modern RocksDB uses Ribbon filters for new SSTables.
       </p>
@@ -40,7 +40,7 @@ export function Ch07dRestOfFamily() {
         <strong>Learned BF.</strong> Train a small neural network to predict membership. Use the
         model as a fast first check; back it with a small standard Bloom filter that catches what
         the model is uncertain about. Empirically beats classical BFs when the set has{' '}
-        <em>learnable structure</em> — a malicious URL list, for example, where the strings
+        <em>learnable structure</em>: a malicious URL list, for example, where the strings
         themselves carry signal. Doesn't help when the set is genuinely random.
       </p>
     </Chapter>

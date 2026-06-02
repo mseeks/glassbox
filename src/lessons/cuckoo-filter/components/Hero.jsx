@@ -88,7 +88,7 @@ export function Hero() {
           <span style={{ color: 'var(--cuc)', fontStyle: 'normal', fontWeight: 400 }}>
             is this one in the set?
           </span>{' '}
-          with a handful of bits per entry — and, unusually for its kind, knows how to forget.
+          with a handful of bits per entry. And, unusually for its kind, it knows how to forget.
         </div>
 
         {/* Technical strip — three readouts */}

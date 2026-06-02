@@ -44,16 +44,16 @@ export default function Properties() {
           lede={
             <>
               Any hash crushes arbitrary input down to a fixed size. The ones inside hash tables
-              only need to spread values evenly. They are fast and uniform, and that is the whole
-              job. A<span className="kw"> cryptographic</span> hash adds something harder: it must
-              hold up against an adversary who is actively trying to break it.
+              only need to spread values evenly, fast and uniform, and that single property is the
+              whole of their job. A<span className="kw"> cryptographic</span> hash asks for more: it
+              has to hold up against an adversary who is actively, cleverly trying to break it.
             </>
           }
         />
 
         <p className="body">
-          That hardness is pinned down by three guarantees, stacked in increasing difficulty to
-          provide, and increasing damage if broken.
+          Three guarantees pin that hardness down. They stack in order, each one harder to provide
+          than the one before it and each one more damaging to lose when it finally gives way.
         </p>
 
         <div
@@ -90,8 +90,9 @@ export default function Properties() {
             name="Collision resistance"
             defn={
               <>
-                You cannot find <em>any</em> two distinct inputs that collide — even ones you get to
-                choose freely. This is the strongest demand, and the first to fall when a hash dies.
+                You cannot find <em>any</em> two distinct inputs that collide. Not even ones you get
+                to choose freely. This is the strongest demand, and the first to fall when a hash
+                dies.
               </>
             }
           />
@@ -99,18 +100,19 @@ export default function Properties() {
 
         <p className="body">
           The third implies the second, but not the reverse. Collision resistance is the heavy one.
-          It is exactly what <span className="kd">SHA-1</span> lost in 2017: nobody can reverse a
-          SHA-1 hash even today, but two chosen inputs sharing one were demonstrated, and that alone
-          broke every system relying on distinct inputs giving distinct fingerprints: signatures,
-          certificates, version control.
+          It is exactly what <span className="kd">SHA-1</span> lost in 2017. Nobody can reverse a
+          SHA-1 hash even today, yet the moment two chosen inputs sharing one digest were
+          demonstrated, that single fact broke every system that had quietly assumed distinct inputs
+          would always yield distinct fingerprints: signatures, certificates, version control.
         </p>
 
         <p className="body">
           Underneath all three sits a property nobody lists as an axiom but everyone leans on: the
-          <em> avalanche effect</em>. Flip one input bit and roughly half the output bits should
-          flip, unpredictably. The output should be statistically indistinguishable from random
-          noise. Avalanche is what <em>feels</em> like strength; the three guarantees are what you
-          actually rely on. Try to make the meter stray far from 50%:
+          <em> avalanche effect</em>. Flip one input bit. Roughly half the output bits should flip,
+          unpredictably, so that the digest you get back looks statistically indistinguishable from
+          random noise no matter how small the change you made. Avalanche is what <em>feels</em>{' '}
+          like strength. The three guarantees above are what you actually rely on. Try it. Make the
+          meter stray far from 50%:
         </p>
 
         <AvalancheLab />

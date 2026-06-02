@@ -61,7 +61,7 @@ export default function MirrorPanel() {
           ],
           [
             'writes',
-            'In-place: split a full leaf and you rewrite scattered pages up the spine — random-write amplification.',
+            'In-place: split a full leaf and you rewrite scattered pages all the way up the spine. Random-write amplification.',
           ],
           ['lives in', 'Postgres, MySQL/InnoDB, SQLite, most filesystems.'],
         ]}
@@ -75,7 +75,7 @@ export default function MirrorPanel() {
           ['writes', 'Append to an in-memory buffer, flush sequentially. No random writes at all.'],
           [
             'reads',
-            'May probe several sorted runs — read amplification, softened by Bloom filters.',
+            'May probe several sorted runs: read amplification, softened by Bloom filters.',
           ],
           ['lives in', 'RocksDB, Cassandra, LevelDB, ScyllaDB.'],
         ]}

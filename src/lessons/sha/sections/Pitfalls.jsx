@@ -8,25 +8,25 @@ const PITFALLS = [
     icon: Flame,
     tone: 'var(--cerise)',
     t: 'Never hash passwords with raw SHA',
-    d: 'SHA is built to be fast: billions of guesses per second on a GPU. That speed is a gift to an attacker cracking a stolen database. Use a deliberately slow, memory-hard function: Argon2id, scrypt, or bcrypt.',
+    d: 'SHA is built to be fast. Billions of guesses per second on a GPU, and that very speed, the thing that makes SHA a fine fingerprint, becomes a gift to an attacker grinding through a stolen database offline. Reach for a slow, memory-hard function instead: Argon2id, scrypt, or bcrypt.',
   },
   {
     icon: Key,
     tone: 'var(--copper)',
-    t: 'For keyed integrity, use HMAC — not H(key ‖ msg)',
-    d: 'You watched the forgery happen. Authenticating a message with a secret means HMAC-SHA-256 (or KMAC if you are on SHA-3), never a bare concatenation fed to the hash.',
+    t: 'For keyed integrity, use HMAC, not H(key ‖ msg)',
+    d: 'You watched the forgery happen. Authenticating a message with a secret means reaching for HMAC-SHA-256, or KMAC if you happen to be on SHA-3. Never a bare concatenation fed to the hash.',
   },
   {
     icon: Skull,
     tone: 'var(--bone-faint)',
     t: 'SHA-1 and MD5 are finished',
-    d: 'Both have practical collisions. Fine as non-security checksums against accidental corruption; never for signatures, certificates, or anything an adversary can target.',
+    d: 'Both have practical collisions. They still work fine as non-security checksums that only need to catch accidental corruption, but they fall apart the instant an adversary gets to choose the input. Never for signatures. Never for certificates.',
   },
   {
     icon: Scale,
     tone: 'var(--steel)',
     t: 'Truncation halves your collision margin',
-    d: 'An n-bit hash resists collisions to about 2^(n/2) work (the birthday bound). Chop the output to t bits and that margin drops to 2^(t/2). Truncate deliberately, not casually.',
+    d: 'An n-bit hash resists collisions to about 2^(n/2) work, the birthday bound. Chop the output to t bits and that margin drops to 2^(t/2). Do the math first. Truncate deliberately, not casually.',
   },
 ];
 

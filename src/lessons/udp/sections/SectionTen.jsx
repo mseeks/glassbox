@@ -99,13 +99,14 @@ export const SectionTen = () => {
 
         <div className="udp-prose" style={{ marginTop: 24 }}>
           <p>
-            HTTP/2 multiplexes multiple streams over a single TCP connection — your HTML, your CSS,
-            your JS, your images, all interleaved. The hope was that one connection would replace
-            the old HTTP/1.1 connection-per-resource mess. It mostly worked.
+            HTTP/2 multiplexes multiple streams over a single TCP connection: your HTML, your CSS,
+            your JS, your images, all of them interleaved together down one pipe instead of fighting
+            for separate sockets. The hope was that one connection would replace the old HTTP/1.1
+            connection-per-resource mess. It mostly worked.
           </p>
           <p>
             But TCP doesn't <em>know</em> about HTTP streams. To TCP, the whole thing is one byte
-            sequence. So if a single packet is lost, <strong>every stream stalls</strong> — even
+            sequence. So if a single packet is lost, <strong>every stream stalls</strong>, even
             streams whose data already arrived intact. The page can't render because the CSS is
             missing, <em>even though the HTML and JS are sitting in the kernel buffer.</em>
           </p>
@@ -309,7 +310,7 @@ export const SectionTen = () => {
               {scenario === 'h2' ? (
                 <>
                   <strong style={{ color: 'var(--lost)' }}>HTTP/2 head-of-line.</strong> The CSS
-                  drop stalled <em>every other stream</em> — even the HTML and JS that arrived
+                  drop stalled <em>every other stream</em>, even the HTML and JS that arrived
                   perfectly fine. The browser can't paint until TCP retransmits the CSS packet.
                 </>
               ) : (
@@ -334,28 +335,28 @@ export const SectionTen = () => {
         >
           <QuicFeature
             title="Per-stream loss recovery"
-            body="Streams are independent in flow control and retransmission. A loss on one doesn't stall the others."
+            body="Streams are independent in both flow control and retransmission. A loss on one doesn't stall the others. They simply don't wait."
           />
           <QuicFeature
             title="0-RTT handshake"
-            body="On a return visit, application data can be sent in the very first packet — no waiting for a handshake to complete."
+            body="On a return visit, application data can be sent in the very first packet, with no waiting for a handshake to complete."
           />
           <QuicFeature
             title="Encryption is mandatory"
-            body="TLS 1.3 is fused into the transport. There is no unencrypted QUIC. Middleboxes can't peek or modify packets."
+            body="TLS 1.3 is fused directly into the transport, so there is simply no such thing as unencrypted QUIC on the wire. Middleboxes can't peek or modify packets."
           />
           <QuicFeature
             title="Connection migration"
-            body="A QUIC connection is identified by a Connection ID, not an IP+port tuple. Switch from WiFi to LTE and the connection survives."
+            body="A QUIC connection is identified by a Connection ID, not an IP+port tuple. Switch from WiFi to LTE mid-download and the connection survives the change of address entirely. No reconnect."
           />
         </div>
 
         <p className="udp-prose" style={{ marginTop: 28 }}>
           The bigger lesson: when TCP's promises stopped fitting the application's needs, the answer
-          wasn't to extend TCP — it was to{' '}
-          <strong>drop down to UDP and build the right transport on top.</strong> That's the
-          recurring pattern. UDP is the foundation; the transport you actually use is the one you
-          compose above it.
+          wasn't to extend TCP. It was to{' '}
+          <strong>drop down to UDP and build the right transport on top.</strong> Down, not around.
+          That's the recurring pattern. UDP is the foundation; the transport you actually use is the
+          one you compose above it.
         </p>
       </div>
     </section>

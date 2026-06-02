@@ -14,63 +14,63 @@ export const SectionEight = () => {
       port: '53',
       icon: Globe,
       caption: 'Domain Name System',
-      why: 'A query is a few bytes; a response usually fits in one packet. TCP handshake would triple the latency for what is effectively a single round-trip. Falls back to TCP only when responses exceed UDP size limits.',
+      why: 'A query is a few bytes. A response usually fits in one packet. A TCP handshake would triple the latency for what is, at heart, a single round-trip exchange between you and a resolver across the network. Falls back to TCP only when responses exceed UDP size limits.',
     },
     {
       name: 'NTP',
       port: '123',
       icon: Clock,
       caption: 'Network Time Protocol',
-      why: 'Measures round-trip time as the core of its algorithm. TCP buffering and retransmits would skew the measurement. Drop one packet, retry — no big deal at 64-second polling intervals.',
+      why: 'Measures round-trip time as the very core of its algorithm, so any extra buffering or retransmission a transport adds would quietly skew the measurement it depends on. Drop one packet, retry. No big deal at 64-second polling intervals.',
     },
     {
       name: 'DHCP',
       port: '67/68',
       icon: Network,
       caption: 'Dynamic Host Configuration',
-      why: 'You need an IP address to use TCP. So bootstrapping requires a connectionless protocol that can broadcast — DHCP literally cannot work over TCP.',
+      why: 'You need an IP address to use TCP. So bootstrapping requires a connectionless protocol that can broadcast before you have any address at all. A chicken-and-egg problem. DHCP literally cannot work over TCP.',
     },
     {
       name: 'WebRTC',
       port: 'varies',
       icon: Phone,
       caption: 'Real-time browser comms',
-      why: "Voice, video, peer-to-peer data. Built on UDP precisely so that loss doesn't stall the stream. Wraps DTLS for crypto and SRTP for media.",
+      why: 'Voice, video, peer-to-peer data. It is built on UDP for one precise reason: so that a single lost packet never stalls the live stream the way TCP would. Wraps DTLS for crypto and SRTP for media.',
     },
     {
       name: 'QUIC / HTTP/3',
       port: '443',
       icon: Zap,
       caption: 'Modern transport',
-      why: "TCP's head-of-line blocking became unacceptable for multiplexed HTTP. Google rebuilt the entire transport on UDP. See §10.",
+      why: "TCP's head-of-line blocking became unacceptable for heavily multiplexed HTTP traffic, where one lost packet stalls every parallel stream at once. So Google rebuilt the entire transport on UDP. See §10.",
     },
     {
       name: 'mDNS / SSDP',
       port: '5353',
       icon: Radio,
       caption: 'Local discovery',
-      why: 'Multicast on the LAN — find printers, Chromecasts, AirPlay devices. Strictly impossible over TCP, which has no multicast.',
+      why: 'Multicast on the LAN. It is how your machine finds printers, Chromecasts, and AirPlay devices without anyone configuring an address first. Strictly impossible over TCP, which has no multicast.',
     },
     {
       name: 'SNMP',
       port: '161/162',
       icon: Activity,
       caption: 'Network monitoring',
-      why: 'Polls thousands of devices for metrics. Setting up TCP connections to every router every minute would crush both ends. Lose a sample, get it next poll.',
+      why: "Polls thousands of devices for metrics. Setting up and tearing down a full TCP connection to every single router, every single minute, would crush both ends. So it doesn't. Lose a sample, get it next poll.",
     },
     {
       name: 'WireGuard',
       port: 'any',
       icon: Layers,
       caption: 'Modern VPN',
-      why: 'Tunneled traffic over UDP means TCP-over-TCP nightmares are avoided. UDP also adds essentially zero overhead beyond the encryption layer.',
+      why: 'Tunneling over UDP avoids the TCP-over-TCP meltdown, where two retransmit timers fight each other and throughput collapses on any lossy link. UDP adds essentially zero overhead beyond the encryption layer. Lean by design.',
     },
     {
       name: 'TFTP',
       port: '69',
       icon: Send,
       caption: 'Trivial File Transfer',
-      why: 'Famously simple: small, stateless, used by bootloaders before they have a full TCP stack. Implements its own ack/retry on top because file transfer does need reliability — but the transport is UDP.',
+      why: 'Famously simple: small, stateless, used by bootloaders before they have a full TCP stack. Implements its own ack/retry on top because file transfer does need reliability, but the transport itself is plain UDP.',
     },
   ];
 
@@ -80,7 +80,7 @@ export const SectionEight = () => {
         <SectionHeading
           tag="§ 08  ·  In the wild"
           title="Where UDP earns its keep."
-          lede="The protocols you use every day that run on UDP — and why each one decided UDP was right."
+          lede="The protocols you use every day that run on UDP, and why each one decided UDP was right."
         />
 
         <div

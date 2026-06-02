@@ -8,7 +8,7 @@ export const ChapterTwo = () => (
       number="II"
       eyebrow="THE EXACT WAY"
       title="Vector clocks"
-      sub="The structure the Bloom clock improves upon — and the cost it pays for being exact."
+      sub="The structure the Bloom clock improves upon, and the cost it pays for being exact."
     />
     <div style={{ maxWidth: 760 }}>
       <Prose dropcap>
@@ -16,7 +16,7 @@ export const ChapterTwo = () => (
           Lamport's original 1978 timestamps were a single integer: increment on every event, take
           the max-plus-one on every receive. Beautiful, but they collapse all of distributed time
           into a single scalar. They give you a <em>total</em> order where what you actually need is
-          a <em>partial</em> one — concurrent events look ordered even though they aren't.
+          a <em>partial</em> one. Concurrent events look ordered even though they aren't.
         </p>
         <p>
           The fix, due to Mattern and Fidge a decade later, is the <em>vector clock</em>. Instead of
@@ -28,12 +28,12 @@ export const ChapterTwo = () => (
         <p>
           The result is exact. Given two events A and B with their attached vectors, A happened
           before B iff every component of A is less than or equal to B's and at least one is
-          strictly less. Neither dominates? Concurrent. No ambiguity, no probabilities — the
+          strictly less. Neither dominates? Concurrent. No ambiguity, no probabilities. The
           structure is a faithful encoding of the happens-before partial order.
         </p>
         <p>
           Try the lab below. Click <Code>tick</Code> to record a local event. Use the dropdown to
-          send a message between nodes — the receiver will merge. Then add a node and watch what
+          send a message between nodes, and the receiver will merge. Then add a node and watch what
           happens to every existing vector.
         </p>
       </Prose>
@@ -53,7 +53,7 @@ export const ChapterTwo = () => (
           And it gets worse: the cluster isn't static. Nodes join, nodes fail, nodes are forgotten.
           Each of those events has to be reflected in every vector everywhere, or the comparisons go
           wrong. Garbage-collecting a slot that belonged to a node nobody talks to anymore is a
-          famously gnarly subproblem — the "version vector pruning" question that has its own thread
+          famously gnarly subproblem: the "version vector pruning" question that has its own thread
           of academic literature.
         </p>
         <p>

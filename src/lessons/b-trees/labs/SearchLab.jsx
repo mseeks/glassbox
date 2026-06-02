@@ -68,7 +68,7 @@ export default function SearchLab() {
       </span>
       <div className="bt-lab-body">
         <div style={{ fontSize: 12.5, color: 'var(--ink-2)', marginBottom: 9 }}>
-          Search for a key — watch the path light up, one page-read per level.
+          Search for a key. Watch the path light up, one page-read per level.
         </div>
         <div className="bt-controls" style={{ marginBottom: 4 }}>
           {SEARCH_KEYS.map((k) => (
@@ -145,7 +145,7 @@ export default function SearchLab() {
             : busy
               ? `Comparing within each page to choose the next drawer…`
               : result
-                ? `Found in ${shown} page reads. A billion keys would still finish in three or four — that flatness is the whole point.`
+                ? `Found in ${shown} page reads. A billion keys would still finish in three or four. That flatness is the whole point.`
                 : `Reached a leaf without a match in ${shown} reads, so ${target} simply isn't in the catalog.`}
         </div>
       </div>

@@ -14,7 +14,7 @@ const EVO = {
     title: 'Perfectly compatible.',
     body: (
       <>
-        The name lives only in your source code — never on the wire. Field <b>2</b> is still an
+        The name lives only in your source code. Never on the wire. Field <b>2</b> is still an
         <code className="gx-kw" style={{ color: 'var(--ink)' }}>
           int64
         </code>
@@ -36,7 +36,7 @@ const EVO = {
       <>
         The old client receives a tag for field <b>4</b> it has never heard of. Per the spec it
         <b> skips the unknown field</b> (good libraries even preserve it on re-serialize). New
-        servers and old clients coexist — the basis of rolling deploys.
+        servers and old clients coexist: the basis of rolling deploys.
       </>
     ),
   },
@@ -60,7 +60,7 @@ const EVO = {
         <code className="gx-kw" style={{ color: 'var(--ink)' }}>
           0x1a
         </code>
-        ). Type mismatch — a decode error or garbage, with <b>no warning</b>. Always{' '}
+        ). Type mismatch: a decode error or garbage, with <b>no warning</b>. Always{' '}
         <code className="gx-kw" style={{ color: 'var(--ink)' }}>
           reserved 2;
         </code>{' '}

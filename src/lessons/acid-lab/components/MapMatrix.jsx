@@ -57,8 +57,8 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
             lineHeight: 1.55,
           }}
         >
-          Tap any cell to study that anomaly at that level. The cell with the dot is where you are
-          now.
+          Tap any cell to study that anomaly at the level named in its column. The cell with the dot
+          is where you are right now. Start anywhere.
         </p>
       </div>
 
@@ -178,7 +178,7 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
                               transition: 'all 200ms ease',
                               position: 'relative',
                             }}
-                            title={`${row.anomaly} at ${l.name} — ${v === 1 ? 'prevented' : v === 0.5 ? 'depends' : 'permitted'}`}
+                            title={`${row.anomaly} at ${l.name}: ${v === 1 ? 'prevented' : v === 0.5 ? 'depends' : 'permitted'}`}
                             onMouseEnter={(e) => {
                               if (!isActiveCell)
                                 e.currentTarget.style.background = 'rgba(232, 222, 200, 0.06)';

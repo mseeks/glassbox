@@ -40,8 +40,8 @@ export default function Hero() {
           style={{ marginTop: 26, maxWidth: 590, transitionDelay: '.12s' }}
         >
           Two strangers who have never met, on a wire that dozens of unknown machines can read and
-          rewrite, build a private room — confidential, untampered, and provably to the right party.
-          This is how.
+          rewrite, build a private room. Nobody can read it. Nobody can tamper with it unseen, and
+          it provably reaches the right party. This is how.
         </p>
 
         <div
@@ -102,9 +102,9 @@ export default function Hero() {
           className="tls-prose tls-rv tls-in"
           style={{ marginTop: 26, maxWidth: 660, fontSize: 14.5, transitionDelay: '.26s' }}
         >
-          A note on the name: <strong>SSL</strong> is the dead ancestor (Netscape, mid-90s, all
+          A note on the name. <strong>SSL</strong> is the dead ancestor (Netscape, mid-90s, all
           broken). The living protocol is
-          <strong> TLS</strong> — Transport Layer Security, now TLS 1.3. Everyone still says "SSL"
+          <strong> TLS</strong>: Transport Layer Security, now TLS 1.3. Everyone still says "SSL"
           out of habit. Throughout, we mean TLS.
         </p>
       </div>

@@ -43,11 +43,11 @@ export default function DiffusionLab() {
       foot={
         <>
           Two inputs differing in a single bit, run through the real compression. Each square is one
-          of the 256 working-state bits;{' '}
-          <span style={{ color: 'var(--cerise-bright)' }}>cerise</span> marks a bit that now differs
-          between the two runs. Watch a lone disturbance at round 0 saturate to ≈50% within a couple
-          dozen rounds. That is rotate-and-mix doing its job; by round 64 the two states are
-          uncorrelated.
+          of the 256 working-state bits, and{' '}
+          <span style={{ color: 'var(--cerise-bright)' }}>cerise</span> marks one that now differs
+          between the two runs. Watch. A lone disturbance at round 0 saturates to ≈50% within a
+          couple dozen rounds, which is rotate-and-mix doing exactly the job it was designed to do.
+          By round 64 the two states are fully uncorrelated. The single flipped bit has vanished.
         </>
       }
     >

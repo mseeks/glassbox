@@ -49,7 +49,7 @@ export function Coda() {
           >
             The cuckoo filter is no larger than its description. A short hash, an XOR, a small
             budget of kicks; eight bits per entry, three percent wrong, deletes for free. There is
-            very little here, and that is the point.
+            very little here. That is the point.
           </div>
 
           <div

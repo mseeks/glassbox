@@ -109,7 +109,7 @@ export function CuckooHashingLab() {
         { tone: 'k', text: `"${step.placed}" → slot ${step.slot}; "${step.kicked}" displaced` },
       ]);
     } else if (step.kind === 'failed') {
-      setLog((L) => [...L, { tone: 'f', text: 'kick budget exhausted — refused' }]);
+      setLog((L) => [...L, { tone: 'f', text: 'kick budget exhausted, refused' }]);
     }
   }
 
@@ -133,7 +133,7 @@ export function CuckooHashingLab() {
     <div>
       {/* Slot strip */}
       <div className="cf-eyebrow" style={{ marginBottom: 14 }}>
-        Table — 11 slots, each key has two candidates
+        Table: 11 slots, each key has two candidates
       </div>
       <div className="cf-cell-strip" style={{ '--strip-min': '520px', '--strip-min-sm': '460px' }}>
         <div

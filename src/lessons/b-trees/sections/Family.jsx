@@ -9,8 +9,8 @@ export default function Family() {
     <Section roman="VIII" kicker="The weave" title="One shape, seen through other lenses">
       <Reveal base="bt-rev">
         <p className="bt-p">
-          The B-tree doesn&rsquo;t stand alone &mdash; it rhymes with nearly everything else in this
-          project. Four threads worth pulling:
+          The B-tree doesn&rsquo;t stand alone; it rhymes with nearly everything else in this
+          project, and four of those threads are worth pulling here.
         </p>
       </Reveal>
       <FamilyGuide />

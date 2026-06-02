@@ -172,8 +172,8 @@ export function TwinLab() {
         <>
           The fingerprint{' '}
           <span style={{ fontFamily: 'JetBrains Mono', fontSize: 13 }}>{fpHex(aFp, FP_BITS)}</span>{' '}
-          takes residence in one of <em>"{a}"</em>'s candidate buckets — {aI1} or {aI2}. The filter
-          does not — cannot — know whose fingerprint this is.
+          takes residence in one of <em>"{a}"</em>'s candidate buckets, {aI1} or {aI2}. The filter
+          does not know whose fingerprint this is. It cannot.
         </>
       ),
     },
@@ -200,16 +200,15 @@ export function TwinLab() {
       body: (
         <>
           Now the application asks the filter to forget <em>"{b}"</em>. The filter searches for a
-          matching fingerprint, finds one, erases it. But the fingerprint it erased was the trace
-          left by <em>"{a}"</em>.
+          matching fingerprint, finds one, and erases it without hesitation. But the fingerprint it
+          just erased was the trace left by <em>"{a}"</em>. Wrong entry.
         </>
       ),
     },
     {
       title: (
         <>
-          Lookup <em>"{a}"</em> &nbsp;—&nbsp;{' '}
-          <span style={{ color: 'var(--cuc)' }}>false negative</span>
+          Lookup <em>"{a}"</em>: <span style={{ color: 'var(--cuc)' }}>false negative</span>
         </>
       ),
       body: (

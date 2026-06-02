@@ -107,7 +107,7 @@ export class BTree {
       grew: false,
       kind: 'settled',
       caption:
-        'Settled. Every leaf still rests at exactly the same depth — the tree stayed perfectly level.',
+        'Settled. Every leaf still rests at exactly the same depth. The tree stayed perfectly level.',
     });
     return frames;
   }
@@ -128,8 +128,8 @@ export class BTree {
         grew: false,
         kind: over ? 'overflow' : 'placed',
         caption: over
-          ? `${key} files into its leaf — now ${node.keys.length} cards, one past the drawer's limit of ${this.maxKeys}. The drawer must split.`
-          : `${key} files neatly into its leaf. The drawer has room, so nothing else stirs.`,
+          ? `${key} files into its leaf. That makes ${node.keys.length} cards, one past the drawer's limit of ${this.maxKeys}. The drawer must split.`
+          : `${key} files neatly into its leaf. The drawer has room. Nothing else stirs.`,
       });
       return over;
     }
@@ -162,7 +162,7 @@ export class BTree {
       grew: isRoot,
       kind: isRoot ? 'grew' : 'split',
       caption: isRoot
-        ? `The root drawer was full too, so ${medianKey} rises to form a brand-new guide drawer on top. This is the only way a B-tree ever grows taller — and it lifts every leaf down by one, all at once.`
+        ? `The root drawer was full too, so ${medianKey} rises to form a brand-new guide drawer on top. This is the only way a B-tree ever grows taller. It lifts every leaf down by one, all at once.`
         : `Median ${medianKey} rises into the parent as a new guide card; the drawer breaks cleanly in two. The parent grew wider, not taller.`,
     });
   }

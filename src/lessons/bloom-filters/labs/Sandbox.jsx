@@ -287,7 +287,7 @@ export function Sandbox() {
     if (!lastResult)
       return (
         <div className="bf-mono bf-mark-muted" style={{ fontSize: '0.82rem', opacity: 0.5 }}>
-          —
+          &ndash;
         </div>
       );
     if (lastResult.kind === 'duplicate') {
@@ -308,7 +308,7 @@ export function Sandbox() {
     if (lastResult.kind === 'no-fp') {
       return (
         <div className="bf-ui bf-mark-muted" style={{ fontSize: '0.85rem' }}>
-          Tried 100 words. None of them collided. Insert more items first — false positives get
+          Tried 100 words. None of them collided. Insert more items first. False positives get
           common as the filter fills up.
         </div>
       );
@@ -341,15 +341,15 @@ export function Sandbox() {
           <div className="bf-ui bf-mark-muted" style={{ fontSize: '0.8rem', lineHeight: 1.65 }}>
             {verdict === 'no' && (
               <>
-                checked <span className="bf-mono">[{positions.join(', ')}]</span> — position{' '}
+                checked <span className="bf-mono">[{positions.join(', ')}]</span>. Position{' '}
                 <span className="bf-mono bf-mark-rose">{positions[failedAt]}</span> was zero, so the
                 answer is final. No work needed at the source of truth.
               </>
             )}
             {verdict === 'tp' && (
               <>
-                all k=<span className="bf-mono">{k}</span> bits set. The filter is right this time —
-                the word was in fact inserted.
+                all k=<span className="bf-mono">{k}</span> bits set. The filter is right this time.
+                The word was in fact inserted.
               </>
             )}
             {verdict === 'fp' && (
@@ -401,7 +401,7 @@ export function Sandbox() {
               borderColor: n > 0 ? 'rgba(196, 181, 253, 0.3)' : undefined,
             }}
           >
-            FPR ≈ {n === 0 ? '—' : (theoreticalFPR * 100).toFixed(2) + '%'}
+            FPR ≈ {n === 0 ? '–' : (theoreticalFPR * 100).toFixed(2) + '%'}
           </span>
         </div>
       </div>
@@ -605,7 +605,7 @@ export function Sandbox() {
                 aria-label={`Set k to ${kk} hash functions`}
                 title={
                   n > 0
-                    ? 'Reset to change k — k is fixed once items are inserted'
+                    ? 'Reset to change k. k is fixed once items are inserted.'
                     : `${kk} hash functions`
                 }
                 className="bf-mono"

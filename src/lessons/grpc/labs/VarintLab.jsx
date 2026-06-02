@@ -159,7 +159,7 @@ export default function VarintLab() {
                 <code className="gx-kw" style={{ color: 'var(--ink)' }}>
                   int64
                 </code>{' '}
-                sign-extends −1 to 64 one-bits — <b>10 bytes</b> for the smallest negative number
+                sign-extends −1 to 64 one-bits: <b>10 bytes</b> for the smallest negative number
                 there is. Flip to sint64.
               </>
             )}
@@ -180,8 +180,8 @@ export default function VarintLab() {
       )}
       {n >= 16384 && (
         <Note>
-          Three bytes now. Varints stay compact for small numbers and grow only as needed — the
-          whole point.
+          Three bytes now. Varints stay compact for small numbers and grow only as needed. That's
+          the whole point.
         </Note>
       )}
     </div>

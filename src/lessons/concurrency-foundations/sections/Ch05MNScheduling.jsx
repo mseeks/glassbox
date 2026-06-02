@@ -1,15 +1,15 @@
 export function Ch05MNScheduling() {
   return (
     <section className="section">
-      <div className="section-num">05.03 — many tasks, few threads</div>
+      <div className="section-num">05.03 · many tasks, few threads</div>
       <h2 className="section-title">
         Many tasks, <em>few threads</em>.
       </h2>
       <p className="prose">
         Once functions are state machines, the runtime is free to multiplex M tasks onto N OS
-        threads (where M is far larger than N). A goroutine in Go costs about 2KB; a Tokio task in
-        Rust is also lightweight; a JS Promise is lightweight too. You can have very large numbers
-        of in-flight tasks on a handful of threads, and the runtime juggles them.
+        threads (where M is far larger than N). The tasks are cheap. A goroutine in Go costs about
+        2KB; a Tokio task in Rust is also lightweight; a JS Promise is lightweight too. You can have
+        very large numbers of in-flight tasks on a handful of threads, and the runtime juggles them.
       </p>
       <p className="prose">
         The runtime's scheduler is the soul of the design. Different runtimes pick different
@@ -30,16 +30,15 @@ export function Ch05MNScheduling() {
           <div className="runtime-card-name">Rust (Tokio)</div>
           <p>
             Cooperative-only. Tasks must reach an <code>.await</code> point for the runtime to
-            switch. CPU-bound work in an async function is a footgun — it blocks the whole executor
+            switch. CPU-bound work in an async function is a footgun. It blocks the whole executor
             thread until the next await. <code>spawn_blocking</code> exists to dodge it.
           </p>
         </div>
         <div className="runtime-card">
           <div className="runtime-card-name">JavaScript (event loop)</div>
           <p>
-            M:1 — a single thread runs everything. Tasks queue as microtasks (promises) or
-            macrotasks (timers, IO callbacks). Web Workers exist for parallelism, but the main
-            thread is alone.
+            M:1. A single thread runs everything. Tasks queue as microtasks (promises) or macrotasks
+            (timers, IO callbacks). Web Workers exist for parallelism, but the main thread is alone.
           </p>
         </div>
         <div className="runtime-card">
@@ -55,8 +54,8 @@ export function Ch05MNScheduling() {
       <p className="prose">
         Notice what's missing from this list: locks. Most async runtimes are built on the assumption
         that tasks are mostly waiting on IO and rarely contending for shared memory. When they do,
-        you reach back for the primitives in chapter two — but the majority of well-architected
-        async code never needs to.
+        you reach back for the primitives in chapter two. The majority of well-architected async
+        code never needs to.
       </p>
     </section>
   );

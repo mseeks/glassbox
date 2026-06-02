@@ -154,8 +154,8 @@ export default function AsymmetryFig() {
           <div style={{ marginTop: 8, textAlign: 'right' }} className="m">
             <span style={{ fontSize: 10, color: 'var(--instr-3)' }}>
               {mode === 'append'
-                ? 'head sweeps in one direction — no seeks'
-                : 'head leaps across the platter — a seek every write'}
+                ? 'head sweeps in one direction: no seeks'
+                : 'head leaps across the platter: a seek every write'}
             </span>
           </div>
         </div>
@@ -203,8 +203,8 @@ export default function AsymmetryFig() {
             color: 'var(--ink-2)',
           }}
         >
-          Same platter, same head. Writing along the grain lets it run; writing across the grain
-          makes it leap — and leaping is where the milliseconds go.
+          Same platter, same head. Writing along the grain lets it run. Writing across the grain
+          makes it leap, and leaping is where the milliseconds go.
         </div>
       </Figure>
     </div>

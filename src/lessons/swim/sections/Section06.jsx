@@ -13,13 +13,13 @@ export function Section06() {
 
         <div className="swim-prose swim-mid" style={{ marginBottom: 40 }}>
           <p className="swim-lede">
-            How does a single update — "node 17 is suspect" — reach every member of the cluster? Not
-            through broadcast. Through contagion.
+            How does a single update, say "node 17 is suspect," reach every member of the cluster?
+            Not through broadcast. Through contagion.
           </p>
           <p>
             SWIM's elegance is that it sends <em>no dedicated dissemination traffic at all</em>. The
-            probes and acks are already flying. Every message has spare room. So each pending update
-            — alive, suspect, dead, join — gets
+            probes and acks are already flying. Every message has spare room. So each pending
+            update, whether alive, suspect, dead, or join, gets
             <strong> piggybacked</strong> onto outgoing probe traffic as a small rider in the
             packet. Each update carries a transmission counter; once it has been attached to roughly{' '}
             <code>λ · log N</code> messages, the cluster has almost certainly heard it.
@@ -41,8 +41,8 @@ export function Section06() {
             The packet has finite room. When more updates need to ride than can fit, SWIM
             prioritises them: <em>fresher updates first</em>, then those with
             <em> lower transmission counts</em>. Updates near their dissemination threshold are
-            deprioritised — they're almost everywhere already. This keeps the most useful
-            information moving without bloating the wire format.
+            deprioritised. They're almost everywhere already. This keeps the most useful information
+            moving without bloating the wire format.
           </p>
           <p>
             The same packets carry two stories: <em>"I'm checking on you"</em> and

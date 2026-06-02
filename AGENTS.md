@@ -1,4 +1,4 @@
-# Interactive Lessons — Agent Notes
+# Interactive Lessons: Agent Notes
 
 ## Project shape
 
@@ -8,7 +8,7 @@
   a separate component under `src/index-page/`. The lesson registry lives in
   `src/lesson-catalog.js`: a single `lessonMeta` array keyed by `id` (the slug),
   with each lazy `Component` derived from the id via
-  `lazy(() => import(\`./lessons/\${id}/index.js\`))` — one source of truth, no
+  `lazy(() => import(\`./lessons/\${id}/index.js\`))`. One source of truth, no
   per-lesson loader to hand-maintain. Lessons lazy-load so the main bundle stays
   small and each lesson ships its own chunk.
 - Each lesson is fully self-contained under `src/lessons/<slug>/`: `sections/`
@@ -19,12 +19,12 @@
   tokens), `utilities.css` (shell-scoped utility classes + the global
   reduced-motion override, imported once from `App.jsx`),
   `usePrefersReducedMotion.js`, `reveal.jsx` (`useRevealRoot` / `useReveal` /
-  `<Reveal>` — reveal-on-scroll), `useScrollSpy.js` (`useScrollSpy` +
+  `<Reveal>`, all reveal-on-scroll), `useScrollSpy.js` (`useScrollSpy` +
   reduced-motion-aware `scrollToId`), `useScrollProgress.js` (0–100 reading-bar
-  percent), and `lesson-kit/` — the token-driven structural UI kit (`Callout` /
+  percent), and `lesson-kit/`, the token-driven structural UI kit (`Callout` /
   `Slider` / `SegmentedControl` / `Stat` / `StatGrid` / `Chip`, themed per lesson
   via the `--lk-*` contract; see `lesson-kit/README.md`). **Engines are colocated
-  per lesson at `src/lessons/<slug>/engine/index.js` — there is no
+  per lesson at `src/lessons/<slug>/engine/index.js`. There is no
   `src/shared/*-engine.js`.**
 - Each lesson ships its own display fonts (via `@import` at the top of its
   `<slug>.css`) and its own CSS class prefix (`hero-`, `iso-`, `cap-`, `swim-`,
@@ -48,7 +48,7 @@ intentionally unique:
 | The Bloom Clock         | gold `#f5b942`                  | Instrument Serif              | constellation map of distributed causality                                 |
 | The Cuckoo Filter       | signal coral `#ff5c3a`          | Fraunces + IBM Plex           | dark technical journal, restraint through typography                       |
 | LSM Trees               | incandescent sediment `#e3582c` | Bitter + Vollkorn             | night survey table of illuminated core samples                             |
-| The Weight of Memory    | amber `#f6b545`                 | Instrument Serif              | the magnetic core — each visual transforms when touched                    |
+| The Weight of Memory    | amber `#f6b545`                 | Instrument Serif              | the magnetic core: each visual transforms when touched                     |
 | Merkle Trees            | verdigris patina `#5bc0a3`      | Libre Caslon                  | engraved certificate of authenticity, security printing                    |
 | The One-Way Machine     | molten copper `#e07a3c`         | Zilla Slab                    | an engineer's plate; warm near-black, cerise for danger                    |
 | Trie                    | pine + vermilion `#46d3a8`      | Fraunces + Hanken             | cartographer's atlas, sea-glass paper and route colours                    |
@@ -60,7 +60,7 @@ intentionally unique:
 
 Shared family glue: dark warm-paper background (`#0a0a0f`), warm parchment ink
 (`#e8dec8` family), low-opacity noise grain, `JetBrains Mono` for every numeric
-/ credit / eyebrow. The mono is _not_ varied per-lesson — it is the single
+/ credit / eyebrow. The mono is _not_ varied per-lesson. It is the single
 strongest piece of connective tissue across the collection.
 
 ## Vocabulary
@@ -69,8 +69,8 @@ strongest piece of connective tissue across the collection.
 - An interactive widget inside a lesson is a **Lab**.
 - Top-level subdivisions are **Chapters** or **Parts** (Concurrency uses Roman
   numerals).
-- Hero eyebrows carry **per-lesson signature lines** — a credit, a year, a
-  promise — never generic phrases like "Interactive lesson" or "Masterclass".
+- Hero eyebrows carry **per-lesson signature lines** (a credit, a year, a
+  promise). Never generic phrases like "Interactive lesson" or "Masterclass".
 
 ## Editing conventions
 
@@ -78,17 +78,17 @@ strongest piece of connective tissue across the collection.
   render code into the lesson's `engine/index.js` so it can be unit-tested
   independently. `src/lessons/bloom-filters/engine/index.js` (tested in
   `tests/bloom-math.test.js`) is the canonical example. All eighteen lessons now
-  follow this — each engine is pure (no React/DOM), Prettier-clean, and backed by
+  follow this. Each engine is pure (no React/DOM), Prettier-clean, and backed by
   a `tests/<lesson>-engine.test.js` suite. Mirror it for any new logic.
 - Don't re-implement reveal-on-scroll, TOC scroll-spy, or the reading-progress
-  bar per lesson — use the shared `src/shared/reveal.jsx` (`useRevealRoot` for a
+  bar per lesson. Use the shared `src/shared/reveal.jsx` (`useRevealRoot` for a
   root that reveals `.rev`/`.reveal` descendants, or `<Reveal base="...">` /
   `useReveal` for self-revealing blocks), `src/shared/useScrollSpy.js`
   (`useScrollSpy(ids, opts)` for the active section, `scrollToId` for
   reduced-motion-aware smooth scroll), and `src/shared/useScrollProgress.js` (the
   0–100 top-bar percent; used by b-trees / hyperloglog / merkle-trees / sha).
 - Pure logic is unit-tested in node; component behavior can use the jsdom +
-  Testing-Library tier — add `// @vitest-environment jsdom` at the top of the
+  Testing-Library tier. Add `// @vitest-environment jsdom` at the top of the
   spec (see `tests/index-page.test.jsx`). Engine line/branch coverage is gated
   at 90% in `vite.config.js` (`npm run test:coverage`).
 - Honor `prefers-reduced-motion`. CSS `@keyframes`/transitions are already
@@ -101,11 +101,11 @@ strongest piece of connective tissue across the collection.
   starts (a play button they pressed) may keep animating.
 - Use the existing per-lesson class prefix when adding styles; do not bleed
   styles across lesson boundaries. The one sanctioned shared system is
-  `src/shared/lesson-kit/` — its `lk-` classes are token-driven (`--lk-*`), so a
+  `src/shared/lesson-kit/`. Its `lk-` classes are token-driven (`--lk-*`), so a
   lesson reproduces its own look by mapping the contract on its root rather than
   by styling another lesson's classes. Reach for the kit first in a **new**
   lesson; the older hand-built lessons keep their bespoke widgets by design (the
-  collection is intentionally unique — adopt the kit only where it is
+  collection is intentionally unique, so adopt the kit only where it is
   pixel-identical, e.g. b-trees' `Callout`).
 - ESLint config disables three rules deliberately:
   `react/no-unescaped-entities`, `react/jsx-no-comment-textnodes`, and
@@ -132,7 +132,7 @@ npm run format:check  # prettier --check (CI-friendly)
 `agents/` is a self-contained package of autonomous maintenance loops built on the
 Claude Agent SDK (ported in spirit from the `revisionist` app). Each loop is a
 deterministic signal → a locked-down agent → a strict cite-or-omit map → a
-test-style `PASS/FAIL` report. They only ever **propose** — the human stays the
+test-style `PASS/FAIL` report. They only ever **propose**. The human stays the
 steward; nothing lands without your review. The package is fully isolated: its TS +
 `tsx` toolchain never enters the app graph, and `eslint` / `prettier` / `knip` all
 ignore `agents/`.
@@ -156,8 +156,8 @@ npm run loop:style-isolation <scope>   # CSS selectors that leak out of a lesson
 npm run loop:a11y-source <scope>       # source-level a11y debt (names + keyboard paths)
 ```
 
-The loops verify their work against the app's **outside reference** —
-`vitest run` + `eslint .` + `vite build` — and (for the mutating two) leave any
+The loops verify their work against the app's **outside reference**:
+`vitest run` + `eslint .` + `vite build`. For the mutating two, they leave any
 survivors uncommitted for you to review. See `agents/README.md` for per-loop detail.
 
 ## Known follow-ups
@@ -167,7 +167,7 @@ Open items:
 - **`?chapter=` deep-linking.** Only `?lesson=` is honored at the shell level;
   each lesson's internal TOC manages its own state and does not sync to the URL.
 - **Font loading.** Every lesson `@import`s its display fonts (and JetBrains
-  Mono, redundantly) from Google Fonts at the top of its `<slug>.css` — render
+  Mono, redundantly) from Google Fonts at the top of its `<slug>.css`: render
   blocking and duplicated 18×. Consolidate (shared mono preconnect/`<link>`,
   per-lesson display faces only) without losing the per-lesson identity.
 - **Entry chunk size.** The shared entry bundle is ~212 kB (≈68 kB gzip);

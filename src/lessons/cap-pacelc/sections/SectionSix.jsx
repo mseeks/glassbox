@@ -19,10 +19,10 @@ export function SectionSix() {
 
       <p>
         Climb the tower. Each level prevents some anomalies and permits others. A
-        causally-consistent system, for example, lives well below linearizable — but it preserves
-        the intuitions humans actually rely on (your reply appears after the post it replies to)
-        without paying for global coordination on independent operations. Linearizability is the
-        luxury good; most applications would be happy with causal+ if they could articulate the
+        causally-consistent system, for example, lives well below linearizable. Yet it preserves the
+        intuitions humans actually rely on (your reply appears after the post it replies to) without
+        paying for global coordination on independent operations. Linearizability is the luxury
+        good. Most applications would be happy with causal+ if they could articulate the
         requirement.
       </p>
 
@@ -39,7 +39,7 @@ export function SectionSix() {
         order, not a total one. Linearizability is about
         <em> single-object</em> operations: reads and writes on one key, like &ldquo;set
         account-42&rsquo;s balance to $100&rdquo;. Serializability is about <em>multi-object</em>{' '}
-        transactions — operations that touch several keys at once and must commit together, like
+        transactions: operations that touch several keys at once and must commit together, like
         &ldquo;debit account-42 and credit account-43.&rdquo; Linearizability cares that each
         individual operation appears to take effect in real-time order; serializability cares that
         the whole bundle is equivalent to running the transactions one at a time. Neither implies

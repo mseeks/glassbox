@@ -15,7 +15,7 @@ export function SectionEight() {
         <P size="lead">
           There is a single delicate operation. Deletion. The fingerprint, by virtue of being short,
           occasionally agrees between two items that have nothing else in common. Two distinct words
-          can produce the same fingerprint at the same candidate buckets — and the filter, having
+          can produce the same fingerprint at the same candidate buckets. The filter, having
           discarded the keys, cannot tell which one it has stored.
         </P>
         <P>
@@ -27,8 +27,8 @@ export function SectionEight() {
           Deletion has no such redress. Ask the filter to forget an item it never knew, and it will
           search for a matching fingerprint, find one placed there by some <em>other</em> item, and
           erase it. The structure has now removed a genuine entry while honoring a phantom request.
-          The next lookup of that genuine item answers <em>definitely no</em> — a false negative,
-          the very failure the cuckoo filter exists to prevent.
+          The next lookup of that genuine item answers <em>definitely no</em>. That is a false
+          negative, the very failure the cuckoo filter exists to prevent.
         </P>
       </PageBlock>
 

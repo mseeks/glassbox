@@ -15,14 +15,14 @@ export const SectionEleven = () => {
       body: (
         <>
           UDP has no notion of "the network is congested, slow down." A misbehaving sender can blast
-          packets at line rate, hurting itself (most are dropped) and everyone sharing the link. If
-          your application sends sustained UDP traffic,{' '}
-          <strong>you must implement congestion control yourself</strong> — QUIC, WebRTC, and SRT
-          all do this above UDP.
+          packets at line rate, hurting itself (most are dropped) and everyone sharing the link. It
+          will not back off on its own. If your application sends sustained UDP traffic,{' '}
+          <strong>you must implement congestion control yourself</strong>. QUIC, WebRTC, and SRT all
+          do this above UDP.
         </>
       ),
       mitigation:
-        'Implement application-layer congestion control. Borrow from TCP (NewReno, CUBIC) or modern algorithms (BBR).',
+        'Build it in. Implement application-layer congestion control, borrowing either from the proven TCP algorithms (NewReno, CUBIC) or from a more modern one such as BBR.',
     },
     {
       title: 'NAT mapping timeouts',
@@ -30,10 +30,11 @@ export const SectionEleven = () => {
       severity: 'high',
       body: (
         <>
-          NAT routers expire idle UDP mappings aggressively — typically
-          <strong> 30 to 180 seconds</strong>. With no keepalive traffic, your peer can no longer
-          reach you because the NAT has forgotten the mapping. Compare to TCP, where NAT keeps
-          mappings open for hours because it sees connection-state packets.
+          NAT routers expire idle UDP mappings aggressively, typically within
+          <strong> 30 to 180 seconds</strong>. Then it's gone. With no keepalive traffic, your peer
+          can no longer reach you because the NAT has quietly forgotten the mapping that once tied
+          your address to the open port. Compare to TCP, where NAT keeps mappings open for hours
+          because it sees connection-state packets.
         </>
       ),
       mitigation:
@@ -46,10 +47,10 @@ export const SectionEleven = () => {
       body: (
         <>
           UDP has no equivalent of TLS-over-TCP. Anyone on the path can read and modify your
-          datagrams. To encrypt UDP traffic you use
-          <code> DTLS </code>(Datagram TLS) — a variant of TLS adapted for unreliable, unordered
-          transport. Quietly different in some operational details (no record-layer ordering, retry
-          on handshake loss).
+          datagrams. They are wide open. To encrypt UDP traffic you use
+          <code> DTLS </code>(Datagram TLS), a variant of TLS that has been carefully adapted for
+          the unreliable, unordered transport underneath it. Quietly different in some operational
+          details (no record-layer ordering, retry on handshake loss).
         </>
       ),
       mitigation: 'Use DTLS, SRTP, WireGuard, or QUIC for any non-trivial UDP application.',
@@ -60,10 +61,10 @@ export const SectionEleven = () => {
       severity: 'high',
       body: (
         <>
-          Many middleboxes (NATs, firewalls, load balancers) drop UDP fragments because non-first
-          fragments lack a transport header and can't be classified. Path MTU Discovery is
-          unreliable because routers may drop ICMP "Packet Too Big" messages.{' '}
-          <strong>Fragmentation is a trap.</strong>
+          Many middleboxes (NATs, firewalls, load balancers) drop UDP fragments outright, because a
+          non-first fragment carries no transport header and so cannot be classified or routed by
+          the rules they enforce. Path MTU Discovery is unreliable too. Routers may drop the ICMP
+          "Packet Too Big" messages it depends on. <strong>Fragmentation is a trap.</strong>
         </>
       ),
       mitigation:
@@ -77,14 +78,14 @@ export const SectionEleven = () => {
         <>
           UDP has no handshake to verify the source IP, so an attacker can forge it. They send a
           small query to a public UDP service (DNS, NTP, Memcached), but put the <em>victim's</em>{' '}
-          IP in the source field. The server dutifully sends its much larger response to the victim
-          — who never asked. One spoofed byte in, thousands of bytes out, multiplied across
-          thousands of public servers. Memcached has been weaponized at
+          IP in the source field. The server dutifully sends its much larger response to the victim,
+          who never asked. One spoofed byte in, thousands of bytes out, multiplied across thousands
+          of public servers. Memcached has been weaponized at
           <strong> 50,000× amplification</strong>.
         </>
       ),
       mitigation:
-        "Don't expose UDP services to the public internet unless necessary. For services that must be public, require a small handshake/cookie (DNS cookies, QUIC retry tokens) and rate-limit by source IP.",
+        "Keep it private. Don't expose UDP services to the public internet unless you truly must, and for the ones that have to be public, require a small handshake or cookie (DNS cookies, QUIC retry tokens) and rate-limit by source IP.",
     },
     {
       title: 'Checksum is weak',
@@ -92,9 +93,10 @@ export const SectionEleven = () => {
       severity: 'low',
       body: (
         <>
-          UDP's 16-bit ones-complement checksum catches most random bit-flips but not adversarial
-          corruption. And in IPv4, the checksum is technically optional. For anything important,
-          layer a real MAC (HMAC, AEAD) on top.
+          UDP's 16-bit ones-complement checksum catches most random bit-flips but does nothing
+          against an attacker who corrupts the payload on purpose and recomputes the sum to match.
+          And in IPv4, the checksum is technically optional. For anything important, layer a real
+          MAC (HMAC, AEAD) on top.
         </>
       ),
       mitigation:

@@ -372,7 +372,7 @@ export function ProbeSimulator() {
           {!linkFailed && !targetDead && 'Default: direct probe succeeds, no fallback needed.'}
           {linkFailed &&
             !targetDead &&
-            'Direct probe is unreachable via the broken link. Helpers route around it — target is in fact alive.'}
+            'Direct probe is unreachable via the broken link. Helpers route around it. The target is in fact alive.'}
           {!linkFailed &&
             targetDead &&
             'Target genuinely dead. Both direct and indirect probes time out. Verdict: SUSPECT.'}

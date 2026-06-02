@@ -10,7 +10,7 @@ export function Ch01TheQuestion() {
         possible question: <em>is x in the set?</em>
       </p>
       <p>
-        An exact answer is expensive. A hash table is O(1) but stores every key in full — at ten
+        An exact answer is expensive. A hash table is O(1) but stores every key in full. At ten
         billion 100-byte URLs, that is a terabyte. A sorted structure is O(log n) but still
         proportional to <em>the size of the keys themselves</em>. At the scales modern systems
         operate, that bill becomes the whole story.
@@ -31,7 +31,7 @@ export function Ch01TheQuestion() {
         vanishes from the equation.
       </p>
       <div className="bf-pullquote">
-        That trade — exact answers for compact, one-sided uncertainty — is the entire idea.
+        That is the trade: exact answers for compact, one-sided uncertainty. It is the entire idea.
         Everything else is craft.
       </div>
     </Chapter>

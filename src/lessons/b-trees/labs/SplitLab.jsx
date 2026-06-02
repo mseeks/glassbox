@@ -87,8 +87,9 @@ export default function SplitLab() {
       </span>
       <div className="bt-lab-body">
         <div style={{ fontSize: 12.5, color: 'var(--ink-2)', marginBottom: 9 }}>
-          A drawer holds at most <strong>4 keys</strong>. The catalog starts with one full drawer —
-          file <span className="bt-stampc">50</span> first and watch what a full root does.
+          A drawer holds at most <strong>4 keys</strong>, and this catalog starts with a single
+          drawer already full to the brim. File <span className="bt-stampc">50</span> first and
+          watch what a full root does. Go on.
         </div>
         <div className="bt-controls" style={{ marginBottom: 10 }}>
           {SPLIT_PALETTE.map((k) => (
@@ -189,7 +190,7 @@ export default function SplitLab() {
         <div className="bt-lab-cap" style={{ minHeight: '3em' }}>
           {frame
             ? frame.caption
-            : 'Drawer ready, four cards inside. File any key — a split happens the moment a fifth card lands in a full drawer.'}
+            : 'Drawer ready, four cards inside. File any key. A split happens the moment a fifth card lands in a full drawer.'}
         </div>
 
         <div className="bt-readgrid" style={{ marginTop: 4 }}>

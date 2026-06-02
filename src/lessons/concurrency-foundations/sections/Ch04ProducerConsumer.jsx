@@ -4,7 +4,7 @@ import { PatternDiagram } from '../components/PatternDiagram.jsx';
 export function Ch04ProducerConsumer() {
   return (
     <section className="section">
-      <div className="section-num">04.01 — the bounded buffer</div>
+      <div className="section-num">04.01 · the bounded buffer</div>
       <h2 className="section-title">
         Producers and <em>consumers</em>.
       </h2>

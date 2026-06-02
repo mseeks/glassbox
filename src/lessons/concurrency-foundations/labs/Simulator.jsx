@@ -134,7 +134,7 @@ export function Simulator() {
             <div className="register">
               <span style={{ color: 'var(--ink-dim)' }}>r1</span>
               <span className={`val ${r1 !== null ? 'has-value' : ''}`}>
-                {r1 === null ? '—' : String(r1)}
+                {r1 === null ? '–' : String(r1)}
               </span>
             </div>
           </div>
@@ -176,7 +176,7 @@ export function Simulator() {
             <div className="register">
               <span style={{ color: 'var(--ink-dim)' }}>r2</span>
               <span className={`val ${r2 !== null ? 'has-value' : ''}`}>
-                {r2 === null ? '—' : String(r2)}
+                {r2 === null ? '–' : String(r2)}
               </span>
             </div>
           </div>
@@ -244,7 +244,7 @@ export function Simulator() {
               {bothFalse ? <AlertTriangle size={14} /> : <Check size={14} />}
               {bothFalse
                 ? 'r1 = false, r2 = false. Both writes happened. Neither was visible.'
-                : `r1 = ${String(r1)}, r2 = ${String(r2)} — at least one thread saw the other's write.`}
+                : `r1 = ${String(r1)}, r2 = ${String(r2)}. At least one thread saw the other's write.`}
             </div>
             {bothFalse && (
               <div style={{ fontSize: '0.78rem', marginTop: '0.5rem', color: 'var(--ink-dim)' }}>
@@ -259,7 +259,7 @@ export function Simulator() {
         <div className="annot">
           {mode === 'relaxed'
             ? 'Tip: step both threads through their stores first, then their loads, then flush. That is the bug.'
-            : 'In SeqCst mode, all SeqCst atomics share one total order consistent with each thread’s order. Both-false is impossible.'}
+            : "In SeqCst mode, all SeqCst atomics share one total order consistent with each thread's order. Both-false is impossible."}
         </div>
       </div>
     </div>

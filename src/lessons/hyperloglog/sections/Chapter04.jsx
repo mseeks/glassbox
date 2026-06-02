@@ -13,21 +13,22 @@ export default function Chapter04() {
       <p>
         But each item can only be hashed once. The trick is to <strong>split the hash</strong>. Use
         the first few bits to choose one of <em className="k">m</em> registers, and the remaining
-        bits to compute that register's run. This shatters one stream into m independent
-        sub-streams, each watching its own slice, each keeping its own maximum run. Now there are m
-        estimates to combine instead of one — and the noise falls as you add more.
+        bits to compute that register's run. One stream becomes many. It shatters into m independent
+        sub-streams, each watching its own slice, each keeping its own maximum run, so now there are
+        m estimates to combine instead of a single fragile one and the noise falls steadily as you
+        add more. That is the whole move.
       </p>
       <p>
         The resulting accuracy is governed by a single clean law: the relative error is about{' '}
         <strong>1.04 divided by the square root of m</strong>. More registers, tighter estimate.
-        Step one item through to see the split and the routing, then open the stream and watch the
-        bank fill.
+        Step one item through to see the bits split off and route to their register, then open the
+        stream and watch the whole bank fill at once.
       </p>
       <StochasticLab />
       <p>
-        Sixteen thousand registers — the common production size — puts the error near eight tenths
-        of a percent. The cost of that precision is only the registers themselves, each a handful of
-        bits.
+        Sixteen thousand registers is the common production size, and it pins the error near eight
+        tenths of a percent. The cost is tiny. You pay only for the registers themselves, each a
+        handful of bits.
       </p>
     </Chapter>
   );

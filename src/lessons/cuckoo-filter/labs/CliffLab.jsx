@@ -323,7 +323,7 @@ export function CliffLab() {
             maxWidth: 580,
           }}
         >
-          Notice the chain stays tiny for most insertions — then begins spiking past ninety percent.
+          Notice the chain stays tiny for most insertions, then begins spiking past ninety percent.
           There is no gentle degradation.
         </div>
       ) : null}

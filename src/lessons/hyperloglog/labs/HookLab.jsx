@@ -140,7 +140,7 @@ export default function HookLab() {
       </div>
       <div className="cap">
         The exact set must remember every key it has ever seen, so its bar never stops climbing. The
-        estimator's bar cannot move — its memory was fixed before the first item arrived.
+        estimator's bar cannot move. Its memory was fixed before the first item ever arrived.
       </div>
     </Panel>
   );

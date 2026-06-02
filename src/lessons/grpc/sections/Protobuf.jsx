@@ -24,7 +24,7 @@ export default function Protobuf() {
                 .proto
               </code>{' '}
               file. Both client and server compile it ahead of time, so the schema lives{' '}
-              <em>out of band</em> — never on the wire.
+              <em>out of band</em>. Never on the wire.
             </p>
             <div className="gx-code">
               <span className="kw">syntax</span> = <span className="st">"proto3"</span>;{'\n'}
@@ -43,9 +43,9 @@ export default function Protobuf() {
               <code className="gx-kw" style={{ color: 'var(--ink)' }}>
                 = 1
               </code>{' '}
-              as "the first field." It isn't an order — it's a permanent <strong>tag number</strong>
-              . On the wire, each field is a key/value pair where the key packs the field number
-              with a 3-bit <strong>wire type</strong> (
+              as "the first field." It isn't an order. It's a permanent <strong>tag number</strong>.
+              On the wire, each field is a key/value pair where the key packs the field number with
+              a 3-bit <strong>wire type</strong> (
               <code className="gx-kw" style={{ color: 'var(--ink)' }}>
                 (field &lt;&lt; 3) | type
               </code>
@@ -58,9 +58,9 @@ export default function Protobuf() {
           </Reveal>
           <Reveal base="gx-fade">
             <p style={{ marginTop: 28 }}>
-              Those small numbers are <strong>varints</strong> — the byte-thrift trick that makes
-              the format compact. Seven bits of value per byte, with the top bit flagging "more to
-              come." Small numbers cost few bytes; big ones grow only as needed.
+              Those small numbers are <strong>varints</strong>: the byte-thrift trick that makes the
+              format compact. Seven bits of value per byte, with the top bit flagging "more to
+              come." Small numbers cost few bytes. Big ones grow only as needed.
             </p>
           </Reveal>
           <Reveal base="gx-fade">
@@ -69,8 +69,8 @@ export default function Protobuf() {
           <Reveal base="gx-fade">
             <p style={{ marginTop: 28 }}>
               Now the payoff. Because the wire carries <em>numbers, not names</em>, schema evolution
-              becomes tractable — if you respect one rule. Change the server's contract and see what
-              an old client does:
+              becomes tractable, as long as you respect one rule. Change the server's contract and
+              see what an old client does:
             </p>
           </Reveal>
           <Reveal base="gx-fade">

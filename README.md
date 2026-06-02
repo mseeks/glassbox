@@ -1,38 +1,38 @@
 # Interactive Lessons
 
-A small library of interactive systems lessons — local Vite + React. Hard topics
-get clearer when you can poke them.
+A small library of interactive systems lessons. It runs locally on Vite and
+React. Hard topics get clearer when you can poke them.
 
 ## The collection
 
-| Lesson                  | Subject                                                          | Accent     | Display             | Credit                            |
-| ----------------------- | ---------------------------------------------------------------- | ---------- | ------------------- | --------------------------------- |
-| Concurrency Foundations | Threads, primitives, patterns, memory models                     | steel-blue | Fraunces            | I — VII                           |
-| The ACID Lab            | Atomicity, Consistency, Isolation, Durability                    | teal       | EB Garamond         | A · C · I · D                     |
-| CAP & PACELC            | Distributed consistency trade-offs under partition and latency   | coral      | Spectral            | Brewer · Gilbert & Lynch · PACELC |
-| SWIM                    | Failure detection + gossip in cluster membership                 | warm rose  | Cormorant Garamond  | Das · Gupta · Motivala · 2002     |
-| UDP                     | Datagram delivery, loss, duplication, and ordering               | tangerine  | Bricolage Grotesque | RFC 768 · 1980                    |
-| Bloom Filters           | Probabilistic set membership at scale                            | violet     | Playfair Display    | Burton H. Bloom · 1970            |
-| The Bloom Clock         | Probabilistic causality with constant-size clocks                | gold       | Instrument Serif    | Distributed causality             |
-| The Cuckoo Filter       | Probabilistic set membership that also supports deletion         | coral      | Fraunces            | Fan et al. · 2014                 |
-| LSM Trees               | Write-optimised storage where time becomes depth                 | sediment   | Bitter              | O'Neil et al. · 1996              |
-| The Weight of Memory    | From one hand-woven bit to an ocean nobody can picture           | amber      | Instrument Serif    | A history of almost nothing       |
-| Merkle Trees            | Tamper-evident data with whisper-sized inclusion proofs          | patina     | Libre Caslon        | Ralph C. Merkle · 1979            |
-| The One-Way Machine     | Cryptographic hashing — SHA-1, SHA-2, SHA-3                      | copper     | Zilla Slab          | NIST · FIPS 180                   |
-| Trie                    | Prefix trees, drawn so the route is the word                     | pine       | Fraunces            | Edward Fredkin · 1960             |
-| gRPC                    | Remote procedure calls — typed contracts on a binary HTTP/2 wire | cyan       | Bricolage Grotesque | Google · 2015                     |
-| B-Trees                 | Balanced on-disk index where a node is a whole page              | petrol     | Zilla Slab          | Bayer & McCreight · 1970          |
-| HyperLogLog             | Counting distinct items in fixed, tiny memory                    | brass      | Big Shoulders       | Flajolet et al. · 2007            |
-| Vantage-Point Trees     | Nearest-neighbour search using only distance                     | amber      | Big Shoulders       | Peter Yianilos · 1993             |
-| TLS                     | A private, verified channel across a hostile public wire         | aqua       | Spectral            | IETF · RFC 8446                   |
+| Lesson                  | Subject                                                         | Accent     | Display             | Credit                            |
+| ----------------------- | --------------------------------------------------------------- | ---------- | ------------------- | --------------------------------- |
+| Concurrency Foundations | Threads, primitives, patterns, memory models                    | steel-blue | Fraunces            | I–VII                             |
+| The ACID Lab            | Atomicity, Consistency, Isolation, Durability                   | teal       | EB Garamond         | A · C · I · D                     |
+| CAP & PACELC            | Distributed consistency trade-offs under partition and latency  | coral      | Spectral            | Brewer · Gilbert & Lynch · PACELC |
+| SWIM                    | Failure detection + gossip in cluster membership                | warm rose  | Cormorant Garamond  | Das · Gupta · Motivala · 2002     |
+| UDP                     | Datagram delivery, loss, duplication, and ordering              | tangerine  | Bricolage Grotesque | RFC 768 · 1980                    |
+| Bloom Filters           | Probabilistic set membership at scale                           | violet     | Playfair Display    | Burton H. Bloom · 1970            |
+| The Bloom Clock         | Probabilistic causality with constant-size clocks               | gold       | Instrument Serif    | Distributed causality             |
+| The Cuckoo Filter       | Probabilistic set membership that also supports deletion        | coral      | Fraunces            | Fan et al. · 2014                 |
+| LSM Trees               | Write-optimised storage where time becomes depth                | sediment   | Bitter              | O'Neil et al. · 1996              |
+| The Weight of Memory    | From one hand-woven bit to an ocean nobody can picture          | amber      | Instrument Serif    | A history of almost nothing       |
+| Merkle Trees            | Tamper-evident data with whisper-sized inclusion proofs         | patina     | Libre Caslon        | Ralph C. Merkle · 1979            |
+| The One-Way Machine     | Cryptographic hashing: SHA-1, SHA-2, SHA-3                      | copper     | Zilla Slab          | NIST · FIPS 180                   |
+| Trie                    | Prefix trees, drawn so the route is the word                    | pine       | Fraunces            | Edward Fredkin · 1960             |
+| gRPC                    | Remote procedure calls: typed contracts on a binary HTTP/2 wire | cyan       | Bricolage Grotesque | Google · 2015                     |
+| B-Trees                 | Balanced on-disk index where a node is a whole page             | petrol     | Zilla Slab          | Bayer & McCreight · 1970          |
+| HyperLogLog             | Counting distinct items in fixed, tiny memory                   | brass      | Big Shoulders       | Flajolet et al. · 2007            |
+| Vantage-Point Trees     | Nearest-neighbour search using only distance                    | amber      | Big Shoulders       | Peter Yianilos · 1993             |
+| TLS                     | A private, verified channel across a hostile public wire        | aqua       | Spectral            | IETF · RFC 8446                   |
 
-Each lesson lives under `src/lessons/<slug>/` and ships its own CSS, prose, and
-small interactive labs. They share a common paper (`#0a0a0f` background,
-parchment ink, **JetBrains Mono** for every numeric/credit/eyebrow) but each
-carries its own display typography and accent color.
+Each lesson lives under `src/lessons/<slug>/`. It ships its own prose and CSS,
+plus a few small interactive labs. They share a common paper (`#0a0a0f`
+background, parchment ink, **JetBrains Mono** for every numeric/credit/eyebrow),
+but each carries its own display typography and accent color.
 
-Lessons are loaded lazily via `React.lazy`; the entry bundle stays small and
-each lesson's chunk only ships when it's opened.
+Lessons load lazily via `React.lazy`. The entry bundle stays small, and each
+lesson's chunk only ships when it's opened.
 
 ## Run locally
 
@@ -59,7 +59,7 @@ npm run format:check  # Prettier check (CI-friendly)
 ```
 
 CI runs lint, `format:check`, the Vitest suite, the production build, and the
-Playwright smoke on every push and pull request — see
+Playwright smoke on every push and pull request. The workflow lives in
 [`.github/workflows/ci.yml`](./.github/workflows/ci.yml). Node version is pinned
 in [`.nvmrc`](./.nvmrc).
 
@@ -68,7 +68,7 @@ in [`.nvmrc`](./.nvmrc).
 Each lesson is fully self-contained under `src/lessons/<slug>/`: prose
 `sections/`, interactive `labs/`, lesson-local `components/`, a pure
 `engine/index.js`, and its own `<slug>.css`. A lean `<Name>Lesson.jsx` wires
-them together and `index.js` re-exports it for the lazy loader.
+them together. `index.js` re-exports it for the lazy loader.
 
 ```
 src/
@@ -99,9 +99,9 @@ tests/
   e2e/                     Playwright smoke (index ↔ lesson round trips)
 ```
 
-Every lesson keeps its logic in a pure `engine/index.js` backed by a Vitest
-suite; `bloom-filters/engine/index.js` (tested in `tests/bloom-math.test.js`)
-is the canonical example.
+Every lesson keeps its logic in a pure `engine/index.js`, backed by a Vitest
+suite. `bloom-filters/engine/index.js` (tested in `tests/bloom-math.test.js`) is
+the canonical example.
 
 ## Design notes
 

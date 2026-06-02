@@ -16,11 +16,11 @@ export function Section09() {
           </p>
           <p>
             <strong style={{ color: 'var(--brass)' }}>Asymmetric partitions.</strong> SWIM assumes
-            that a node responding to <em>somebody</em> is evidence it is alive. In partial
-            partitions — node M can reach half the cluster but not the other half — the unreachable
-            half will keep suspecting M, the reachable half will keep refuting, and M will flap
-            between states. There is no clean answer: choosing a single global view forces an
-            availability sacrifice.
+            that a node responding to <em>somebody</em> is evidence it is alive. Consider a partial
+            partition, where node M can reach half the cluster but not the other half. The
+            unreachable half will keep suspecting M, the reachable half will keep refuting, and M
+            will flap between states. There is no clean answer: choosing a single global view forces
+            an availability sacrifice.
           </p>
           <p>
             <strong style={{ color: 'var(--brass)' }}>Slow nodes.</strong> A node experiencing GC
@@ -46,7 +46,7 @@ export function Section09() {
 
         <div>
           <div className="swim-label" style={{ color: 'var(--brass)', marginBottom: 16 }}>
-            LIFEGUARD <span style={{ color: 'var(--ink-faint)' }}>— Dadgar et al., 2018</span>
+            LIFEGUARD <span style={{ color: 'var(--ink-faint)' }}>· Dadgar et al., 2018</span>
           </div>
           <div className="swim-prose swim-mid">
             <p>
@@ -85,7 +85,7 @@ export function Section09() {
               </h4>
               <p className="swim-prose" style={{ fontSize: 14, marginTop: 12 }}>
                 A node tracks its own missed deadlines and slow probes. When its self-health
-                degrades, it <em>handicaps itself</em> — lengthening its own probe and suspicion
+                degrades, it <em>handicaps itself</em> by lengthening its own probe and suspicion
                 timeouts. The insight: if I am the slow witness, I should not be aggressive about
                 declaring others dead.
               </p>

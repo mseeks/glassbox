@@ -15,18 +15,18 @@ export default function Coda() {
         </h2>
         <p className="body reveal" style={{ marginTop: 18 }}>
           <span className="kw">SHA-2</span> is an assembly line with an exposed final workpiece. It
-          is fast, conservative, and everywhere, but vulnerable to "keep building from where they
-          stopped" unless you wrap it in HMAC.
-          <span className="kg"> SHA-3</span> is a sponge with a permanently hidden interior: a touch
-          slower in software, immune to that whole class of attack, and able to pour out as many
-          bits as you ask for.
+          is fast. It is conservative. It is everywhere, yet it stays vulnerable to "keep building
+          from where they stopped" unless you wrap it in HMAC.
+          <span className="kg"> SHA-3</span> is a sponge with a permanently hidden interior. It runs
+          a touch slower in software. In exchange it is immune to that whole class of attack, and it
+          can pour out as many output bits as you ask it for.
         </p>
         <p className="body reveal">
-          Both rest on the same quiet miracle you met at the start: stir bits hard enough, with the
-          right blend of carrying, rotating, and folding, and a one-way street appears where there
-          was none. Trivial to walk forward. Hopeless to walk back. That asymmetry is what lets a
-          thirty-two byte fingerprint stand in for a document, a download, a block of a chain, or a
-          leaf of a tree, and be trusted.
+          Both rest on the same quiet miracle you met at the start. Stir bits hard enough, blending
+          the carries from addition with the wandering of rotation and the folding of XOR, and a
+          one-way street appears where there was none. Trivial to walk forward. Hopeless to walk
+          back. That asymmetry is what lets a thirty-two byte fingerprint stand in for a document, a
+          download, a block of a chain, or a leaf of a tree, and still be trusted.
         </p>
 
         <div
@@ -46,7 +46,7 @@ export default function Coda() {
             {[
               [
                 'The Keccak round, in full',
-                'θ ρ π χ ι — five micro-operations that make the real permutation.',
+                'θ ρ π χ ι: five micro-operations that make the real permutation.',
               ],
               [
                 'HMAC & HKDF',
@@ -72,7 +72,7 @@ export default function Coda() {
                   >
                     {t}
                   </span>
-                  <span style={{ color: 'var(--bone-faint)' }}> — {d}</span>
+                  <span style={{ color: 'var(--bone-faint)' }}>: {d}</span>
                 </span>
               </div>
             ))}

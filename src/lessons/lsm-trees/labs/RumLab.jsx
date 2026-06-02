@@ -163,7 +163,7 @@ export default function RumLab() {
               l: 'memory amplification',
               v: co.M,
               c: 'var(--jade)',
-              d: 'extra storage carried — dead versions, indexes',
+              d: 'extra storage carried: dead versions, indexes',
             },
           ].map((x) => (
             <div key={x.l} style={{ marginBottom: 13 }}>

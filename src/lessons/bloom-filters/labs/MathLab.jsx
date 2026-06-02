@@ -75,8 +75,8 @@ export function MathLab() {
         </span>
       </div>
       <div className="bf-body-italic bf-mark-muted mt-2 mb-6" style={{ fontSize: '0.92rem' }}>
-        Two knobs, three numbers, and a curve. Drag the bits-per-element to see the trade. Watch the
-        optimum k* shift as you go.
+        Two knobs, three numbers, and a curve. Drag the bits-per-element to see the trade, and watch
+        the optimum k* shift as you go. Two levers, one surface.
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">

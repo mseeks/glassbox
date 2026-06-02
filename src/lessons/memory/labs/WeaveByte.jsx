@@ -118,8 +118,9 @@ export default function WeaveByte() {
 
       <div className="callout" style={{ margin: '16px 0 0', padding: '11px 15px' }}>
         <span style={{ fontSize: 14.5 }}>
-          This page of text you're reading is a few thousand of these bytes. By hand, at a careful
-          one thread per second, a single page would take a worker about{' '}
+          This page of text you're reading is a few thousand of these bytes. Now picture weaving it.
+          Working steadily by hand, at a careful pace of one thread through one ring per second, a
+          single page would take a worker about{' '}
           <strong style={{ color: 'var(--amber-hi)' }}>four hours</strong> to weave.
         </span>
       </div>

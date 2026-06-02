@@ -17,13 +17,13 @@ export function SectionTwo() {
           arrival, the key may occupy either.
         </P>
         <P>
-          When a new key arrives and finds both homes taken, it does not give up. It moves in anyway
-          — to one of the two — and <em>displaces</em>
+          When a new key arrives and finds both homes taken, it does not give up. It moves into one
+          of the two anyway and <em>displaces</em>
           the resident. The evicted key then walks to <em>its</em> other home. If that one is
           occupied too, the displacement continues: a chain of kicks, each victim shuttled to its
           alternate, until at last someone finds an empty seat. The procedure terminates when a
-          vacancy is found, or — if the chain loops — when a kick budget runs out and the insertion
-          is refused.
+          vacancy is found. It also terminates when the chain loops, the kick budget runs out, and
+          the insertion is refused.
         </P>
         <P>
           For all this commotion, the structure earns the property that makes it interesting: any
@@ -43,9 +43,8 @@ export function SectionTwo() {
       <PageBlock>
         <P>
           One detail will prove essential. To displace a resident, the algorithm must know that
-          resident's <em>other</em> home — and to know that, it must hash its key. This works
-          perfectly when the table stores keys. It will appear, briefly, to break when we throw the
-          keys away.
+          resident's <em>other</em> home. To know that, it must hash the key. This works perfectly
+          when the table stores keys. It will appear, briefly, to break when we throw the keys away.
         </P>
       </PageBlock>
 

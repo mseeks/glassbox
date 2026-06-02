@@ -83,14 +83,14 @@ export default function HarmonicLab() {
           Both estimators are{' '}
           <span className="mono" style={{ fontSize: 12 }}>
             α·m·mean(2ᴿ)
-          </span>{' '}
-          — identical but for the mean. Arithmetic is dragged toward its largest term{' '}
+          </span>
+          , identical but for the mean. Arithmetic gets dragged toward its largest term{' '}
           <span className="mono" style={{ fontSize: 12 }}>
             (Σ2ᴿ = {arith ? fmt(sumPow) : 0})
           </span>
-          ; the harmonic mean is governed by the{' '}
+          . The harmonic mean is governed instead by the{' '}
           <em style={{ color: 'var(--cyan)', fontStyle: 'normal' }}>smallest</em> terms, so a lone
-          monster run can’t move it. That swap is the entire “Hyper.”
+          monster run can't move it. That one swap is the entire "Hyper."
         </div>
       </div>
     </Panel>

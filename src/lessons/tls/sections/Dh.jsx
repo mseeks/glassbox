@@ -13,13 +13,13 @@ export default function Dh() {
     >
       <P>
         The trick is an operation that is easy to do and effectively impossible to undo. Picture
-        mixing paint: everyone agrees on a public base colour; each side privately stirs in a secret
-        colour and sends the blend; each then stirs its own secret into the blend it received. Both
-        arrive at the same final mixture — yet a listener holding the base and both public blends
-        can’t reach it, because separating one paint back out of a blend is the hard part.
+        mixing paint. Everyone agrees on a public base colour, each side privately stirs in a secret
+        colour and sends the blend, and each then stirs its own secret into the blend it received,
+        so both arrive at the same final mixture. Yet a listener holding the base and both public
+        blends can't reach it. Separating one paint back out of a blend is the hard part.
       </P>
       <P delay=".05s">
-        Drag each side’s secret and watch both ends derive the identical secret in lockstep — then
+        Drag each side's secret and watch both ends derive the identical secret in lockstep, then
         make the eavesdropper try to break it.
       </P>
       <DiffieHellmanLab />

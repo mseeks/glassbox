@@ -228,7 +228,7 @@ export default function WriteLab() {
             ))}
           </div>
           <div className="depthmark" style={{ marginTop: 6 }}>
-            one sequential append per write — never a seek
+            one sequential append per write, never a seek
           </div>
         </div>
       </div>
@@ -323,9 +323,9 @@ export default function WriteLab() {
           color: 'var(--ink-2)',
         }}
       >
-        Each write hits the log (append) and the memtable (sorted insert). At capacity the memtable
-        freezes into an immutable stratum and a fresh one opens. Notice deletes are just writes of
-        <em> ∅</em> — exactly the tombstones from §I, now riding the same path.
+        Each write hits two places: the log (append) and the memtable (sorted insert). At capacity,
+        the memtable freezes into an immutable stratum. A fresh one opens. Deletes? Just writes of
+        <em> ∅</em>, exactly the tombstones from §I, now riding the same path.
       </div>
     </Figure>
   );

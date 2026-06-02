@@ -13,7 +13,7 @@ const DRAWER_LABELS = [
   ['Ova', 'Sla'],
   ['Sle', 'Vel'],
   ['Vem', 'Zyz'],
-  ['REF', '—'],
+  ['REF', ''],
 ];
 
 export default function Hero() {
@@ -52,7 +52,7 @@ export default function Hero() {
           style={{ textAlign: 'center', maxWidth: 600, margin: '0 auto', color: 'var(--ink-2)' }}
         >
           A century before databases, librarians built one out of oak and index cards. Here is how
-          it works — and why it stayed perfectly balanced through a billion filings.
+          it works, and why it stayed perfectly balanced through a billion filings.
         </p>
       </Reveal>
       <Reveal base="bt-rev" delay={0.23} style={{ marginTop: 34 }}>
@@ -63,9 +63,7 @@ export default function Hero() {
               className={`bt-drawer ${open === i ? 'open' : ''}`}
               onMouseEnter={() => setOpen(i)}
             >
-              <div className="bt-drawer-label">
-                {a}&ndash;{b}
-              </div>
+              <div className="bt-drawer-label">{b ? `${a}–${b}` : a}</div>
               <div className="bt-knob" />
             </div>
           ))}

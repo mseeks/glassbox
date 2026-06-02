@@ -147,10 +147,10 @@ export default function MachineLab() {
 
       <div className="readgrid" style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr', marginTop: 16 }}>
         <Readout label="True distinct" value={fmt(nDistinct)} tone="iv" />
-        <Readout label="HLL estimate" value={nDistinct ? fmt(E) : '—'} tone="cy" />
+        <Readout label="HLL estimate" value={nDistinct ? fmt(E) : '–'} tone="cy" />
         <Readout
           label="Error"
-          value={nDistinct ? (err >= 0 ? '+' : '') + err.toFixed(2) + '%' : '—'}
+          value={nDistinct ? (err >= 0 ? '+' : '') + err.toFixed(2) + '%' : '–'}
           tone={Math.abs(err) > SE * 1.6 ? 'mg' : 'br'}
         />
         <Readout
@@ -165,9 +165,9 @@ export default function MachineLab() {
         <canvas ref={errRef} data-aspect={0.3} />
       </div>
       <div className="cap">
-        Pour in more, raise the duplicate rate — the error trace stays pinned inside the{' '}
-        <span style={{ color: 'var(--cyan)' }}>±1.04/√m</span> band. Accuracy is set by the register
-        count alone, not by how much data flows through or how often it repeats.
+        Pour in more and raise the duplicate rate. The trace barely twitches. It stays pinned inside
+        the <span style={{ color: 'var(--cyan)' }}>±1.04/√m</span> band, because accuracy is set by
+        the register count alone, not by how much data flows through or how often any of it repeats.
       </div>
     </Panel>
   );

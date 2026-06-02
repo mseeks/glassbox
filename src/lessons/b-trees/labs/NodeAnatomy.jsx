@@ -138,12 +138,13 @@ export default function NodeAnatomy() {
         </svg>
         <div className="bt-lab-cap">
           {sel == null ? (
-            'Three keys carve the universe into four ranges. Each gap between keys owns one child pointer. Tap a gap.'
+            'Three keys carve the universe into four ranges, and each gap between them owns a single child pointer. Tap a gap.'
           ) : (
             <>
-              Everything <strong>{ranges[sel]}</strong> lives down this one pointer. The keys
-              aren&rsquo;t the data — they&rsquo;re <span className="bt-blue">signposts</span> that
-              tell you which drawer to open next.
+              Everything <strong>{ranges[sel]}</strong> lives down this single pointer, because the
+              keys themselves aren&rsquo;t the data, they&rsquo;re{' '}
+              <span className="bt-blue">signposts</span> pointing at which drawer to open next. Not
+              data. Signposts.
             </>
           )}
         </div>

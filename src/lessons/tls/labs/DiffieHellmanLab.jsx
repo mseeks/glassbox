@@ -205,8 +205,8 @@ export default function DiffieHellmanLab() {
         {paint ? (
           <p className="tls-prose" style={{ fontSize: 13, margin: 0, lineHeight: 1.55 }}>
             To reach the shared paint, the eavesdropper would have to <em>un-mix</em> a sent colour
-            back into its secret — and pulling one paint out of a blend is the hard part. Mixing is
-            easy; separating is effectively impossible.
+            back into its secret. Pulling one paint out of a blend is the hard part. Mixing is easy.
+            Separating is effectively impossible.
           </p>
         ) : recovered === null ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
@@ -214,7 +214,7 @@ export default function DiffieHellmanLab() {
               crack the discrete log
             </button>
             <span className="tls-prose" style={{ fontSize: 13, margin: 0 }}>
-              They must recover a secret exponent from a public value — solve{' '}
+              They must recover a secret exponent from a public value. Solve{' '}
               <span className="tls-mono">
                 g<sup>?</sup> mod p = A
               </span>
@@ -231,9 +231,10 @@ export default function DiffieHellmanLab() {
               </span>
             </div>
             <p className="tls-prose" style={{ fontSize: 12.5, margin: 0, lineHeight: 1.5 }}>
-              Feasible here <strong>only</strong> because p = 23 — about {DH_P.toString()} guesses.
-              Real TLS uses a ~2048-bit prime, or an elliptic curve: the same brute force would
-              outlast the universe. The wall is real; we just shrank it so you could see over it.
+              Feasible here <strong>only</strong> because p = 23, about {DH_P.toString()} guesses.
+              Real TLS uses a ~2048-bit prime, or an elliptic curve, where the same brute force
+              would outlast the universe. The wall is real. We just shrank it so you could see over
+              it.
             </p>
           </div>
         )}
@@ -242,7 +243,7 @@ export default function DiffieHellmanLab() {
       <p className="tls-prose" style={{ fontSize: 12.5, marginTop: 12, lineHeight: 1.5 }}>
         Paint and numbers are the <em>same trick</em>: an operation easy to perform and effectively
         impossible to reverse. Mixing ↔ exponentiation; un-mixing ↔ the discrete logarithm. Modern
-        TLS uses the elliptic-curve flavour, <span className="tls-mono">ECDHE</span> — smaller,
+        TLS uses the elliptic-curve flavour, <span className="tls-mono">ECDHE</span>. Smaller,
         faster, same idea.
       </p>
     </div>

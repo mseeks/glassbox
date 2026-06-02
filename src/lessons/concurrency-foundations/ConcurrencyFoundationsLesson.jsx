@@ -41,7 +41,7 @@ export default function ConcurrencyFoundationsLesson() {
         <ChapterHeader
           num="one"
           anchor="chapter-1"
-          blurb="Where the trouble starts: more than one thread of execution, sharing state. Before we can reason about correctness, we need to be precise about what 'concurrent' even means."
+          blurb="Where the trouble starts. More than one thread of execution, sharing state. Before we can reason about correctness, we need to be precise about what 'concurrent' even means."
         >
           Concurrency starts with <em>interleaving</em>.
         </ChapterHeader>
@@ -51,7 +51,7 @@ export default function ConcurrencyFoundationsLesson() {
         <ChapterHeader
           num="two"
           anchor="chapter-2"
-          blurb="The vocabulary of synchronization: mutexes, semaphores, atomics, and the line between blocking, lock-free, and wait-free."
+          blurb="The vocabulary of synchronization. Mutexes, semaphores, atomics, and the line that runs from blocking through lock-free to wait-free."
         >
           The <em>tools</em>.
         </ChapterHeader>
@@ -63,7 +63,7 @@ export default function ConcurrencyFoundationsLesson() {
         <ChapterHeader
           num="three"
           anchor="chapter-3"
-          blurb="Three ways a program can remain alive while failing to make useful progress — and why no compiler can save you from them."
+          blurb="Three ways a program can remain alive while failing to make useful progress. No compiler can save you from them."
         >
           Liveness <em>failures</em>.
         </ChapterHeader>
@@ -74,7 +74,7 @@ export default function ConcurrencyFoundationsLesson() {
         <ChapterHeader
           num="four"
           anchor="chapter-4"
-          blurb="The shapes that work — patterns of conversation between threads that have proven themselves over decades of practice."
+          blurb="The shapes that work. Patterns of conversation between threads that have proven themselves over decades of practice."
         >
           Patterns of <em>conversation</em>.
         </ChapterHeader>
@@ -108,7 +108,7 @@ export default function ConcurrencyFoundationsLesson() {
         <ChapterHeader
           num="seven"
           anchor="chapter-7"
-          blurb="Reordering, visibility, and happens-before: the rules of cause and effect that synchronization imposes on real hardware."
+          blurb="Reordering and visibility, governed by happens-before: the rules of cause and effect that synchronization imposes on real hardware."
         >
           Memory ordering and <em>happens-before</em>.
         </ChapterHeader>

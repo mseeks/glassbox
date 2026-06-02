@@ -13,12 +13,12 @@ export default function Secret() {
     >
       <SymmetricPanel />
       <P delay=".05s">
-        So encryption itself is the easy half — <em>provided you both already share a key.</em> But
-        you and the bank have never met. You share no secret, and the only channel to deliver one is
-        the very wire the eavesdropper is reading. Send the key in the clear and it’s copied;
-        encrypt it first and you need a key to do that — which you don’t have yet. This circularity
-        is the <strong>key-exchange problem</strong>, and for most of history it had no clever
-        answer.
+        So encryption itself is the easy half. <em>Provided you both already share a key.</em> But
+        you and the bank have never met. You share no secret, and the only channel that can deliver
+        one is the very wire the eavesdropper is reading. Send the key in the clear and it's copied,
+        but encrypt it first and you need a key to do that, which you don't have yet. That is the
+        snag. This circularity is the <strong>key-exchange problem</strong>, and for most of history
+        it had no clever answer.
       </P>
     </Section>
   );

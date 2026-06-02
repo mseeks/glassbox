@@ -6,8 +6,8 @@ export function Ch04TheMath() {
       <p>
         Where the ten-bits-per-element number comes from. Let <code>m</code> be bits, <code>n</code>{' '}
         items inserted, <code>k</code> hash functions. After <code>n</code> insertions of{' '}
-        <code>k</code> bit-sets each — <code>kn</code> bit operations — the probability a specific
-        bit is still zero is the probability nothing has touched it:
+        <code>k</code> bit-sets each (that is <code>kn</code> bit operations), the probability a
+        specific bit is still zero is the probability nothing has touched it:
       </p>
       <div className="bf-formula">
         <span className="op">P</span>(bit is 0) <span className="op">=</span> (1 − 1/m)<sup>kn</sup>{' '}

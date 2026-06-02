@@ -206,8 +206,9 @@ export const Hero = () => {
         </h1>
 
         <p className="udp-lede udp-rise-delay-2" style={{ maxWidth: 720, marginTop: 32 }}>
-          The internet underneath everything is a postal service that loses mail. Packets get
-          dropped, duplicated, delayed, reordered. That's the truth of the wire.
+          The internet underneath everything is a postal service that loses mail, and never once
+          tells you which letters it dropped. Packets get dropped, duplicated, delayed, reordered.
+          That's the truth of the wire.
           <strong> TCP hides it.</strong>{' '}
           <strong style={{ color: 'var(--signal)' }}>UDP doesn't.</strong>
         </p>

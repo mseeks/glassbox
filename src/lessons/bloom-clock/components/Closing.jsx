@@ -31,8 +31,8 @@ export const Closing = () => (
       className="bc-pullquote"
       style={{ fontSize: 'clamp(22px, 3.4vw, 38px)', lineHeight: 1.32 }}
     >
-      A Bloom clock is the structural dual of a Bloom filter — same hashing, same one-sided error,
-      same fixed-size trick — applied to the
+      A Bloom clock is the structural dual of a Bloom filter (same hashing, same one-sided error,
+      same fixed-size trick) applied to the
       <em style={{ color: '#f5b942' }}> happens-before </em>
       partial order instead of set membership, where the
       <em style={{ color: '#6ee7b7' }}> exact </em>

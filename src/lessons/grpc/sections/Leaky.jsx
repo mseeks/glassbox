@@ -24,8 +24,8 @@ export default function Leaky() {
             <p>
               <strong>Deadlines, not timeouts.</strong> The client sets an absolute deadline and
               gRPC <em>propagates</em> it across every downstream hop. If the budget is 200ms and
-              180 are already spent, the next service starts knowing it has 20ms left — and the
-              whole tree gives up together instead of piling up doomed work.
+              180 are already spent, the next service starts knowing it has 20ms left. The whole
+              tree gives up together instead of piling up doomed work.
             </p>
             <p>
               <strong>Cancellation flows.</strong> If the caller hangs up, the cancellation signal
@@ -38,7 +38,7 @@ export default function Leaky() {
             </p>
             <p>
               <strong>Errors are a typed status, not an exception.</strong> Every call ends with one
-              of ~17 codes — and the code tells you whether retrying is sane:
+              of ~17 codes. The code tells you whether retrying is sane:
             </p>
           </Reveal>
           <Reveal base="gx-fade">
@@ -50,7 +50,7 @@ export default function Leaky() {
               <code className="gx-kw" style={{ color: 'var(--ink)' }}>
                 Withdraw
               </code>{' '}
-              look like an ordinary Go method — yet the deadline, the cancellation, and the typed
+              look like an ordinary Go method. Yet the deadline, the cancellation, and the typed
               status are all right there in the open:
             </p>
             <div className="gx-code">
@@ -99,7 +99,7 @@ export default function Leaky() {
               <code className="gx-kw" style={{ color: 'var(--ink)' }}>
                 UNAVAILABLE
               </code>{' '}
-              looks retryable — but if the first attempt actually ran before the connection dropped,
+              looks retryable. But if the first attempt actually ran before the connection dropped,
               a blind retry on{' '}
               <code className="gx-kw" style={{ color: 'var(--ink)' }}>
                 Withdraw
@@ -109,10 +109,10 @@ export default function Leaky() {
               away; it is handed to you to design around.
             </p>
             <Callout kind="info">
-              <b>The honest framing.</b> gRPC keeps the <em>shape</em> of a function call — typed
-              arguments, typed return, a clean call site. It deliberately does <b>not</b> hide that
-              the call can be slow, cancelled, or fail. The leak is the feature: it forces you to
-              handle the network instead of pretending it isn't there.
+              <b>The honest framing.</b> gRPC keeps the <em>shape</em> of a function call, with
+              typed arguments, a typed return, and a clean call site, yet it deliberately does{' '}
+              <b>not</b> hide that the call can be slow, cancelled, or fail. The leak is the
+              feature. It forces you to handle the network instead of pretending it isn't there.
             </Callout>
           </Reveal>
         </div>

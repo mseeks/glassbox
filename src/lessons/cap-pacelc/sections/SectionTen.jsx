@@ -34,11 +34,11 @@ export function SectionTen() {
       </div>
 
       <p>
-        The single thread through all six: <em>imprecision</em> is the enemy of useful reasoning
-        here. The slogans collapse distinctions that the theorem deliberately preserves — between
-        single-object and multi-object ordering, between real-time and equivalence, between system
-        properties and transaction properties, between the ideal and the achievable. Restoring those
-        distinctions is most of the work of thinking clearly about distributed data.
+        One thread runs through all six. <em>Imprecision</em> is the enemy of useful reasoning here.
+        The slogans collapse distinctions that the theorem deliberately preserves: single-object
+        versus multi-object ordering, real-time versus equivalence, system properties versus
+        transaction properties, the ideal versus the achievable. Restoring those distinctions is
+        most of the work of thinking clearly about distributed data.
       </p>
     </section>
   );

@@ -26,7 +26,7 @@ export default function FanoutLab() {
 
   const caption =
     f === 2
-      ? 'A binary tree. Roughly thirty levels for a billion keys — and every single page fetch is squandered on one lonely key.'
+      ? 'A binary tree. Roughly thirty levels for a billion keys, and every single page fetch is squandered on one lonely key.'
       : f >= 256
         ? 'A real B-tree node. A billion keys now sit just three or four levels down: a handful of disk trips, total.'
         : `Each page now holds ${keysPerPage} keys and fans out ${f} ways. The tree flattens fast.`;

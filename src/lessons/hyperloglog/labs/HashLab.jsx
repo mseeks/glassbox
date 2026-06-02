@@ -71,7 +71,7 @@ export default function HashLab() {
             zeros in <span style={{ color: 'var(--cyan)' }}>cyan</span>
             {current.dup ? (
               <span style={{ color: 'var(--magenta)', marginLeft: 8 }}>
-                ● already seen — max unchanged
+                ● already seen, max unchanged
               </span>
             ) : null}
           </div>
@@ -96,8 +96,9 @@ export default function HashLab() {
         <Readout label="Max rank (lz+1)" value={maxRank} tone="cy" />
       </div>
       <div className="cap">
-        Add <span style={{ color: 'var(--brass-hi)' }}>alice</span> twice: identical bits, identical
-        run, no movement. A repeat can never raise the maximum — so the structure counts{' '}
+        Add <span style={{ color: 'var(--brass-hi)' }}>alice</span> twice and you get identical
+        bits, an identical run, and not a flicker of movement on the maximum. Nothing changes. A
+        repeat can never raise the maximum, so the structure counts{' '}
         <em style={{ color: 'var(--cyan)', fontStyle: 'normal' }}>distinct</em> things for free.
       </div>
     </Panel>

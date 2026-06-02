@@ -165,7 +165,7 @@ export function simulateIsolation(scenario, levelOrId, levels = []) {
           t.status = 'aborted';
           t.systemAborted = true;
           t.endStep = stepIdx;
-          message = `${op.txn} attempts to commit — but the database detects a write-write conflict.`;
+          message = `${op.txn} attempts to commit. The database detects a write-write conflict.`;
           flag = 'abort';
           annotation = `${op.txn} aborts: another transaction has already committed a write to a key ${op.txn} also wrote. (First-committer-wins.)`;
         }
@@ -181,9 +181,9 @@ export function simulateIsolation(scenario, levelOrId, levels = []) {
         t.status = 'aborted';
         t.systemAborted = true;
         t.endStep = stepIdx;
-        message = `${op.txn} attempts to commit — Serializable Snapshot Isolation detects a dangerous read/write dependency cycle.`;
+        message = `${op.txn} attempts to commit. Serializable Snapshot Isolation detects a dangerous read/write dependency cycle.`;
         flag = 'abort';
-        annotation = `${op.txn} aborts: SSI noticed that ${op.txn} read data another concurrent transaction modified, and that transaction read data ${op.txn} modified — a cycle that breaks serializability. One transaction must die for the schedule to be equivalent to a serial order.`;
+        annotation = `${op.txn} aborts: SSI noticed that ${op.txn} read data another concurrent transaction modified, and that transaction read data ${op.txn} modified. That cycle breaks serializability. One transaction must die for the schedule to be equivalent to a serial order.`;
       }
 
       if (!aborted) {

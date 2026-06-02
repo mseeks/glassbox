@@ -13,16 +13,16 @@ export function Section05() {
 
         <div className="swim-prose swim-mid" style={{ marginBottom: 36 }}>
           <p className="swim-lede">
-            If the cluster gossips contradictions — alive here, suspect there, dead somewhere else —
-            then it needs a rule for which voice to believe. The incarnation number is that rule.
+            The cluster gossips contradictions: alive here, suspect there, dead somewhere else. So
+            it needs a rule for which voice to believe. The incarnation number is that rule.
           </p>
           <p>
             Each node has a private, monotonically increasing counter that only it can advance. When
             it joins, it is at incarnation 1. When it hears itself suspected, it increments to 2 and
             gossips <code>alive(2)</code>. The cluster's rule is then simple:{' '}
             <em>higher incarnation overrides lower</em>. At equal incarnation, suspect overrides
-            alive, and dead overrides both. Dead is absorbing — there is no message that can
-            resurrect a confirmed-dead member.
+            alive, and dead overrides both. Dead is absorbing. No message can resurrect a
+            confirmed-dead member.
           </p>
           <p>
             This is the minimum machinery needed to make a gossip protocol converge in the presence
@@ -83,7 +83,7 @@ export function Section05() {
               <td className="label">any</td>
               <td className="swim-mono">_(j), j &lt; current_i</td>
               <td>
-                <span style={{ color: 'var(--ink-faint)' }}>discarded — stale</span>
+                <span style={{ color: 'var(--ink-faint)' }}>discarded (stale)</span>
               </td>
             </tr>
           </tbody>

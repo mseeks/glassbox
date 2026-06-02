@@ -3,7 +3,7 @@ import { PatternDiagram } from '../components/PatternDiagram.jsx';
 export function Ch04FanOutIn() {
   return (
     <section className="section">
-      <div className="section-num">04.02 — distribute, then gather</div>
+      <div className="section-num">04.02 · distribute, then gather</div>
       <h2 className="section-title">
         Fan-out, <em>fan-in</em>.
       </h2>

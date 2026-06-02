@@ -8,8 +8,9 @@ export default function Masthead() {
         Hyper<span className="lo">loglog</span>
       </h1>
       <p className="sub">
-        Count the <em>distinct</em> things in a torrent of billions — using the memory of a single
-        photograph. An instrument that infers a multitude from the rarest flicker it ever sees.
+        Count the <em>distinct</em> things in a torrent of billions, using only one
+        photograph&rsquo;s worth of memory. One instrument. It infers a multitude from the rarest
+        flicker it ever sees.
       </p>
       <div className="specrow">
         <span>

@@ -34,7 +34,7 @@ export function XorPactLab() {
       <div className="cf-cols cf-cols-lab-wide">
         <div>
           <div className="cf-eyebrow" style={{ marginBottom: 14 }}>
-            Bucket array — m = {NB}
+            Bucket array: m = {NB}
           </div>
           <div className="cf-cell-strip">
             <div
@@ -247,7 +247,7 @@ export function XorPactLab() {
               lineHeight: 1.55,
             }}
           >
-            tap any cell to set the primary. The partner — in steel — follows from the equation,
+            tap any cell to set the primary. The partner, in steel, follows from the equation,
             wherever the primary moves.
           </div>
         </div>

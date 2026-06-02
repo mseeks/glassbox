@@ -146,10 +146,10 @@ export default function CurseLab() {
         In one dimension, distances vary wildly (spread ≈ 0.69) and the tree prunes almost
         everything. Drag toward higher dimensions and watch the histogram collapse into a spike: in
         high-dimensional space, <em>every</em> pair of points is nearly the same distance apart.
-        When the spread vanishes, every query straddles every shell — the triangle inequality can no
-        longer rule anything out, and the search degrades to measuring all {s.N} contacts. This is
-        the <strong>curse of dimensionality</strong>, and it’s why exact trees give way to
-        approximate methods on the high-dimensional embeddings used in modern search.
+        When the spread vanishes, every query straddles every shell. The triangle inequality can no
+        longer rule anything out, and the search degrades to measuring all {s.N} contacts. That is
+        the <strong>curse of dimensionality</strong>. It is why exact trees give way to approximate
+        methods on the high-dimensional embeddings used in modern search.
       </div>
     </div>
   );

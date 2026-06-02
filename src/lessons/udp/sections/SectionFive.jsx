@@ -148,12 +148,13 @@ export const SectionFive = () => {
     <section className="udp-section">
       <div className="udp-page">
         <SectionHeading
-          tag="§ 05  ·  Lab — The Send"
+          tag="§ 05  ·  Lab · The Send"
           title="Fire and forget."
           lede={
             <>
-              A canonical scenario: twelve datagrams sent in order. The network delivers most, loses
-              two, duplicates one, and reorders one. Watch <em>what UDP does about it.</em>
+              A canonical scenario. Twelve datagrams go out in order, and the network does what
+              networks do: it delivers most of them, loses two, duplicates one, and reorders one.
+              Watch <em>what UDP does about it.</em>
             </>
           }
         />
@@ -462,8 +463,9 @@ export const SectionFive = () => {
 
         <p className="udp-prose" style={{ marginTop: 26 }}>
           Notice what UDP does about the losses, the duplicates, the reorders:
-          <strong> nothing.</strong> That's the contract. If your application can't tolerate them —
-          or can't sequence them itself — UDP is not the right tool for the job.
+          <strong> nothing.</strong> That's the contract. If your application can't tolerate that
+          behavior, or can't sequence the packets itself, then UDP is simply not the right tool for
+          the job.
         </p>
       </div>
     </section>

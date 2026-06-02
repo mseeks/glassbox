@@ -57,7 +57,7 @@ export default function SignatureLab() {
         className="tls-mono"
         style={{ fontSize: 10.5, letterSpacing: '.14em', color: 'var(--bone-faint)' }}
       >
-        SERVER’S MESSAGE
+        SERVER'S MESSAGE
       </label>
       <input
         className="tls-input"
@@ -126,13 +126,13 @@ export default function SignatureLab() {
               style={{ fontSize: 12.5, marginTop: 8, lineHeight: 1.5, color: 'var(--verm-bright)' }}
             >
               {forged !== null
-                ? 'No private key, so the best you can do is guess — and for the real 2048-bit key there are more candidates than atoms in the universe.'
+                ? 'No private key, so the best you can do is guess. For the real 2048-bit key there are more candidates than atoms in the universe.'
                 : 'The message changed after signing, so its hash no longer matches what was signed. The forgery is caught.'}
             </p>
           )}
           {verified && (
             <p className="tls-prose" style={{ fontSize: 12.5, marginTop: 8, lineHeight: 1.5 }}>
-              Only the holder of the private key could have produced this — and the message is
+              Only the holder of the private key could have produced this, and the message is
               unaltered. <strong>Authenticity and integrity, in one move.</strong>
             </p>
           )}
@@ -141,9 +141,9 @@ export default function SignatureLab() {
 
       <p className="tls-prose" style={{ fontSize: 13, marginTop: 14, lineHeight: 1.6 }}>
         The catch: an attacker can generate <em>their own</em> keypair and sign just as validly with
-        it. A good signature only proves “I hold the private key behind <strong>this</strong> public
-        key.” It relocates the question from <em>is this message authentic?</em> to{' '}
-        <em>whose public key is this, really?</em> — which is exactly what a certificate answers.
+        it, so a good signature only proves "I hold the private key behind <strong>this</strong>{' '}
+        public key." It relocates the question. No longer <em>is this message authentic?</em> but{' '}
+        <em>whose public key is this, really?</em> A certificate answers exactly that.
       </p>
     </div>
   );

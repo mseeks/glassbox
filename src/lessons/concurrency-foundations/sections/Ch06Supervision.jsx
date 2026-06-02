@@ -1,14 +1,15 @@
 export function Ch06Supervision() {
   return (
     <section className="section">
-      <div className="section-num">06.02 — let it crash</div>
+      <div className="section-num">06.02 · let it crash</div>
       <h2 className="section-title">
         Supervision, and the right way to <em>fail</em>.
       </h2>
       <p className="prose">
         Most languages teach you to handle errors where they happen: catch the exception, retry,
         log, recover. Erlang's culture says the opposite. When something goes wrong, let the actor
-        die. A separate actor — its supervisor — watches for crashes and decides what to do.
+        die. Let it crash. A separate actor, its supervisor, watches for crashes and decides what to
+        do.
       </p>
       <p className="prose">
         The supervisor's strategies are restricted and named: <strong>one_for_one</strong> (restart
@@ -19,7 +20,7 @@ export function Ch06Supervision() {
       </p>
 
       <div className="pull-quote">
-        The error-handling philosophy is "let it crash" — not because crashes are good, but because
+        The error-handling philosophy is "let it crash." Not because crashes are good, but because
         the only honest model of a complex system is one where failures are first-class and
         isolated.
       </div>
@@ -28,8 +29,8 @@ export function Ch06Supervision() {
         It's a strikingly different mental model. You stop trying to handle every possible error
         inline; instead, you partition the system into supervisable units and decide, in advance,
         what kinds of failure each unit is allowed to have. The result is software with availability
-        metrics that look implausible — Ericsson's AXD301 telecom switch, written in Erlang,
-        famously achieved nine 9's of uptime in production.
+        metrics that look implausible. Ericsson's AXD301 telecom switch, written in Erlang, famously
+        achieved nine 9's of uptime in production.
       </p>
       <p className="prose">
         You don't need to write Erlang to take the lesson. Kubernetes' restart policies are

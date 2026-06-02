@@ -103,7 +103,7 @@ export default function ReconcileLab() {
             gap: 8,
           }}
         >
-          <Search size={14} /> located the drifted record (k5) in {comparisons} comparisons — never
+          <Search size={14} /> located the drifted record (k5) in {comparisons} comparisons, never
           shipping the other seven
         </div>
       )}

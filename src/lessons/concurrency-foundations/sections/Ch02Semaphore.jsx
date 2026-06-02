@@ -1,12 +1,12 @@
 export function Ch02Semaphore() {
   return (
     <section className="section">
-      <div className="section-num">02.02 — counting and signaling</div>
+      <div className="section-num">02.02 · counting and signaling</div>
       <h2 className="section-title">
         The semaphore is not a <em>fancier</em> mutex.
       </h2>
       <p className="prose">
-        A semaphore is a counter with two operations: <code>acquire</code> (subtract one, wait if
+        A semaphore is a counter. It has two operations: <code>acquire</code> (subtract one, wait if
         the counter would go negative) and <code>release</code> (add one, possibly wake a waiter).
         When the count is initialized to N, exactly N threads can hold the semaphore at once.
       </p>
@@ -19,7 +19,7 @@ export function Ch02Semaphore() {
             Acquired and released by the <em>same</em> thread. Models exclusive access to a
             resource: one writer at a time.
           </p>
-          <p>"I am about to touch this thing — wait your turn."</p>
+          <p>"I am about to touch this thing. Wait your turn."</p>
         </div>
         <div className="defn-card cyan-tag">
           <div className="defn-card-tag">semaphore</div>
@@ -36,13 +36,13 @@ export function Ch02Semaphore() {
         Real uses for semaphores: a connection pool with a fixed maximum, rate limiting (one permit
         per request, replenished on a timer), or a counting signal where producer threads increment
         and consumer threads decrement. A binary semaphore (count starts at 0 or 1) looks like a
-        mutex but isn't — because the release-without-ownership rule means it can be used for
-        cross-thread signaling that mutexes can't express.
+        mutex but isn't. The release-without-ownership rule means it can be used for cross-thread
+        signaling that mutexes can't express.
       </p>
       <p className="prose">
         The name is older than the abstraction. Edsger Dijkstra introduced it in 1965 with
-        operations <code>P()</code> and <code>V()</code> — the first letters of two long Dutch
-        words. Most languages now spell them <code>acquire</code> and <code>release</code>, or
+        operations <code>P()</code> and <code>V()</code>, the first letters of two long Dutch words.
+        Most languages now spell them <code>acquire</code> and <code>release</code>, or{' '}
         <code>wait</code> and <code>signal</code>, but the underlying primitive is the same.
       </p>
     </section>

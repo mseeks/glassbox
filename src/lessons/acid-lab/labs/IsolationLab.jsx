@@ -657,7 +657,7 @@ function ViewBubble({ txnId, txn, committed, scenario }) {
                 fontVariantNumeric: 'tabular-nums',
               }}
             >
-              <span style={{ opacity: 0.65 }}>{k} =</span> {observed ? formatValue(v) : '—'}
+              <span style={{ opacity: 0.65 }}>{k} =</span> {observed ? formatValue(v) : '–'}
               {divergent && (
                 <span
                   style={{

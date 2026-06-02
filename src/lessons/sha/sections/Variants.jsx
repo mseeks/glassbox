@@ -9,7 +9,7 @@ const COMPARE = [
   ['Length extension', 'Vulnerable (use HMAC)', 'Immune by design'],
   ['Software speed', 'Faster; hardware-accelerated on most CPUs', 'Slower in software'],
   ['Hardware speed', 'Good', 'Excellent; simpler, side-channel friendly'],
-  ['Variable output', 'No', 'Yes — SHAKE (XOF)'],
+  ['Variable output', 'No', 'Yes: SHAKE (XOF)'],
 ];
 
 const VARIANTS = [

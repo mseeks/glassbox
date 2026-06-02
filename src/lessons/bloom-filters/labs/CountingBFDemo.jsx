@@ -173,8 +173,8 @@ export function CountingBFDemo() {
       )}
       <div className="bf-ui bf-mark-muted mt-3" style={{ fontSize: '0.78rem', lineHeight: 1.55 }}>
         Click a chip to delete that item. Counters at its positions decrement. With plain bits,
-        deletion would set a bit to zero — corrupting other items that share that position. With
-        counters, the bit is only "cleared" when its count returns to zero.
+        deletion would set a bit to zero, corrupting other items that share that position. Counters
+        fix that. The bit is only "cleared" when its count returns to zero.
       </div>
     </div>
   );

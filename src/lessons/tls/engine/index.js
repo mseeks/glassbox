@@ -135,7 +135,7 @@ export function threatState(attack, sealed) {
           okResp: true,
           property: 'Confidentiality',
           held: false,
-          note: `The eavesdropper copies the plaintext: “${MSG}”`,
+          note: `The eavesdropper copies the plaintext: "${MSG}"`,
         };
       case 'tamper':
         return {
@@ -153,7 +153,7 @@ export function threatState(attack, sealed) {
         return {
           lock: 'broken',
           icon: UserMinus,
-          wire: 'answers in the bank’s place',
+          wire: "answers in the bank's place",
           arrived: MSG,
           responder: 'FAKE BANK',
           okResp: false,
@@ -171,7 +171,7 @@ export function threatState(attack, sealed) {
           okResp: true,
           property: null,
           held: null,
-          note: 'No protection at all — it just happens that nobody is interfering this instant.',
+          note: 'No protection at all. It just happens that nobody is interfering this instant.',
         };
     }
   }
@@ -210,7 +210,7 @@ export function threatState(attack, sealed) {
         okResp: false,
         property: 'Authenticity',
         held: true,
-        note: 'The impostor cannot produce a valid certificate for the bank’s name, so the connection is refused before any secret is sent.',
+        note: "The impostor cannot produce a valid certificate for the bank's name, so the connection is refused before any secret is sent.",
       };
     default:
       return {

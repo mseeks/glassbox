@@ -88,8 +88,8 @@ export function SectionFive() {
 
       <PageBlock>
         <P>
-          Notice what a lookup costs: at most two bucket reads — sixty-four bits each, at this
-          fingerprint width — for a definite answer. In production code, the two candidate buckets
+          Notice what a lookup costs. At most two bucket reads, sixty-four bits each at this
+          fingerprint width, for a definite answer. In production code, the two candidate buckets
           are deliberately laid out so they fall in adjacent cache lines. The filter trades a tiny
           probability of being wrong for an answer that almost never leaves the processor's L1.
         </P>

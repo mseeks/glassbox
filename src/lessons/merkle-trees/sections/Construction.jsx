@@ -24,8 +24,9 @@ export default function Construction() {
         <p>
           Eight transactions become four parents, then two, then one. For <code>N</code> leaves you
           get a tree of depth <span className="mk-code-inline">⌈log₂ N⌉</span>. The root is a single
-          fingerprint that depends on every byte of every leaf. Change anything below, and the
-          change is forced all the way to the top. That is exactly the property we exploit next.
+          fingerprint that depends on every byte of every leaf, so the smallest edit anywhere below
+          is forced all the way up to the top, with nowhere to hide along the way. Change anything.
+          The root shifts. That is exactly the property we exploit next.
         </p>
         <div className="mk-marginalia">
           A subtle production detail: when a level has an odd number of nodes, the lone node is

@@ -52,16 +52,16 @@ export function DecouplingDiagram() {
 
         <g fontFamily="Inter Tight" fontSize="13" fill="var(--ink)">
           <text x="20" y="138">
-            — Each node probes one peer per round
+            – Each node probes one peer per round
           </text>
           <text x="20" y="160">
-            — Indirect probes via k helpers on failure
+            – Indirect probes via k helpers on failure
           </text>
           <text x="20" y="182">
-            — Random target selection
+            – Random target selection
           </text>
           <text x="20" y="204">
-            — Bounded message load per node
+            – Bounded message load per node
           </text>
         </g>
 
@@ -124,16 +124,16 @@ export function DecouplingDiagram() {
 
         <g fontFamily="Inter Tight" fontSize="13" fill="var(--ink)">
           <text x="20" y="138">
-            — Updates piggyback on probe traffic
+            – Updates piggyback on probe traffic
           </text>
           <text x="20" y="160">
-            — No dedicated dissemination packets
+            – No dedicated dissemination packets
           </text>
           <text x="20" y="182">
-            — Epidemic spread, like a virus
+            – Epidemic spread, like a virus
           </text>
           <text x="20" y="204">
-            — Each update gossipped ~λ·log N times
+            – Each update gossipped ~λ·log N times
           </text>
         </g>
 

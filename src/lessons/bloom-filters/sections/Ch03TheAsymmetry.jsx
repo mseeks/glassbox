@@ -10,9 +10,9 @@ export function Ch03TheAsymmetry() {
         If it says "probably yes," you do the work anyway, just as you would have.
       </p>
       <p>
-        A two-sided filter — one that sometimes lies in either direction — cannot do this job. If
-        "no" could be wrong, you'd have to do the work anyway, just to be sure. Which is the same as
-        not having a filter at all.
+        A two-sided filter, one that sometimes lies in either direction, cannot do this job. If "no"
+        could be wrong, you'd have to do the work anyway, just to be sure. Which is the same as not
+        having a filter at all.
       </p>
       <p>
         The one-sided guarantee is what makes the filter <em>load-bearing</em>.{' '}

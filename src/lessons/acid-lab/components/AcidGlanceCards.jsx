@@ -47,8 +47,8 @@ export function AcidGlanceCards({ activeSection, onJumpSection }) {
             lineHeight: 1.55,
           }}
         >
-          Each letter is a different question, asked along a different axis. Tap any card to jump to
-          its section.
+          Each letter is a different question, asked along its own distinct axis of failure. Tap any
+          card to jump straight to its section. Pick one.
         </p>
       </div>
 

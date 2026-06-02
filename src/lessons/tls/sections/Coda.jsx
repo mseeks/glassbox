@@ -13,7 +13,7 @@ export default function Coda() {
     {
       icon: ShieldCheck,
       name: 'Integrity',
-      how: 'Every record carries an authentication tag, and the handshake ends in a transcript MAC — any change is caught.',
+      how: 'Every record carries an authentication tag, and the handshake ends in a transcript MAC, so any change is caught.',
       col: 'var(--brass)',
     },
     {
@@ -25,7 +25,7 @@ export default function Coda() {
   ];
   const next = [
     ['QUIC / HTTP-3', 'TLS 1.3 fused directly into the transport, over UDP.'],
-    ['Mutual TLS', 'The client presents a certificate too — both ends prove identity.'],
+    ['Mutual TLS', 'The client presents a certificate too. Both ends prove identity.'],
     [
       'Revocation',
       'OCSP, CRLs, and ever-shorter certificate lifetimes for when a key must be killed early.',
@@ -50,9 +50,9 @@ export default function Coda() {
           className="tls-pull tls-rv"
           style={{ marginTop: 22, maxWidth: 740, transitionDelay: '.05s' }}
         >
-          TLS is three guarantees welded into one handshake: <b>nobody can read it</b>,{' '}
-          <b>nobody can change it unseen</b>, and <b>you know exactly who you’re talking to</b> —
-          established between strangers, over a wire the whole world can watch.
+          TLS welds three guarantees into one handshake. <b>Nobody can read it.</b>{' '}
+          <b>Nobody can change it unseen.</b> And <b>you know exactly who you're talking to.</b> All
+          of it established between strangers, over a wire the whole world can watch.
         </p>
 
         <div className="tls-grid3 tls-rv" style={{ marginTop: 40, transitionDelay: '.1s' }}>
@@ -107,8 +107,8 @@ export default function Coda() {
         >
           The whole edifice rests on one strange, beautiful fact: that two parties can build a
           shared secret in full public view because some operations are easy to perform and
-          effectively impossible to reverse. Mix the paint; never un-mix it. Everything else —
-          signatures, certificates, the choreography of the handshake — exists to answer the one
+          effectively impossible to reverse. Mix the paint. Never un-mix it. Everything else, from
+          signatures to certificates to the choreography of the handshake, exists to answer the one
           question key exchange leaves open: <em>not what we agreed, but with whom.</em>
         </p>
       </div>

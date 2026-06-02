@@ -11,7 +11,7 @@ export const IsolationSection = forwardRef(function IsolationSection(_props, ref
           kicker="The concurrency axis"
           name="Isolation"
           accent="#5eead4"
-          intro="When transactions run side by side, they can interfere in surprising ways. The isolation level is the database's promise about which kinds of interference it will permit, and which it will catch. Five chapters, five levels, twenty-five micro-stories."
+          intro="Run transactions side by side and they can interfere in surprising ways. The isolation level is the database's promise about which kinds of interference it will permit, and which it will catch. Five chapters. Five levels. Twenty-five micro-stories."
         />
       </div>
       <IsolationLab />

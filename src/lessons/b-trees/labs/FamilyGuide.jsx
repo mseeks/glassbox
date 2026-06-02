@@ -12,17 +12,17 @@ const FAMILY = [
   {
     icon: ScrollText,
     t: 'Tries & radix trees',
-    b: 'The other ordered index. A B-tree splits on count when a page fills; a trie splits on shared prefix. Adaptive radix trees fatten nodes to fit a cache line — the same instinct, one level up.',
+    b: 'The other ordered index. A B-tree splits on count when a page fills, while a trie splits on shared prefix, and adaptive radix trees even fatten their nodes to fit a cache line. Same instinct, one level up.',
   },
   {
     icon: Feather,
     t: 'Bloom & cuckoo filters',
-    b: 'They live inside these very engines — a tiny in-memory filter that says "definitely not here," letting an LSM skip a page read the B-tree would never have made.',
+    b: 'They live inside these very engines: a tiny in-memory filter that says "definitely not here," letting an LSM skip a page read the B-tree would never have made.',
   },
   {
     icon: HardDrive,
     t: 'The memory hierarchy',
-    b: 'One principle underneath it all: respect the unit of transfer. Pack a CPU cache line; fill a disk page. The structure that honors its block size wins.',
+    b: 'One principle underneath it all: respect the unit of transfer. Pack a CPU cache line, then fill a disk page, and the structure that honors its block size is the one that wins. Always.',
   },
 ];
 

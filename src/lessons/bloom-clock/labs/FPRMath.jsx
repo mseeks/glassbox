@@ -283,7 +283,7 @@ export const FPRMath = () => {
         </div>
         <div style={{ fontSize: 14, color: '#c8bfa5', maxWidth: 360 }}>
           {currentFPR > 0.5 &&
-            'Saturated. The structure is no longer reliable — most "happens-before" verdicts will be wrong.'}
+            'Saturated. The structure is no longer reliable. Most "happens-before" verdicts will be wrong.'}
           {currentFPR > 0.1 &&
             currentFPR <= 0.5 &&
             'Degraded. Verdicts should be treated as soft hints, not load-bearing.'}

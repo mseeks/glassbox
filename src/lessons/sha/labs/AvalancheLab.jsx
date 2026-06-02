@@ -41,7 +41,7 @@ export default function AvalancheLab() {
         </>
       }
     >
-      <label className="field-label">Type anything — then flip a single bit of it</label>
+      <label className="field-label">Type anything, then flip a single bit of it</label>
       <input
         className="field"
         aria-label="Message to hash"

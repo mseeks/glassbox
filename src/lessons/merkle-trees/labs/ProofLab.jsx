@@ -175,8 +175,8 @@ export default function ProofLab() {
               gap: 8,
             }}
           >
-            <Check size={14} /> computed root {trusted.slice(0, 6)} matches the trusted root —{' '}
-            {data[target]} is proven to belong
+            <Check size={14} /> computed root {trusted.slice(0, 6)} matches the trusted root.{' '}
+            {data[target]} is proven to belong.
           </div>
         )}
       </div>

@@ -14,7 +14,7 @@ export function Ch10WhenNotTo() {
       </p>
       <p>
         <strong>Need enumeration or accurate counting.</strong> Bloom filters structurally cannot do
-        this. You need a real index — perhaps backed by a Bloom filter for the fast-skip path.
+        this. You need a real index, perhaps backed by a Bloom filter for the fast-skip path.
       </p>
       <p>
         <strong>Static set, known in advance.</strong> A perfect hash function, an XOR filter, or a
@@ -25,7 +25,7 @@ export function Ch10WhenNotTo() {
         <em>asking</em> the real answer.
       </div>
       <p>
-        The real answer always lives somewhere else — in the SSTable, the cache, the database, the
+        The real answer always lives somewhere else: in the SSTable, the cache, the database, the
         source of truth. The filter says "the source doesn't have it" or "the source <em>might</em>{' '}
         have it; go check." Once you internalize that framing, every variant in the family makes
         intuitive sense. They are all, every one of them, ways to skip work with bounded one-sided

@@ -10,10 +10,10 @@ export function PartitionLab() {
   const [cpVals, setCpVals] = useState([0, 0, 0]);
   const [apVals, setApVals] = useState([0, 0, 0]);
   const [logCP, setLogCP] = useState([
-    { t: '00:00', kind: 'info', text: 'cluster online — N1 leader' },
+    { t: '00:00', kind: 'info', text: 'cluster online: N1 leader' },
   ]);
   const [logAP, setLogAP] = useState([
-    { t: '00:00', kind: 'info', text: 'cluster online — leaderless' },
+    { t: '00:00', kind: 'info', text: 'cluster online: leaderless' },
   ]);
 
   useEffect(() => {
@@ -130,11 +130,11 @@ export function PartitionLab() {
       setPartitioned(true);
       setLogCP((l) => [
         ...l.slice(-4),
-        { t: stamp(), kind: 'fail', text: '✕ partition — N1 isolated' },
+        { t: stamp(), kind: 'fail', text: '✕ partition: N1 isolated' },
       ]);
       setLogAP((l) => [
         ...l.slice(-4),
-        { t: stamp(), kind: 'fail', text: '✕ partition — N1 isolated' },
+        { t: stamp(), kind: 'fail', text: '✕ partition: N1 isolated' },
       ]);
     } else {
       // heal
@@ -144,14 +144,14 @@ export function PartitionLab() {
       setCpVals([cpFinal, cpFinal, cpFinal]);
       setLogCP((l) => [
         ...l.slice(-4),
-        { t: stamp(), kind: 'ok', text: `↺ heal — N1 catches up to x=${cpFinal}` },
+        { t: stamp(), kind: 'ok', text: `↺ heal: N1 catches up to x=${cpFinal}` },
       ]);
       // AP heals: pick one (LWW), or surface conflict
       const apFinal = Math.max(apVals[0], apVals[1]);
       setApVals([apFinal, apFinal, apFinal]);
       setLogAP((l) => [
         ...l.slice(-4),
-        { t: stamp(), kind: 'warn', text: `↺ heal — conflict resolved (LWW: x=${apFinal})` },
+        { t: stamp(), kind: 'warn', text: `↺ heal: conflict resolved (LWW: x=${apFinal})` },
       ]);
     }
   };
@@ -160,8 +160,8 @@ export function PartitionLab() {
     setPartitioned(false);
     setCpVals([0, 0, 0]);
     setApVals([0, 0, 0]);
-    setLogCP([{ t: '00:00', kind: 'info', text: 'cluster online — N1 leader' }]);
-    setLogAP([{ t: '00:00', kind: 'info', text: 'cluster online — leaderless' }]);
+    setLogCP([{ t: '00:00', kind: 'info', text: 'cluster online: N1 leader' }]);
+    setLogAP([{ t: '00:00', kind: 'info', text: 'cluster online: leaderless' }]);
   };
 
   return (

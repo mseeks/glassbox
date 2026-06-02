@@ -13,8 +13,8 @@ function IndexPage({ onSelectLesson }) {
           <em>One idea.</em>
         </h1>
         <p className="idx-lede">
-          Hard topics get clearer when you can poke them. Each lesson stands on its own — its own
-          paper, its own questions — but they keep each other company.
+          Hard topics get clearer when you can poke them. Each lesson stands on its own, with its
+          own paper and its own questions to push on. Yet they keep each other company.
         </p>
 
         <div className="idx-rule" />

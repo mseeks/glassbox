@@ -64,8 +64,7 @@ export default function BTreesLesson() {
             margin: '0 auto',
           }}
         >
-          Filed in the card catalog &mdash; a structure that was a B-tree long before it had the
-          name.
+          Filed in the card catalog: a structure that was a B-tree long before it had the name.
           <br />
           Set in Zilla Slab, Libre Franklin, and JetBrains Mono.
         </p>

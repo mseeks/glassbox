@@ -24,7 +24,7 @@ export const ConnectionlessVisual = () => {
 
   return (
     <div ref={vpRef} style={{ width: '100%' }}>
-      <Label style={{ marginBottom: 16 }}>Fig. 5 — No setup, just send</Label>
+      <Label style={{ marginBottom: 16 }}>Fig. 5: No setup, just send</Label>
       <div
         style={{
           display: 'flex',
@@ -212,7 +212,7 @@ export const UnreliableVisual = () => {
 
   return (
     <div ref={vpRef} style={{ width: '100%' }}>
-      <Label style={{ marginBottom: 16 }}>Fig. 4b — Some don't make it</Label>
+      <Label style={{ marginBottom: 16 }}>Fig. 4b: Some don't make it</Label>
       <div
         style={{
           position: 'relative',
@@ -329,7 +329,7 @@ export const UnorderedVisual = () => {
 
   return (
     <div ref={vpRef} style={{ width: '100%' }}>
-      <Label style={{ marginBottom: 16 }}>Fig. 4c — Sent in order, arrives scrambled</Label>
+      <Label style={{ marginBottom: 16 }}>Fig. 4c: Sent in order, arrives scrambled</Label>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         <div>
           <div
@@ -395,7 +395,7 @@ export const UnorderedVisual = () => {
         }}
       >
         Packets take independent paths. The receiver gets them in whatever order the network
-        delivers them — UDP does not buffer or reorder.
+        delivers them. UDP does not buffer or reorder.
       </div>
     </div>
   );
@@ -475,13 +475,13 @@ const MsgColumn = ({ heading, color, sends, arrow, recvs, footer }) => (
 
 export const MessageOrientedVisual = () => (
   <div style={{ width: '100%' }}>
-    <Label style={{ marginBottom: 16 }}>Fig. 8 — Boundaries preserved</Label>
+    <Label style={{ marginBottom: 16 }}>Fig. 8: Boundaries preserved</Label>
     <div
       className="udp-msg-grid"
       style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}
     >
       <MsgColumn
-        heading="UDP — DATAGRAMS"
+        heading="UDP: DATAGRAMS"
         color="var(--signal)"
         sends={[
           { label: '100B', w: 64 },
@@ -497,7 +497,7 @@ export const MessageOrientedVisual = () => (
         footer={null}
       />
       <MsgColumn
-        heading="TCP — STREAM"
+        heading="TCP: STREAM"
         color="var(--tcp)"
         sends={[
           { label: '100B', w: 64, tcp: true },
@@ -506,7 +506,7 @@ export const MessageOrientedVisual = () => (
         ]}
         arrow="↓ merged into stream ↓"
         recvs={[{ label: 'recv → 230B', w: 100, tcp: true }]}
-        footer="(one byte blob — you re-frame)"
+        footer="(one byte blob: you re-frame)"
       />
     </div>
   </div>

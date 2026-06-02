@@ -8,7 +8,7 @@ export const FamilyTable = () => {
       space: 'O(1)',
       semantics: 'Total order',
       detects: <span style={{ color: '#fb7185' }}>No</span>,
-      dynamic: <span style={{ color: '#fb7185' }}>—</span>,
+      dynamic: <span style={{ color: '#fb7185' }}>–</span>,
       exact: <span style={{ color: '#6ee7b7' }}>Yes</span>,
       note: 'Cannot tell concurrency from order. Useful only when total order is enough.',
     },

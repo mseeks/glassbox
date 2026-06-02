@@ -6,13 +6,13 @@ const STATUS = [
   [
     '4',
     'DEADLINE_EXCEEDED',
-    'Ran past the deadline. The work may or may not have happened.',
+    'Ran past the deadline. The work may or may not have actually happened on the far side, so you cannot assume either way.',
     'warn',
   ],
   ['5', 'NOT_FOUND', 'No such entity.', 'warn'],
   ['8', 'RESOURCE_EXHAUSTED', 'Rate-limited / out of quota. Back off and retry.', 'info'],
   ['13', 'INTERNAL', 'Server bug or invariant broken.', 'warn'],
-  ['14', 'UNAVAILABLE', 'Transient — server down, connection dropped. Safe to retry.', 'info'],
+  ['14', 'UNAVAILABLE', 'Transient: server down or connection dropped. Safe to retry.', 'info'],
 ];
 
 export default function StatusGrid() {

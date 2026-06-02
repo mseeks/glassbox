@@ -15,8 +15,9 @@ export default function Uses() {
             <div>
               <div className="ut">Autocomplete & search suggestions</div>
               <p>
-                The prefix-region walk is the entire feature. Type three letters, read off the
-                subtree.
+                The prefix-region walk is the entire feature. Type three letters, walk to the node
+                they spell, and read off the subtree sitting below where you landed, and every
+                suggestion you could want is already there in alphabetical order. No search.
               </p>
             </div>
           </div>
@@ -25,8 +26,9 @@ export default function Uses() {
             <div>
               <div className="ut">Spell-checkers & dictionaries</div>
               <p>
-                Membership in length proportional to the word, plus cheap "did you mean" via near-by
-                paths.
+                Membership in length proportional to the word. And "did you mean" comes cheap, found
+                by nudging a single letter and following the near-by paths the map has already drawn
+                for you. Spelling is a walk.
               </p>
             </div>
           </div>
@@ -35,8 +37,9 @@ export default function Uses() {
             <div>
               <div className="ut">IP routing tables</div>
               <p>
-                Longest-prefix match over address bits decides the next hop. Tries (and radix tries)
-                are the classic engine.
+                Longest-prefix match over address bits decides the next hop. Tries and radix tries
+                are the classic engine behind that choice, made millions of times a second on real
+                routers. Address in, next hop out.
               </p>
             </div>
           </div>
@@ -45,7 +48,8 @@ export default function Uses() {
             <div>
               <div className="ut">Predictive text & T9</div>
               <p>
-                Old number-pad and modern phone keyboards both walk a trie of likely continuations.
+                Old number-pad phones and modern phone keyboards both walk a trie of likely
+                continuations. Same trick, decades apart.
               </p>
             </div>
           </div>
@@ -54,8 +58,9 @@ export default function Uses() {
             <div>
               <div className="ut">In-memory database indexes</div>
               <p>
-                Ordered keys, range scans, and prefix lookups live in one structure. That is why
-                ART-style tries show up in modern engines.
+                Ordered keys, range scans, and prefix lookups all live in one structure. Just one.
+                That is why ART-style tries keep showing up at the heart of modern in-memory
+                engines.
               </p>
             </div>
           </div>
@@ -64,8 +69,9 @@ export default function Uses() {
             <div>
               <div className="ut">Word games & solvers</div>
               <p>
-                Boggle and Scrabble solvers prune dead branches instantly: if a prefix has no track,
-                stop exploring.
+                Boggle and Scrabble solvers prune dead branches instantly. If a prefix has no track
+                on the map, there is nothing valid down that way, so the solver stops exploring it
+                at once.
               </p>
             </div>
           </div>

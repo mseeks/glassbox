@@ -211,7 +211,7 @@ export function ScalableVisual() {
       <div className="bf-ui bf-mark-muted mt-4" style={{ fontSize: '0.78rem', lineHeight: 1.6 }}>
         Each new filter in the chain is sized for more items but tighter FPR (the ratio{' '}
         <span className="bf-mono">r</span> shrinks it geometrically). The combined FPR converges to
-        a finite bound — no matter how many items you eventually insert. The cost: every query
+        a finite bound, no matter how many items you eventually insert. There is a cost. Every query
         touches every filter in the chain.
       </div>
     </div>

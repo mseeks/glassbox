@@ -11,7 +11,7 @@ export const ConsistencySection = forwardRef(function ConsistencySection(_props,
           kicker="The invariants axis"
           name="Consistency"
           accent="#f0abfc"
-          intro="The softest of the four — and the one you have actually been studying all along, without it being named."
+          intro="The softest of the four. It is also the one you have actually been studying all along, without it being named."
         />
       </div>
       <ConsistencyBody />
@@ -75,7 +75,7 @@ function ConsistencyBody() {
           }}
           dangerouslySetInnerHTML={{
             __html: renderProseMarkdown(
-              "The other three properties tell you what the database does *for* you. Atomicity gives you all-or-nothing. Isolation gives you a coherent view amid concurrency. Durability gives you persistence across failure. **But the thing being preserved — the rules of what makes a valid database state — that's consistency.** And that's mostly your responsibility.",
+              "The other three properties tell you what the database does *for* you. Atomicity gives you all-or-nothing. Isolation gives you a coherent view amid concurrency. Durability gives you persistence across failure. **But the thing being preserved, the rules of what makes a valid database state, that's consistency.** And that's mostly your responsibility.",
             ),
           }}
         />
@@ -141,7 +141,7 @@ function ConsistencyBody() {
               style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(232, 222, 200, 0.85)' }}
             >
               <strong style={{ color: '#e8dec8' }}>Application logic.</strong> Higher-level business
-              rules — "withdrawal cannot exceed balance," "at least one moderator per channel." The
+              rules: "withdrawal cannot exceed balance," "at least one moderator per channel." The
               database does not know your domain. Your transactions must individually preserve these
               rules; the database guarantees only that *if* they do, concurrency cannot break them.
             </div>
@@ -180,7 +180,7 @@ function ConsistencyBody() {
             }}
             dangerouslySetInnerHTML={{
               __html: renderProseMarkdown(
-                'The C in **ACID** is not the C in **CAP**. ACID-C is about application invariants — semantic correctness. CAP-C is about *linearizability* — every read sees the most recent write, in real time. Two completely different ideas, sharing one unfortunate letter. When someone says "consistent," ask which one they mean.',
+                'The C in **ACID** is not the C in **CAP**. ACID-C is about application invariants: semantic correctness. CAP-C is about *linearizability*: every read sees the most recent write, in real time. Two completely different ideas, sharing one unfortunate letter. When someone says "consistent," ask which one they mean.',
               ),
             }}
           />

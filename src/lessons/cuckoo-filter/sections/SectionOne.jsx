@@ -22,9 +22,9 @@ export function SectionOne() {
         </P>
         <P>
           Answering exactly requires keeping the set in full. Answering cheaply requires giving
-          something up. A filter is the structure that takes this bargain seriously: it spends a
-          handful of bits per entry and, in exchange, allows itself to be occasionally — but only in
-          one direction — wrong.
+          something up. A filter is the structure that takes this bargain seriously. It spends a
+          handful of bits per entry. In exchange, it allows itself to be occasionally wrong, but
+          only in one direction.
         </P>
       </PageBlock>
 
@@ -36,10 +36,10 @@ export function SectionOne() {
 
       <PageBlock>
         <P>
-          That asymmetry — false positives tolerated, false negatives forbidden — defines the entire
-          family. Stand a filter in front of an authoritative store: when it answers <em>no</em>,
-          the store is spared the query. When it answers <em>yes</em>, the store is checked; the
-          filter may have been mistaken, but no genuine entry is overlooked.
+          That asymmetry defines the entire family. False positives are tolerated. False negatives
+          are forbidden. Stand a filter in front of an authoritative store: when it answers{' '}
+          <em>no</em>, the store is spared the query. When it answers <em>yes</em>, the store is
+          checked; the filter may have been mistaken, but no genuine entry is overlooked.
         </P>
         <P>
           Most filters can only grow. Items enter, never leave. The cuckoo filter is the rare

@@ -9,7 +9,7 @@ export default function S7() {
         <SecHead
           rn="VII · Onward"
           title="The wider family"
-          lede="The vantage-point tree is one answer to one question — proximity. Here is the neighbourhood it lives in."
+          lede="The vantage-point tree is one answer to one question: proximity. Here is the neighbourhood it lives in."
         />
       </Reveal>
       <Reveal base="rv">
@@ -34,31 +34,31 @@ export default function S7() {
             <h4>MVP trees</h4>
             <p>
               Use several vantage points per node at once, making each split sharper and the tree
-              shallower — fewer levels to descend.
+              shallower. Fewer levels to descend.
             </p>
             <span className="tag">metric · multi-vantage</span>
           </div>
           <div className="vp-card">
             <h4>BK-trees</h4>
             <p>
-              Built for discrete metrics like edit distance — the structure behind fast “did you
-              mean?” spelling correction.
+              Built for discrete metrics like edit distance. The structure behind fast "did you
+              mean?" spelling correction.
             </p>
             <span className="tag">metric · discrete</span>
           </div>
           <div className="vp-card">
             <h4>M-trees</h4>
             <p>
-              A disk-friendly, dynamically updatable metric index — closer to how a database would
-              actually store and grow one.
+              A disk-friendly metric index you can update on the fly, closer to how a database would
+              actually store and grow one over time. Built to live on disk.
             </p>
             <span className="tag">metric · on-disk</span>
           </div>
           <div className="vp-card">
             <h4>LSH &amp; HNSW</h4>
             <p>
-              The approximate world for high dimensions: hashing and navigable graphs that power
-              modern vector search. Where the curse sends everyone eventually.
+              The approximate world for high dimensions. Hashing and navigable graphs that power
+              modern vector search. Where the curse sends everyone, eventually.
             </p>
             <span className="tag">approximate · high-dim</span>
           </div>
@@ -66,10 +66,11 @@ export default function S7() {
       </Reveal>
       <Reveal base="rv" className="vp-prose">
         <p style={{ marginTop: 26 }}>
-          Every one of these answers the same question the vantage-point tree does —{' '}
-          <em>what is closest?</em> — and every one makes its own bargain between exactness,
-          dimensionality, and the cost of building and updating. Knowing how the spheres and the
-          triangle inequality work here is the lens that makes the rest of the family legible.
+          One question runs under all of them: <em>what is closest?</em> Each structure strikes its
+          own bargain. Some trade exactness for speed, some chase higher dimensions, some pay more
+          at build time so that every later query runs faster. The trade-offs differ. The shape does
+          not. Knowing how the spheres and the triangle inequality work here is the lens that makes
+          the rest of the family legible.
         </p>
       </Reveal>
 

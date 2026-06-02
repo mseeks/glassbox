@@ -75,8 +75,9 @@ export default function CallAnatomy() {
           /package.Service/Method
         </code>
         . The status rides in{' '}
-        <em style={{ color: 'var(--cyan)', fontStyle: 'normal' }}>trailers</em> — headers sent{' '}
-        <b>after</b> the body — so a server can start streaming before it knows the final outcome.
+        <em style={{ color: 'var(--cyan)', fontStyle: 'normal' }}>trailers</em>. Those are headers
+        sent <b>after</b> the body, so a server can start streaming before it knows the final
+        outcome.
       </p>
     </div>
   );

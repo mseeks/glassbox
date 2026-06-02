@@ -6,7 +6,7 @@ export function Ch07DoubleCheckedLocking() {
 
   return (
     <section className="section">
-      <div className="section-num">07.05 — in the wild</div>
+      <div className="section-num">07.05 · in the wild</div>
       <h2 className="section-title">
         Double-checked locking, and why it <em>broke</em>.
       </h2>
@@ -156,9 +156,9 @@ export function Ch07DoubleCheckedLocking() {
       <p className="prose">
         The fix is one keyword: <code>volatile</code>. Click <strong>Fixed</strong> above to see it.
         In Java, <code>volatile</code> makes the store a <strong>release</strong> and the load an{' '}
-        <strong>acquire</strong> — the same arrow you watched form in the timeline. The
-        constructor's writes are now guaranteed visible before any thread observes a non-null
-        pointer. The bug closes.
+        <strong>acquire</strong>: the same arrow you watched form in the timeline. The constructor's
+        writes are now guaranteed visible before any thread observes a non-null pointer. The bug
+        closes.
       </p>
       <p className="prose">
         The same mechanism wears different names in different languages: <code>volatile</code> in

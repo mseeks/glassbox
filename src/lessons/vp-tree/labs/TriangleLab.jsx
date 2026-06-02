@@ -82,7 +82,7 @@ export default function TriangleLab() {
         preserveAspectRatio="xMidYMid meet"
         onPointerDown={down}
         role="application"
-        aria-label="Triangle of query, landmark, and contact — drag any of the three points"
+        aria-label="Triangle of query, landmark, and contact. Drag any of the three points."
         style={{ cursor: 'grab' }}
       >
         <defs>
@@ -265,12 +265,14 @@ export default function TriangleLab() {
         <span className="pip" /> drag the query, landmark, or contact
       </div>
       <div className="vp-caption">
-        Knowing only two sides of a triangle pins the third inside a band: it can’t be shorter than
+        Knowing only two sides of a triangle pins the third inside a band: it can&apos;t be shorter
+        than
         <span style={{ color: C.ping }}> |a − b|</span> nor longer than{' '}
         <span style={{ color: C.ping }}> a + b</span>. Drag the query close to the landmark and the
-        band collapses — you nearly know the answer without measuring it. That <em>lower bound</em>{' '}
-        is the whole game: if the closest a region could <em>possibly</em> be is still farther than
-        a contact you already hold, you can throw the entire region away unmeasured.
+        band collapses, so you nearly know the answer without measuring it. That{' '}
+        <em>lower bound</em> is the whole game. If the closest a region could <em>possibly</em> be
+        is still farther than a contact you already hold, you can throw the entire region away
+        unmeasured.
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ export default function ThreatLab() {
         onClick={() => setSealed((v) => !v)}
       >
         {sealed ? <Lock size={14} /> : <Unlock size={14} />}{' '}
-        {sealed ? 'TLS ON — channel sealed' : 'TLS OFF — tap to seal the channel'}
+        {sealed ? 'TLS ON · channel sealed' : 'TLS OFF · tap to seal the channel'}
       </button>
 
       {/* WIRE — compact vertical diagram */}

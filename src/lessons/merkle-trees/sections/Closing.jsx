@@ -15,10 +15,10 @@ export default function Closing() {
       <SectionHeader id="closing" kicker="The Through-Line" title="One shape, applied everywhere" />
       <Reveal base="mk-reveal" className="mk-prose">
         <p className="lead">
-          A Merkle tree is a single idea seen at every scale of the same fractal:{' '}
-          <em>commit once at the top, prove anything below with a path.</em> Hash the data with
-          structure, and the fingerprint that says "nothing changed" becomes the witness that says
-          "this piece belongs."
+          A Merkle tree is one idea, seen at every scale of the same fractal:{' '}
+          <em>commit once at the top, prove anything below with a path.</em> That is the whole of
+          it. Hash the data with structure, and the very fingerprint that says "nothing changed"
+          becomes the witness that says "this piece belongs."
         </p>
         <p>
           Everything followed from that. Tamper-evidence, because change is forced upward. Tiny
@@ -75,7 +75,7 @@ export default function Closing() {
               />
               <div>
                 <span style={{ color: 'var(--gold-bright)' }}>{t}</span>{' '}
-                <span style={{ color: 'var(--paper-dim)' }}>— {d}</span>
+                <span style={{ color: 'var(--paper-dim)' }}>&ndash; {d}</span>
               </div>
             </div>
           ))}

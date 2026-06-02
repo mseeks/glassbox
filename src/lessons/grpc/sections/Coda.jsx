@@ -21,11 +21,11 @@ const NEXT = [
   ],
   [
     'Interceptors & middleware.',
-    "gRPC's equivalent of HTTP middleware — where auth, logging, tracing, and retries actually live.",
+    "gRPC's equivalent of HTTP middleware: the layer where auth, logging, tracing and retries actually live.",
   ],
   [
     'Deadline & retry policy.',
-    'Service configs, exponential backoff, hedging, and the idempotency design that makes them safe.',
+    'Service configs, exponential backoff, hedging, plus the idempotency design that makes them safe.',
   ],
   [
     'gRPC over QUIC / HTTP/3.',
@@ -43,7 +43,7 @@ export default function Coda() {
       <div className="gx-section narrow">
         <SectionHead
           tag="§ 06 · where it fits"
-          title="When to reach for it — and not."
+          title="When to reach for it. And when not."
           lede="gRPC is sharp for one job and awkward for others. Knowing the edge is the skill."
         />
         <div className="gx-prose">
@@ -77,7 +77,7 @@ export default function Coda() {
           </Reveal>
           <Reveal base="gx-fade">
             <p style={{ marginTop: 26 }}>
-              The biggest practical caveat: <strong>browsers can't speak raw gRPC</strong> — they
+              The biggest practical caveat: <strong>browsers can't speak raw gRPC</strong>. They
               can't fully control HTTP/2 framing or read trailers from JavaScript. You need a{' '}
               <code className="gx-kw" style={{ color: 'var(--ink)' }}>
                 grpc-web
@@ -90,8 +90,8 @@ export default function Coda() {
               <code className="gx-kw" style={{ color: 'var(--ink)' }}>
                 grpcurl
               </code>{' '}
-              and reflection instead. For a public, cache-friendly, human-poked API, REST is still
-              usually the right call.
+              and reflection instead. For a public, cache-friendly, human-poked API that browsers
+              and curious humans hit directly, REST is still usually the right call. Reach for it.
             </p>
           </Reveal>
           <Reveal base="gx-fade">
@@ -136,8 +136,8 @@ export default function Coda() {
                 lineHeight: 1.4,
               }}
             >
-              The wire was never hidden. gRPC just gave it a contract, a fast alphabet, and enough
-              honesty to admit when it breaks.
+              The wire was never hidden. What gRPC gave it was a contract, a fast alphabet, and
+              enough honesty to admit when it breaks.
             </p>
           </Reveal>
         </div>

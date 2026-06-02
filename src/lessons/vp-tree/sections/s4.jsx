@@ -16,22 +16,23 @@ export default function S4() {
       </Reveal>
       <Reveal base="rv" className="vp-prose">
         <p>
-          A balanced tree alone doesn’t make search fast — you could still end up walking every
+          A balanced tree alone doesn&apos;t make search fast. You could still end up walking every
           branch. The speed comes from a single geometric fact, the{' '}
           <span className="ping">triangle inequality</span>: no side of a triangle can exceed the
           sum of the other two.
         </p>
         <div className="vp-defn">
           <b>Triangle inequality</b>For any three points, the distance between two of them is at
-          most the sum of their distances to the third — and at least the absolute difference.
+          most the sum of their distances to the third, and at least the absolute difference.
           Formally, |a − b| ≤ d ≤ a + b.
         </div>
         <p>
           Why does that matter? During a search we always know two ranges: from our query to the
           current landmark, and (stored at build time) from that landmark out to a whole region of
-          contacts. The inequality turns those two known ranges into a{' '}
+          contacts. From those two known ranges the inequality manufactures a{' '}
           <strong> guaranteed lower bound</strong> on how close anything in that region could
-          possibly be. Drag the three points and watch the band tighten and widen.
+          possibly be. A floor. Nothing in there can be nearer than that. Drag the three points and
+          watch the band tighten and widen.
         </p>
       </Reveal>
       <Reveal base="rv">

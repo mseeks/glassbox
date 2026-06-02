@@ -13,10 +13,10 @@ export default function Wire() {
     >
       <P>
         Every hand a postcard passes through can read it, rewrite it, or drop in a forgery. Those
-        are three <strong>distinct</strong> threats, and it is worth holding them apart, because TLS
-        answers each with a different mechanism: an <em>eavesdropper</em> who wants to read it
-        (confidentiality), a <em>vandal</em> who alters it in flight (integrity), and an{' '}
-        <em>impostor</em> who answers in the bank’s place (authenticity).
+        are three <strong>distinct</strong> threats, and TLS answers each with its own mechanism, so
+        hold them apart. An <em>eavesdropper</em> reads it. That breaks confidentiality. A{' '}
+        <em>vandal</em> alters it in flight, breaking integrity. An <em>impostor</em> who answers in
+        the bank's place breaks authenticity.
       </P>
       <P delay=".05s">
         Pick an attack below, watch it land on plain HTTP, then seal the channel and watch it fail.
@@ -24,7 +24,8 @@ export default function Wire() {
       <ThreatLab />
       <P delay=".05s">
         TLS defeats all three at once. The rest of this lesson is the machinery that makes that
-        possible — built up one piece at a time.
+        possible, assembled one piece at a time, from a shared secret up through certificates and
+        the handshake itself.
       </P>
     </Section>
   );

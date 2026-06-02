@@ -33,8 +33,9 @@ export default function BuildLab() {
         <span className="lab-title">Watch the prefixes merge</span>
       </div>
       <div className="lab-sub">
-        Add words one at a time. Each shares track with whatever came before. New road is laid only
-        where a word departs from the known routes.
+        Add words one at a time. Each new word reuses whatever track was already laid down by the
+        words before it, and fresh road appears only at the point where this word finally departs
+        from the routes you have already drawn. Watch where the splits happen.
       </div>
       <div
         style={{
@@ -50,7 +51,7 @@ export default function BuildLab() {
           onClick={() => setK((v) => Math.min(BUILD_ORDER.length, v + 1))}
           disabled={k >= BUILD_ORDER.length}
         >
-          + Add "{k < BUILD_ORDER.length ? BUILD_ORDER[k] : '—'}"
+          + Add "{k < BUILD_ORDER.length ? BUILD_ORDER[k] : ''}"
         </button>
         <button className="btn sec" onClick={() => setK(0)}>
           Reset

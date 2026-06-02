@@ -9,12 +9,11 @@ export default function Anatomy() {
     <Section roman="II" kicker="Anatomy" title="What lives inside a node">
       <Reveal base="bt-rev">
         <p className="bt-p">
-          Picture one node: sorted keys, say 17, 42, and 88, and the gaps between them.{' '}
-          <strong>N keys make N+1 gaps</strong>, and each gap owns a single child pointer. The keys
-          themselves aren&rsquo;t the data &mdash; they&rsquo;re{' '}
-          <span className="bt-blue">signposts</span> that tell you which drawer to open next. A
-          phone book&rsquo;s thumb tabs, except with hundreds of tabs per page instead of
-          twenty-six.
+          Picture one node: sorted keys, say 17, 42, and 88, with the gaps between them.{' '}
+          <strong>N keys make N+1 gaps</strong>. Each gap owns a single child pointer. The keys
+          themselves aren&rsquo;t the data. They&rsquo;re <span className="bt-blue">signposts</span>
+          , telling you which drawer to open next, like a phone book&rsquo;s thumb tabs but with
+          hundreds of tabs per page instead of twenty-six.
         </p>
       </Reveal>
       <NodeAnatomy />

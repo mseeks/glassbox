@@ -12,7 +12,7 @@ export function Ch05Saturation() {
         It climbs, then it sprints, then it asymptotes near 100%. Past a certain load, the filter
         says <em className="bf-mark-amber">yes</em> to almost everything; it has saturated, and at
         that point it is <em>worse than no filter at all</em>. You pay the bits, you do the hashes,
-        and you skip nothing.
+        and you skip nothing. All cost, no skip.
       </p>
       <p>
         This brittleness is why sizing matters, and why several variants in the next chapter exist:

@@ -68,31 +68,32 @@ export default function Masthead() {
           <div>
             <div className="k">The task</div>
             <div className="v">
-              Given one query, find its nearest neighbour among thousands — without checking them
+              Given one query, find its nearest neighbour among thousands, without checking them
               all.
             </div>
           </div>
           <div>
             <div className="k">The trick</div>
             <div className="v">
-              File points by distance from chosen vantage points, then let the triangle inequality
-              throw whole regions away.
+              File every point by its distance from a few chosen vantage points, then let the
+              triangle inequality throw whole regions away. Geometry does the skipping.
             </div>
           </div>
           <div>
             <div className="k">The catch</div>
             <div className="v">
-              In high dimensions distances bunch together, the pruning fails, and the search
-              collapses to brute force.
+              It breaks in high dimensions. Distances bunch together, the pruning fails, and the
+              search collapses back to brute force.
             </div>
           </div>
         </div>
 
         <p className="vp-prose" style={{ marginTop: 30, maxWidth: '60ch', color: '#cfdedb' }}>
           What follows is a working instrument, not a slideshow. Every ring, every prune, and every
-          counter you’ll see is produced by a real vantage-point tree running in your browser. Move
-          through the seven panels in order — each adds one idea, and by the last you’ll understand
-          how a search engine finds “the closest one” in a space it cannot even draw.
+          counter you&apos;ll see is produced by a real vantage-point tree running in your browser.
+          Nothing is faked. Move through the seven panels in order, each one adding a single idea on
+          top of the last, and by the end you&apos;ll understand how a search engine finds "the
+          closest one" in a space it cannot even draw.
         </p>
       </div>
     </header>

@@ -12,19 +12,19 @@ export function SectionThree() {
       <PageBlock>
         <P size="lead">
           A cuckoo hash table is space-honest. To store a twenty-byte URL it spends twenty bytes.
-          The filter wants a different bargain: it wants to spend a handful of <em>bits</em> per
-          entry.
+          The filter wants a different bargain. It wants to spend a handful of <em>bits</em> per
+          entry, no more.
         </P>
         <P>
-          So it throws the keys away. In each slot it places a short hash of the key — a{' '}
+          So it throws the keys away. In each slot it places a short hash of the key, a{' '}
           <strong>fingerprint</strong>. Eight bits is typical; twelve gives more precision. The key
           itself, once the fingerprint is recorded, is discarded entirely.
         </P>
         <P>
           The moment we drop the keys, the eviction cascade falls apart. To displace a resident, the
-          algorithm needs that resident's other home. The other home was computed from{' '}
-          <em>its key</em>. But there is no key now — only a fingerprint, which contains a fraction
-          of the information. Staring at a fingerprint in a bucket, the algorithm has no idea where
+          algorithm needs that resident's other home, and that home was computed from{' '}
+          <em>its key</em>. But there is no key now. There is only a fingerprint, which contains a
+          fraction of the information. Staring at one in a bucket, the algorithm has no idea where
           to send it next.
         </P>
       </PageBlock>
@@ -35,9 +35,9 @@ export function SectionThree() {
 
       <PageBlock>
         <P>
-          The cuckoo filter's central trick: define the alternate bucket not as an independent hash,
-          but as the primary bucket combined with a hash of the fingerprint. The combining operation
-          is the exclusive-or.
+          Here is the cuckoo filter's central trick: define the alternate bucket not as an
+          independent hash, but as the primary bucket combined, through the exclusive-or, with a
+          hash of the fingerprint. One operation. Nothing stored.
         </P>
 
         <div
@@ -66,18 +66,18 @@ export function SectionThree() {
 
         <P>
           XOR is its own inverse. Apply it twice with the same operand and you return where you
-          started. From either bucket, knowing the fingerprint, the other bucket can be recovered
-          without the key. The fingerprint, alone, carries enough information to make the round
-          trip.
+          started. So from either bucket, knowing the fingerprint, the other bucket can be recovered
+          without ever consulting the original key. The fingerprint alone carries enough to make the
+          round trip. That is the whole trick.
         </P>
       </PageBlock>
 
       <PageBlock>
         <P>
-          One small cost is paid. Because the two candidate buckets are related instead of
+          One small cost is paid. Because the two candidate buckets are now related instead of
           independent, the table's natural ability to absorb collisions weakens. The remedy is
-          structural: instead of one slot per bucket, give each bucket <em>four</em>. A fingerprint
-          may rest in any of four slots in either of two buckets — eight seats in total. Four
+          structural. Instead of one slot per bucket, give each bucket <em>four</em>. A fingerprint
+          may rest in any of four slots in either of two buckets, eight seats in total. Four
           eight-bit fingerprints fit comfortably within a single cache line, which lookup, when we
           get to it, will exploit.
         </P>

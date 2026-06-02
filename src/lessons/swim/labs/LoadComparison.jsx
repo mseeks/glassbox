@@ -210,7 +210,7 @@ export function LoadComparison() {
                 color: mode === 'centralized' ? 'var(--dead)' : 'var(--alive)',
               }}
             >
-              {mode === 'centralized' ? 'Yes — the monitor' : 'No'}
+              {mode === 'centralized' ? 'Yes: the monitor' : 'No'}
             </div>
           </div>
         </div>

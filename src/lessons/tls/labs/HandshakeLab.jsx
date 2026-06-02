@@ -9,7 +9,7 @@ const HS = {
       {
         dir: '→',
         label: 'ClientHello',
-        detail: 'cipher menu + the client’s ephemeral key share + a random nonce',
+        detail: "cipher menu + the client's ephemeral key share + a random nonce",
         kills: 'opens key exchange',
         prim: 'ECDHE',
         enc: false,
@@ -18,7 +18,7 @@ const HS = {
         dir: '←',
         label: 'ServerHello',
         detail:
-          'chosen cipher + the server’s ephemeral key share — both sides can now derive the same secret',
+          "chosen cipher + the server's ephemeral key share, so both sides can now derive the same secret",
         kills: 'Confidentiality',
         prim: 'ECDHE + HKDF',
         enc: false,
@@ -26,7 +26,7 @@ const HS = {
       {
         dir: '←',
         label: '{Certificate}',
-        detail: 'the server’s certificate chain — and in 1.3 it is already encrypted',
+        detail: "the server's certificate chain, and in 1.3 it is already encrypted",
         kills: 'Authenticity',
         prim: 'X.509 chain',
         enc: true,
@@ -34,7 +34,7 @@ const HS = {
       {
         dir: '←',
         label: '{CertificateVerify}',
-        detail: 'a signature over everything said so far, made with the certificate’s private key',
+        detail: "a signature over everything said so far, made with the certificate's private key",
         kills: 'Authenticity',
         prim: 'signature',
         enc: true,
@@ -43,7 +43,7 @@ const HS = {
         dir: '←',
         label: '{Finished}',
         detail:
-          'a MAC over the whole transcript — proof not one byte of the negotiation was altered',
+          'a MAC over the whole transcript, proof not one byte of the negotiation was altered',
         kills: 'Integrity',
         prim: 'HMAC / HKDF',
         enc: true,
@@ -51,7 +51,7 @@ const HS = {
       {
         dir: '→',
         label: '{Finished}',
-        detail: 'the client’s matching MAC, sealing the handshake from both sides',
+        detail: "the client's matching MAC, sealing the handshake from both sides",
         kills: 'Integrity',
         prim: 'HMAC / HKDF',
         enc: true,
@@ -60,13 +60,13 @@ const HS = {
         dir: '⇄',
         label: 'Application Data',
         detail:
-          'your HTTP request and the bank’s reply, encrypted under keys grown from the shared secret',
+          "your HTTP request and the bank's reply, encrypted under keys grown from the shared secret",
         kills: 'all three',
         prim: 'AES-GCM',
         enc: true,
       },
     ],
-    note: 'Forward secrecy: the ephemeral key shares are thrown away after the handshake. Steal the server’s long-term private key a year from now and today’s recording stays unreadable.',
+    note: "Forward secrecy. The ephemeral key shares are thrown away after the handshake, so steal the server's long-term private key a year from now and today's recording stays unreadable.",
   },
   1.2: {
     rtt: '2-RTT',
@@ -75,7 +75,7 @@ const HS = {
         dir: '→',
         label: 'ClientHello',
         detail: 'cipher menu + a random nonce',
-        kills: '—',
+        kills: '–',
         prim: '',
         enc: false,
       },
@@ -83,7 +83,7 @@ const HS = {
         dir: '←',
         label: 'ServerHello · Certificate · ServerKeyExchange',
         detail:
-          'cipher choice, the certificate in the clear, and the server’s signed ephemeral key share',
+          "cipher choice, the certificate in the clear, and the server's signed ephemeral key share",
         kills: 'Authenticity',
         prim: 'cert + signature',
         enc: false,
@@ -91,7 +91,7 @@ const HS = {
       {
         dir: '→',
         label: 'ClientKeyExchange · Finished',
-        detail: 'the client’s key share, then a switch to encryption and a transcript MAC',
+        detail: "the client's key share, then a switch to encryption and a transcript MAC",
         kills: 'Confidentiality + Integrity',
         prim: 'DHE + HMAC',
         enc: false,
@@ -107,13 +107,13 @@ const HS = {
       {
         dir: '⇄',
         label: 'Application Data',
-        detail: 'encrypted traffic — but only after two full round trips',
+        detail: 'encrypted traffic, but only after two full round trips',
         kills: 'all three',
         prim: 'AES-GCM',
         enc: true,
       },
     ],
-    note: 'Two round trips before any data, and the certificate travels in the clear. An older 1.2 option even let the client encrypt the secret straight to the server’s RSA key — fast, but with no forward secrecy, so 1.3 removed it.',
+    note: "Two round trips before any data. And the certificate travels in the clear. An older 1.2 option even let the client encrypt the secret straight to the server's RSA key. Fast. But with no forward secrecy, so 1.3 removed it.",
   },
 };
 
@@ -295,7 +295,7 @@ export default function HandshakeLab() {
                 {cur.enc && '🔒 '}
                 {cur.label}
               </span>
-              {cur.kills !== '—' && (
+              {cur.kills !== '–' && (
                 <span
                   className="tls-chip"
                   style={{

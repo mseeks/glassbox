@@ -5,13 +5,13 @@ export function Ch07Reordering() {
 
   return (
     <section className="section">
-      <div className="section-num">07.03 — reordering</div>
+      <div className="section-num">07.03 · reordering</div>
       <h2 className="section-title">
         Two layers of <em>rewriting</em>, both invisible.
       </h2>
       <p className="prose">
         Store buffers are only half the story. Even before your code reaches the CPU, the{' '}
-        <strong>compiler</strong> may have already rewritten it — moving instructions around for
+        <strong>compiler</strong> may have already rewritten it, moving instructions around for
         better register allocation, cache behavior, or pipeline efficiency. Both compiler and CPU
         follow the same rule: preserve the program's behavior{' '}
         <em>as observed by a single thread</em>. Cross-thread observations are not protected.
@@ -65,7 +65,7 @@ export function Ch07Reordering() {
       </div>
 
       <p className="prose">
-        From your single thread's perspective, both versions are identical — by the end,{' '}
+        From your single thread's perspective, both versions are identical. By the end,{' '}
         <code>data</code> holds the result and <code>flag</code> is true. The compiler is free to
         choose. But another thread spinning on <code>flag</code> and then reading <code>data</code>{' '}
         sees the difference: in the reordered version, it can see <code>flag == true</code> while{' '}

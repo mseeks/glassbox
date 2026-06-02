@@ -180,8 +180,8 @@ export const Coda = () => (
             letterSpacing: '-0.015em',
           }}
         >
-          UDP is the protocol that tells the truth about the network. Everything else — reliable,
-          ordered, encrypted, multiplexed — is something you build on top of that truth.
+          UDP is the protocol that tells the truth about the network, and everything else (reliable,
+          ordered, encrypted, multiplexed) is something you build on top of that truth.
         </div>
       </div>
 

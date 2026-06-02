@@ -19,17 +19,19 @@ export default function Idea() {
       <Reveal as="p">
         Here is the move that makes the whole structure pay off: <span className="tcode">cat</span>{' '}
         and <span className="tcode">car</span> ride the <em>same</em> track for{' '}
-        <span className="tcode">c-a</span>, and only split at the third step. Words that begin alike
-        share their road. Store a thousand words that all start with "re-" and you pay for that
-        stretch of track exactly once.
+        <span className="tcode">c-a</span>, and only split apart at the third step, where the one
+        letter that distinguishes them finally forces the road to fork. Words that begin alike share
+        their road. Store a thousand words that all start with "re-" and you pay for that stretch of
+        track exactly once.
       </Reveal>
       <Reveal>
         <BuildLab />
       </Reveal>
       <Reveal as="p">
         Notice the counter: the words "cost" far fewer stored letters than were typed, and the gap
-        widens with every word that shares a beginning. Sharing prefixes isn't a clever optimisation
-        bolted on afterwards. It falls out of the design for free.
+        between the two only widens with every fresh word that happens to share a beginning with one
+        already on the map. Sharing prefixes isn't a clever optimisation bolted on afterwards. It
+        falls out of the design for free.
       </Reveal>
     </section>
   );

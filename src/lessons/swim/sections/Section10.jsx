@@ -44,7 +44,7 @@ export function Section10() {
                   Phi Accrual
                 </td>
                 <td>Failure detection only</td>
-                <td>—</td>
+                <td>–</td>
                 <td style={{ paddingRight: 28 }}>
                   Emits a continuous suspicion <em>value</em> rather than a binary verdict; the
                   application picks the threshold. Used in Cassandra, Akka.
@@ -69,7 +69,7 @@ export function Section10() {
                 <td>Linearizable</td>
                 <td style={{ paddingRight: 28 }}>
                   Strong consistency on replicated state. Requires majority quorum. Often used{' '}
-                  <em>alongside</em> SWIM — Consul is the canonical example.
+                  <em>alongside</em> SWIM, with Consul as the canonical example.
                 </td>
               </tr>
               <tr>
@@ -77,7 +77,7 @@ export function Section10() {
                   Plain heartbeats
                 </td>
                 <td>Failure detection</td>
-                <td>—</td>
+                <td>–</td>
                 <td style={{ paddingRight: 28 }}>
                   Each node sends "I'm alive" to all peers. Simple, O(N²) total, high false-positive
                   rate. The baseline SWIM improves on.
@@ -103,7 +103,7 @@ export function Section10() {
         <div className="swim-prose swim-mid">
           <p>
             The most common production pattern: SWIM at the bottom for membership, Raft above it for
-            consistent data. <em>Consul</em> is built this way — Serf (SWIM with Lifeguard) handles
+            consistent data. <em>Consul</em> is built this way. Serf (SWIM with Lifeguard) handles
             "who is in the cluster," and Raft handles the strongly-consistent key-value store the
             cluster manages. They occupy different rungs of the same ladder. SWIM is the cheap,
             unanimous-eventually layer. Raft is the expensive, unanimous-now layer. Choose by what

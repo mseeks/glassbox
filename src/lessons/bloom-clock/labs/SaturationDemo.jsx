@@ -109,7 +109,7 @@ export const SaturationDemo = () => {
       <div style={{ display: 'grid', gap: 14, marginBottom: 18 }}>
         <div>
           <div className="bc-italic" style={{ fontSize: 18, color: '#f5b942', marginBottom: 6 }}>
-            Clock A &mdash;{' '}
+            Clock A,{' '}
             <span className="bc-mono" style={{ fontSize: 11, color: '#5e5747' }}>
               weight {clockWeight(clockA, K).toFixed(0)}
             </span>
@@ -151,7 +151,7 @@ export const SaturationDemo = () => {
         </div>
         <div>
           <div className="bc-italic" style={{ fontSize: 18, color: '#5eead4', marginBottom: 6 }}>
-            Clock B &mdash;{' '}
+            Clock B,{' '}
             <span className="bc-mono" style={{ fontSize: 11, color: '#5e5747' }}>
               weight {clockWeight(clockB, K).toFixed(0)}
             </span>
@@ -279,9 +279,9 @@ export const SaturationDemo = () => {
 
       <Callout title="What you're watching" color="#fb7185" tone="warn">
         Both clocks are recording <em>completely independent</em> events. They are always,
-        truthfully, concurrent. Early on, the structure recognizes this — the verdict reads
+        truthfully, concurrent. Early on, the structure recognizes this: the verdict reads
         "concurrent." As weight piles on, slots saturate, and the verdict starts flipping to false
-        "A → B" or "B → A." The structure isn't broken — it's exhausted. The information density
+        "A → B" or "B → A." The structure isn't broken. It's exhausted. The information density
         exceeds what m and k can carry.
       </Callout>
     </div>

@@ -86,14 +86,14 @@ export default function SymmetricPanel() {
         style={{ marginTop: 12 }}
         onClick={() => setWrongKey((v) => !v)}
       >
-        {wrongKey ? 'recipient has the WRONG key' : 'flip the recipient’s key'}
+        {wrongKey ? 'recipient has the WRONG key' : "flip the recipient's key"}
       </button>
       <p className="tls-prose" style={{ fontSize: 12.5, marginTop: 10, lineHeight: 1.5 }}>
-        The reader on the wire holds only noise; the right key turns it back into words; the wrong
-        key yields garbage. (This is a real reversible keystream standing in for{' '}
-        <strong>AES-GCM</strong>, which TLS actually uses — and which also attaches an{' '}
-        <em>authentication tag</em> so any tampering is caught. We’ll see real tamper-detection
-        shortly.)
+        The reader on the wire holds only noise. The right key turns it back into words. The wrong
+        key yields garbage. This is a real reversible keystream standing in for{' '}
+        <strong>AES-GCM</strong>, which TLS actually uses, and which also attaches an{' '}
+        <em>authentication tag</em> so any tampering is caught. We'll see real tamper-detection
+        shortly.
       </p>
     </div>
   );

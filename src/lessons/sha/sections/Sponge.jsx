@@ -68,10 +68,10 @@ export default function Sponge() {
             </span>
           </div>
           <p className="body" style={{ margin: 0 }}>
-            At the end of a squeeze, only the rate is exposed — the capacity stays hidden forever.
-            To extend the message you'd need to resume the permutation from the <em>full</em> state,
-            but you can never see the capacity. So length extension is structurally impossible.
-            SHA-2 needs HMAC bolted on from outside; SHA-3 simply doesn't have the wound.
+            At the end of a squeeze, only the rate is exposed. The capacity stays hidden forever. To
+            extend the message you'd need to resume the permutation from the <em>full</em> state,
+            and you can never see the capacity, so length extension is structurally impossible here.
+            SHA-2 needs HMAC bolted on from outside. SHA-3 simply doesn't have the wound.
           </p>
         </div>
       </div>

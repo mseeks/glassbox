@@ -13,33 +13,33 @@ export const SectionTwo = () => {
     {
       name: 'Connection setup',
       tcp: 'Three-way handshake (1 RTT)',
-      udp: 'None — send straight away',
+      udp: 'None. Send straight away',
     },
-    { name: 'Reliability', tcp: 'Acks + retransmit on loss', udp: 'No acks — loss is silent' },
+    { name: 'Reliability', tcp: 'Acks + retransmit on loss', udp: 'No acks. Loss is silent' },
     {
       name: 'Ordering',
       tcp: 'Strict in-order delivery',
-      udp: 'None — arrival order = delivery order',
+      udp: 'None. Arrival order = delivery order',
     },
     {
       name: 'Deduplication',
       tcp: 'Sequence numbers detect dups',
-      udp: 'None — duplicates pass through',
+      udp: 'None. Duplicates pass through',
     },
     {
       name: 'Flow control',
       tcp: 'Receiver sets a sliding window',
-      udp: 'None — sender pays no attention',
+      udp: 'None. Sender pays no attention',
     },
     {
       name: 'Congestion control',
       tcp: 'Slow start, AIMD, backoff',
-      udp: 'None — your responsibility',
+      udp: 'None. Your responsibility',
     },
     {
       name: 'Message boundaries',
-      tcp: "Removed — it's a byte stream",
-      udp: 'Preserved — one send, one receive',
+      tcp: "Removed. It's a byte stream",
+      udp: 'Preserved. One send, one receive',
     },
     { name: 'Per-connection state', tcp: '~80 bytes of kernel memory', udp: 'Zero state' },
     { name: 'Header size', tcp: '20–60 bytes per segment', udp: '8 bytes, flat' },
@@ -56,7 +56,7 @@ export const SectionTwo = () => {
               TCP and UDP both ride on top of best-effort IP. They take{' '}
               <strong>opposite stances</strong> on what to do about it. One wraps the substrate in
               machinery so your application sees a clean byte-pipe. The other passes the substrate
-              through, untouched, and lets you decide what to add. Neither is better — they're built
+              through, untouched, and lets you decide what to add. Neither is better. They are built
               for different jobs.
             </>
           }
@@ -106,8 +106,8 @@ export const SectionTwo = () => {
               </span>
             </div>
             <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--ink)', margin: 0 }}>
-              A thin envelope around an IP packet — ports for multiplexing, a checksum, and a
-              length. Nothing more.{' '}
+              A thin envelope around an IP packet: ports for multiplexing, a checksum, and a length.
+              Nothing more.{' '}
               <strong style={{ color: 'var(--signal)' }}>
                 You hand the kernel a message; the kernel hands the network a packet.
               </strong>
@@ -129,7 +129,7 @@ export const SectionTwo = () => {
               alignItems: 'baseline',
             }}
           >
-            <Label>Fig. 2 — How each protocol handles each concern</Label>
+            <Label>Fig. 2: How each protocol handles each concern</Label>
           </div>
 
           {/* Header row */}
@@ -212,7 +212,7 @@ export const SectionTwo = () => {
                       textAlign: 'center',
                     }}
                   >
-                    —
+                    &ndash;
                   </span>
                 ) : (
                   <Check
@@ -248,7 +248,7 @@ export const SectionTwo = () => {
             padding: 28,
           }}
         >
-          <Label>Fig. 3 — Header sizes on the wire, to scale (1 cell = 1 byte)</Label>
+          <Label>Fig. 3: Header sizes on the wire, to scale (1 cell = 1 byte)</Label>
           <div style={{ marginTop: 22, display: 'flex', flexDirection: 'column', gap: 22 }}>
             {/* TCP bar — show min (20) solid + max (40) optional dashed */}
             <div>
@@ -376,7 +376,7 @@ export const SectionTwo = () => {
 
         <p className="udp-pullquote">
           The question isn't which is better. The question is whether your application wants TCP's
-          full-service contract — or whether it wants to design its own.
+          full-service contract, or whether it wants to design its own.
         </p>
       </div>
     </section>

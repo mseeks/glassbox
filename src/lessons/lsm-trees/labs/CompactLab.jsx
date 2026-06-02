@@ -60,7 +60,7 @@ const Panel = ({ title, sub, data, ra, wa, waColor, raColor }) => {
                   className="m"
                   style={{ fontSize: 9, color: 'var(--ink-faint)', paddingLeft: 4 }}
                 >
-                  —
+                  ·
                 </span>
               )}
               {data.L[i].map((f) => (
@@ -213,9 +213,9 @@ export default function CompactLab() {
           }}
         >
           The same units flow into both. Size-tiered keeps write-amp low but lets files pile up, so
-          a lookup may probe several. Leveled keeps one run per level — a lookup probes few — but
-          rewrites the same bytes many times to hold that order. Watch the two numbers diverge: the
-          trade, measured, not asserted.
+          a lookup may probe several; leveled keeps one run per level, so a lookup probes few. The
+          price? Rewriting the same bytes many times to hold that order. Watch the two numbers
+          diverge. The trade, measured, not asserted.
         </div>
       </Figure>
     </div>

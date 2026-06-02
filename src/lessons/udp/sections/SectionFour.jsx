@@ -25,9 +25,10 @@ export const SectionFour = () => {
       body: (
         <>
           UDP has no concept of a <em>connection</em>. When you call <code>sendto()</code>, the
-          kernel constructs the datagram, hands it to IP, and forgets it. There is nothing to set up
-          beforehand and nothing to tear down after. Two hosts can exchange UDP traffic without ever
-          agreeing they're "talking" — they just send packets at each other's address and port.
+          kernel constructs the datagram, hands it to IP, and forgets it. Nothing to set up
+          beforehand, nothing to tear down after. Two hosts can exchange UDP traffic for an entire
+          session without ever once agreeing that they are "talking." They just fire packets at each
+          other's address and port.
         </>
       ),
       visual: <ConnectionlessVisual />,
@@ -39,10 +40,11 @@ export const SectionFour = () => {
       tagline: 'Sent does not mean arrived.',
       body: (
         <>
-          The sender gets no acknowledgement. The receiver makes no promise to ack. If a packet is
-          dropped in transit — by a congested router, a flaky NIC, a wireless glitch — neither side
-          hears about it. The packet just doesn't show up. UDP <em>will not retransmit it.</em> If
-          reliability matters for your application, you build it on top.
+          The sender gets no acknowledgement. The receiver makes no promise to ack. A packet can
+          drop in transit for any number of reasons: a congested router, a flaky NIC, a wireless
+          glitch. Neither side hears about it. The packet just doesn't show up. UDP{' '}
+          <em>will not retransmit it.</em> If reliability matters for your application, you build it
+          on top.
         </>
       ),
       visual: <UnreliableVisual />,
@@ -54,10 +56,10 @@ export const SectionFour = () => {
       tagline: 'Packets arrive in whatever order they arrive.',
       body: (
         <>
-          Two packets sent in sequence may take different paths through the network and arrive in
-          different order. UDP does <em>not</em> buffer or reorder them at the receiver. Your
-          application sees them in arrival order, not send order. If sequence matters, you number
-          your packets and sort them yourself.
+          Two packets sent one after another may take different paths through the network and arrive
+          in a different order than you sent them. UDP does <em>not</em> buffer or reorder them at
+          the receiver. Your application sees arrival order, not send order. Sequence matters to
+          you? Then you number your own packets and sort them yourself.
         </>
       ),
       visual: <UnorderedVisual />,
@@ -71,10 +73,10 @@ export const SectionFour = () => {
         <>
           UDP is a <em>datagram</em> protocol, not a stream. If you send three datagrams of 100
           bytes each, the receiver gets exactly three
-          <code>recv()</code> calls of 100 bytes each — not one of 300, not 150+150. Message
-          boundaries are preserved. (TCP, by contrast, is a byte stream — boundaries disappear and
-          the application has to re-frame.) This makes UDP much more natural for request/response
-          protocols where each message is a unit.
+          <code>recv()</code> calls of 100 bytes each. Not one of 300, not 150+150. The boundaries
+          survive. (TCP, by contrast, is a byte stream, so those boundaries disappear and the
+          application is left to re-frame the data itself.) This makes UDP much more natural for
+          request/response protocols where each message is a unit.
         </>
       ),
       visual: <MessageOrientedVisual />,
@@ -92,8 +94,8 @@ export const SectionFour = () => {
           title="Four irreducible truths."
           lede={
             <>
-              Everything UDP does — and doesn't do — follows from four properties. Each shapes when
-              UDP is the right choice and when it isn't.
+              Everything UDP does, and everything it pointedly doesn't do, follows from four
+              properties. Each one shapes when UDP is the right choice and when it isn't.
             </>
           }
         />

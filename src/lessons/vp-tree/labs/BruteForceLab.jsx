@@ -110,7 +110,7 @@ export default function BruteForceLab() {
         </div>
         <div className="vp-statcell">
           <div className="k">Nearest range</div>
-          <div className="v amber">{done ? nearest.d.toFixed(1) : '—'}</div>
+          <div className="v amber">{done ? nearest.d.toFixed(1) : '–'}</div>
         </div>
       </div>
 
@@ -126,10 +126,10 @@ export default function BruteForceLab() {
         <span className="pip" /> tap anywhere on the scope to move the query
       </div>
       <div className="vp-caption">
-        To answer “what’s closest?” the naïve way, you measure the range to <em>every</em> contact
-        and keep the smallest. {field.length} contacts means {field.length} measurements — every
-        single query. Double the ocean, double the work. This linear cost is the thing the tree
-        exists to beat.
+        To answer "what&apos;s closest?" the naïve way, you measure the range to <em>every</em>{' '}
+        contact and keep the smallest. {field.length} contacts means {field.length} measurements, on
+        every single query. Double the ocean, double the work. This linear cost is the thing the
+        tree exists to beat.
       </div>
     </div>
   );

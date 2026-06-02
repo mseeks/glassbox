@@ -94,11 +94,11 @@ export default function MergeLab() {
         <Readout label="True union" value={fmt(trueUnion)} tone="iv" />
       </div>
       <div className="cap">
-        Taking the larger value in each cell is all a merge requires — it is associative,
-        commutative, and immune to double-counting. A visitor who hit both shards still raises the
-        same registers, so they are counted{' '}
-        <em style={{ color: 'var(--cyan)', fontStyle: 'normal' }}>once</em>. Count anywhere, merge
-        everywhere.
+        Taking the larger value in each cell is all a merge requires. The operation is associative
+        and commutative, and it stays immune to double-counting no matter how many times you fold
+        one sketch into another. A visitor who hit both shards still raises the same registers, so
+        they are counted <em style={{ color: 'var(--cyan)', fontStyle: 'normal' }}>once</em>. Count
+        anywhere, merge everywhere.
       </div>
     </Panel>
   );

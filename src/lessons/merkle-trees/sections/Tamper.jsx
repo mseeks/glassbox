@@ -9,8 +9,9 @@ export default function Tamper() {
       <SectionHeader id="tamper" kicker="Tamper-Evidence" title="One change, felt at the top" />
       <Reveal base="mk-reveal" className="mk-prose">
         <p className="lead">
-          Click any leaf to forge its value. Watch the altered fingerprint propagate up its lineage,
-          through parent, grandparent, and root, until the seal breaks.{' '}
+          Click any leaf to forge its value. Watch the altered fingerprint climb its lineage, rising
+          through the parent, then the grandparent, then the root, until the seal at the top finally
+          breaks and the forgery announces itself. The root knew.{' '}
           <em>You cannot touch a leaf without the root knowing.</em>
         </p>
       </Reveal>
@@ -21,9 +22,9 @@ export default function Tamper() {
 
       <Reveal base="mk-reveal" className="mk-prose" style={{ marginTop: 20 }}>
         <p>
-          This is what people mean by <em>tamper-evident</em>. The root is a commitment: publish it
-          it once. Pin it to a noticeboard, a newspaper, or a blockchain, and the entire dataset
-          beneath it is frozen. Any later edit, anywhere, produces a root that no longer matches the
+          This is what people mean by <em>tamper-evident</em>. The root is a commitment. Publish it
+          once. Pin it to a noticeboard, a newspaper, or a blockchain, and the entire dataset
+          beneath it freezes. Any later edit, anywhere, produces a root that no longer matches the
           one you trusted.
         </p>
       </Reveal>

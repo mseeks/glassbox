@@ -29,7 +29,7 @@ export const ChapterFour = () => (
         </p>
         <p>
           <strong>Compare.</strong> Given two clocks A and B, compare them position-by-position.
-          We'll do this in the next chapter — for now, just build intuition by playing with the
+          We'll do this in the next chapter. For now, just build intuition by playing with the
           construction below.
         </p>
       </Prose>
@@ -42,21 +42,21 @@ export const ChapterFour = () => (
     <div style={{ maxWidth: 760, marginTop: 40 }}>
       <Prose>
         <p>
-          A few details worth pausing on. The hash functions must be independent — k functions that
+          A few details worth pausing on. The hash functions must be independent: k functions that
           always return the same position would just be one function doing extra work. In practice
           we use one or two well-mixed base hashes and combine them with different seeds, or use the
           double-hashing trick (<Code>h_i(x) = a(x) + i · b(x)</Code>) which is provably good enough
           for this use case.
         </p>
         <p>
-          The counters are <em>integers</em>, not bits — this is the key structural difference from
-          a Bloom filter. A Bloom filter sets bits to 1; a Bloom clock <em>increments</em>. The
+          The counters are <em>integers</em>, not bits. This is the key structural difference from a
+          Bloom filter. A Bloom filter sets bits to 1; a Bloom clock <em>increments</em>. The
           counters grow without bound (until we age them, in a later chapter). That growth is what
           carries causal information forward.
         </p>
         <p>
           And the merge is the same merge a vector clock uses: pointwise max. This is not
-          coincidence. It's the move that makes the structure compositional — you can merge in any
+          coincidence. It's the move that makes the structure compositional. You can merge in any
           order, merge the same clock twice, merge a clock with itself, and the result is
           well-defined. The merge is associative, commutative, and idempotent. That makes the Bloom
           clock a <em>semilattice</em>, which is the algebraic shape that powers everything from

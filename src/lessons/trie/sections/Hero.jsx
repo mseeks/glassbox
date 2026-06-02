@@ -87,9 +87,9 @@ export default function Hero() {
         className="lead hero-rise"
         style={{ maxWidth: 640, marginTop: 10, animationDelay: '.12s' }}
       >
-        A map of words, drawn so that the <em>route is the word</em>. Spell as you travel; words
-        that begin alike share the same track and split only where they differ. Pronounced "try,"
-        from re<strong>trie</strong>val.
+        A map of words, drawn so that the <em>route is the word</em>. Spell as you travel. Words
+        that begin alike share the same track and split apart only at the point where they finally
+        differ. Pronounced "try," from re<strong>trie</strong>val.
       </p>
       <div className="card hero-panel hero-rise" style={{ marginTop: 24, animationDelay: '.2s' }}>
         <div className="hero-bar">

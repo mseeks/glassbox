@@ -47,7 +47,7 @@ export default function Coda() {
           className="serif"
           style={{ fontStyle: 'italic', fontSize: 14, color: 'var(--ink-3)', marginTop: 12 }}
         >
-          — a field manual in seven movements —
+          a field manual in seven movements
         </div>
       </div>
     </Movement>

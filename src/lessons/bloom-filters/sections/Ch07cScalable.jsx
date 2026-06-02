@@ -5,14 +5,14 @@ export function Ch07cScalable() {
     <Chapter num="07c" title="Scalable Bloom Filter" anchor="ch-07c">
       <p>
         The fix for unknown <code>n</code>. Chain a sequence of standard BFs with geometrically
-        tightening FPR targets — each new filter has a fraction of its predecessor's FPR (typically
+        tightening FPR targets: each new filter has a fraction of its predecessor's FPR (typically
         half).
       </p>
       <p>
         Insertions go to the newest filter; queries check <em>all</em> of them. The total false
         positive rate converges to a tunable bound, no matter how many items you eventually insert.
-        You give up determinism on query cost — every query touches every filter in the chain — but
-        you keep your FPR ceiling.
+        There is a catch. You give up determinism on query cost, since every query touches every
+        filter in the chain. But you keep your FPR ceiling.
       </p>
     </Chapter>
   );

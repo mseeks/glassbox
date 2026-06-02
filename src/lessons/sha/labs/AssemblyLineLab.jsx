@@ -40,7 +40,7 @@ function StateWords({ words, prev, dim }) {
 }
 
 export default function AssemblyLineLab() {
-  const [msg, setMsg] = useState('attack at dawn — and again at dusk for good measure');
+  const [msg, setMsg] = useState('attack at dawn, and again at dusk for good measure');
   const data = useMemo(() => sha256BlockStates(strBytes(msg)), [msg]);
   const [step, setStep] = useState(0); // 0 = IV, k = after block k-1
   const maxStep = data.nBlocks;

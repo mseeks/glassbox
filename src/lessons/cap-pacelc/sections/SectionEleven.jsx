@@ -35,11 +35,11 @@ export function SectionEleven() {
       <p>
         Two threads tie these together. <strong>First</strong>: the most productive recent research
         has been less about &ldquo;how do we make consensus faster&rdquo; and more about &ldquo;what
-        work can we do without consensus at all.&rdquo; CRDTs, CALM, coordination avoidance — all
-        variants of the question of how little coordination an invariant actually requires.{' '}
-        <strong>Second</strong>: the gap between what theory permits and what implementations
-        deliver is wide enough that empirical work (Jepsen, PBS) is now a peer of theoretical work.
-        The theorem is the floor; the engineering is everything above it.
+        work can we do without consensus at all.&rdquo; CRDTs and CALM and coordination avoidance
+        are all variants of one question. How little coordination does an invariant actually
+        require? <strong>Second</strong>: the gap between what theory permits and what
+        implementations deliver is wide enough that empirical work (Jepsen, PBS) is now a peer of
+        theoretical work. The theorem is the floor; the engineering is everything above it.
       </p>
     </section>
   );

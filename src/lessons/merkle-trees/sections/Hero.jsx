@@ -59,8 +59,9 @@ export default function Hero() {
             margin: '0 auto 8px',
           }}
         >
-          One small fingerprint that vouches for an entire dataset — and a receipt, the size of a
-          whisper, that proves any single piece belongs.
+          One small fingerprint. It vouches for an entire dataset, and out of it you can draw a
+          receipt the size of a whisper, the proof that any single piece of that dataset truly
+          belongs.
         </p>
       </div>
 

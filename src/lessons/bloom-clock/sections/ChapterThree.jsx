@@ -10,21 +10,21 @@ export const ChapterThree = () => (
     />
     <Prose dropcap>
       <p>
-        Here is the move. Instead of one slot per node, allocate a fixed-size array of counters —
-        call its size <em>m</em>, where <em>m</em> is chosen once and never changes. It might be 64.
+        Here is the move. Instead of one slot per node, allocate a fixed-size array of counters.
+        Call its size <em>m</em>, where <em>m</em> is chosen once and never changes. It might be 64.
         It might be 256. It is decoupled, completely, from the size of the cluster.
       </p>
       <p>
         How do we record events in this array if there's no slot for each node? With the same trick
         a Bloom filter uses for set membership: hash the node's identity into <em>k</em> positions
         in the array, and increment those. Multiple nodes may share positions. Their increments mix.
-        We are not, in fact, tracking who did what — we're tracking <em>how much has been done</em>,
+        We are not, in fact, tracking who did what. We're tracking <em>how much has been done</em>,
         spread across <em>m</em> bins by <em>k</em> hash functions.
       </p>
       <p>
         This sounds like throwing information away. It is. The whole point is what survives. When
-        you merge two such arrays by taking the pointwise max — exactly the merge a vector clock
-        uses — and compare them component-wise, one miraculous property remains intact:{' '}
+        you merge two such arrays by taking the pointwise max, exactly the merge a vector clock
+        uses, and compare them component-wise, one miraculous property remains intact:{' '}
         <em>if A really did happen before B, then B's array dominates A's in every position</em>.
       </p>
       <p>
@@ -32,8 +32,8 @@ export const ChapterThree = () => (
         And it gives us a one-sided error structure: the Bloom clock can be confidently{' '}
         <em>wrong about happens-before</em>
         (saying "A might have caused B" when they're actually concurrent), but it can{' '}
-        <em>never miss a real concurrency</em>. Same trade as a Bloom filter — one error direction
-        is exact, the other is probabilistic.
+        <em>never miss a real concurrency</em>. Same trade as a Bloom filter. One error direction is
+        exact, the other is probabilistic.
       </p>
     </Prose>
 

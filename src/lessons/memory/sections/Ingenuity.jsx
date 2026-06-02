@@ -10,16 +10,16 @@ export default function Ingenuity() {
         <div className="rev">
           <p className="lead" style={{ marginBottom: 16 }}>
             When every byte is precious, programmers become magicians. The entire{' '}
-            <strong>Super Mario Bros.</strong> cartridge held world, enemies, music, and code in
-            about <strong>40 kilobytes</strong>. That is smaller than a single screenshot of the
-            game taken on a phone today.
+            <strong>Super Mario Bros.</strong> cartridge packed its whole world, every enemy, all
+            the music, and the game code itself into about <strong>40 kilobytes</strong>. That is
+            smaller than one screenshot of the game taken on a phone today.
           </p>
           <p style={{ marginBottom: 24 }}>
-            <strong>Prince of Persia</strong> (1989) is the legend. To save memory, its creator
-            built the enemy guard out of the hero's <em className="term">own</em> animation frames.
-            The same pixels, mirrored and recoloured at runtime. No second set of art, almost no
-            extra bytes. The trick below is exactly that idea. Toggle it off and the game stops
-            fitting.
+            <strong>Prince of Persia</strong> (1989) is the legend. To save precious memory, its
+            creator built the entire enemy guard out of the hero's <em className="term">own</em>{' '}
+            animation frames, the same pixels simply mirrored and recoloured at runtime. No second
+            set of art. Almost no extra bytes. The trick below is exactly that idea. Toggle it off
+            and the game stops fitting.
           </p>
         </div>
         <div className="rev">

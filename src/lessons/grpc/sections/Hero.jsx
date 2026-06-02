@@ -34,9 +34,8 @@ export default function Hero() {
         on the wire
       </p>
       <p className="gx-lede" style={{ margin: '26px auto 0', textAlign: 'center' }}>
-        Call a function that lives on another machine — and feel nothing. That is the dream gRPC
-        sells. This is how it keeps the promise, where the promise leaks, and what every byte is
-        doing.
+        Call a function that lives on another machine. Feel nothing. That is the dream gRPC sells.
+        This is how it keeps the promise, where the promise leaks, and what every byte is doing.
       </p>
       <HeroWire />
     </header>
@@ -75,7 +74,7 @@ function HeroWire() {
         }}
       >
         One call. Arguments serialized, shipped across a network, executed elsewhere, the result
-        shipped back — ideally invisible to the programmer.
+        shipped back. Ideally invisible to the programmer.
       </p>
     </div>
   );

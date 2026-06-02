@@ -12,7 +12,7 @@ export default function Why() {
         <SectionHead
           tag="§ 01 · the dream"
           title="Make the network disappear."
-          lede="The oldest idea in distributed computing — and why the obvious way to do it keeps failing."
+          lede="The oldest idea in distributed computing. And the reason the obvious way to build it keeps failing."
         />
         <div className="gx-prose">
           <Reveal base="gx-fade">
@@ -29,7 +29,7 @@ export default function Why() {
             </p>
             <p>
               People have chased this for decades. CORBA and SOAP both tried and collapsed under
-              ceremony — XML envelopes, brittle tooling, vendor wars. The industry fled to{' '}
+              ceremony: XML envelopes, brittle tooling, vendor wars. The industry fled to{' '}
               <strong>REST + JSON</strong>, which won on one unbeatable virtue: you can read it, and
               debug it with{' '}
               <code className="gx-kw" style={{ color: 'var(--ink)' }}>
@@ -40,8 +40,8 @@ export default function Why() {
           </Reveal>
           <Reveal base="gx-fade">
             <p>
-              But for dense <em>service-to-service</em> traffic — where no human is reading the
-              bytes — REST's virtues become taxes. JSON ships every field <em>name</em> as text on
+              But for dense <em>service-to-service</em> traffic, where no human is reading the
+              bytes, REST's virtues become taxes. JSON ships every field <em>name</em> as text on
               every message, then both sides parse strings into numbers. There's no enforced
               contract, so a client and server quietly drift until production finds the mismatch.
               And classic HTTP/1.1 gives you one in-flight request per connection, with no real
@@ -59,8 +59,8 @@ export default function Why() {
           <Reveal base="gx-fade">
             <Callout kind="info">
               <b>Scope.</b> gRPC isn't here to replace your public REST API that browsers and third
-              parties call. It's built for the mesh of internal services behind your edge — the
-              place those three taxes hurt most.
+              parties call. It's built for the mesh of internal services behind your edge. That is
+              the place those three taxes hurt most.
             </Callout>
           </Reveal>
         </div>

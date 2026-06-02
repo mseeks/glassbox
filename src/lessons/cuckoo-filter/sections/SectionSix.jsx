@@ -12,7 +12,7 @@ export function SectionSix() {
 
       <PageBlock>
         <P size="lead">
-          A lookup inspects eight slots in all — four per candidate bucket. A false positive occurs
+          A lookup inspects eight slots in all, four per candidate bucket. A false positive occurs
           when one of those slots happens to hold the same fingerprint as the queried item, despite
           that item never being inserted. The probability is bounded above by:
         </P>
@@ -51,9 +51,9 @@ export function SectionSix() {
 
         <P>
           Linear in the bucket width <em>b</em>; exponential in the fingerprint bits <em>f</em>.
-          Each additional bit halves the false-positive rate. Doubling the bucket width doubles it.
-          The formula is — remarkably — independent of how full the table is. The error rate is
-          essentially flat as the structure fills.
+          Each additional bit halves the false-positive rate, while doubling the bucket width
+          doubles it. Remarkably, the formula is independent of how full the table is. The error
+          rate stays essentially flat as the structure fills. It does not drift.
         </P>
         <P>
           Storage is the other number that matters. At load <em>α</em> (the fraction of slots in

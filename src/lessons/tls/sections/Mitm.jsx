@@ -8,14 +8,14 @@ export default function Mitm() {
     <Section
       id="mitm"
       tag="§ 04 · The crack"
-      title="Secret — but with whom?"
+      title="Secret, but with whom?"
       lede="Key exchange has a gaping hole, and finding it is the whole reason the second half of TLS exists."
     >
       <P>
         Diffie–Hellman proves you agreed a secret with <em>whoever answered</em>. It never checks{' '}
         <strong>who</strong> answered. So an attacker on the wire can run one exchange with you and
-        a separate one with the bank, sitting in the middle of two perfectly “secure” channels —
-        reading and rewriting everything.
+        a separate one with the bank, sitting in the middle of two perfectly "secure" channels. It
+        reads and rewrites everything.
       </P>
       <MitmLab />
       <P delay=".05s">

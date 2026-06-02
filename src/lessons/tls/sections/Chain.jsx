@@ -13,13 +13,15 @@ export default function Chain() {
     >
       <P>
         A <strong>certificate</strong> binds a public key to a name, and that binding is itself
-        signed — by an authority your browser already trusts. Those authorities form a{' '}
-        <em>chain</em>: a long-lived <strong>root</strong> baked into your device’s trust store
-        signs an intermediate, which signs the site’s leaf certificate. Verifying the chain is just
-        a series of signature checks, ending at a root you trusted from the start.
+        signed by an authority your browser already trusts. Those authorities form a <em>chain</em>.
+        A long-lived <strong>root</strong> baked into your device's trust store signs an
+        intermediate, the intermediate signs the site's leaf certificate, and your browser follows
+        the links upward, confirming each signature before it trusts the next, until it arrives at a
+        root it already carries. So verifying the chain is just a series of signature checks. The
+        trust was anchored all along.
       </P>
       <P delay=".05s">
-        Walk the chain link by link, then break it four different ways and watch the browser’s
+        Walk the chain link by link, then break it four different ways and watch the browser's
         verdict.
       </P>
       <ChainOfTrustLab />

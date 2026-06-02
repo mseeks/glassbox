@@ -8,7 +8,7 @@ const COLS = [
   {
     c: 'var(--cyan)',
     k: 'HTTP/2',
-    d: 'Many streams multiplexed over one connection. Carries the bytes, enables streaming.',
+    d: 'Many streams multiplexed over a single connection, so one socket carries the bytes for every call at once and real streaming becomes possible. The transport.',
   },
   {
     c: 'var(--violet)',

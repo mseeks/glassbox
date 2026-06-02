@@ -43,9 +43,9 @@ export const SectionNine = () => {
     },
     FRAGMENTS: {
       color: 'var(--lost)',
-      headline: 'Exceeds standard MTU — IP must fragment',
+      headline: 'Exceeds standard MTU: IP must fragment',
       detail:
-        'IPv4 routers will split this into fragments. IPv6 routers won\'t fragment at all — they\'ll drop the packet and send an ICMP "Packet Too Big". Many middleboxes drop fragments outright as a security measure.',
+        'IPv4 routers will split this into fragments. IPv6 routers won\'t fragment at all. They drop the packet and send back an ICMP "Packet Too Big". Many middleboxes drop fragments outright as a security measure.',
     },
     PATHOLOGICAL: {
       color: 'var(--lost)',
@@ -193,7 +193,7 @@ export const SectionNine = () => {
                 marginBottom: 6,
               }}
             >
-              ZONE — {zone}
+              ZONE · {zone}
             </div>
             <h3 className="udp-h3" style={{ color: 'var(--ink-warm)', margin: '0 0 8px 0' }}>
               {headline}
@@ -333,7 +333,7 @@ export const SectionNine = () => {
           />
           <MTUCard
             title="Why not fragment?"
-            body="Modern middleboxes routinely drop IP fragments for security. NAT can't demultiplex them. Path MTU Discovery is unreliable. Just stay under the ceiling — the application can frame its own messages if it needs to."
+            body="Modern middleboxes routinely drop IP fragments for security. NAT can't demultiplex them. Path MTU Discovery is unreliable. Just stay under the ceiling. The application can frame its own messages if it needs to."
           />
         </div>
 

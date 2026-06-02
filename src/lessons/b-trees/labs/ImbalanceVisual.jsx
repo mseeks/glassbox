@@ -117,8 +117,8 @@ export default function ImbalanceVisual() {
         </div>
         <div className="bt-lab-cap">
           {mode === 'vine'
-            ? 'Insert keys already in order and a plain binary tree degenerates into a vine — seven hops for seven keys, no better than a list. This is imbalance.'
-            : 'Bushy and short: the same seven keys, longest path of three. The trick every balanced tree must pull off is staying like this no matter what order keys arrive.'}
+            ? 'Insert keys already in order and a plain binary tree degenerates into a vine: seven hops for seven keys, no better than a list. This is imbalance.'
+            : 'Bushy and short: the same seven keys, longest path of three. The trick every balanced tree must pull off is staying like this no matter what order the keys arrive in. No matter what.'}
         </div>
       </div>
     </div>

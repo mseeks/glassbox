@@ -15,18 +15,17 @@ export default function Compact() {
       />
       <Prose style={{ marginBottom: 26 }} dropcap>
         <p>
-          Compaction is just §I applied ahead of time. A read resolves "newest wins" on the fly;
-          compaction resolves it permanently. It merges overlapping strata, drops superseded values,
+          Compaction is just §I applied ahead of time. A read resolves "newest wins" on the fly.
+          Compaction resolves it permanently. It merges overlapping strata, drops superseded values,
           and retires tombstones once no older copy of their key survives beneath them. The
           graveyard is continually dug up and reburied in better order.
         </p>
         <p>
-          Two schools dominate, and they sit at opposite ends of one axis.{' '}
-          <strong>Size-tiered</strong>
+          Two schools dominate. They sit at opposite ends of one axis. <strong>Size-tiered</strong>
           merges files of similar size, letting many accumulate before a sudden collapse: cheap to
           write, costly to read. <strong>Leveled</strong> keeps each level a single non-overlapping
           sorted run, rewriting neighbours on overflow: cheap to read, costly to write. Run them
-          side by side and let the counters tell the truth.
+          side by side. Let the counters tell the truth.
         </p>
       </Prose>
       <CompactLab />
@@ -39,9 +38,9 @@ export default function Compact() {
             size-tiered
           </div>
           <div style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--ink-2)' }}>
-            <strong>Write-cheap, read-costly.</strong> A key is rewritten only a handful of times,
-            but overlapping files at a level mean a lookup may open several. Cassandra's historical
-            default; still apt for write-heavy work.
+            <strong>Write-cheap, read-costly.</strong> A key is rewritten only a handful of times.
+            But overlapping files at a level mean a lookup may open several. Cassandra's historical
+            default, still apt for write-heavy work.
           </div>
         </div>
         <div className="fig-soft">
@@ -50,8 +49,8 @@ export default function Compact() {
           </div>
           <div style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--ink-2)' }}>
             <strong>Read-cheap, write-costly.</strong> Each level adds at most one file to a lookup,
-            so read-amp is bounded by the level count, but a key may be rewritten 20× or more as it
-            sinks. The LevelDB / RocksDB default.
+            so read-amp is bounded by the level count. The catch: a key may be rewritten 20× or more
+            as it sinks. The LevelDB / RocksDB default.
           </div>
         </div>
       </div>

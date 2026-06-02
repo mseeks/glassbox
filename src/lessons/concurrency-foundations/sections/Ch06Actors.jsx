@@ -4,14 +4,14 @@ import { Code } from '../components/Code.jsx';
 export function Ch06Actors() {
   return (
     <section className="section">
-      <div className="section-num">06.01 — share by communicating</div>
+      <div className="section-num">06.01 · share by communicating</div>
       <h2 className="section-title">
         A different shape <em>entirely</em>.
       </h2>
       <p className="prose">
         Everything we've covered so far assumes the same fundamental model: threads share memory,
         and synchronization controls who reads or writes when. The actor model walks away from that
-        premise. Actors — independent units of execution — own private state. The only way they
+        premise. Actors, independent units of execution, own private state. The only way they
         communicate is by sending each other messages.
       </p>
 

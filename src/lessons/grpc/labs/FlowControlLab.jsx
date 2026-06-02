@@ -152,13 +152,13 @@ export default function FlowControlLab() {
       </div>
 
       <p style={{ fontSize: 14, color: 'var(--ink-dim)', margin: '16px 0 0' }}>
-        The receiver advertises how much it can take — the{' '}
+        The receiver advertises how much it can take: the{' '}
         <em style={{ color: 'var(--cyan)', fontStyle: 'normal' }}>window</em>. When a slow consumer
         lets it fill, the sender <b style={{ color: 'var(--coral)' }}>pauses</b> at the protocol
         level. Slowness propagates
         <b> backward</b>, sender to receiver, automatically. That's{' '}
-        <em style={{ color: 'var(--cyan)', fontStyle: 'normal' }}>backpressure</em> — and it's why a
-        gRPC stream won't let a firehose drown a struggling reader.
+        <em style={{ color: 'var(--cyan)', fontStyle: 'normal' }}>backpressure</em>. It's why a gRPC
+        stream won't let a firehose drown a struggling reader.
       </p>
     </div>
   );

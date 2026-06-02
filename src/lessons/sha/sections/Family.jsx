@@ -16,16 +16,17 @@ export default function Family() {
           lede={
             <>
               "SHA" is not a single algorithm. It is a lineage spanning thirty years and two
-              unrelated internal designs, and you cannot really understand SHA without meeting both.
+              completely unrelated internal designs that happen to share a name, and you cannot
+              really understand SHA without meeting both of them.
             </>
           }
         />
         <FamilyTimeline />
         <p className="body">
           Everything from here splits along that seam. <span className="kw">SHA-2</span> is an
-          assembly line; <span className="kg">SHA-3</span> is a sponge. We will build each from the
-          ground up, see exactly where SHA-2 carries an old scar, and watch SHA-3 sidestep it by
-          construction.
+          assembly line. <span className="kg">SHA-3</span> is a sponge. We will build each one from
+          the ground up, look closely at the exact spot where SHA-2 still carries an old scar, then
+          watch SHA-3 sidestep that same wound entirely by construction.
         </p>
       </div>
       <Rule />

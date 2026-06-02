@@ -7,7 +7,7 @@ export function Coda() {
       title: 'Most hard bugs live at sharing boundaries',
       body: (
         <React.Fragment>
-          Race conditions, deadlocks, livelocks, lost updates, torn reads — they all get easier to
+          Race conditions, deadlocks, livelocks, lost updates, torn reads. They all get easier to
           create when more than one thread of execution touches the same state without a clear
           discipline for who touches when. Actors reduce that surface area; they do not remove the
           need for design.
@@ -30,10 +30,10 @@ export function Coda() {
       title: 'happens-before is the foundation',
       body: (
         <React.Fragment>
-          The guarantees you rely on — that the mutex actually protects what it protects, that the
-          channel actually delivers what it sent, that the actor actually sees the message — bottom
-          out at <em>happens-before</em> edges in the memory model. Those arrows are where
-          visibility becomes something you can reason about instead of something you hope for.
+          The guarantees you rely on (that the mutex actually protects what it protects, that the
+          channel actually delivers what it sent, that the actor actually sees the message) bottom
+          out at <em>happens-before</em> edges in the memory model. The arrows decide. They are
+          where visibility becomes something you can reason about instead of something you hope for.
         </React.Fragment>
       ),
     },
@@ -46,10 +46,10 @@ export function Coda() {
         What you can now <em>see</em>.
       </h2>
       <p className="prose">
-        Concurrency is hard because programs that share state can be observed in inconsistent ways.
-        Every primitive in this lesson — mutexes, atomics, channels, async tasks, actors, and memory
-        orderings — is a way of saying which observations are allowed, which are forbidden, and who
-        gets to decide.
+        Concurrency is hard for one reason. Programs that share state can be observed in
+        inconsistent ways. Every primitive in this lesson is a way of saying which observations are
+        allowed, which are forbidden, and who gets to decide. Mutexes, atomics, channels, async
+        tasks, actors, memory orderings: each one draws that line somewhere.
       </p>
 
       <div className="closing-grid">
@@ -66,8 +66,8 @@ export function Coda() {
         Concurrency is not a sub-discipline of programming so much as a precise vocabulary for
         talking about what programs <em>actually do</em>, as opposed to what they look like they're
         doing. Most production code mercifully never needs to descend into the depths you've now
-        visited. But when an "impossible" bug surfaces, you'll recognize the terrain immediately,
-        and you'll know which floor of the building it lives on.
+        visited. But the depths are real. When an "impossible" bug surfaces, you'll recognize the
+        terrain immediately, and you'll know which floor of the building it lives on.
       </p>
 
       <div className="pull-quote" style={{ borderLeftColor: 'var(--cyan)', maxWidth: '38rem' }}>

@@ -12,8 +12,9 @@ export default function BPlusTrees() {
         <p className="bt-p">
           Real databases ship a twist: the <strong>B+ tree</strong>. Keep all the actual data in the
           leaves, leaving the internal nodes as pure signposts, then thread the leaves together in a
-          linked list. Now a range scan stops climbing the tree &mdash; you locate the leaf where
-          the range begins, then simply walk the chain to the end of the range.
+          linked list. Now a range scan stops climbing the tree: you locate the leaf where the range
+          begins, then simply walk the chain along the linked leaves all the way to the end of the
+          range. One descent, then a walk.
         </p>
       </Reveal>
       <RangeLab />

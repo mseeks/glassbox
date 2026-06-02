@@ -19,11 +19,11 @@ export function SectionSeven() {
           budget runs out; the filter returns a refusal.
         </P>
         <P>
-          The behavior is, properly understood, a virtue. A filter that quietly degrades — that
-          admits items and stores them imperfectly — gives the application no warning. A filter that{' '}
-          <em>refuses</em> announces the breach: build a larger one. The failure is loud, legible,
-          and recoverable. Nothing is silently dropped. Nothing is admitted that the filter cannot
-          honor.
+          The behavior is, properly understood, a virtue. A filter that quietly degrades, admitting
+          items and storing them imperfectly, gives the application no warning. A filter that{' '}
+          <em>refuses</em> announces the breach: build a larger one. The failure is loud and
+          legible, and it is recoverable. Nothing is silently dropped. Nothing is admitted that the
+          filter cannot honor.
         </P>
       </PageBlock>
 

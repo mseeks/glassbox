@@ -12,21 +12,21 @@ export default function Chapter01() {
       </p>
       <p>
         The exact way is obvious and brutal. Keep a set, add everything, report its size. For a
-        billion distinct items that is gigabytes of memory — and you rarely want just one such
-        count. You want thousands at once: per page, per hour, per campaign, per shard, each one its
-        own growing set. The exact approach scales with the data, and the data does not stop.
+        billion distinct items that is gigabytes of memory, and you rarely want just one such count.
+        You want thousands at once: per page, per hour, per campaign, per shard, each one its own
+        growing set. The exact approach scales with the data. The data does not stop.
       </p>
       <p>
         So we relax the question.{' '}
         <strong>
           Can I estimate the distinct count in tiny, fixed memory, accepting a small bounded error?
         </strong>{' '}
-        The meter below shows the stakes — the exact set on top, the estimator beneath it.
+        The meter below shows the stakes. The exact set sits on top, the estimator beneath it.
       </p>
       <HookLab />
       <p>
-        That flat cyan bar is the whole promise: roughly a billion distinct items, estimated to
-        within about one percent, in around twelve kilobytes — a budget fixed before the first item
+        That flat cyan bar is the whole promise. Roughly a billion distinct items, estimated to
+        within about one percent, in around twelve kilobytes: a budget fixed before the first item
         arrives. The rest of this is one idea, made progressively less terrible.
       </p>
     </Chapter>

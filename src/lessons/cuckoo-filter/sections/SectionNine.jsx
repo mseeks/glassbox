@@ -21,13 +21,13 @@ export function SectionNine() {
       year: '2017',
       name: 'Adaptive cuckoo',
       who: 'Mitzenmacher, Pontarelli & Reviriego',
-      body: 'When a false positive is discovered (the application asked the truth-store), rotate the offending fingerprint so future queries miss it. The error rate, in practice, drops below the theoretical bound.',
+      body: 'When a false positive is discovered (the application asked the truth-store), rotate the offending fingerprint so future queries miss it. In practice the error rate then drops below the theoretical bound. Adaptation pays.',
     },
     {
       year: '2019',
       name: 'Vacuum filter',
       who: 'Wang et al.',
-      body: 'A different residence rule that admits higher loads — over ninety-five percent — and supports dynamic resizing without rebuilding from scratch.',
+      body: 'A different residence rule that admits higher loads, over ninety-five percent, and supports dynamic resizing without rebuilding from scratch.',
     },
   ];
 
@@ -56,9 +56,9 @@ export function SectionNine() {
 
       <PageBlock>
         <P size="lead">
-          The cuckoo filter as described — fingerprints, four-slot buckets, XOR pact, kick budget —
-          was published by Fan, Andersen, Kaminsky and Mitzenmacher in 2014. The decade since has
-          added refinements, mostly in trade-offs already in the structure.
+          The cuckoo filter as described, with fingerprints, four-slot buckets, the XOR pact, and a
+          kick budget, was published by Fan, Andersen, Kaminsky and Mitzenmacher in 2014. The decade
+          since has added refinements, mostly in trade-offs already in the structure.
         </P>
       </PageBlock>
 

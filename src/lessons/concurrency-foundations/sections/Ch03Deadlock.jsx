@@ -4,16 +4,16 @@ import { DiningPhilosophersDiagram } from '../components/DiningPhilosophersDiagr
 export function Ch03Deadlock() {
   return (
     <section className="section">
-      <div className="section-num">03.01 — the cycle</div>
+      <div className="section-num">03.01 · the cycle</div>
       <h2 className="section-title">
         <em>Deadlock</em>: a cycle of waiting.
       </h2>
       <p className="prose">
         Two threads. Two locks. Each thread holds one lock and is waiting on the other. Neither will
-        ever proceed. This is deadlock — not a crash, not an error, just permanent silence.
+        ever proceed. This is deadlock: not a crash, not an error, just permanent silence.
       </p>
 
-      <Code label="the simplest deadlock — two threads, two locks">
+      <Code label="the simplest deadlock: two threads, two locks">
         <span className="cmt">// Thread 1 Thread 2</span>
         {'\n'}
         lockA.<span className="fn">lock</span>(); <span className="cmt">{'   //'}</span> lockB.

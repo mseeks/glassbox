@@ -54,7 +54,7 @@ export function SectionTwo() {
           </span>
         </div>
         <p style={{ marginTop: 14 }}>
-          Not &ldquo;eventual,&rdquo; not &ldquo;serializable&rdquo; — <em>linearizable</em>. The
+          Not &ldquo;eventual,&rdquo; not &ldquo;serializable.&rdquo; <em>Linearizable.</em> The
           simplest way to think about it: the system behaves <em>as if</em>
           there were only a single copy of the data and a single, fast queue of operations against
           it. Every operation appears to take effect atomically at some instant between the moment a
@@ -126,7 +126,7 @@ export function SectionTwo() {
         <AvailabilityMicro />
         <div className="figure-caption">
           <strong>Fig. 2.2</strong> Available: the node answers, full stop. Unavailable: it hangs,
-          errors, or refuses — by any means.
+          errors, or refuses, by any means.
         </div>
       </div>
 

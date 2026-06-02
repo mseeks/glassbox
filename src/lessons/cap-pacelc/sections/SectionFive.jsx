@@ -4,7 +4,7 @@ import { PartitionLab } from '../labs/PartitionLab.jsx';
 export function SectionFive() {
   return (
     <section className="section" id="s5">
-      <SectionLabel num="5" label="The Real Choice — CP or AP" />
+      <SectionLabel num="5" label="The Real Choice: CP or AP" />
       <h2 className="h-section">
         Two systems, one event, <em>two</em> answers.
       </h2>
@@ -17,7 +17,7 @@ export function SectionFive() {
       </p>
 
       <p>
-        The <em>CP cluster</em> is shaped like <strong>Raft</strong> — a popular consensus algorithm
+        The <em>CP cluster</em> is shaped like <strong>Raft</strong>, a popular consensus algorithm
         that elects a leader and replicates a log of operations to a majority before each commit.
         That &ldquo;majority&rdquo; is called a <strong>quorum</strong>: a strict-majority vote that
         guarantees any two committed states overlap on at least one node, so the cluster cannot
@@ -28,7 +28,7 @@ export function SectionFive() {
       </p>
 
       <p>
-        The <em>AP cluster</em> is shaped like <strong>Dynamo</strong> — Amazon&rsquo;s 2007 design
+        The <em>AP cluster</em> is shaped like <strong>Dynamo</strong>, Amazon&rsquo;s 2007 design
         (the basis for DynamoDB and Cassandra), which has no leader and lets every node accept
         writes locally, gossiping them to peers in the background. When the network splits, both
         sides keep serving requests, but they diverge. After the heal, conflict resolution kicks in:

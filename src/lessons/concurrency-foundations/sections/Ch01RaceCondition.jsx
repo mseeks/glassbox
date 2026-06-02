@@ -3,7 +3,7 @@ import { Code } from '../components/Code.jsx';
 export function Ch01RaceCondition() {
   return (
     <section className="section">
-      <div className="section-num">01.02 — the bug taxonomy</div>
+      <div className="section-num">01.02 · the bug taxonomy</div>
       <h2 className="section-title">
         Race conditions vs <em>data races</em>.
       </h2>
@@ -61,16 +61,16 @@ export function Ch01RaceCondition() {
 
       <p className="prose">
         Two threads can both load <code>0</code>, both pass the <code>if</code>, and both store
-        their initial values — overwriting each other. Atomic operations prevent the data race; they
-        don't prevent the <em>race condition</em>, because the synchronization didn't span the right
-        boundary. The check and the store needed to be one atomic operation (a compare-and-swap),
-        not two.
+        their initial values, overwriting each other. Atomic operations prevent the data race. The{' '}
+        <em>race condition</em> survives, because the synchronization didn't span the right
+        boundary. The check and the store needed to be one atomic operation, a compare-and-swap. Not
+        two.
       </p>
 
       <p className="prose">
         Most of this lesson is about giving you the vocabulary and the primitives to make those
-        boundary decisions correctly. The rest of it is about why the boundaries exist in the first
-        place — which is what the memory-ordering section gets to.
+        boundary decisions correctly. The rest is about why the boundaries exist at all. The
+        memory-ordering section gets there.
       </p>
     </section>
   );

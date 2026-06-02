@@ -130,7 +130,7 @@ export default function BoreholeLab() {
                   color: 'var(--ink-faint)',
                 }}
               >
-                bedrock — no data
+                bedrock · no data
               </div>
             )}
           </div>
@@ -214,7 +214,7 @@ export default function BoreholeLab() {
                     color: drill.answer == null ? 'var(--ink-3)' : 'var(--writ)',
                   }}
                 >
-                  {drill.empty ? '—' : drill.answer == null ? 'not found' : drill.answer}
+                  {drill.empty ? '–' : drill.answer == null ? 'not found' : drill.answer}
                 </div>
                 <div
                   className="serif"
@@ -228,8 +228,8 @@ export default function BoreholeLab() {
                   {drill.empty
                     ? 'nothing here'
                     : drill.answer == null
-                      ? 'top layer is a tombstone — the value below is shadowed, not gone'
-                      : 'stopped at the newest layer — never looked deeper'}
+                      ? 'top layer is a tombstone; the value below is shadowed, not gone'
+                      : 'stopped at the newest layer, never looked deeper'}
                 </div>
               </div>
             )}
@@ -241,7 +241,7 @@ export default function BoreholeLab() {
           className="serif"
           style={{ fontStyle: 'italic', fontSize: 14.5, color: 'var(--ink-2)' }}
         >
-          Write a few times and the value never moves — a new layer simply lands on top. A read
+          Write a few times and the value never moves. A new layer simply lands on top. A read
           drills from the surface and stops at the <em>first</em> layer it meets, so the newest
           write always wins. Delete, then read: the old value is still physically there, just buried
           under a layer that says <em>nothing</em>.

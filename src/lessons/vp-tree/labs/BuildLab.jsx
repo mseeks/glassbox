@@ -104,11 +104,12 @@ export default function BuildLab() {
       </div>
 
       <div className="vp-caption">
-        Each <span style={{ color: C.amber }}>amber landmark</span> is a <em>vantage point</em>; its
+        Each <span style={{ color: C.amber }}>amber landmark</span> is a <em>vantage point</em>. Its
         <span style={{ color: C.ping }}> aqua ring</span> sits at the <em>median</em> range to
-        everything it organises — so exactly half the contacts fall inside, half outside. Recurse on
-        each half with a fresh vantage point. Median splits keep the tree balanced: {FIELD.length}{' '}
-        contacts, ~{maxD} levels deep.
+        everything it organises, which is what forces exactly half the contacts inside the ring and
+        the other half outside it. Recurse on each half with a fresh vantage point. The split is
+        always even. Median splits keep the tree balanced: {FIELD.length} contacts, ~{maxD} levels
+        deep.
       </div>
     </div>
   );

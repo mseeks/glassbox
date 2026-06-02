@@ -19,7 +19,7 @@ export function Ch02TheConstruction() {
       </p>
       <p>
         The certainty on the "no" side is structural. When <em>x</em> was inserted, those{' '}
-        <code>k</code> bits got set to one and we never clear them — so if you ever query <em>x</em>{' '}
+        <code>k</code> bits got set to one, and we never clear them. So if you ever query <em>x</em>{' '}
         later, those same bits will still be set. False negatives are physically impossible.
       </p>
       <p>

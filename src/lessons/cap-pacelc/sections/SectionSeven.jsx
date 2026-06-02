@@ -17,9 +17,10 @@ export function SectionSeven() {
 
       <p>
         The missing half was named by Daniel Abadi in 2010. <strong>PACELC</strong>: if Partition, A
-        or C — the CAP question. <em>Else</em>, Latency or Consistency — the everyday question. The
-        ELC half is the part that actually shapes the user experience most of the time, because most
-        of the time the wire is fine and the only thing you&rsquo;re trading is round-trips.
+        or C. That is the CAP question. <em>Else</em>, Latency or Consistency. That is the everyday
+        question, and the ELC half is the part that actually shapes the user experience most of the
+        time, because most of the time the wire is fine and the only thing you&rsquo;re trading is
+        round-trips.
       </p>
 
       <p>

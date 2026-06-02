@@ -11,8 +11,8 @@ export function SectionFour() {
 
       <p className="lede">
         The popular slogan suggests a triangle where you can stand at any corner. You cannot. The
-        corner labeled <em>CA</em> — a system with consistency and availability but no partition
-        tolerance — describes only one kind of thing: a single-machine system, where partitions are
+        corner labeled <em>CA</em>, a system with consistency and availability but no partition
+        tolerance, describes only one kind of thing: a single-machine system, where partitions are
         impossible because there is no <em>between</em> to break.
       </p>
 

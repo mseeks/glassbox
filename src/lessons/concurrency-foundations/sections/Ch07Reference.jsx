@@ -35,7 +35,7 @@ function GuidanceLine({ icon, title, body }) {
 export function Ch07Reference() {
   return (
     <section className="section">
-      <div className="section-num">07.06 — the orderings</div>
+      <div className="section-num">07.06 · the orderings</div>
       <h2 className="section-title">
         Three flavors of <em>guarantee</em>.
       </h2>
@@ -104,8 +104,7 @@ export function Ch07Reference() {
       </h3>
       <p className="prose" style={{ marginBottom: '1.25rem' }}>
         Within one thread, source order gives you happens-before for free. Across threads, every
-        cross-thread guarantee comes from one of these primitives — anything else is a hopeful
-        guess.
+        cross-thread guarantee comes from one of these primitives. Anything else is a hopeful guess.
       </p>
 
       <div className="hb-grid">
@@ -190,7 +189,7 @@ export function Ch07Reference() {
 
       <p className="prose">
         Memory models are a rabbit hole that production code rarely needs to descend into. The
-        framework here — store buffers, reordering, happens-before — is enough to recognize when
+        framework here (store buffers, reordering, happens-before) is enough to recognize when
         you've wandered into the territory and to know what tools exist when you do.
       </p>
     </section>

@@ -29,7 +29,7 @@ export default function WireEncoder() {
     () => jsonForAccount({ owner, balanceCents: bal, currency, hasCurrency }),
     [owner, bal, currency, hasCurrency],
   );
-  const ratio = pbLen ? (json.bytes / pbLen).toFixed(1) : '—';
+  const ratio = pbLen ? (json.bytes / pbLen).toFixed(1) : '–';
 
   return (
     <div className="gx-panel pad" style={{ marginTop: 22 }}>
@@ -148,7 +148,8 @@ export default function WireEncoder() {
           {ratio}×
         </span>
         <span style={{ fontSize: 13, color: 'var(--ink-dim)' }}>
-          smaller on the wire — and no text to parse on arrival.
+          smaller on the wire. And on the receiving end there is not one byte of text left to parse,
+          just numbers the decoder already knows how to read.
         </span>
       </div>
       <p
@@ -176,9 +177,9 @@ export default function WireEncoder() {
         <code className="gx-kw" style={{ color: 'var(--ink)' }}>
           currency
         </code>
-        . Only their numbers survive. Rename them in your{' '}
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.86em' }}>.proto</span> and these
-        bytes don't change by one bit.
+        . Only their numbers survive. Not the names. Rename every one of them in your{' '}
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.86em' }}>.proto</span> and not a
+        single one of these bytes changes.
       </p>
     </div>
   );

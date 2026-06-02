@@ -28,10 +28,10 @@ export default function Cartridge() {
     <div className="lab">
       <div className="lab-tag">Lab · fit the game</div>
       <p className="lab-note">
-        A 1980s game shipped on a cartridge holding just <strong>40 KB</strong>. That had to cover
-        everything: code, levels, music, and every frame of animation. Here a game needs one more
-        thing: an <em className="term">enemy</em>. Watch what happens when you turn off the one
-        trick that made it fit.
+        A 1980s game shipped on a cartridge holding just <strong>40 KB</strong>. Everything fit on
+        that one chip: the game code, the level maps, the music, and every last frame of animation.
+        Now this game needs one more thing. It needs an <em className="term">enemy</em>. Watch what
+        happens when you turn off the single trick that made the whole thing fit in the first place.
       </p>
 
       {/* two figures */}
@@ -205,15 +205,15 @@ export default function Cartridge() {
             {fits ? (
               'used'
             ) : (
-              <span style={{ color: 'var(--danger)' }}>— over by {fmtBytes(total - CART)}</span>
+              <span style={{ color: 'var(--danger)' }}>, over by {fmtBytes(total - CART)}</span>
             )}
           </div>
           <div style={{ fontSize: 13.5, color: 'var(--dim)', marginTop: 2 }}>
             {reuse ? (
               <>
-                The guard is the hero's frames,{' '}
-                <strong style={{ color: 'var(--steel)' }}>read backwards</strong>. Same pixels,
-                almost no extra memory. The game fits.
+                The guard is just the hero's own frames,{' '}
+                <strong style={{ color: 'var(--steel)' }}>read backwards</strong>. Same pixels
+                reused, so it costs almost no extra memory whatsoever. The game fits.
               </>
             ) : (
               <>

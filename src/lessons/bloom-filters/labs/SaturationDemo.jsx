@@ -235,8 +235,8 @@ export function SaturationDemo() {
         </div>
       </div>
       <div className="bf-body-italic bf-mark-muted mt-2 mb-5" style={{ fontSize: '0.92rem' }}>
-        A tiny filter sized for about a dozen elements. Press play and watch what happens when you
-        keep inserting past its capacity.
+        A tiny filter sized for about a dozen elements. Press play, then keep inserting well past
+        that capacity and watch the false positive rate climb. It only gets worse.
       </div>
 
       <div

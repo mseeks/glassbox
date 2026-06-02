@@ -12,15 +12,15 @@ export default function Search() {
         <p className="bt-p">
           To search, load the root page, binary-search <span className="bt-em">within</span> that
           fat node to pick the right gap, follow the pointer, fetch the next page, and repeat. Each
-          fetch eliminates not half the remaining keys but <strong>255 out of every 256</strong>{' '}
-          &mdash; the same precious seek, extracting hundreds of times more decisive information.
+          fetch eliminates not half the remaining keys but <strong>255 out of every 256</strong>:
+          the same precious seek, extracting hundreds of times more decisive information.
         </p>
       </Reveal>
       <SearchLab />
       <Callout title="The asymmetry that drives everything">
-        A fetch is precious, so make each one count. It&rsquo;s the same move as packing every probe
-        into one CPU cache line, just one level up the memory hierarchy &mdash; disk page instead of
-        cache line.
+        A fetch is precious. Make each one count. It&rsquo;s the same move as packing every probe
+        into one CPU cache line, just one level up the memory hierarchy: disk page instead of cache
+        line.
       </Callout>
     </Section>
   );

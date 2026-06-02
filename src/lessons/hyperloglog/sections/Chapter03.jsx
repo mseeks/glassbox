@@ -11,8 +11,8 @@ export default function Chapter03() {
       </p>
       <p>
         Hashing has an <strong>avalanche</strong> property: flip one bit of the input and about half
-        the output bits flip, unpredictably. The output looks statistically like fair coin-flips —
-        which is exactly the randomness the oracle needs. No adversary is involved here, only data,
+        the output bits flip, unpredictably. The output looks statistically like fair coin-flips.
+        That is exactly the randomness the oracle needs. No adversary is involved here, only data,
         so a fast non-cryptographic hash like MurmurHash is the right tool; there is no need to pay
         for cryptographic strength.
       </p>
@@ -20,13 +20,14 @@ export default function Chapter03() {
         And one property falls out for free.{' '}
         <strong>The same item always hashes to the same bits.</strong> Seeing a visitor a thousand
         times produces the identical run a thousand times, and a repeat can never raise the maximum.
-        The item's identity collapses entirely into its hash — so the structure counts distinct
+        The item's identity collapses entirely into its hash. So the structure counts distinct
         things without ever storing, or even noticing, the duplicates.
       </p>
       <HashLab />
       <p>
-        Type a word twice on the bench: identical bits, no movement. That is deduplication achieved
-        by arithmetic rather than bookkeeping.
+        Type a word twice on the bench and watch the bits land in exactly the same place, run
+        unchanged, the maximum untouched. No movement. That is deduplication achieved by arithmetic
+        rather than bookkeeping.
       </p>
     </Chapter>
   );

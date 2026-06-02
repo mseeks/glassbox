@@ -416,8 +416,8 @@ export function FullClusterSim() {
           className="swim-mono"
           style={{ fontSize: 11, color: 'var(--ink-dim)', lineHeight: 1.6 }}
         >
-          Click any green node to simulate it crashing. A dashed red ring appears immediately —
-          that's the ground truth. The cluster doesn't know yet. Watch the probes find it: amber for
+          Click any green node to simulate it crashing. A dashed red ring appears immediately.
+          That's the ground truth. The cluster doesn't know yet. Watch the probes find it: amber for
           suspect, red for confirmed dead. Click again to revive it; it rejoins with a bumped
           incarnation.
         </div>

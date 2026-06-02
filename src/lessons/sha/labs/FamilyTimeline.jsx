@@ -40,8 +40,8 @@ export default function FamilyTimeline() {
       foot={
         <>
           The crucial thing: <span className="kw">SHA-2</span> and <span className="kg">SHA-3</span>{' '}
-          are not two versions of one idea. They share a name and a standards body. Internally they
-          are strangers — and that is deliberate.
+          are not two versions of one idea. They share a name and a standards body. Internally?
+          Strangers, and deliberately so.
         </>
       }
     >

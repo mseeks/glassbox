@@ -129,8 +129,8 @@ export default function CoinLab() {
           </div>
           <div className="cap" style={{ textAlign: 'left' }}>
             The rarest run is a fingerprint of how many tries happened. A run of {maxRun} appears
-            about once per {fmt(estimate)} draws — so seeing one whispers “about {fmt(estimate)}{' '}
-            distinct items.”
+            about once per {fmt(estimate)} draws, so seeing one whispers "about {fmt(estimate)}{' '}
+            distinct items."
           </div>
         </div>
 
@@ -156,8 +156,9 @@ export default function CoinLab() {
             <canvas ref={scRef} data-aspect={0.34} />
           </div>
           <div className="cap">
-            The cloud is enormous and quantised. A single coin-run is the right idea with hopeless
-            precision — which is the whole reason for everything that follows.
+            The cloud is enormous and quantised. A single coin-run is the right idea carried out
+            with hopeless precision, and that is the whole reason for everything that follows. Watch
+            it scatter.
           </div>
         </div>
       </div>

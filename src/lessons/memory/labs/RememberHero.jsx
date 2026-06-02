@@ -12,7 +12,7 @@ const MEDIA = [
     title: 'His name',
     kind: 'text',
     b: 4,
-    blurb: 'Four letters of text. Words are almost weightless, about a byte each.',
+    blurb: 'Four letters of text. Words weigh almost nothing. About a byte each.',
   },
   {
     key: 'pic',
@@ -20,7 +20,8 @@ const MEDIA = [
     title: 'A picture',
     kind: 'sprite',
     b: HERO_PX,
-    blurb: 'A small bitmap, one byte per coloured dot. A single picture already dwarfs a word.',
+    blurb:
+      'A small bitmap, holding one byte for every single coloured dot on screen. One picture dwarfs a word.',
   },
   {
     key: 'anim',
@@ -28,7 +29,8 @@ const MEDIA = [
     title: 'Animated',
     kind: 'frames',
     b: 20 * HERO_PX,
-    blurb: 'About twenty frames of him moving. Animation is just many pictures, shown in a row.',
+    blurb:
+      'About twenty frames of him moving. Animation is nothing more than many separate pictures, played one after another in a row.',
   },
   {
     key: 'video',
@@ -36,7 +38,7 @@ const MEDIA = [
     title: 'A video clip',
     kind: 'film',
     b: 30 * MB,
-    blurb: 'A few seconds of real video. Thirty full pictures, every single second.',
+    blurb: 'A few seconds of real video. That is thirty full pictures, every single second.',
   },
   {
     key: 'ai',
@@ -45,7 +47,7 @@ const MEDIA = [
     kind: 'cloud',
     b: 4 * GB,
     blurb:
-      'A model that can dream up brand-new pictures of him. Billions of numbers, all held at once.',
+      'A model that can dream up brand-new pictures of him out of nothing, and it takes billions of numbers all held in memory at once.',
   },
 ];
 const WHI = Math.log10(8 * GB);
@@ -165,8 +167,7 @@ export default function RememberHero() {
       <div className="lab-tag">Lab · the cost of memory</div>
       <p className="lab-note">
         Here is the same hero from the cartridge, <em className="term">remembered</em> five
-        different ways. Step through them and watch what each richer version costs to keep in
-        memory.
+        different ways. Step through them. Watch what each richer version costs to keep in memory.
       </p>
       <div
         style={{

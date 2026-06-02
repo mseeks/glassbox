@@ -1,14 +1,14 @@
 export function Ch03Starvation() {
   return (
     <section className="section">
-      <div className="section-num">03.03 — the forgotten thread</div>
+      <div className="section-num">03.03 · the forgotten thread</div>
       <h2 className="section-title">
         <em>Starvation</em>: never your turn.
       </h2>
       <p className="prose">
         Starvation is the third member of the liveness family, and the subtlest. A thread is
         starving if it's eligible to run but the scheduler keeps choosing other threads. Nothing is
-        broken — the program is making progress — but a particular thread is making none.
+        broken. The program is making progress. One particular thread is making none.
       </p>
       <p className="prose">
         Two common causes: <strong>unfair locks</strong> (a lock that always wakes the

@@ -95,7 +95,7 @@ export const SectionThree = () => {
       span: 16,
       color: 'signal',
       explain:
-        'A 16-bit identifier (0–65535) saying which sending application this datagram came from. The kernel multiplexes many programs over one IP address using ports. Optional in IPv4 (can be zero) — required in IPv6.',
+        'A 16-bit identifier (0–65535) saying which sending application this datagram came from. The kernel multiplexes many programs over one IP address using ports. Optional in IPv4 (can be zero), required in IPv6.',
       note: 'Picked by the kernel for outbound traffic, usually from the "ephemeral" range (32768–60999 on Linux).',
     },
     {
@@ -119,7 +119,7 @@ export const SectionThree = () => {
       span: 16,
       color: 'signal',
       explain:
-        'The total length in bytes of the datagram — header (8) plus the payload. Minimum 8 (empty payload). Maximum theoretical 65,535, but in practice far lower due to MTU constraints, which we cover later.',
+        'The total length in bytes of the datagram: header (8) plus the payload. Minimum 8 (empty payload). Maximum theoretical 65,535, but in practice far lower due to MTU constraints, which we cover later.',
       note: "Redundant with IP's length field, kept for historical reasons. Most implementations ignore minor mismatches.",
     },
     {
@@ -127,11 +127,11 @@ export const SectionThree = () => {
       name: 'Checksum',
       bytes: '6–7',
       hex: '0xab12',
-      example: '—',
+      example: '–',
       span: 16,
       color: 'signal',
       explain:
-        'A 16-bit ones-complement sum over the pseudo-header (source IP, dest IP, protocol, length) plus the UDP header and payload. Detects bit-flips in transit. If zero in IPv4, it means "no checksum used" — that\'s legal but rare in practice. In IPv6 the checksum is mandatory.',
+        'A 16-bit ones-complement sum over the pseudo-header (source IP, dest IP, protocol, length) plus the UDP header and payload. Detects bit-flips in transit. If zero in IPv4, it means "no checksum used." That\'s legal but rare in practice. In IPv6 the checksum is mandatory.',
       note: 'Detects corruption, NOT loss. The whole datagram has to actually arrive before this matters.',
     },
   ];
@@ -158,9 +158,9 @@ export const SectionThree = () => {
           title="Eight bytes. The whole specification."
           lede={
             <>
-              UDP is defined by <strong>RFC 768</strong>, which is famously the shortest protocol
-              RFC ever written — three pages. The header is four 16-bit fields. That's the entire
-              wire format. Tap each field to see what it does.
+              UDP is defined by <strong>RFC 768</strong>, famously the shortest protocol RFC ever
+              written. Three pages. The header is four 16-bit fields. That's the entire wire format.
+              Tap each field to see what it does.
             </>
           }
         />
@@ -184,7 +184,7 @@ export const SectionThree = () => {
               gap: 10,
             }}
           >
-            <Label>Fig. 4 — The UDP header (RFC 768)</Label>
+            <Label>Fig. 4: The UDP header (RFC 768)</Label>
             <div className="udp-mono" style={{ fontSize: 11, color: 'var(--ink-faint)' }}>
               ┌─ 32 bits wide ─┐
             </div>
@@ -257,7 +257,7 @@ export const SectionThree = () => {
               letterSpacing: '0.08em',
             }}
           >
-            Payload — variable length, 0 to ~65,507 bytes (in practice, far smaller)
+            Payload: variable length, 0 to ~65,507 bytes (in practice, far smaller)
           </div>
 
           {/* Hint on mobile */}

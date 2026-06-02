@@ -21,7 +21,7 @@ const lessonMeta = [
     accent: '#9ab8e8',
     accentSoft: 'rgba(154, 184, 232, 0.14)',
     displayFont: "'Fraunces', Georgia, serif",
-    eyebrow: 'FOUNDATIONS · I — VII',
+    eyebrow: 'FOUNDATIONS · I–VII',
     subtitle: 'From threads to memory models.',
     pitch:
       'Concurrent programs are not hard because there is more code. They are hard because more than one thing can observe the same state at the same time.',
@@ -37,7 +37,7 @@ const lessonMeta = [
     eyebrow: 'A · C · I · D',
     subtitle: 'Four letters, four guarantees.',
     pitch:
-      'The contract every database makes with the applications that trust it — as a coordinate system you can think inside of, not an acronym you memorize.',
+      'The contract every database makes with the applications that trust it. Think inside it. It is a coordinate system, not an acronym you memorize.',
     glyph: 'acid',
   },
   {
@@ -63,7 +63,7 @@ const lessonMeta = [
     eyebrow: 'DAS · GUPTA · MOTIVALA · 2002',
     subtitle: 'Who is still here?',
     pitch:
-      'A protocol for asking that question across a thousand machines — without anyone polling, anyone in charge, or anyone left out.',
+      'A protocol for asking that question across a thousand machines. No one polls. No one is in charge. No one is left out.',
     glyph: 'cluster',
   },
   {
@@ -102,7 +102,7 @@ const lessonMeta = [
     eyebrow: 'DISTRIBUTED CAUSALITY',
     subtitle: 'Did A happen before B?',
     pitch:
-      'A constant-size structure for telling time across machines that may never agree on it — fixed bits, probabilistic answers, distributed causality.',
+      'A constant-size structure for telling time across machines that may never agree on it. Fixed bits, probabilistic answers, distributed causality.',
     glyph: 'bloom-clock',
   },
   {
@@ -115,7 +115,7 @@ const lessonMeta = [
     eyebrow: 'FAN ET AL. · 2014',
     subtitle: 'Is this one in the set?',
     pitch:
-      'A small structure that answers membership with a handful of bits per entry — and, unusually for its kind, knows how to forget.',
+      'A small structure that answers membership with a handful of bits per entry. Unusually for its kind, it knows how to forget.',
     glyph: 'fingerprints',
   },
   {
@@ -128,7 +128,7 @@ const lessonMeta = [
     eyebrow: "O'NEIL ET AL. · 1996",
     subtitle: 'Time becomes depth.',
     pitch:
-      'A storage engine that never erases and never overwrites — it only lays a newer layer on top. To read, you drill down and take the first thing you hit.',
+      'A storage engine that never erases. It never overwrites. It only lays a newer layer on top, and to read you drill down and take the first thing you hit.',
     glyph: 'strata',
   },
   {
@@ -154,7 +154,7 @@ const lessonMeta = [
     eyebrow: 'RALPH C. MERKLE · 1979',
     subtitle: 'One fingerprint for an entire dataset.',
     pitch:
-      'One small fingerprint that vouches for an entire dataset — and a receipt, the size of a whisper, that proves any single piece belongs.',
+      'One small fingerprint vouches for an entire dataset, and a receipt the size of a whisper proves that any single piece belongs.',
     glyph: 'merkle',
   },
   {
@@ -167,7 +167,7 @@ const lessonMeta = [
     eyebrow: 'NIST · FIPS 180',
     subtitle: 'Easy to compute. Impossible to reverse.',
     pitch:
-      'A function that swallows anything and stamps out a short, fixed fingerprint. Change one letter and the entire fingerprint shatters.',
+      'A function that swallows anything and stamps out a short, fixed fingerprint. Change one letter. The entire fingerprint shatters.',
     glyph: 'digest',
   },
   {
@@ -193,7 +193,7 @@ const lessonMeta = [
     eyebrow: 'GOOGLE · 2015',
     subtitle: 'Make the network disappear.',
     pitch:
-      'Call a function that lives on another machine — and feel nothing. A typed contract and a binary wire keep the promise; the places it refuses to hide the network are the lesson.',
+      'Call a function that lives on another machine and feel nothing. A typed contract and a binary wire keep the promise; the places it refuses to hide the network are the lesson.',
     glyph: 'grpc',
   },
   {
@@ -206,7 +206,7 @@ const lessonMeta = [
     eyebrow: 'BAYER & McCREIGHT · 1970',
     subtitle: 'Why a billion keys stay three levels deep.',
     pitch:
-      'A century before databases, librarians built one out of oak and index cards — a tree that stays perfectly balanced through a billion filings by growing only at its root.',
+      'A century before databases, librarians built one out of oak and index cards. It is a tree that stays perfectly balanced through a billion filings by growing only at its root.',
     glyph: 'btree',
   },
   {
@@ -219,7 +219,7 @@ const lessonMeta = [
     eyebrow: 'FLAJOLET · FUSY · GANDON · MEUNIER · 2007',
     subtitle: 'How many distinct, in twelve kilobytes?',
     pitch:
-      'Count the distinct things in a torrent of billions using the memory of a single photograph — an instrument that infers a multitude from the rarest flicker it ever sees.',
+      'Count the distinct things in a torrent of billions using the memory of a single photograph. It is an instrument that infers a multitude from the rarest flicker it ever sees.',
     glyph: 'hyperloglog',
   },
   {
@@ -232,7 +232,7 @@ const lessonMeta = [
     eyebrow: 'PETER YIANILOS · 1993',
     subtitle: 'Find the closest thing using only distance.',
     pitch:
-      'Find the nearest of thousands without checking them all — file the world by distance, then let one geometric rule throw whole regions away unmeasured.',
+      'Find the nearest of thousands without checking them all. File the world by distance. Then one geometric rule throws whole regions away, unmeasured.',
     glyph: 'vptree',
   },
   {

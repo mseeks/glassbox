@@ -17,24 +17,24 @@ export function Ch01ConcurrencyVsParallelism() {
 
   return (
     <section className="section">
-      <div className="section-num">01.01 — terms of art</div>
+      <div className="section-num">01.01 · terms of art</div>
       <h2 className="section-title">
         Concurrency is not <em>parallelism</em>.
       </h2>
       <p className="prose">
-        These two words get used as synonyms in casual conversation, but they refer to genuinely
-        different things. The distinction matters every time you reason about correctness and every
-        time you reason about performance.
+        Casual conversation treats these two words as synonyms. They are not. They refer to
+        genuinely different things, and the distinction matters every time you reason about
+        correctness and every time you reason about performance.
       </p>
       <p className="prose">
-        <strong>Concurrency</strong> is a property of <em>structure</em>: a program is concurrent if
+        <strong>Concurrency</strong> is a property of <em>structure</em>. A program is concurrent if
         it's organized as multiple independent computations that <em>could</em> interleave in any
-        order. It says nothing about how many cores are involved.
+        order. Core count is beside the point.
       </p>
       <p className="prose">
-        <strong>Parallelism</strong> is a property of <em>execution</em>: two computations are
-        parallel if they're happening at the same instant, on different hardware. It says nothing
-        about how the program was organized.
+        <strong>Parallelism</strong> is a property of <em>execution</em>. Two computations are
+        parallel if they're happening at the same instant, on different hardware. How the program
+        was organized is a separate question entirely.
       </p>
 
       <div className="cvp-card">
@@ -112,7 +112,7 @@ export function Ch01ConcurrencyVsParallelism() {
       <div className="pull-quote">
         Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of
         things at once.
-        <div className="pull-quote-attr">— Rob Pike</div>
+        <div className="pull-quote-attr">Rob Pike</div>
       </div>
 
       <p className="prose">

@@ -12,16 +12,18 @@ export default function Radix() {
       <Reveal as="p" className="lead">
         If a stretch of track has no branches and no stations along it, there are no decisions to
         make while traversing it. So why store it as many separate steps? Glue each such run into a
-        single segment labelled with the whole substring. This is the <strong>radix trie</strong>{' '}
-        (also called PATRICIA), and it's the standard first move toward a trie you'd actually ship.
+        single segment, one edge labelled with the whole substring it stands in for, and you have a
+        compressed map that loses nothing. This is the <strong>radix trie</strong> (also called
+        PATRICIA). It's the standard first move toward a trie you'd actually ship.
       </Reveal>
       <Reveal>
         <CompressLab />
       </Reveal>
       <Reveal as="p">
         Same words, same paths, same answers. There are just fewer nodes to allocate and fewer
-        pointers to chase. The structure now spends nodes only where something genuinely{' '}
-        <em>branches</em>, which is the only place a node was ever earning its keep.
+        pointers to chase. The structure now spends a node only where the path genuinely{' '}
+        <em>branches</em>, and a branch point is the one and only place a node was ever earning its
+        keep.
       </Reveal>
     </section>
   );

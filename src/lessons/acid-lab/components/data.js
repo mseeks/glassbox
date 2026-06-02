@@ -83,7 +83,7 @@ export const SCENARIOS = [
         txn: 'T1',
         type: 'begin',
         prose:
-          'T₁ opens its session. Its workspace is private — any writes it makes will be invisible to others until it commits.',
+          'T₁ opens its session. Its workspace is private. Any writes it makes will be invisible to others until it commits.',
       },
       {
         txn: 'T2',
@@ -97,21 +97,21 @@ export const SCENARIOS = [
         key: 'X',
         expr: '500',
         prose:
-          "T₁ writes X = 500. This write is **pending** — held in T₁'s private workspace, not yet sealed into the official database. Think of it as a sealed letter T₁ has written but not yet sent.",
+          "T₁ writes X = 500. This write is **pending**, held in T₁'s private workspace, not yet sealed into the official database. Think of it as a sealed letter T₁ has written but not yet sent.",
       },
       {
         txn: 'T2',
         type: 'read',
         key: 'X',
         prose:
-          'T₂ reads X. What it sees depends entirely on the level. Watch carefully — this is the moment that defines a dirty read.',
+          'T₂ reads X. What it sees depends entirely on the level. Watch carefully. This is the moment that defines a dirty read.',
         proseByLevel: {
           read_uncommitted:
-            "T₂ reads X. At Read Uncommitted, the database is willing to peek inside T₁'s private workspace and hand its pending value to T₂. T₂ sees X = 500 — a value that does not officially exist.",
+            "T₂ reads X. At Read Uncommitted, the database is willing to peek inside T₁'s private workspace and hand its pending value to T₂. T₂ sees X = 500. That value does not officially exist.",
           read_committed:
             "T₂ reads X. At Read Committed, the database refuses to leak T₁'s pending write. T₂ sees X = 100, the last committed value. The dirty read is impossible here.",
           repeatable_read:
-            'T₂ reads X. At Repeatable Read, T₂ sees only committed values — and from now on, this read is pinned. X = 100.',
+            'T₂ reads X. At Repeatable Read, T₂ sees only committed values, and from now on, this read is pinned. X = 100.',
           snapshot:
             'T₂ reads X. T₂ took a snapshot at BEGIN; that snapshot says X = 100. The pending write is a non-event.',
           serializable:
@@ -130,7 +130,7 @@ export const SCENARIOS = [
         txn: 'T2',
         type: 'commit',
         prose:
-          'T₂ commits. Its writes — including Y — are now sealed into the database, permanent and visible to everyone.',
+          'T₂ commits. Its writes, including Y, are now sealed into the database, permanent and visible to everyone.',
       },
       {
         txn: 'T1',
@@ -149,8 +149,8 @@ export const SCENARIOS = [
       note: 'Y = 1000 is now permanent. It records twice an X = 500 that the database itself disowns. A permanent record of unreality.',
     },
     closing: {
-      bad: "This is the dirty read in its full ugliness: T₂'s committed work depends on a value the database itself rejected. Not a transient inconsistency — a permanent record of a reality that never was. This is why almost every database forbids dirty reads by default.",
-      good: "At this level, T₁'s pending write was hidden from T₂. T₂ read X = 100, computed Y = 200, and committed cleanly. When T₁ aborted, none of T₂'s work was poisoned. The dirty read cannot occur here — that's the promise.",
+      bad: "This is the dirty read in its full ugliness: T₂'s committed work depends on a value the database itself rejected. Not a transient inconsistency. A permanent record of a reality that never was. This is why almost every database forbids dirty reads by default.",
+      good: "At this level, T₁'s pending write was hidden from T₂. T₂ read X = 100, computed Y = 200, and committed cleanly. When T₁ aborted, none of T₂'s work was poisoned. The dirty read cannot occur here. That's the promise.",
     },
   },
   {
@@ -158,7 +158,7 @@ export const SCENARIOS = [
     title: 'The Non-Repeatable Read',
     subtitle: 'Same row, different answers, same transaction',
     intro:
-      "A subtler trouble than the dirty read. Here T₁ reads a row, then later — still inside the same transaction — reads the same row again. Should it get the same value? At lower levels, no: the database is allowed to let another transaction's commit slip in between the two reads. T₁ ends up with two different beliefs about a single piece of data.",
+      "A subtler trouble than the dirty read. Here T₁ reads a row, then later, still inside the same transaction, reads the same row again. Should it get the same value? At lower levels, no: the database is allowed to let another transaction's commit slip in between the two reads. T₁ ends up with two different beliefs about a single piece of data.",
     invariant: 'A transaction reading the same row twice should see the same value.',
     initial: { X: 100 },
     keys: ['X'],
@@ -197,7 +197,7 @@ export const SCENARIOS = [
           read_uncommitted:
             "T₁ reads X. At RU, the database simply returns the latest committed value: 200. T₁'s two reads disagree.",
           read_committed:
-            "T₁ reads X. At RC, the database returns the latest committed value: 200. T₁'s two reads disagree — within a single transaction.",
+            "T₁ reads X. At RC, the database returns the latest committed value: 200. T₁'s two reads disagree, within a single transaction.",
           repeatable_read:
             "T₁ reads X. At Repeatable Read, T₁'s first read is *pinned*. The database returns the same value it returned before: 100.",
           snapshot:
@@ -227,7 +227,7 @@ export const SCENARIOS = [
     title: 'Read Skew',
     subtitle: 'A reality stitched from mismatched moments',
     intro:
-      "A bank account is split between savings and checking. The total must always be exactly 200 — that's the rule. Money moves between the two halves all day, but always in pairs that preserve the total. T₁ is auditing the account: it will read savings, then later read checking, and verify the sum. In between, T₂ will atomically rebalance the two halves. Will T₁'s two reads still tell a coherent story? (This shape also underlies the famous *phantom read*: rows appearing in a range query that did not appear before. Phantom is read skew applied to set membership.)",
+      "A bank account is split between savings and checking. The total must always be exactly 200. That's the rule. Money moves between the two halves all day, but always in pairs that preserve the total. T₁ is auditing the account: it will read savings, then later read checking, and verify the sum. In between, T₂ will atomically rebalance the two halves. Will T₁'s two reads still tell a coherent story? (This shape also underlies the famous *phantom read*: rows appearing in a range query that did not appear before. Phantom is read skew applied to set membership.)",
     invariant: 'X + Y = 200 at all times.',
     initial: { X: 100, Y: 100 },
     keys: ['X', 'Y'],
@@ -242,7 +242,7 @@ export const SCENARIOS = [
         type: 'read',
         key: 'X',
         prose:
-          'T₁ reads X. It sees 100 — the current committed value. The invariant still holds: X + Y = 100 + 100 = 200.',
+          'T₁ reads X. It sees 100, the current committed value. The invariant still holds: X + Y = 100 + 100 = 200.',
       },
       { txn: 'T2', type: 'begin', prose: 'T₂ begins, intending to rebalance.' },
       { txn: 'T2', type: 'write', key: 'X', expr: '40', prose: 'T₂ writes X = 40. Pending.' },
@@ -257,7 +257,7 @@ export const SCENARIOS = [
         txn: 'T2',
         type: 'commit',
         prose:
-          'T₂ commits. Both writes land atomically. The database now holds X = 40, Y = 160 — still summing to 200.',
+          'T₂ commits. Both writes land atomically. The database now holds X = 40, Y = 160, still summing to 200.',
       },
       {
         txn: 'T1',
@@ -266,11 +266,11 @@ export const SCENARIOS = [
         prose: 'T₁ now reads Y. What value will it pair with the X = 100 it read earlier?',
         proseByLevel: {
           read_uncommitted:
-            "T₁ reads Y from the latest committed: 160. T₁'s view is now X = 100, Y = 160. Their sum is 260 — an impossible state.",
+            "T₁ reads Y from the latest committed: 160. T₁'s view is now X = 100, Y = 160. Their sum is 260: an impossible state.",
           read_committed:
             "T₁ reads Y from the latest committed: 160. T₁'s view is now X = 100, Y = 160. Sum: 260. The invariant appears violated, even though the database itself never held that state.",
           repeatable_read:
-            'T₁ reads Y. RR pins individual rows it has already read, but Y was never read before — so this returns the latest committed Y = 160. T₁ sees X = 100, Y = 160. The invariant appears broken, because RR does not snapshot the whole database.',
+            'T₁ reads Y. RR pins individual rows it has already read, but Y was never read before, so this returns the latest committed Y = 160. T₁ sees X = 100, Y = 160. The invariant appears broken, because RR does not snapshot the whole database.',
           snapshot:
             'T₁ reads Y. The snapshot says Y = 100 (this is what Y was when T₁ began). T₁ sees X = 100, Y = 100. Sum: 200. The invariant holds.',
           serializable:
@@ -286,10 +286,10 @@ export const SCENARIOS = [
     anomalyOnRead: {
       stepIdx: 6,
       atLevels: ['read_uncommitted', 'read_committed', 'repeatable_read'],
-      note: "T₁ has now stitched together a state that never existed in reality — X from before T₂'s update, Y from after.",
+      note: "T₁ has now stitched together a state that never existed in reality: X from before T₂'s update, Y from after.",
     },
     closing: {
-      bad: 'T₁ saw an impossible composite: an X from one moment, a Y from another. No real database state ever looked like this. Repeatable Read does not save us here — it only pins individual rows. To prevent read skew you need the *whole database* frozen, which is exactly what Snapshot Isolation provides.',
+      bad: 'T₁ saw an impossible composite: an X from one moment, a Y from another. No real database state ever looked like this. Repeatable Read does not save us here. It only pins individual rows. To prevent read skew you need the *whole database* frozen, which is exactly what Snapshot Isolation provides.',
       good: "T₁'s reads came from a single, coherent moment in the database's life. Even though T₂'s commit slipped past in real time, T₁'s view stayed loyal to the snapshot it took at BEGIN. No impossible state was ever observed.",
     },
   },
@@ -298,7 +298,7 @@ export const SCENARIOS = [
     title: 'Lost Update',
     subtitle: 'Two increments, one survivor',
     intro:
-      'A page-view counter sits at 5. Two requests arrive at almost the same instant — both want to increment it. Each one does the same simple thing: read the current value, add one, write the result back. If the database ran them one after the other, the counter would end at 7. But they will run concurrently. Whether the database notices is the entire question.',
+      'A page-view counter sits at 5. Two requests arrive at almost the same instant. Both want to increment it. Each one does the same simple thing: read the current value, add one, write the result back. If the database ran them one after the other, the counter would end at 7. But they will run concurrently. Whether the database notices is the entire question.',
     invariant:
       'Every committed write must be observed by subsequent transactions; no increment may silently disappear.',
     initial: { counter: 5 },
@@ -337,13 +337,13 @@ export const SCENARIOS = [
           'T₂ attempts to commit. The question is whether the database notices what just happened.',
         proseByLevel: {
           read_uncommitted:
-            "T₂ commits. No conflict detection at this level. The database simply records counter = 6 again. T₁'s increment has been overwritten — silently lost.",
+            "T₂ commits. No conflict detection at this level. The database simply records counter = 6 again. T₁'s increment has been overwritten, silently lost.",
           read_committed:
             "T₂ commits. No conflict detection. counter = 6 again. T₁'s increment is lost.",
           repeatable_read:
             "T₂ commits. ANSI RR does not require write-write conflict detection. T₁'s increment is lost.",
           snapshot:
-            "T₂ attempts to commit. Snapshot Isolation now checks: did anyone commit a write to counter after T₂'s snapshot? Yes — T₁ did. The first-committer-wins rule fires. T₂ is **aborted**.",
+            "T₂ attempts to commit. Snapshot Isolation now checks: did anyone commit a write to counter after T₂'s snapshot? Yes. T₁ did. The first-committer-wins rule fires. T₂ is **aborted**.",
           serializable:
             'T₂ attempts to commit. The same write-write conflict is detected. T₂ is **aborted** to preserve serializability.',
         },
@@ -355,7 +355,7 @@ export const SCENARIOS = [
     },
     closing: {
       bad: 'Both transactions thought they had successfully incremented the counter. Both committed without error. But one of their increments was silently overwritten. The database has 6 where it should have 7. This is the canonical lost update.',
-      good: "Snapshot Isolation noticed that T₂ was about to overwrite a key that another concurrent transaction had already committed. Rather than allow the lost update, it refused T₂'s commit. The application will see a serialization error and must retry — at which point T₂ will read counter = 6 and correctly commit 7.",
+      good: "Snapshot Isolation noticed that T₂ was about to overwrite a key that another concurrent transaction had already committed. Rather than allow the lost update, it refused T₂'s commit. The application will see a serialization error and must retry. On the retry, T₂ will read counter = 6 and correctly commit 7.",
     },
   },
   {
@@ -363,7 +363,7 @@ export const SCENARIOS = [
     title: 'Write Skew',
     subtitle: 'The hospital where everyone clocked out',
     intro:
-      'Two doctors, Alice and Bob, are both on call. Hospital policy: at least one doctor must always be on call. Two transactions arrive simultaneously — Alice wants to clock out, Bob wants to clock out. Each one reads the schedule, sees that *two* doctors are on call, and concludes its individual change is safe. The trap is that they will write to **different rows**, so the database sees no direct conflict between their writes.',
+      'Two doctors, Alice and Bob, are both on call. Hospital policy: at least one doctor must always be on call. Two transactions arrive simultaneously. Alice wants to clock out, Bob wants to clock out. Each one reads the schedule, sees that *two* doctors are on call, and concludes its individual change is safe. The trap is that they will write to **different rows**, so the database sees no direct conflict between their writes.',
     invariant: 'At least one doctor must be on call at all times (alice_oncall + bob_oncall ≥ 1).',
     initial: { alice_oncall: 1, bob_oncall: 1 },
     keys: ['alice_oncall', 'bob_oncall'],
@@ -398,7 +398,7 @@ export const SCENARIOS = [
         key: 'bob_oncall',
         expr: '0',
         prose:
-          "T₂ writes bob_oncall = 0. Pending. T₂ is writing to a *different row* — Bob's. The two transactions touch entirely separate keys.",
+          "T₂ writes bob_oncall = 0. Pending. T₂ is writing to a *different row*, Bob's. The two transactions touch entirely separate keys.",
       },
       {
         txn: 'T1',
@@ -419,17 +419,17 @@ export const SCENARIOS = [
           snapshot:
             'T₂ attempts to commit. Snapshot Isolation looks for **write-write** conflicts: did anyone commit a write to *the same key* T₂ wrote? T₁ wrote alice_oncall; T₂ wrote bob_oncall. Different keys, no conflict. T₂ commits. Both doctors are now off call. SI cannot catch this.',
           serializable:
-            'T₂ attempts to commit. Serializable Snapshot Isolation goes further: it tracks *read-write dependencies*. T₁ read bob_oncall and wrote alice_oncall. T₂ read alice_oncall and wrote bob_oncall. That is a dangerous cycle — there is no serial order in which both could have committed safely. SSI **aborts T₂**.',
+            'T₂ attempts to commit. Serializable Snapshot Isolation goes further: it tracks *read-write dependencies*. T₁ read bob_oncall and wrote alice_oncall. T₂ read alice_oncall and wrote bob_oncall. That is a dangerous cycle. There is no serial order in which both could have committed safely. SSI **aborts T₂**.',
         },
       },
     ],
     anomalyAtEnd: {
       atLevels: ['read_uncommitted', 'read_committed', 'repeatable_read', 'snapshot'],
-      note: 'Both transactions committed. Both doctors are off call. The invariant is broken — even though every individual transaction independently verified it before writing.',
+      note: 'Both transactions committed. Both doctors are off call. The invariant is broken, even though every individual transaction independently verified it before writing.',
     },
     closing: {
-      bad: 'Each transaction was, on its own, completely correct. Each verified the invariant. Each made a small change. Yet the *combined* effect violates the rule no individual write violated. Snapshot Isolation cannot catch this because there is no write-write conflict — the writes go to different rows. Only Serializable, by tracking *read-write* dependencies, sees the danger.',
-      good: 'Serializable Snapshot Isolation detected that the two transactions formed a read/write dependency cycle: each read what the other was about to modify. Such a schedule is not equivalent to any serial order, so SSI aborted one of them. The application catches the serialization error and retries — and on retry it sees the new world (one doctor already off) and refuses to remove the second.',
+      bad: 'Each transaction was, on its own, completely correct. Each verified the invariant. Each made a small change. Yet the *combined* effect violates the rule no individual write violated. Snapshot Isolation cannot catch this because there is no write-write conflict: the writes go to different rows. Only Serializable, by tracking *read-write* dependencies, sees the danger.',
+      good: 'Serializable Snapshot Isolation detected that the two transactions formed a read/write dependency cycle: each read what the other was about to modify. Such a schedule is not equivalent to any serial order, so SSI aborted one of them. The application catches the serialization error and retries. On retry it sees the new world (one doctor already off) and refuses to remove the second.',
     },
   },
 ];
@@ -558,7 +558,7 @@ export const ATOMICITY_SCENARIOS = [
     title: 'The Successful Commit',
     subtitle: 'Two phases, one promise',
     intro:
-      "A transaction in flight is not yet a transaction in fact. T₁ is going to write two values — A and B — then commit. Watch how the **write-ahead log** becomes the truth before the database does. The log is *durable* (every entry is immediately fsync'd); the database itself is updated in a second, lazier phase.",
+      "A transaction in flight is not yet a transaction in fact. T₁ is going to write two values, A and B, then commit. Watch how the **write-ahead log** becomes the truth before the database does. The log is *durable* (every entry is immediately fsync'd); the database itself is updated in a second, lazier phase.",
     initial: { A: 0, B: 0 },
     timeline: [
       {
@@ -578,7 +578,7 @@ export const ATOMICITY_SCENARIOS = [
         key: 'B',
         expr: '20',
         prose:
-          "T₁ writes B = 20. Same shape: workspace updated, log appended. Two writes are now pending. Crucially, the WAL entries are fsync'd — they will survive any crash.",
+          "T₁ writes B = 20. Same shape: workspace updated, log appended. Two writes are now pending. Crucially, the WAL entries are fsync'd. They will survive any crash.",
       },
       {
         type: 'commit_log',
@@ -588,18 +588,18 @@ export const ATOMICITY_SCENARIOS = [
       {
         type: 'commit_apply',
         prose:
-          "Phase two of commit: the writes from T₁'s workspace are applied to the database itself. This is the part the application has been waiting for — but pedagogically, it's the *less important* phase. The COMMIT marker in the log was the real moment of truth.",
+          "Phase two of commit: the writes from T₁'s workspace are applied to the database itself. This is the part the application has been waiting for. Yet pedagogically, it's the *less important* phase. The COMMIT marker in the log was the real moment of truth.",
       },
     ],
     closing:
-      "The WAL became the source of truth before the database did. As soon as the COMMIT marker was fsync'd, T₁ was officially complete — even though the database hadn't yet been updated. Splitting commit into two phases (log first, apply second) is what makes atomicity survivable across crashes. The next two scenarios show how.",
+      "The WAL became the source of truth before the database did. As soon as the COMMIT marker was fsync'd, T₁ was officially complete, even though the database hadn't yet been updated. Splitting commit into two phases (log first, apply second) is what makes atomicity survivable across crashes. The next two scenarios show how.",
   },
   {
     id: 'crash_before',
     title: 'The Crash Before Commit',
     subtitle: 'How the database escapes a partial transaction',
     intro:
-      'Sometimes things go wrong. T₁ is in the middle of writing — the WAL has its writes, the workspace holds them — and then the power dies. What happens when the database comes back up? It walks the log, and the absence of one specific marker tells it everything.',
+      'Sometimes things go wrong. T₁ is in the middle of writing. The WAL has its writes, the workspace holds them, and then the power dies. What happens when the database comes back up? It walks the log, and the absence of one specific marker tells it everything.',
     initial: { A: 0, B: 0 },
     timeline: [
       { type: 'begin', prose: 'T₁ begins. BEGIN appended to log.' },
@@ -614,17 +614,17 @@ export const ATOMICITY_SCENARIOS = [
         key: 'B',
         expr: '20',
         prose:
-          'T₁ writes B = 20. Logged. Two writes are now in the WAL — but **no COMMIT marker yet**. The database itself is still untouched.',
+          'T₁ writes B = 20. Logged. Two writes are now in the WAL, but **no COMMIT marker yet**. The database itself is still untouched.',
       },
       {
         type: 'crash',
         prose:
-          "The power dies mid-transaction. T₁'s in-memory workspace evaporates instantly. The WAL on disk and the database on disk both survive — but T₁'s pending writes are now stranded in the log without ever being made official.",
+          "The power dies mid-transaction. T₁'s in-memory workspace evaporates instantly. The WAL on disk and the database on disk both survive. But T₁'s pending writes are now stranded in the log without ever being made official.",
       },
       {
         type: 'recover',
         prose:
-          "The system restarts and runs **recovery**. It walks the WAL from the beginning, looking for transactions. It sees T₁'s BEGIN, two WRITEs, and then… the log ends without a COMMIT. T₁'s verdict: incomplete. Its log entries are **discarded** — they will never become real. The database stays in its original state.",
+          "The system restarts and runs **recovery**. It walks the WAL from the beginning, looking for transactions. It sees T₁'s BEGIN, two WRITEs, and then… the log ends without a COMMIT. T₁'s verdict: incomplete. Its log entries are **discarded**. They will never become real. The database stays in its original state.",
       },
     ],
     closing:
@@ -635,7 +635,7 @@ export const ATOMICITY_SCENARIOS = [
     title: 'The Crash After Commit',
     subtitle: 'Why the log is the truth, not the database',
     intro:
-      "Now the harder case. T₁ has done its work: every write is in the log, the COMMIT marker has been fsync'd, the application has been told the commit succeeded. But the database itself hasn't been updated yet — that's the lazier second phase. Then the power dies. Has T₁ committed or not?",
+      "Now the harder case. T₁ has done its work: every write is in the log, the COMMIT marker has been fsync'd, the application has been told the commit succeeded. But the database itself hasn't been updated yet. That's the lazier second phase. Then the power dies. Has T₁ committed or not?",
     initial: { A: 0, B: 0 },
     timeline: [
       { type: 'begin', prose: 'T₁ begins.' },
@@ -649,16 +649,16 @@ export const ATOMICITY_SCENARIOS = [
       {
         type: 'crash',
         prose:
-          'The power dies — *before phase two could run*. The database on disk is still showing A = 0, B = 0. The application thinks T₁ committed. The database appears not to have it. This is precisely the moment durability would be lost, except for one thing: the COMMIT marker is in the log.',
+          'The power dies, *before phase two could run*. The database on disk is still showing A = 0, B = 0. The application thinks T₁ committed. The database appears not to have it. This is precisely the moment durability would be lost, except for one thing: the COMMIT marker is in the log.',
       },
       {
         type: 'recover',
         prose:
-          "Recovery walks the WAL. It sees T₁'s BEGIN, two WRITEs, and a COMMIT. T₁'s verdict: **committed**. The recovery pass **REDOes** the writes — applies them to the database from the log. The database now reflects T₁ exactly as if the crash had never happened.",
+          "Recovery walks the WAL. It sees T₁'s BEGIN, two WRITEs, and a COMMIT. T₁'s verdict: **committed**. The recovery pass **REDOes** the writes, applying them to the database from the log. The database now reflects T₁ exactly as if the crash had never happened.",
       },
     ],
     closing:
-      'T₁\'s commit was acknowledged before the database was physically updated, and the crash threatened to lose that work. But the WAL had it. Recovery\'s **REDO** pass replayed the committed writes into the database. To the application, the crash is invisible. *This is why we say "the WAL is the source of truth" — the database is just a derived view of what the log says happened.*',
+      'T₁\'s commit was acknowledged before the database was physically updated, and the crash threatened to lose that work. But the WAL had it. Recovery\'s **REDO** pass replayed the committed writes into the database. To the application, the crash is invisible. *This is why we say "the WAL is the source of truth": the database is just a derived view of what the log says happened.*',
   },
 ];
 export const SYNTHESIS_PHASES = [
@@ -703,7 +703,7 @@ export const SYNTHESIS_PHASES = [
     detail: 'The writes are applied to the database itself.',
     activeProps: ['A'],
     annotations: {
-      A: 'Workspace writes are applied to the database. This phase is lazy — it can be deferred — because the WAL already holds the truth.',
+      A: 'Workspace writes are applied to the database. This phase is lazy, it can be deferred, because the WAL already holds the truth.',
     },
   },
   {

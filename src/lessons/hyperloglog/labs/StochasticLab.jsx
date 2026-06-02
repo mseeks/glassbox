@@ -122,17 +122,17 @@ export default function StochasticLab() {
 
       <div className="readgrid" style={{ gridTemplateColumns: '1fr 1fr 1fr', marginTop: 16 }}>
         <Readout label="Distinct added" value={fmt(count)} tone="iv" />
-        <Readout label="HLL estimate" value={count ? fmt(E) : '—'} tone="cy" />
+        <Readout label="HLL estimate" value={count ? fmt(E) : '–'} tone="cy" />
         <Readout
           label="Error"
-          value={count ? (err >= 0 ? '+' : '') + err.toFixed(1) + '%' : '—'}
+          value={count ? (err >= 0 ? '+' : '') + err.toFixed(1) + '%' : '–'}
           tone={Math.abs(err) > 8 ? 'mg' : 'br'}
         />
       </div>
       <div className="cap">
         Each register runs its own coin-oracle on its own slice of the stream. Slide{' '}
-        <b style={{ color: 'var(--cyan)' }}>p</b> up: more registers, more independent estimates
-        averaged together, a tighter answer — paid for in linear memory, nothing more.
+        <b style={{ color: 'var(--cyan)' }}>p</b> up and you get more registers: more independent
+        estimates averaged together, a tighter answer. The cost? Linear memory, nothing more.
       </div>
     </Panel>
   );

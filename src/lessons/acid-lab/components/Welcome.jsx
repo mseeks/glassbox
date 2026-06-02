@@ -61,8 +61,9 @@ export function Welcome() {
           marginInline: 'auto',
         }}
       >
-        Four letters, four guarantees — the contract every database makes with the applications that
-        trust it. <em style={{ color: '#e8dec8', fontStyle: 'italic' }}>Atomicity</em>,{' '}
+        Four letters. Four guarantees. Together they are the contract every database makes with the
+        applications that trust it, and each one carries real weight.{' '}
+        <em style={{ color: '#e8dec8', fontStyle: 'italic' }}>Atomicity</em>,{' '}
         <em style={{ color: '#e8dec8', fontStyle: 'italic' }}>Consistency</em>,{' '}
         <em style={{ color: '#e8dec8', fontStyle: 'italic' }}>Isolation</em>,{' '}
         <em style={{ color: '#e8dec8', fontStyle: 'italic' }}>Durability</em>: each addresses a
@@ -79,9 +80,9 @@ export function Welcome() {
         }}
       >
         Isolation and Atomicity get the long treatment; Consistency and Durability the short one.
-        The deepest machinery is in the first two — but each of the four rewards an honest look. By
-        the end, ACID should feel less like a memorized acronym and more like a coordinate system
-        you can think inside of.
+        The deepest machinery is in the first two. Each one still rewards an honest look. By the
+        end, ACID should feel less like a memorized acronym and more like a coordinate system you
+        can think inside of. Read on.
       </p>
     </section>
   );
