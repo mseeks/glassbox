@@ -164,7 +164,7 @@ survivors uncommitted for you to review. See `agents/README.md` for per-loop det
 `loop:content-accuracy` is the exception to that shape: the **deep-honesty pass**.
 It is read-only, per-lesson, and fanned out **in parallel** (one `opus` +
 `effort:"max"` agent per lesson) to check that each lesson's prose, engine logic,
-labs, animations, and visuals are *correct for the topic* and faithful to its
+labs, animations, and visuals are _correct for the topic_ and faithful to its
 canonical source. There is no `vitest` outside reference for truth, so it only ever
 **maps** (cite-or-omit, with a bucket for honest-vs-misleading pedagogical
 simplification); the human fixes what they agree with. It is the heaviest loop, and
