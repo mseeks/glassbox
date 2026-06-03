@@ -6,6 +6,7 @@ import {
   indexPage,
   pages,
 } from './lesson-catalog.js';
+import Nav from './shared/Nav.jsx';
 import './shared/tokens.css';
 import './shared/utilities.css';
 
@@ -13,11 +14,6 @@ import './shared/utilities.css';
 // rather than the shared entry bundle, which the index page would otherwise
 // dominate. It renders inside the same <Suspense> as the lazy lessons.
 const IndexPage = lazy(() => import('./index-page/IndexPage.jsx'));
-
-const navLabelFor = (page) => {
-  if (page.id === indexPage.id) return 'Index';
-  return page.label;
-};
 
 export default function App() {
   const [activePageId, setActivePageId] = useState(getPageIdFromUrl);
@@ -72,64 +68,7 @@ export default function App() {
 
   return (
     <div className="lesson-shell" style={{ minHeight: '100vh', background: 'var(--paper)' }}>
-      <nav
-        aria-label="Lesson navigation"
-        style={{
-          position: 'sticky',
-          top: 0,
-          zIndex: 10000,
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: 8,
-          padding: '10px 12px',
-          background: 'rgba(10, 10, 15, 0.94)',
-          borderBottom: '1px solid rgba(232, 222, 200, 0.12)',
-          backdropFilter: 'blur(10px)',
-        }}
-      >
-        {pages.map((page) => {
-          const isActive = page.id === activePage.id;
-          const accent = getLessonById(page.id)?.accent;
-
-          return (
-            <button
-              key={page.id}
-              aria-current={isActive ? 'page' : undefined}
-              type="button"
-              onClick={() => selectPage(page.id)}
-              style={{
-                color: isActive ? 'var(--paper)' : 'var(--ink)',
-                background: isActive ? accent || 'var(--ink)' : 'var(--rule-soft)',
-                border: `1px solid ${isActive ? accent || 'var(--ink)' : 'var(--rule)'}`,
-                borderRadius: 999,
-                cursor: 'pointer',
-                fontFamily: 'var(--font-mono)',
-                fontSize: 12,
-                fontWeight: 500,
-                letterSpacing: '0.04em',
-                padding: '7px 14px',
-                textDecoration: 'none',
-              }}
-            >
-              {navLabelFor(page)}
-            </button>
-          );
-        })}
-        {activeAccent && (
-          <span
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              bottom: -1,
-              height: 1,
-              background: `linear-gradient(90deg, transparent, ${activeAccent}, transparent)`,
-              opacity: 0.7,
-            }}
-          />
-        )}
-      </nav>
+      <Nav activePage={activePage} onSelect={selectPage} />
       <main
         ref={mainRef}
         tabIndex={-1}

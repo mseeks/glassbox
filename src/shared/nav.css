@@ -1,0 +1,138 @@
+/* Lesson navigation. Desktop-first: a sticky wrapping pill bar. On narrow
+   viewports the 19 pills would wrap into five or six rows and swallow the
+   screen, so below 768px the bar collapses to a single compact row (hamburger
+   + current lesson) that toggles a scrollable dropdown of every lesson. */
+
+.lesson-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  background: rgba(10, 10, 15, 0.94);
+  border-bottom: 1px solid rgba(232, 222, 200, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+/* The compact mobile bar is hidden on desktop, where the pill list is inline. */
+.lesson-nav__bar {
+  display: none;
+}
+
+.lesson-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: relative;
+}
+
+.lesson-nav__link {
+  box-sizing: border-box;
+  color: var(--ink);
+  background: var(--rule-soft);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 7px 14px;
+  white-space: nowrap;
+}
+
+.lesson-nav__link[aria-current='page'] {
+  color: var(--paper);
+  background: var(--accent, var(--ink));
+  border-color: var(--accent, var(--ink));
+}
+
+/* Accent gradient hairline under the active pill bar (desktop only). */
+.lesson-nav__underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  opacity: 0.7;
+}
+
+@media (max-width: 767px) {
+  .lesson-nav__bar {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px 12px;
+  }
+
+  .lesson-nav__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    background: var(--rule-soft);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    color: var(--ink);
+    cursor: pointer;
+    padding: 8px 12px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+
+  .lesson-nav__toggle svg {
+    flex: none;
+  }
+
+  .lesson-nav__current {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .lesson-nav__dot {
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--accent, var(--ink));
+  }
+
+  .lesson-nav__current-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* The pill list becomes a dropdown panel beneath the bar. */
+  .lesson-nav__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    padding: 8px 12px 14px;
+    border-top: 1px solid var(--rule);
+    max-height: calc(100dvh - 52px);
+    overflow-y: auto;
+  }
+
+  .lesson-nav__list[data-open='false'] {
+    display: none;
+  }
+
+  .lesson-nav__link {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .lesson-nav__underline {
+    display: none;
+  }
+}
