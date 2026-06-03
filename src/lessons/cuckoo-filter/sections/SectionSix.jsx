@@ -58,9 +58,9 @@ export function SectionSix() {
         <P>
           Storage is the other number that matters. At load <em>α</em> (the fraction of slots in
           use), the filter spends about <em>f / α</em> bits per item. Eight-bit fingerprints at
-          ninety-five-percent load: about nine bits per entry, with a three-percent false-positive
-          rate. Twelve-bit fingerprints at the same load: thirteen bits, with an error of one part
-          in five hundred.
+          ninety-five-percent load: about eight and a half bits per entry, with a three-percent
+          false-positive rate. Twelve-bit fingerprints at the same load: thirteen bits, with an
+          error of one part in five hundred.
         </P>
       </PageBlock>
 

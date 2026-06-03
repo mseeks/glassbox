@@ -341,7 +341,7 @@ export const SCENARIOS = [
           read_committed:
             "T₂ commits. No conflict detection. counter = 6 again. T₁'s increment is lost.",
           repeatable_read:
-            "T₂ commits. ANSI RR does not require write-write conflict detection. T₁'s increment is lost.",
+            "T₂ commits. Generic MVCC Repeatable Read (MySQL/InnoDB) does no write-write conflict detection, so counter = 6 again and T₁'s increment is lost. ANSI/locking RR and Postgres's snapshot RR would both have caught it — at this level it depends on the engine.",
           snapshot:
             "T₂ attempts to commit. Snapshot Isolation now checks: did anyone commit a write to counter after T₂'s snapshot? Yes. T₁ did. The first-committer-wins rule fires. T₂ is **aborted**.",
           serializable:
@@ -483,7 +483,7 @@ export const MATRIX = [
     levels: {
       read_uncommitted: 0,
       read_committed: 0,
-      repeatable_read: 0,
+      repeatable_read: 0.5,
       snapshot: 1,
       serializable: 1,
     },

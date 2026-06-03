@@ -66,8 +66,9 @@ reproduce a bespoke look pixel-for-pixel while still sharing the component.
 
 ## Adoption
 
-The four newest lessons (b-trees, hyperloglog, vp-tree, tls) and gRPC adopt the
-kit where it is **pixel-identical** to their hand-built widgets (verified by the
-local `tests/e2e/visual.spec.js` diff). The thirteen older lessons keep their
-bespoke components by design. The kit is their incremental adoption path, not a
-forced retrofit. Reach for it first when building a **new** lesson.
+Today **b-trees** is the only lesson that imports the kit — its `Callout`, kept
+**pixel-identical** to the hand-built widget it replaced. The other seventeen
+lessons keep their bespoke components by design. The kit is their incremental
+adoption path, not a forced retrofit: reach for it first when building a **new**
+lesson, and migrate an existing widget only where the kit is pixel-identical to
+it.

@@ -18,10 +18,11 @@ export function Ch04Pipeline() {
 
       <p className="prose">
         Pipelines compose beautifully with fan-out: any one stage can be a parallel pool, with
-        channels in front and behind acting as load balancer and merge. UNIX pipes are a
-        non-concurrent version of the same idea. Concurrent versions are everywhere, from gstreamer
-        to ffmpeg to most ETL frameworks, and Go channels make the pattern almost casually
-        expressible.
+        channels in front and behind acting as load balancer and merge. UNIX pipes are the original
+        incarnation of this idea: each stage is a separate process scheduled concurrently, with the
+        fixed-size kernel pipe as the bounded buffer between them. The same pattern is everywhere,
+        from gstreamer to ffmpeg to most ETL frameworks, and Go channels make it almost casually
+        expressible — just with buffers you size yourself instead of a fixed kernel one.
       </p>
     </section>
   );

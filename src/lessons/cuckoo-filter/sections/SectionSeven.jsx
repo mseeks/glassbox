@@ -31,7 +31,7 @@ export function SectionSeven() {
         label="Fig. 5"
         title="Watch it fill until it will not"
         foot={
-          <>Twenty-four buckets, four slots each. Press auto-fill and observe the chain lengths.</>
+          <>Thirty-two buckets, four slots each. Press auto-fill and observe the chain lengths.</>
         }
       >
         <CliffLab />

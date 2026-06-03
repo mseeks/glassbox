@@ -28,11 +28,13 @@ export function SectionEight() {
 
       <p>
         The most populated quadrants are <strong>PC/EC</strong> (consistent always: Spanner, etcd,
-        FoundationDB) and <strong>PA/EL</strong> (available always: DynamoDB, Cassandra, Riak). The
-        middle quadrant <strong>PC/EL</strong>, strong when it matters and fast otherwise, is where
-        many practical systems try to live (MongoDB&rsquo;s primary, HBase region servers). The
-        fourth, <strong>PA/EC</strong>, is the &ldquo;have it all&rdquo; pitch and is usually
-        configurable: Cosmos DB exposes five consistency levels and lets the client choose.
+        FoundationDB, and Bigtable-style stores like HBase) and <strong>PA/EL</strong> (available
+        always: DynamoDB, Cassandra, Riak). The middle quadrant <strong>PC/EL</strong>, strong when
+        it matters and fast otherwise, is the textbook home of Yahoo&rsquo;s PNUTS: it trades
+        consistency for latency in normal operation, yet stays consistent under partition by making
+        unreachable records unavailable. The fourth, <strong>PA/EC</strong>, is the &ldquo;have it
+        all&rdquo; pitch and is usually configurable: Cosmos DB exposes five consistency levels and
+        lets the client choose.
       </p>
 
       <div style={{ margin: '32px 0 0' }}>

@@ -108,12 +108,12 @@ export function Section09() {
                   color: 'var(--ink-bright)',
                 }}
               >
-                Refutation backoff
+                Time-bounded suspicion
               </h4>
               <p className="swim-prose" style={{ fontSize: 14, marginTop: 12 }}>
-                A heavily-suspected node could spam refutations. Lifeguard introduces a small
-                backoff so a barrage of incoming suspicions produces a single, well-timed alive
-                response rather than a flood.
+                A suspicion is not permanent. As independent members confirm it, Lifeguard shrinks
+                the suspicion timeout logarithmically: the more witnesses pile on, the sooner a
+                truly-dead node is declared dead, while a lone suspicion waits the full timeout.
               </p>
             </div>
             <div className="swim-card">
@@ -134,12 +134,13 @@ export function Section09() {
                   color: 'var(--ink-bright)',
                 }}
               >
-                Multiple witnesses to die
+                A word to the accused
               </h4>
               <p className="swim-prose" style={{ fontSize: 14, marginTop: 12 }}>
-                Confirmation of death requires multiple independent suspect votes, not a single
-                timeout. In noisy environments this trades a few seconds of commitment latency for a
-                meaningful drop in false confirmations.
+                When a node suspects a peer, it sends word straight to the accused instead of
+                waiting for the rumour to reach it through gossip. Told at the earliest possible
+                moment, the suspect can broadcast a higher-incarnation refutation before a false
+                suspicion hardens into death.
               </p>
             </div>
           </div>

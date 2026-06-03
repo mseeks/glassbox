@@ -13,8 +13,8 @@ export function Section04() {
 
         <div className="swim-prose swim-mid" style={{ marginBottom: 40 }}>
           <p className="swim-lede">
-            The original SWIM had only two states. The protocol's most useful refinement, SWIM+S,
-            adds a third in between.
+            The original SWIM had only two states. The protocol's most useful refinement — the paper
+            calls it the Suspicion subprotocol — adds a third in between.
           </p>
           <p>
             In pure SWIM, a probe either succeeds (alive) or fails (dead). Two outcomes, no middle.

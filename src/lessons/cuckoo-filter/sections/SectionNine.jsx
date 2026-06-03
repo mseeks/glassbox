@@ -9,7 +9,7 @@ export function SectionNine() {
       year: '2014',
       name: 'Semi-sorted cuckoo',
       who: 'Fan, Andersen, Kaminsky & Mitzenmacher',
-      body: 'A refinement in the founding paper itself. Within each bucket, sort the fingerprints and store deltas; the saved bits buy about a half-bit per entry. The same idea, in tighter accounting.',
+      body: 'A refinement in the founding paper itself. Within each bucket, sort the fingerprints and store deltas; the saved bits buy about one bit per entry. The same idea, in tighter accounting.',
     },
     {
       year: '2018',

@@ -18,8 +18,8 @@ export function Section05() {
           </p>
           <p>
             Each node has a private, monotonically increasing counter that only it can advance. When
-            it joins, it is at incarnation 1. When it hears itself suspected, it increments to 2 and
-            gossips <code>alive(2)</code>. The cluster's rule is then simple:{' '}
+            it joins, it is at incarnation 0. When it hears itself suspected, it increments to 1 and
+            gossips <code>alive(1)</code>. The cluster's rule is then simple:{' '}
             <em>higher incarnation overrides lower</em>. At equal incarnation, suspect overrides
             alive, and dead overrides both. Dead is absorbing. No message can resurrect a
             confirmed-dead member.

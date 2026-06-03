@@ -104,7 +104,7 @@ export function Hero() {
           }}
         >
           {[
-            ['~9 bits', 'per stored item'],
+            ['~8.4 bits', 'per stored item'],
             ['3%', 'typical false-positive rate'],
             ['2 buckets', 'read per lookup'],
             ['Deletes', 'first-class operation'],

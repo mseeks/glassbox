@@ -5,6 +5,8 @@ test-results/
 playwright-report/
 .DS_Store
 .env*
+# …but commit example templates (no secrets), so the documented `cp .env.example .env` works.
+!.env.example
 
 # Local-only visual-regression safety net (not part of CI; env-specific baselines)
 tests/e2e/visual.spec.js

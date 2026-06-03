@@ -95,7 +95,7 @@ export const SectionThree = () => {
       span: 16,
       color: 'signal',
       explain:
-        'A 16-bit identifier (0–65535) saying which sending application this datagram came from. The kernel multiplexes many programs over one IP address using ports. Optional in IPv4 (can be zero), required in IPv6.',
+        'A 16-bit identifier (0–65535) saying which sending application this datagram came from. The kernel multiplexes many programs over one IP address using ports. Optional in either version (may be zero when no reply is expected).',
       note: 'Picked by the kernel for outbound traffic, usually from the "ephemeral" range (32768–60999 on Linux).',
     },
     {

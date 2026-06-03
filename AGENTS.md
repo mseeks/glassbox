@@ -18,7 +18,8 @@
 - `src/shared/` holds only cross-lesson primitives: `tokens.css` (design
   tokens), `utilities.css` (shell-scoped utility classes + the global
   reduced-motion override, imported once from `App.jsx`),
-  `usePrefersReducedMotion.js`, `reveal.jsx` (`useRevealRoot` / `useReveal` /
+  `usePrefersReducedMotion.js`, `useInViewport.js` (pauses always-on animation
+  loops when scrolled off-screen), `reveal.jsx` (`useRevealRoot` / `useReveal` /
   `<Reveal>`, all reveal-on-scroll), `useScrollSpy.js` (`useScrollSpy` +
   reduced-motion-aware `scrollToId`), `useScrollProgress.js` (0–100 reading-bar
   percent), and `lesson-kit/`, the token-driven structural UI kit (`Callout` /

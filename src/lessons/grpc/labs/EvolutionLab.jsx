@@ -58,7 +58,7 @@ const EVO = {
         </code>{' '}
         (field 2, <b>varint</b>); the new server reads field 2 expecting a <b>string</b> (
         <code className="gx-kw" style={{ color: 'var(--ink)' }}>
-          0x1a
+          0x12
         </code>
         ). Type mismatch: a decode error or garbage, with <b>no warning</b>. Always{' '}
         <code className="gx-kw" style={{ color: 'var(--ink)' }}>

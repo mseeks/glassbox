@@ -143,7 +143,7 @@ export default function CurseLab() {
       </div>
 
       <div className="vp-caption">
-        In one dimension, distances vary wildly (spread ≈ 0.69) and the tree prunes almost
+        In one dimension, distances vary wildly (spread ≈ 0.71) and the tree prunes almost
         everything. Drag toward higher dimensions and watch the histogram collapse into a spike: in
         high-dimensional space, <em>every</em> pair of points is nearly the same distance apart.
         When the spread vanishes, every query straddles every shell. The triangle inequality can no

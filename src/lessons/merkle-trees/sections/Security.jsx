@@ -2,7 +2,7 @@ import { Reveal } from '../../../shared/reveal.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
 import DomainSepLab from '../labs/DomainSepLab.jsx';
 
-// §7 — Why leaves and nodes must hash differently (the Bitcoin CVE-2012-2459 trap).
+// §7 — Why leaves and nodes must hash differently (the second-preimage / domain-separation trap).
 export default function Security() {
   return (
     <section className="mk-section">
@@ -23,8 +23,7 @@ export default function Security() {
           an attacker can take the two children of a real internal node, glue them together into one
           blob, present that blob as a <em>leaf</em>, and watch it hash to the very same digest the
           honest node produced. The verifier is fooled. They cannot tell a forged leaf from a
-          genuine subtree. This is the second-preimage trap behind a real Bitcoin vulnerability
-          (CVE-2012-2459).
+          genuine subtree. This is the second-preimage trap that every Merkle design must close.
         </p>
       </Reveal>
 

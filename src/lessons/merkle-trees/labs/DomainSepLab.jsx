@@ -3,10 +3,10 @@ import { AlertTriangle, ShieldAlert, ShieldCheck } from 'lucide-react';
 import { hashLeaf, hashNode } from '../engine/index.js';
 import Plate from '../components/Plate.jsx';
 
-// The second-preimage trap (Bitcoin CVE-2012-2459): without domain separation,
-// an attacker can present a leaf whose data is the concatenation of two child
-// hashes, and it collides with the real internal node. Toggle to watch the
-// 1-byte tag (0x00 leaves, 0x01 nodes) close the gap.
+// The second-preimage trap (RFC 6962 / Certificate Transparency): without domain
+// separation, an attacker can present a leaf whose data is the concatenation of
+// two child hashes, and it collides with the real internal node. Toggle to watch
+// the 1-byte tag (0x00 leaves, 0x01 nodes) close the gap.
 export default function DomainSepLab() {
   const [sep, setSep] = useState(false);
   const cL = useMemo(() => hashLeaf('left-child', sep), [sep]);

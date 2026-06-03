@@ -9,7 +9,7 @@ export default function Chapter05() {
       <p className="lead">There is one subtlety left, and it is where the "Hyper" comes from.</p>
       <p>
         Average the registers the obvious way and the estimate stays at the mercy of a single
-        unlucky register that happened to draw a monstrous run. The 1984 ancestor of this idea, and
+        unlucky register that happened to draw a monstrous run. The 1985 ancestor of this idea, and
         the 2003 "LogLog" refinement, used means that were merely good. Then came{' '}
         <strong>2007</strong>. HyperLogLog swapped in the <em className="k">harmonic mean</em> of
         the registers, and that one change is the entire leap in accuracy.

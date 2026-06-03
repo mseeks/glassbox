@@ -14,7 +14,7 @@ export const SectionEight = () => {
       port: '53',
       icon: Globe,
       caption: 'Domain Name System',
-      why: 'A query is a few bytes. A response usually fits in one packet. A TCP handshake would triple the latency for what is, at heart, a single round-trip exchange between you and a resolver across the network. Falls back to TCP only when responses exceed UDP size limits.',
+      why: 'A query is a few bytes. A response usually fits in one packet. A TCP handshake would roughly double the latency for what is, at heart, a single round-trip exchange between you and a resolver across the network. Falls back to TCP only when responses exceed UDP size limits.',
     },
     {
       name: 'NTP',
@@ -46,7 +46,7 @@ export const SectionEight = () => {
     },
     {
       name: 'mDNS / SSDP',
-      port: '5353',
+      port: '5353 / 1900',
       icon: Radio,
       caption: 'Local discovery',
       why: 'Multicast on the LAN. It is how your machine finds printers, Chromecasts, and AirPlay devices without anyone configuring an address first. Strictly impossible over TCP, which has no multicast.',

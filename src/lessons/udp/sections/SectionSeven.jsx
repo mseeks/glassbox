@@ -110,9 +110,9 @@ export const SectionSeven = () => {
       reasoning: (
         <>
           One small query, one small response. The whole transaction is two datagrams. TCP would
-          require a three-way handshake (three RTTs before any data) before you could even ask.{' '}
-          <strong>UDP wins on latency by a wide margin.</strong> Retry at the application layer if
-          needed.
+          require a three-way handshake (one extra round trip before any data) before you could even
+          ask. <strong>UDP wins on latency by a wide margin.</strong> Retry at the application layer
+          if needed.
         </>
       ),
     },

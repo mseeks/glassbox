@@ -22,10 +22,10 @@ export default function Why() {
           <div className="callout">
             <span style={{ fontSize: 16 }}>
               Here is the whole story in one line. A modern phone keeps about{' '}
-              <strong style={{ color: 'var(--amber-hi)' }}>100,000 times</strong> the working memory
-              that landed humans on the Moon. Today we spend more of that memory animating a single
-              tap of one button than the entire Apollo computer had for the whole descent to the
-              lunar surface. Let that sink in.
+              <strong style={{ color: 'var(--amber-hi)' }}>100,000 times</strong> the memory that
+              landed humans on the Moon. Today we spend more of that memory animating a single tap
+              of one button than the entire Apollo computer had for the whole descent to the lunar
+              surface. Let that sink in.
             </span>
           </div>
         </div>

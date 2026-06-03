@@ -42,6 +42,14 @@ export function QuadrantMap() {
       q: 'PC/EC',
       notes: 'Zab consensus; the original coordination kernel.',
     },
+    {
+      name: 'HBase',
+      x: 0.62,
+      y: 0.42,
+      q: 'PC/EC',
+      notes:
+        'Each region is owned by a single region server, so reads are strong with no replica round-trip; consistency holds in normal operation. CP during partition. (Abadi classes Bigtable/HBase as PC/EC.)',
+    },
 
     // PA/EL quadrant — available during partition, latency-optimized otherwise
     {
@@ -75,18 +83,12 @@ export function QuadrantMap() {
 
     // PC/EL quadrant — consistent during partition, latency-first in normal op
     {
-      name: 'MongoDB',
+      name: 'PNUTS',
       x: 0.62,
       y: 0.62,
       q: 'PC/EL',
-      notes: 'Primary-secondary. Strong reads from primary; secondaries are stale by design.',
-    },
-    {
-      name: 'HBase',
-      x: 0.68,
-      y: 0.72,
-      q: 'PC/EL',
-      notes: 'Region servers; strong reads from owning RS. CP during partition.',
+      notes:
+        "Yahoo's per-record timeline consistency: it trades consistency for latency in normal operation (EL), and under partition keeps records consistent by making those with an unreachable master unavailable (PC). Abadi's textbook PC/EL example.",
     },
 
     // PA/EC quadrant — available during partition, consistent in normal op (rare/contradictory)
@@ -98,12 +100,12 @@ export function QuadrantMap() {
       notes: 'Configurable. Strong consistency in normal op; weakens on partition. Five levels.',
     },
     {
-      name: 'PNUTS',
+      name: 'MongoDB',
       x: 0.4,
       y: 0.42,
       q: 'PA/EC',
       notes:
-        "Yahoo's timeline. Per-record mastership; consistent in normal op, available under partition.",
+        'Primary-secondary replication: reads from the primary are consistent in normal operation, but a partition can trigger a re-election that briefly serves stale, still-available reads. Abadi classes it PA/EC.',
     },
   ];
 

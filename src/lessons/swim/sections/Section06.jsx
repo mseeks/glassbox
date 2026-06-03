@@ -27,8 +27,8 @@ export function Section06() {
           <p>
             The math is the math of epidemics. If every infected host transmits to a handful of
             others each round, the infected population follows the familiar logistic curve: slow at
-            first, then a sudden inflection, then saturation. By round ⌈log₂ N⌉, with high
-            probability, the fact is everywhere.
+            first, then a sudden inflection, then saturation. By round ≈ log₁₊ₖ N (where k is the
+            per-round fanout, so O(log N) overall), with high probability, the fact is everywhere.
           </p>
         </div>
 
