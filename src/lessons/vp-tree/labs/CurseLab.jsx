@@ -25,7 +25,7 @@ export default function CurseLab() {
           width: '100%',
           height: 150,
           display: 'block',
-          background: '#041017',
+          background: 'var(--vp-scope-face)',
           border: '1px solid var(--edge-soft)',
           borderRadius: 2,
         }}
@@ -41,8 +41,8 @@ export default function CurseLab() {
               y={42 - ht}
               width={barW - 0.6}
               height={ht}
-              fill={C.ping}
               opacity="0.85"
+              style={{ fill: C.ping }}
             />
           );
         })}
@@ -51,10 +51,10 @@ export default function CurseLab() {
           y1="3"
           x2={meanX}
           y2="42"
-          stroke={C.bone3}
           strokeWidth="0.4"
           strokeDasharray="1 1"
           vectorEffect="non-scaling-stroke"
+          style={{ stroke: C.bone3 }}
         />
         <line
           x1="0"

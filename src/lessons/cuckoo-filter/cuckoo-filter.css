@@ -619,19 +619,31 @@ input.cf-input::placeholder {
 
 /* ── TOC interactive feel ──────────────────────── */
 .cf-toc-item {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
   display: flex;
   align-items: baseline;
   gap: 14px;
   padding: 12px 0 10px;
-  border-bottom: 1px solid var(--line);
   transition:
     border-color 0.2s ease,
     padding-left 0.2s ease;
-  cursor: default;
+  cursor: pointer;
 }
 .cf-toc-item:hover {
   border-bottom-color: var(--cuc);
   padding-left: 4px;
+}
+.cf-toc-item:focus-visible {
+  outline: 2px solid var(--cuc);
+  outline-offset: 3px;
 }
 .cf-toc-num {
   font-family: var(--font-mono);

@@ -13,6 +13,18 @@ export default function RegisterGrid({ reg, p, highlight = -1, aspect = 0.46 }) 
   }, [reg, m]);
   const draw = (ctx, w, h) => {
     ctx.clearRect(0, 0, w, h);
+    // pull the theme-aware palette off the canvas's resolved CSS so the bank
+    // repaints light-mode bronze (or dark-mode brass) instead of a fixed ramp
+    const cs = getComputedStyle(ctx.canvas);
+    const tok = (name) => cs.getPropertyValue(name).trim();
+    const ramp = {
+      off: tok('--hll-reg-off'),
+      lo: tok('--hll-reg-lo'),
+      hi: tok('--hll-reg-hi'),
+      top: tok('--hll-reg-top'),
+    };
+    const phosphor = tok('--hll-cv-phosphor');
+    const phosphorGlow = tok('--hll-cv-phosphor-glow');
     const cols = Math.max(1, Math.round(Math.sqrt(m * (w / h))));
     const rows = Math.ceil(m / cols);
     const gap = m > 600 ? 1 : 2;
@@ -21,16 +33,16 @@ export default function RegisterGrid({ reg, p, highlight = -1, aspect = 0.46 }) 
     for (let i = 0; i < m; i++) {
       const cx = (i % cols) * (cw + gap);
       const cy = Math.floor(i / cols) * (ch + gap);
-      ctx.fillStyle = regColor(reg[i], maxRank);
+      ctx.fillStyle = regColor(reg[i], maxRank, ramp);
       const r = Math.min(2, cw / 4, ch / 4);
       ctx.beginPath();
       if (ctx.roundRect) ctx.roundRect(cx, cy, Math.max(cw, 0.5), Math.max(ch, 0.5), r);
       else ctx.rect(cx, cy, Math.max(cw, 0.5), Math.max(ch, 0.5));
       ctx.fill();
       if (i === highlight) {
-        ctx.strokeStyle = '#34ddcb';
+        ctx.strokeStyle = phosphor;
         ctx.lineWidth = 2;
-        ctx.shadowColor = 'rgba(52,221,203,.9)';
+        ctx.shadowColor = phosphorGlow;
         ctx.shadowBlur = 10;
         ctx.stroke();
         ctx.shadowBlur = 0;

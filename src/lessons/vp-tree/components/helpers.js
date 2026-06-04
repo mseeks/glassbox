@@ -2,21 +2,25 @@
 // converter. These touch DOM/SVG and so live alongside the components rather
 // than in the pure engine.
 
-// fixed palette mirrored into SVG (var() is unreliable as an SVG attribute)
+// Scope palette routed through CSS custom properties so every mark drawn into
+// the sonar SVG FLIPS with the theme (dark abyssal screen ↔ pale daylight
+// instrument face; see the --vp-svg-* tokens in vp-tree.css). var() is
+// unreliable as a bare SVG presentation *attribute*, so consumers apply these
+// via the `style` prop (style-based fill/stroke is reliable, as in TreeDiagram).
 export const C = {
-  ping: '#3fe0c6',
-  pingBright: '#74f1dd',
-  pingDim: 'rgba(63,224,198,0.5)',
-  amber: '#ffb454',
-  amberBright: '#ffc878',
-  coral: '#ff6a72',
-  coralDim: 'rgba(255,106,114,0.55)',
-  bone: '#e8f1ed',
-  bone2: '#a6bdb8',
-  bone3: '#6e8a86',
-  bone4: '#42605c',
-  grid: 'rgba(63,224,198,0.11)',
-  contact: '#5fb6ab',
+  ping: 'var(--vp-svg-ping)',
+  pingDim: 'var(--vp-svg-ping-dim)',
+  amber: 'var(--vp-svg-amber)',
+  coral: 'var(--vp-svg-coral)',
+  coralDim: 'var(--vp-svg-coral-dim)',
+  bone: 'var(--vp-svg-bone)',
+  bone2: 'var(--vp-svg-bone-2)',
+  bone3: 'var(--vp-svg-bone-3)',
+  grid: 'var(--vp-scope-grid)',
+  contact: 'var(--vp-svg-contact)',
+  hairline: 'var(--vp-svg-hairline)',
+  ringIdle: 'var(--vp-svg-ring-idle)',
+  tauFill: 'var(--vp-svg-tau-fill)',
 };
 
 export function clientToScope(e, el) {

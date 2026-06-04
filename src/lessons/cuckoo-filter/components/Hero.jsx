@@ -1,3 +1,5 @@
+import { scrollToId } from '../../../shared/useScrollSpy.js';
+
 export function Hero() {
   return (
     <section
@@ -145,10 +147,15 @@ export function Hero() {
             ['08', 'The hazard'],
             ['09', 'Lineage & practice'],
           ].map(([n, t]) => (
-            <div key={n} className="cf-toc-item">
+            <button
+              key={n}
+              type="button"
+              className="cf-toc-item"
+              onClick={() => scrollToId(`cf-sec-${n}`)}
+            >
               <div className="cf-toc-num">{n}</div>
               <div className="cf-toc-title">{t}</div>
-            </div>
+            </button>
           ))}
         </div>
         <div

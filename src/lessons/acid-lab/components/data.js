@@ -542,7 +542,6 @@ export const ACID_PROPERTIES = [
     promise: 'Concurrent execution behaves as the level promises.',
     mechanism: 'Locks · snapshots · SSI',
     section: 'isolation',
-    centerpiece: true,
   },
   {
     letter: 'D',

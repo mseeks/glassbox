@@ -72,6 +72,12 @@
   --lsm-sheen: rgba(242, 232, 211, 0.06); /* pale bone sheen lit on the dark well */
   --lsm-sheen-soft: rgba(242, 232, 211, 0.05); /* fainter sheen wash on a polygon */
   --lsm-well-ink: #a08c66; /* legible bone for captions/empty-states printed inside the well */
+  /* tombstone — a struck-out "nothing here" mark. Dark theme: a void ground
+     with bone text inked on it. Light theme drives the ground to a pale, inert
+     ash patch and the text to umber, so a deleted layer reads light, not as a
+     dark box dropped on the kraft. */
+  --lsm-tomb-ink: rgba(242, 232, 211, 0.62); /* tombstone label on the void */
+  --lsm-tomb-ink-soft: rgba(242, 232, 211, 0.4); /* its softer age caption */
   /* strata core-sample labels — text inked directly ON a sediment band. Two
      families: light text laid on the dark/deep bands, dark text on the bright
      surface bands, each at a primary + a softer (caption) tier. Dark theme keeps
@@ -450,17 +456,23 @@
   --instr-3: #3a9aab; /* a lit survey teal — reads on the walnut well */
   --gold: #6e4a03; /* compaction in motion */
   --jade: #3d5a1c; /* bloom: definitely-not-here */
-  --char: #1a1308; /* tombstones — a dark mark scored into the kraft */
-  /* inline-painted, theme-dependent — the well kept dark: a polished walnut
-     survey tray inset into the kraft, the one place the night table survives */
-  --lsm-well: #2b2113; /* instrument well — a dark walnut tray the lit samples sit in */
+  /* tombstone — a deleted layer / dead cell. Not a dark box on the kraft: a
+     pale, desaturated ash patch, recessed a touch below the tray so it reads as
+     an inert "nothing here" beside the live amber sediment, but stays light. */
+  --char: #c8bda6;
+  /* inline-painted, theme-dependent — a recessed KRAFT survey tray: deeper than
+     the page so it still reads as an inset well, but light to match the page */
+  --lsm-well: #d4bf90; /* instrument well — a recessed kraft tray the samples sit in */
   --lsm-cell-line: rgba(36, 26, 14, 0.5); /* warm hairline between cells/files */
   --lsm-cell-line-soft: rgba(36, 26, 14, 0.35); /* lighter layer-top hairline */
-  --lsm-cell-shadow: rgba(20, 14, 6, 0.85); /* inset shadow on tombstone cells */
+  --lsm-cell-shadow: rgba(80, 64, 36, 0.28); /* soft umber inset on a light tombstone cell */
   --lsm-chip: rgba(36, 26, 14, 0.32); /* dim key-chip on an opened stratum */
   --lsm-sheen: rgba(255, 248, 230, 0.12); /* warm sheen lit on the walnut well */
   --lsm-sheen-soft: rgba(255, 248, 230, 0.08); /* fainter sheen wash on a polygon */
-  --lsm-well-ink: #d8c39a; /* legible bone for captions/empty-states inked on the well */
+  --lsm-well-ink: #5f4519; /* legible dark ink for captions/empty-states on the kraft well */
+  /* tombstone text struck dark on the pale ash patch (was bone-on-void) */
+  --lsm-tomb-ink: #3d2d18; /* tombstone label on the ash patch */
+  --lsm-tomb-ink-soft: rgba(61, 45, 24, 0.72); /* its softer age caption */
   /* strata labels driven to the contrast extreme on the kraft sediment bands:
      near-black ink on the bright surface bands, near-white on the deep ones, so
      every label clears AA on its own band. No alpha — alpha bled the labels into

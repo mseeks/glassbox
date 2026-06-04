@@ -55,7 +55,7 @@ export default function Layer({ label, sub, fill, h = 38, tomb, fresh, dim, foun
           fontWeight: 600,
           position: 'relative',
           color: tomb
-            ? 'rgba(242,232,211,0.62)'
+            ? 'var(--lsm-tomb-ink)'
             : useLight
               ? 'var(--lsm-strata-lt)'
               : 'var(--lsm-strata-dk)',
@@ -70,7 +70,7 @@ export default function Layer({ label, sub, fill, h = 38, tomb, fresh, dim, foun
             fontSize: 10.5,
             position: 'relative',
             color: tomb
-              ? 'rgba(242,232,211,0.4)'
+              ? 'var(--lsm-tomb-ink-soft)'
               : useLight
                 ? 'var(--lsm-strata-lt-faint)'
                 : 'var(--lsm-strata-dk-faint)',

@@ -28,6 +28,23 @@
   --magenta: #ff5d8f;
   --magenta-dim: #9c3157;
   --truth: #fbf6ea;
+  /* canvas palette — the JS draws (CoinLab scatter, MachineLab error trace,
+     RegisterGrid bank) read these off getComputedStyle so the scopes repaint
+     for the lit bench instead of staying dark glass. Dark values below = the
+     original phosphor literals; the light twins live in the [data-theme] block.
+     --hll-cv-ink: ground-truth lines/text · --hll-cv-phosphor(+soft/faint/glow):
+     the cyan trace and its bands · --hll-reg-*: the warm register-cell ramp. */
+  --hll-cv-ink: #fbf6ea;
+  --hll-cv-phosphor: #34ddcb;
+  --hll-cv-phosphor-soft: rgba(52, 221, 203, 0.85);
+  --hll-cv-phosphor-faint: rgba(52, 221, 203, 0.1);
+  --hll-cv-phosphor-line: rgba(52, 221, 203, 0.35);
+  --hll-cv-phosphor-label: rgba(52, 221, 203, 0.7);
+  --hll-cv-phosphor-glow: rgba(52, 221, 203, 0.9);
+  --hll-reg-off: #1b1f29;
+  --hll-reg-lo: #4a3a18;
+  --hll-reg-hi: #f0bf5e;
+  --hll-reg-top: #fff4d6;
   --mono: var(--font-mono);
   --serif: 'Literata', Georgia, serif;
   --disp: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
@@ -613,9 +630,11 @@
    Every dark glow has a daylight twin: the room's top glow becomes a brass
    dial-bloom, the floor glow a teal phosphor-bleed; the dark's white inset
    sheen becomes a true highlight on brushed metal; soft cast shadows give the
-   panels real relief. The canvas readouts stay genuine dark instrument
-   screens — a lit lab still has dark scopes — so the JSX phosphor literals
-   keep their ground. Every token below is tuned to clear WCAG AA on the exact
+   panels real relief. The canvas readouts ALSO light up: in daylight a bench
+   instrument has a pale readout tray, not black glass, so the .cv-frame wells
+   go light and the JS draws repaint their phosphor/ink/register palette from
+   the --hll-cv-* tokens (deep teal + graphite + saturated bronze, all of which
+   bite on the grey). Every token below is tuned to clear WCAG AA on the exact
    surface it sits on. ─────────────────────────────────────────────────────── */
 [data-theme='light'] .hll {
   --bg: #e7e4dc;
@@ -637,6 +656,25 @@
   --magenta: #a81950;
   --magenta-dim: #d98aaa;
   --truth: #1a1308;
+  /* canvas palette, daylight twin. The scopes are now LIGHT instrument wells
+     (see .cv-frame below), so the phosphor cyan deepens to the same wet teal
+     lacquer the panels use and the ground-truth line becomes machined graphite
+     — both bite on the pale plate. The register ramp keeps its warm-brass
+     identity but starts from a recessed taupe cell (--hll-reg-off, set a clear
+     step below the #d6d1c3 tray so empty slots stay visible as a grid) and
+     climbs to a saturated bronze so the heat still reads as heat on a light
+     bank. All AA on #f0ede5. */
+  --hll-cv-ink: #4a4334;
+  --hll-cv-phosphor: #076a60;
+  --hll-cv-phosphor-soft: rgba(7, 106, 96, 0.9);
+  --hll-cv-phosphor-faint: rgba(7, 106, 96, 0.16);
+  --hll-cv-phosphor-line: rgba(7, 106, 96, 0.5);
+  --hll-cv-phosphor-label: rgba(7, 106, 96, 0.85);
+  --hll-cv-phosphor-glow: rgba(7, 106, 96, 0.55);
+  --hll-reg-off: #bfb7a1;
+  --hll-reg-lo: #c79a4a;
+  --hll-reg-hi: #8a5a11;
+  --hll-reg-top: #5e3d0a;
 }
 /* engineering grid: warm graphite hairlines etched into the painted panel */
 [data-theme='light'] .hll::before {
@@ -699,15 +737,16 @@
 [data-theme='light'] .hll input[type='range']::-moz-range-thumb {
   background: var(--brass);
 }
-/* canvas screens stay genuine dark instrument scopes — a lit lab still has
-   dark glass; the JSX hardcodes phosphor cyan + cream onto exactly this */
+/* canvas wells: in daylight the scopes are NOT dark glass — they become pale
+   recessed instrument trays cut into the plate (a hair below --panel2), with a
+   soft inner shadow for depth and a top highlight lip. The draws inside repaint
+   their phosphor/ink/register palette from the light --hll-cv-* tokens above. */
 [data-theme='light'] .hll .cv-frame {
-  background: #0b0f13;
-  border-color: #2a2f3b;
+  background: #d6d1c3;
+  border-color: var(--line2);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
-    inset 0 2px 14px rgba(0, 0, 0, 0.55),
-    0 1px 0 rgba(255, 255, 255, 0.55);
+    inset 0 2px 6px rgba(43, 33, 12, 0.14),
+    0 1px 0 rgba(255, 255, 255, 0.7);
 }
 /* text-input readout: a pale recessed field that holds the deep-teal entry */
 [data-theme='light'] .hll input[type='text'] {

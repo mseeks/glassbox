@@ -86,7 +86,7 @@ export default function TombLab() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'rgba(168,144,103,0.7)',
+                  color: 'var(--lsm-tomb-ink-soft)',
                   fontFamily: 'JetBrains Mono',
                   fontSize: 7,
                 }}

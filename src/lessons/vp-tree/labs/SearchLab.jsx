@@ -157,11 +157,10 @@ export default function SearchLab() {
             cx={q.x}
             cy={q.y}
             r={F.tau}
-            fill="rgba(255,180,84,0.06)"
-            stroke={C.amber}
             strokeWidth="0.35"
             strokeDasharray="1.5 1.5"
             opacity="0.8"
+            style={{ fill: C.tauFill, stroke: C.amber }}
           />
         )}
         {/* current shell / pruned shell */}
@@ -171,8 +170,8 @@ export default function SearchLab() {
             cy={F.shell.y}
             r={F.shell.r}
             fill="none"
-            stroke={C.ping}
             strokeWidth="0.45"
+            style={{ stroke: C.ping }}
           />
         )}
         {F.pruneShell && (
@@ -181,14 +180,21 @@ export default function SearchLab() {
             cy={F.pruneShell.y}
             r={F.pruneShell.r}
             fill="none"
-            stroke={C.coral}
             strokeWidth="0.45"
             strokeDasharray="1.5 1.5"
+            style={{ stroke: C.coral }}
           />
         )}
         {/* connector when done */}
         {F.done && F.best && (
-          <line x1={q.x} y1={q.y} x2={F.best.x} y2={F.best.y} stroke={C.amber} strokeWidth="0.5" />
+          <line
+            x1={q.x}
+            y1={q.y}
+            x2={F.best.x}
+            y2={F.best.y}
+            strokeWidth="0.5"
+            style={{ stroke: C.amber }}
+          />
         )}
         {/* contacts */}
         {FIELD.map((p, i) => {
@@ -218,15 +224,29 @@ export default function SearchLab() {
                 cx={p.x}
                 cy={p.y}
                 r={r}
-                fill={fill}
                 opacity={op}
                 filter={isBest || isCurrent ? 'url(#vpGlow)' : undefined}
+                style={{ fill }}
               />
               {isCurrent && (
-                <circle cx={p.x} cy={p.y} r="3" fill="none" stroke={C.ping} strokeWidth="0.4" />
+                <circle
+                  cx={p.x}
+                  cy={p.y}
+                  r="3"
+                  fill="none"
+                  strokeWidth="0.4"
+                  style={{ stroke: C.ping }}
+                />
               )}
               {isBest && (
-                <circle cx={p.x} cy={p.y} r="3.4" fill="none" stroke={C.amber} strokeWidth="0.4" />
+                <circle
+                  cx={p.x}
+                  cy={p.y}
+                  r="3.4"
+                  fill="none"
+                  strokeWidth="0.4"
+                  style={{ stroke: C.amber }}
+                />
               )}
             </g>
           );

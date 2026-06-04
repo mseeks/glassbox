@@ -186,21 +186,6 @@ function AcidCard({ prop, active, onClick }) {
       >
         {prop.mechanism}
       </div>
-
-      {prop.centerpiece && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 10,
-            right: 10,
-            fontSize: 10,
-            color: prop.accentVar,
-            letterSpacing: '0.1em',
-          }}
-        >
-          ★
-        </div>
-      )}
     </button>
   );
 }

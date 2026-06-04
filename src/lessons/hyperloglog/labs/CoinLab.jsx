@@ -50,12 +50,17 @@ export default function CoinLab() {
   }, [n, scatterSeed]);
   const drawScatter = (ctx, w, h) => {
     ctx.clearRect(0, 0, w, h);
+    // theme-aware palette off the canvas's resolved CSS, so the scope repaints
+    // for the lit bench (graphite truth-line + deep-teal dots) in light mode
+    const cs = getComputedStyle(ctx.canvas);
+    const ink = cs.getPropertyValue('--hll-cv-ink').trim();
+    const phosphorSoft = cs.getPropertyValue('--hll-cv-phosphor-soft').trim();
     const lo = Math.log2(Math.max(2, n / 64)),
       hi = Math.log2(n * 64);
     const X = (v) => ((Math.log2(Math.max(1, v)) - lo) / (hi - lo)) * (w - 24) + 12;
     // truth line
     const tx = X(n);
-    ctx.strokeStyle = '#fbf6ea';
+    ctx.strokeStyle = ink;
     ctx.setLineDash([4, 4]);
     ctx.lineWidth = 1.5;
     ctx.beginPath();
@@ -63,7 +68,7 @@ export default function CoinLab() {
     ctx.lineTo(tx, h - 18);
     ctx.stroke();
     ctx.setLineDash([]);
-    ctx.fillStyle = '#fbf6ea';
+    ctx.fillStyle = ink;
     ctx.font = "11px 'JetBrains Mono', monospace";
     ctx.textAlign = 'center';
     ctx.fillText('truth ' + fmt(n), tx, h - 5);
@@ -71,7 +76,7 @@ export default function CoinLab() {
     for (const v of scatter) {
       const x = X(v);
       const jitter = (Math.random() - 0.5) * (h - 40);
-      ctx.fillStyle = 'rgba(52,221,203,.85)';
+      ctx.fillStyle = phosphorSoft;
       ctx.beginPath();
       ctx.arc(x, h / 2 - 6 + jitter, 4, 0, 7);
       ctx.fill();

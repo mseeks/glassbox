@@ -88,13 +88,6 @@
   color: var(--ink-dim);
   margin: 18px 0 0;
 }
-.idx-rule {
-  height: 1px;
-  width: 100%;
-  background: linear-gradient(90deg, transparent, var(--rule), transparent);
-  margin: 64px 0 56px;
-}
-
 .idx-section-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10.5px;
@@ -105,7 +98,8 @@
      eyebrow/footer wordmark that share --ink-faint. Same ink hue, raised alpha
      (0.42 → 0.54): 3.31:1 → 4.78:1 on #0a0a0f. */
   color: rgba(232, 222, 200, 0.54);
-  margin: 0 0 22px;
+  /* Top margin carries the hero → collection breathing room. */
+  margin: 80px 0 22px;
   display: flex;
   align-items: center;
   gap: 12px;

@@ -63,12 +63,21 @@ export default function MachineLab() {
 
   const drawErr = (ctx, w, h) => {
     ctx.clearRect(0, 0, w, h);
+    // theme-aware palette off the canvas's resolved CSS, so the trace repaints
+    // deep-teal-on-pale for the lit bench instead of phosphor-on-black
+    const cs = getComputedStyle(ctx.canvas);
+    const tok = (name) => cs.getPropertyValue(name).trim();
+    const ink = tok('--hll-cv-ink');
+    const phosphor = tok('--hll-cv-phosphor');
+    const phosphorFaint = tok('--hll-cv-phosphor-faint');
+    const phosphorLine = tok('--hll-cv-phosphor-line');
+    const phosphorLabel = tok('--hll-cv-phosphor-label');
     const cap = Math.max(SE * 2.5, 6);
     const Y = (e) => h / 2 - (e / cap) * (h / 2 - 8);
     // SE band
-    ctx.fillStyle = 'rgba(52,221,203,0.10)';
+    ctx.fillStyle = phosphorFaint;
     ctx.fillRect(0, Y(SE), w, Y(-SE) - Y(SE));
-    ctx.strokeStyle = 'rgba(52,221,203,0.35)';
+    ctx.strokeStyle = phosphorLine;
     ctx.lineWidth = 1;
     ctx.setLineDash([3, 3]);
     ctx.beginPath();
@@ -80,15 +89,20 @@ export default function MachineLab() {
     ctx.lineTo(w, Y(-SE));
     ctx.stroke();
     ctx.setLineDash([]);
-    // zero line
-    ctx.strokeStyle = 'rgba(251,246,234,0.4)';
+    // zero line — a faint ground-truth baseline (alpha keeps it a hush in both
+    // themes; --hll-cv-ink supplies the hue: ivory on dark glass, graphite on
+    // the pale tray)
+    ctx.save();
+    ctx.globalAlpha = 0.4;
+    ctx.strokeStyle = ink;
     ctx.beginPath();
     ctx.moveTo(0, Y(0));
     ctx.lineTo(w, Y(0));
     ctx.stroke();
+    ctx.restore();
     // error path
     if (hist.length > 1) {
-      ctx.strokeStyle = '#34ddcb';
+      ctx.strokeStyle = phosphor;
       ctx.lineWidth = 1.6;
       ctx.beginPath();
       hist.forEach((d, i) => {
@@ -98,7 +112,7 @@ export default function MachineLab() {
       });
       ctx.stroke();
     }
-    ctx.fillStyle = 'rgba(52,221,203,0.7)';
+    ctx.fillStyle = phosphorLabel;
     ctx.font = "10px 'JetBrains Mono', monospace";
     ctx.textAlign = 'left';
     ctx.fillText('±' + SE.toFixed(2) + '%  theoretical band', 8, 12);

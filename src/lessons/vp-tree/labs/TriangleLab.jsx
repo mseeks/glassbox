@@ -55,15 +55,14 @@ export default function TriangleLab() {
   const Handle = ({ k, color, label }) => (
     <g style={{ cursor: 'grab' }}>
       <circle cx={pts[k].x} cy={pts[k].y} r="5.5" fill="transparent" />
-      <circle cx={pts[k].x} cy={pts[k].y} r="2.4" fill={color} filter="url(#vpGlow)" />
+      <circle cx={pts[k].x} cy={pts[k].y} r="2.4" filter="url(#vpGlow)" style={{ fill: color }} />
       <text
         x={pts[k].x}
         y={pts[k].y - 4.2}
-        fill={color}
         fontSize="4.4"
         fontFamily="var(--font-mono)"
         textAnchor="middle"
-        style={{ letterSpacing: '0.04em' }}
+        style={{ fill: color, letterSpacing: '0.04em' }}
       >
         {label}
       </text>
@@ -87,8 +86,8 @@ export default function TriangleLab() {
       >
         <defs>
           <radialGradient id="triAmber" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={C.amber} stopOpacity="0.45" />
-            <stop offset="100%" stopColor={C.amber} stopOpacity="0" />
+            <stop offset="0%" stopOpacity="0.45" style={{ stopColor: C.amber }} />
+            <stop offset="100%" stopOpacity="0" style={{ stopColor: C.amber }} />
           </radialGradient>
           <filter id="vpGlow2" x="-60%" y="-60%" width="220%" height="220%">
             <feGaussianBlur stdDeviation="0.7" result="b" />
@@ -104,42 +103,42 @@ export default function TriangleLab() {
           y1={pts.v.y}
           x2={pts.p.x}
           y2={pts.p.y}
-          stroke={C.ping}
           strokeWidth="0.5"
+          style={{ stroke: C.ping }}
         />
         <line
           x1={pts.q.x}
           y1={pts.q.y}
           x2={pts.v.x}
           y2={pts.v.y}
-          stroke={C.amber}
           strokeWidth="0.5"
+          style={{ stroke: C.amber }}
         />
         <line
           x1={pts.q.x}
           y1={pts.q.y}
           x2={pts.p.x}
           y2={pts.p.y}
-          stroke={C.bone3}
           strokeWidth="0.5"
           strokeDasharray="1.5 1.5"
+          style={{ stroke: C.bone3 }}
         />
         {/* midpoint labels for the two known sides */}
         <text
           x={(pts.v.x + pts.p.x) / 2 + 1}
           y={(pts.v.y + pts.p.y) / 2}
-          fill={C.ping}
           fontSize="3.6"
           fontFamily="var(--font-mono)"
+          style={{ fill: C.ping }}
         >
           a = {a.toFixed(1)}
         </text>
         <text
           x={(pts.q.x + pts.v.x) / 2 - 13}
           y={(pts.q.y + pts.v.y) / 2}
-          fill={C.amber}
           fontSize="3.6"
           fontFamily="var(--font-mono)"
+          style={{ fill: C.amber }}
         >
           b = {b.toFixed(1)}
         </text>

@@ -51,8 +51,6 @@ function IndexPage({ onSelectLesson }) {
           </div>
         </div>
 
-        <div className="idx-rule" />
-
         <p className="idx-section-label">The collection · pick one</p>
 
         <div className="idx-grid">
