@@ -19,7 +19,7 @@ export default function Swatch({ color, size = 46, label, lock }) {
       {label && (
         <span
           className="tls-mono"
-          style={{ fontSize: 10.5, color: 'var(--bone-faint)', letterSpacing: '.08em' }}
+          style={{ fontSize: 10.5, color: 'var(--bone-label)', letterSpacing: '.08em' }}
         >
           {label}
         </span>

@@ -72,7 +72,7 @@ export default function Hero() {
               <br />
               becomes
               <br />
-              <span style={{ color: 'var(--writ)', textShadow: '0 0 38px rgba(227,88,44,0.45)' }}>
+              <span style={{ color: 'var(--writ)', textShadow: '0 0 38px var(--glow-writ)' }}>
                 depth.
               </span>
             </h1>
@@ -124,7 +124,7 @@ export default function Hero() {
                         height: 9,
                         borderRadius: '50% 50% 50% 50% / 60% 60% 40% 40%',
                         background: 'var(--writ)',
-                        boxShadow: '0 0 9px rgba(227,88,44,0.7)',
+                        boxShadow: '0 0 9px var(--glow-writ-strong)',
                         animation: 'drop 1.35s ease-in forwards',
                       }}
                     />
@@ -137,7 +137,7 @@ export default function Hero() {
                         height: 30,
                         border: '1.5px dashed var(--rule-soft)',
                         background:
-                          'repeating-linear-gradient(45deg, transparent 0 6px, rgba(227,88,44,0.10) 6px 7px)',
+                          'repeating-linear-gradient(45deg, transparent 0 6px, var(--tint-writ) 6px 7px)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',

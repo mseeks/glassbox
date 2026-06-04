@@ -25,7 +25,7 @@ export default function CurseLab() {
           width: '100%',
           height: 150,
           display: 'block',
-          background: '#041017',
+          background: 'var(--vp-scope-face)',
           border: '1px solid var(--edge-soft)',
           borderRadius: 2,
         }}
@@ -41,8 +41,8 @@ export default function CurseLab() {
               y={42 - ht}
               width={barW - 0.6}
               height={ht}
-              fill={C.ping}
               opacity="0.85"
+              style={{ fill: C.ping }}
             />
           );
         })}
@@ -51,10 +51,10 @@ export default function CurseLab() {
           y1="3"
           x2={meanX}
           y2="42"
-          stroke={C.bone3}
           strokeWidth="0.4"
           strokeDasharray="1 1"
           vectorEffect="non-scaling-stroke"
+          style={{ stroke: C.bone3 }}
         />
         <line
           x1="0"
@@ -73,12 +73,12 @@ export default function CurseLab() {
           marginTop: 6,
           fontFamily: 'var(--mono)',
           fontSize: 10,
-          color: C.bone3,
+          color: 'var(--bone-3)',
           letterSpacing: '.04em',
         }}
       >
         <span>0</span>
-        <span style={{ color: C.bone2 }}>← distance relative to the average →</span>
+        <span style={{ color: 'var(--bone-2)' }}>← distance relative to the average →</span>
         <span>2×</span>
       </div>
 
@@ -96,7 +96,7 @@ export default function CurseLab() {
         />
         <span
           className="vp-mono"
-          style={{ color: C.ping, fontSize: 15, width: 34, textAlign: 'right' }}
+          style={{ color: 'var(--ping)', fontSize: 15, width: 34, textAlign: 'right' }}
         >
           {D}
         </span>
@@ -111,7 +111,10 @@ export default function CurseLab() {
           <div className="k">Contacts pruned / query</div>
           <div
             className="v"
-            style={{ color: prunedPct > 40 ? C.ping : prunedPct > 10 ? C.amber : C.coral }}
+            style={{
+              color:
+                prunedPct > 40 ? 'var(--ping)' : prunedPct > 10 ? 'var(--amber)' : 'var(--coral)',
+            }}
           >
             {prunedPct.toFixed(0)}
             <span className="u">%</span>
@@ -127,7 +130,7 @@ export default function CurseLab() {
               className="fill"
               style={{
                 width: compsPct + '%',
-                background: compsPct > 90 ? 'rgba(255,106,114,0.5)' : C.ping,
+                background: compsPct > 90 ? 'var(--coral-fill)' : 'var(--ping)',
               }}
             />
           </div>
@@ -136,7 +139,7 @@ export default function CurseLab() {
         <div className="vp-cmprow">
           <span className="lbl">Brute force</span>
           <div className="track">
-            <div className="fill" style={{ width: '100%', background: 'rgba(255,106,114,0.5)' }} />
+            <div className="fill" style={{ width: '100%', background: 'var(--coral-fill)' }} />
           </div>
           <span className="num">{s.N}</span>
         </div>

@@ -6,7 +6,7 @@ function PropertyCard({ kind, title, formula, body, accent }) {
       <span className="swim-corner-ornament tr" />
       <span className="swim-corner-ornament bl" />
       <span className="swim-corner-ornament br" />
-      <div className="swim-label" style={{ color: 'var(--ink-faint)', marginBottom: 14 }}>
+      <div className="swim-label" style={{ color: 'var(--ink-label)', marginBottom: 14 }}>
         {kind}
       </div>
       <h3

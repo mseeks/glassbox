@@ -142,7 +142,7 @@ export default function WriteLab() {
               display: 'flex',
               flexDirection: 'column',
               gap: 3,
-              background: flush ? 'rgba(227,170,51,0.16)' : 'transparent',
+              background: flush ? 'var(--tint-gold)' : 'transparent',
               transition: 'background 0.4s',
             }}
           >
@@ -192,7 +192,7 @@ export default function WriteLab() {
             style={{
               minHeight: 152,
               border: '1px solid var(--rule-soft)',
-              background: '#0a0805',
+              background: 'var(--lsm-well)',
               padding: 8,
               display: 'flex',
               flexWrap: 'wrap',
@@ -205,7 +205,7 @@ export default function WriteLab() {
                 style={{
                   textAlign: 'center',
                   fontStyle: 'italic',
-                  color: 'var(--ink-faint)',
+                  color: 'var(--lsm-well-ink)',
                   fontSize: 13,
                   padding: 14,
                   width: '100%',
@@ -222,7 +222,7 @@ export default function WriteLab() {
                   height: 14,
                   borderRadius: 1,
                   background: i % 2 ? 'var(--writ)' : 'var(--writ-2)',
-                  boxShadow: '0 0 4px rgba(227,88,44,0.3)',
+                  boxShadow: '0 0 4px var(--glow-writ-soft)',
                 }}
               />
             ))}
@@ -240,7 +240,7 @@ export default function WriteLab() {
         <div
           style={{
             border: '1px solid var(--rule-soft)',
-            background: '#0a0805',
+            background: 'var(--lsm-well)',
             padding: 10,
             minHeight: 80,
             display: 'flex',
@@ -255,7 +255,7 @@ export default function WriteLab() {
                 alignSelf: 'center',
                 textAlign: 'center',
                 fontStyle: 'italic',
-                color: 'var(--ink-faint)',
+                color: 'var(--lsm-well-ink)',
                 fontSize: 13,
               }}
             >
@@ -269,7 +269,7 @@ export default function WriteLab() {
               style={{
                 minWidth: 96,
                 background: STRATA[Math.min(i + 1, 5)],
-                border: '1px solid rgba(0,0,0,0.4)',
+                border: '1px solid var(--lsm-cell-line)',
                 padding: 8,
                 display: 'flex',
                 flexDirection: 'column',
@@ -280,7 +280,9 @@ export default function WriteLab() {
                 className="m"
                 style={{
                   fontSize: 9.5,
-                  color: lightText(i + 1) ? 'rgba(255,248,234,0.7)' : 'rgba(36,20,4,0.6)',
+                  color: lightText(i + 1)
+                    ? 'var(--lsm-strata-lt-soft-2)'
+                    : 'var(--lsm-strata-dk-faint)',
                 }}
               >
                 sst · {c.keys.length} keys
@@ -291,7 +293,7 @@ export default function WriteLab() {
                   className="m"
                   style={{
                     fontSize: 10,
-                    color: lightText(i + 1) ? 'rgba(255,248,234,0.92)' : '#241404',
+                    color: lightText(i + 1) ? 'var(--lsm-strata-lt-2)' : 'var(--lsm-strata-dk)',
                   }}
                 >
                   {kk.k}
@@ -303,7 +305,9 @@ export default function WriteLab() {
                 style={{
                   fontSize: 8.5,
                   marginTop: 'auto',
-                  color: lightText(i + 1) ? 'rgba(255,248,234,0.6)' : 'rgba(36,20,4,0.55)',
+                  color: lightText(i + 1)
+                    ? 'var(--lsm-strata-lt-faint-2)'
+                    : 'var(--lsm-strata-dk-faint-2)',
                 }}
               >
                 [{c.range[0]}…{c.range[1]}]

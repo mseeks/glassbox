@@ -11,7 +11,7 @@ export function Hero() {
         alignItems: 'center',
         overflow: 'hidden',
         background:
-          'radial-gradient(ellipse 78% 52% at 55% 34%, rgba(163, 230, 53, 0.045), transparent 64%), linear-gradient(180deg, var(--bg-deeper) 0%, var(--bg) 82%)',
+          'radial-gradient(ellipse 78% 52% at 55% 34%, var(--hero-wash), transparent 64%), linear-gradient(180deg, var(--bg-deeper) 0%, var(--bg) 82%)',
       }}
     >
       <div

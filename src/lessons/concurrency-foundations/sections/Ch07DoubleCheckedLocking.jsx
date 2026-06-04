@@ -58,7 +58,7 @@ export function Ch07DoubleCheckedLocking() {
           <span
             className="kw"
             style={{
-              background: 'rgba(110,231,183,0.15)',
+              background: 'var(--cf-wash-ok)',
               padding: '1px 5px',
               borderRadius: '3px',
             }}

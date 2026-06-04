@@ -63,11 +63,14 @@ export default function Cartridge() {
           >
             HERO
           </figcaption>
-          <div className="mono" style={{ fontSize: 9.5, color: 'var(--faint)' }}>
+          <div className="mono" style={{ fontSize: 9.5, color: 'var(--mw-faint-fn)' }}>
             9 KB of frames
           </div>
         </figure>
-        <div className="mono" style={{ fontSize: 20, color: 'var(--faint)', paddingBottom: 40 }}>
+        <div
+          className="mono"
+          style={{ fontSize: 20, color: 'var(--mw-faint-fn)', paddingBottom: 40 }}
+        >
           {reuse ? '↔' : '+'}
         </div>
         <figure style={{ margin: 0, textAlign: 'center', width: '34%', maxWidth: 120 }}>
@@ -89,7 +92,7 @@ export default function Cartridge() {
           >
             GUARD
           </figcaption>
-          <div className="mono" style={{ fontSize: 9.5, color: 'var(--faint)' }}>
+          <div className="mono" style={{ fontSize: 9.5, color: 'var(--mw-faint-fn)' }}>
             {reuse ? '≈0 KB · reused' : '9 KB of its own'}
           </div>
         </figure>
@@ -141,7 +144,7 @@ export default function Cartridge() {
                 width: `${pct(s.b)}%`,
                 background: s.col,
                 opacity: 0.85,
-                borderRight: '1px solid rgba(6,9,15,.5)',
+                borderRight: '1px solid var(--mw-void-wash)',
                 transition: 'width .45s cubic-bezier(.2,.7,.2,1)',
               }}
               title={`${s.label} · ${fmtBytes(s.b)}`}
@@ -152,7 +155,7 @@ export default function Cartridge() {
               width: `${pct(enemyB)}%`,
               background: reuse ? 'var(--steel)' : 'var(--danger)',
               transition: 'width .45s cubic-bezier(.2,.7,.2,1), background .3s',
-              boxShadow: reuse ? 'none' : '0 0 14px rgba(226,97,63,.6)',
+              boxShadow: reuse ? 'none' : '0 0 14px var(--mw-danger-glow)',
             }}
             title={`Guard · ${fmtBytes(enemyB)}`}
           />
@@ -165,15 +168,15 @@ export default function Cartridge() {
               bottom: -4,
               width: 2,
               background: 'var(--ivory)',
-              boxShadow: '0 0 8px rgba(236,227,208,.6)',
+              boxShadow: '0 0 8px var(--mw-ink-sheen)',
             }}
           />
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
-          <span className="mono" style={{ fontSize: 10, color: 'var(--faint)' }}>
+          <span className="mono" style={{ fontSize: 10, color: 'var(--mw-faint-fn)' }}>
             0
           </span>
-          <span className="mono" style={{ fontSize: 10, color: 'var(--faint)' }}>
+          <span className="mono" style={{ fontSize: 10, color: 'var(--mw-faint-fn)' }}>
             48 KB
           </span>
         </div>
@@ -185,8 +188,8 @@ export default function Cartridge() {
           marginTop: 14,
           padding: '12px 15px',
           borderRadius: 10,
-          background: fits ? 'rgba(166,199,140,.10)' : 'rgba(226,97,63,.12)',
-          border: `1px solid ${fits ? 'rgba(166,199,140,.4)' : 'rgba(226,97,63,.5)'}`,
+          background: fits ? 'var(--mw-sage-panel)' : 'var(--mw-danger-panel)',
+          border: `1px solid ${fits ? 'var(--mw-sage-edge)' : 'var(--mw-danger-edge)'}`,
           display: 'flex',
           alignItems: 'center',
           gap: 12,

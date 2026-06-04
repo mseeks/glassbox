@@ -57,18 +57,28 @@ export const VerdictLab = () => {
   const maxVal = Math.max(...cA, ...cB, 1);
 
   const verdictMeta = {
-    before: { label: 'A → B', sub: 'A probably happened before B', color: '#b794f4', exact: false },
-    after: { label: 'B → A', sub: 'B probably happened before A', color: '#b794f4', exact: false },
+    before: {
+      label: 'A → B',
+      sub: 'A probably happened before B',
+      color: 'var(--bc-violet)',
+      exact: false,
+    },
+    after: {
+      label: 'B → A',
+      sub: 'B probably happened before A',
+      color: 'var(--bc-violet)',
+      exact: false,
+    },
     concurrent: {
       label: 'A || B',
       sub: 'A and B are certainly concurrent',
-      color: '#6ee7b7',
+      color: 'var(--bc-emerald)',
       exact: true,
     },
     equal: {
       label: 'A ≡ B',
       sub: 'A and B are component-wise identical',
-      color: '#f5b942',
+      color: 'var(--bc-gold)',
       exact: false,
     },
   };
@@ -78,10 +88,10 @@ export const VerdictLab = () => {
   return (
     <div className="bc-panel-elevated" style={{ padding: 32 }}>
       <div style={{ marginBottom: 28 }}>
-        <div className="bc-eyebrow" style={{ color: '#b794f4' }}>
+        <div className="bc-eyebrow" style={{ color: 'var(--bc-violet)' }}>
           LAB · COMPARE
         </div>
-        <div className="bc-italic" style={{ fontSize: 26, color: '#f0e8d2', marginTop: 4 }}>
+        <div className="bc-italic" style={{ fontSize: 26, color: 'var(--bc-ink)', marginTop: 4 }}>
           Three scenarios, three verdicts
         </div>
       </div>
@@ -102,9 +112,9 @@ export const VerdictLab = () => {
               flexDirection: 'column',
               alignItems: 'flex-start',
               gap: 2,
-              borderColor: scenario === s.id ? 'rgba(245, 185, 66, 0.6)' : undefined,
-              background: scenario === s.id ? 'rgba(245, 185, 66, 0.1)' : undefined,
-              color: scenario === s.id ? '#f5b942' : undefined,
+              borderColor: scenario === s.id ? 'var(--bc-gold-edge-strong)' : undefined,
+              background: scenario === s.id ? 'var(--bc-gold-wash)' : undefined,
+              color: scenario === s.id ? 'var(--bc-gold)' : undefined,
             }}
           >
             <span style={{ fontSize: 12 }}>{s.label}</span>
@@ -122,10 +132,10 @@ export const VerdictLab = () => {
         {/* Clock A */}
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-            <div className="bc-italic" style={{ fontSize: 22, color: '#f5b942' }}>
+            <div className="bc-italic" style={{ fontSize: 22, color: 'var(--bc-gold)' }}>
               Clock A
             </div>
-            <div className="bc-mono" style={{ fontSize: 10, color: '#5e5747' }}>
+            <div className="bc-mono" style={{ fontSize: 10, color: 'var(--bc-ink-faint)' }}>
               w={clockWeight(cA, K).toFixed(1)}
             </div>
           </div>
@@ -135,8 +145,8 @@ export const VerdictLab = () => {
               gap: 2,
               alignItems: 'flex-end',
               padding: '10px 8px',
-              background: 'rgba(15, 19, 38, 0.5)',
-              border: '1px solid rgba(45, 52, 88, 0.5)',
+              background: 'var(--bc-inset-5)',
+              border: '1px solid var(--bc-rule)',
               borderRadius: 3,
               minHeight: 90,
             }}
@@ -161,11 +171,11 @@ export const VerdictLab = () => {
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'flex-end',
-                      background: bigger ? 'rgba(251, 113, 133, 0.06)' : 'rgba(255,255,255,0.02)',
+                      background: bigger ? 'var(--bc-rose-wash)' : 'var(--bc-sheen)',
                       borderRadius: 2,
                       border: bigger
-                        ? '1px solid rgba(251, 113, 133, 0.35)'
-                        : '1px solid rgba(255,255,255,0.04)',
+                        ? '1px solid var(--bc-rose-edge)'
+                        : '1px solid var(--bc-sheen-border)',
                     }}
                   >
                     {val > 0 && (
@@ -180,7 +190,10 @@ export const VerdictLab = () => {
                   </div>
                   <div
                     className="bc-mono"
-                    style={{ fontSize: 9, color: val > 0 ? '#f5b942' : '#3d3d3d' }}
+                    style={{
+                      fontSize: 9,
+                      color: val > 0 ? 'var(--bc-gold)' : 'var(--bc-ink-ghost)',
+                    }}
                   >
                     {val}
                   </div>
@@ -197,7 +210,7 @@ export const VerdictLab = () => {
         >
           <div
             className="bc-mono"
-            style={{ fontSize: 11, color: '#5e5747', writingMode: 'horizontal-tb' }}
+            style={{ fontSize: 11, color: 'var(--bc-ink-faint)', writingMode: 'horizontal-tb' }}
           >
             vs.
           </div>
@@ -206,10 +219,10 @@ export const VerdictLab = () => {
         {/* Clock B */}
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-            <div className="bc-italic" style={{ fontSize: 22, color: '#5eead4' }}>
+            <div className="bc-italic" style={{ fontSize: 22, color: 'var(--bc-teal)' }}>
               Clock B
             </div>
-            <div className="bc-mono" style={{ fontSize: 10, color: '#5e5747' }}>
+            <div className="bc-mono" style={{ fontSize: 10, color: 'var(--bc-ink-faint)' }}>
               w={clockWeight(cB, K).toFixed(1)}
             </div>
           </div>
@@ -219,8 +232,8 @@ export const VerdictLab = () => {
               gap: 2,
               alignItems: 'flex-end',
               padding: '10px 8px',
-              background: 'rgba(15, 19, 38, 0.5)',
-              border: '1px solid rgba(45, 52, 88, 0.5)',
+              background: 'var(--bc-inset-5)',
+              border: '1px solid var(--bc-rule)',
               borderRadius: 3,
               minHeight: 90,
             }}
@@ -245,11 +258,11 @@ export const VerdictLab = () => {
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'flex-end',
-                      background: bigger ? 'rgba(94, 234, 212, 0.06)' : 'rgba(255,255,255,0.02)',
+                      background: bigger ? 'var(--bc-teal-wash)' : 'var(--bc-sheen)',
                       borderRadius: 2,
                       border: bigger
-                        ? '1px solid rgba(94, 234, 212, 0.35)'
-                        : '1px solid rgba(255,255,255,0.04)',
+                        ? '1px solid var(--bc-teal-edge)'
+                        : '1px solid var(--bc-sheen-border)',
                     }}
                   >
                     {val > 0 && (
@@ -257,8 +270,9 @@ export const VerdictLab = () => {
                         style={{
                           width: '100%',
                           height: `${Math.max(4, (val / maxVal) * 100)}%`,
-                          background: 'linear-gradient(180deg, #5eead4ee, #5eead466)',
-                          boxShadow: '0 0 10px rgba(94, 234, 212, 0.4)',
+                          background:
+                            'linear-gradient(180deg, var(--bc-teal-bar-top), var(--bc-teal-bar-bot))',
+                          boxShadow: '0 0 10px var(--bc-teal-glow)',
                           borderRadius: '1px 1px 0 0',
                         }}
                       />
@@ -266,7 +280,10 @@ export const VerdictLab = () => {
                   </div>
                   <div
                     className="bc-mono"
-                    style={{ fontSize: 9, color: val > 0 ? '#5eead4' : '#3d3d3d' }}
+                    style={{
+                      fontSize: 9,
+                      color: val > 0 ? 'var(--bc-teal)' : 'var(--bc-ink-ghost)',
+                    }}
                   >
                     {val}
                   </div>
@@ -281,8 +298,8 @@ export const VerdictLab = () => {
       <div
         style={{
           padding: '20px 24px',
-          background: `${v.color}0d`,
-          border: `1px solid ${v.color}44`,
+          background: `color-mix(in srgb, ${v.color} 8%, transparent)`,
+          border: `1px solid color-mix(in srgb, ${v.color} 28%, transparent)`,
           borderLeft: `4px solid ${v.color}`,
           borderRadius: 3,
           marginBottom: 18,
@@ -307,7 +324,10 @@ export const VerdictLab = () => {
             >
               {v.label}
             </div>
-            <div className="bc-italic" style={{ fontSize: 18, color: '#c8bfa5', marginTop: 4 }}>
+            <div
+              className="bc-italic"
+              style={{ fontSize: 18, color: 'var(--bc-ink-dim)', marginTop: 4 }}
+            >
               {v.sub}
             </div>
           </div>
@@ -317,7 +337,7 @@ export const VerdictLab = () => {
             </div>
             <div
               className="bc-mono"
-              style={{ fontSize: 11, color: v.exact ? '#6ee7b7' : '#b794f4' }}
+              style={{ fontSize: 11, color: v.exact ? 'var(--bc-emerald)' : 'var(--bc-violet)' }}
             >
               {v.exact ? 'no error possible' : 'may be FP'}
             </div>
@@ -329,9 +349,9 @@ export const VerdictLab = () => {
       <div
         style={{
           padding: '14px 18px',
-          background: isFP ? 'rgba(251, 113, 133, 0.06)' : 'rgba(110, 231, 183, 0.06)',
-          border: `1px solid ${isFP ? 'rgba(251, 113, 133, 0.25)' : 'rgba(110, 231, 183, 0.25)'}`,
-          borderLeft: `3px solid ${isFP ? '#fb7185' : '#6ee7b7'}`,
+          background: isFP ? 'var(--bc-rose-wash)' : 'var(--bc-emerald-wash)',
+          border: `1px solid ${isFP ? 'var(--bc-rose-edge)' : 'var(--bc-emerald-edge)'}`,
+          borderLeft: `3px solid ${isFP ? 'var(--bc-rose)' : 'var(--bc-emerald)'}`,
           borderRadius: 3,
           fontSize: 15,
         }}
@@ -341,12 +361,12 @@ export const VerdictLab = () => {
           style={{
             fontSize: 11,
             letterSpacing: '0.15em',
-            color: isFP ? '#fb7185' : '#6ee7b7',
+            color: isFP ? 'var(--bc-rose)' : 'var(--bc-emerald)',
           }}
         >
           {isFP ? 'FALSE POSITIVE' : 'CORRECT'}
         </span>{' '}
-        <span style={{ color: '#c8bfa5' }}>
+        <span style={{ color: 'var(--bc-ink-dim)' }}>
           {scenario === 'caused' &&
             verdict === 'before' &&
             'A really did cause B, and the clock correctly says so.'}
@@ -371,7 +391,7 @@ export const VerdictLab = () => {
         </span>
       </div>
 
-      <Callout title="The three verdicts" color="#b794f4">
+      <Callout title="The three verdicts" color="var(--bc-violet)">
         <strong>Probabilistic:</strong> "A → B" or "B → A" could be correct, or could be concurrency
         masquerading as causality. <strong>Exact:</strong> "A || B" (concurrent). When neither clock
         dominates the other, both are <em>certainly</em> concurrent. No false negatives. Ever.

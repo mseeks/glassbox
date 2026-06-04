@@ -47,7 +47,7 @@ function HeroField() {
     >
       <defs>
         <radialGradient id="hglow" cx="22%" cy="42%" r="70%">
-          <stop offset="0%" stopColor="rgba(246,181,69,.16)" />
+          <stop offset="0%" stopColor="var(--mw-amber-haze)" />
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
         <linearGradient id="hfade" x1="0" x2="1">
@@ -85,10 +85,13 @@ function HeroField() {
             cy={r.y}
             r={r.r}
             fill="none"
-            stroke={r.on ? 'var(--amber)' : '#2a3756'}
             strokeWidth={r.big ? 2.2 : 1.1}
             opacity={r.big ? 0.95 : 0.3 + 0.5 * (r.x / 960)}
-            style={r.on ? { filter: 'drop-shadow(0 0 4px rgba(246,181,69,.7))' } : {}}
+            style={
+              r.on
+                ? { stroke: 'var(--amber)', filter: 'drop-shadow(0 0 4px var(--mw-amber-glow))' }
+                : { stroke: 'var(--mw-off2)' }
+            }
           />
         </g>
       ))}
@@ -130,7 +133,7 @@ export default function Hero() {
               maxWidth: 540,
               marginTop: 22,
               fontSize: 'clamp(17px,2.6vw,21px)',
-              color: '#d8d1c2',
+              color: 'var(--mw-lead)',
             }}
           >
             It began as something you could hold: a wire threaded by hand through a ring of iron,

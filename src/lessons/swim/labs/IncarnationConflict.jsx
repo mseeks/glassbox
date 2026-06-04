@@ -119,7 +119,7 @@ export function IncarnationConflict() {
           style={{ padding: 28, background: 'var(--bg-deeper)', position: 'relative' }}
           className="dot-grid-bg"
         >
-          <div className="swim-label" style={{ color: 'var(--ink-faint)', marginBottom: 20 }}>
+          <div className="swim-label" style={{ color: 'var(--ink-label)', marginBottom: 20 }}>
             Node A's view of X
           </div>
           {view && (
@@ -165,7 +165,7 @@ export function IncarnationConflict() {
           )}
         </div>
         <div style={{ padding: 28, display: 'flex', flexDirection: 'column' }}>
-          <div className="swim-label" style={{ color: 'var(--ink-faint)', marginBottom: 16 }}>
+          <div className="swim-label" style={{ color: 'var(--ink-label)', marginBottom: 16 }}>
             Trace
           </div>
           <div
@@ -177,7 +177,7 @@ export function IncarnationConflict() {
                 style={{
                   fontFamily: 'JetBrains Mono, monospace',
                   fontSize: 11.5,
-                  color: i === stepIdx ? 'var(--ink-bright)' : 'var(--ink-faint)',
+                  color: i === stepIdx ? 'var(--ink-bright)' : 'var(--ink-label)',
                   padding: '6px 0',
                   borderLeft: i === stepIdx ? '2px solid var(--brass)' : '2px solid transparent',
                   paddingLeft: 10,

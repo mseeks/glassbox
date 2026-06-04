@@ -31,7 +31,7 @@ export default function BuildLab() {
       </div>
       <Scope>
         {FIELD.map((p, i) => (
-          <circle key={i} cx={p.x} cy={p.y} r="1.4" fill={C.contact} opacity="0.6" />
+          <circle key={i} cx={p.x} cy={p.y} r="1.4" opacity="0.6" style={{ fill: C.contact }} />
         ))}
         {nodesUpToLvl.map((m) => {
           const isFront = m.depth === lvl;
@@ -42,9 +42,9 @@ export default function BuildLab() {
                 cy={m.node.vp.y}
                 r={m.node.mu}
                 fill="none"
-                stroke={isFront ? C.ping : 'rgba(63,224,198,0.22)'}
                 strokeWidth={isFront ? 0.45 : 0.3}
                 strokeDasharray={isFront ? 'none' : '1 1.4'}
+                style={{ stroke: isFront ? C.ping : C.ringIdle }}
               />
             </g>
           );
@@ -57,9 +57,9 @@ export default function BuildLab() {
               cx={m.node.vp.x}
               cy={m.node.vp.y}
               r={isFront ? 1.9 : 1.4}
-              fill={C.amber}
               opacity={isFront ? 1 : 0.5}
               filter={isFront ? 'url(#vpGlow)' : undefined}
+              style={{ fill: C.amber }}
             />
           );
         })}
@@ -104,12 +104,12 @@ export default function BuildLab() {
       </div>
 
       <div className="vp-caption">
-        Each <span style={{ color: C.amber }}>amber landmark</span> is a <em>vantage point</em>. Its
-        <span style={{ color: C.ping }}> aqua ring</span> sits at the <em>median</em> range to
-        everything it organises, which is what forces exactly half the contacts inside the ring and
-        the other half outside it. Recurse on each half with a fresh vantage point. The split is
-        always even. Median splits keep the tree balanced: {FIELD.length} contacts, ~{maxD} levels
-        deep.
+        Each <span style={{ color: 'var(--amber)' }}>amber landmark</span> is a{' '}
+        <em>vantage point</em>. Its<span style={{ color: 'var(--ping)' }}> aqua ring</span> sits at
+        the <em>median</em> range to everything it organises, which is what forces exactly half the
+        contacts inside the ring and the other half outside it. Recurse on each half with a fresh
+        vantage point. The split is always even. Median splits keep the tree balanced:{' '}
+        {FIELD.length} contacts, ~{maxD} levels deep.
       </div>
     </div>
   );

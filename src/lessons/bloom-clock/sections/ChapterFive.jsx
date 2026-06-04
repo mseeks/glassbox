@@ -56,7 +56,7 @@ export const ChapterFive = () => (
         </p>
       </Prose>
 
-      <Callout icon={Info} title="A subtle thing" color="#6ee7b7" tone="note">
+      <Callout icon={Info} title="A subtle thing" color="var(--bc-emerald)" tone="note">
         After merging, the receiver typically records its <em>own</em> local event too. The receive
         itself counts. That extra increment makes the receiver's clock strictly dominate the
         sender's, which is exactly what we need: the receive happened-after the send, and the

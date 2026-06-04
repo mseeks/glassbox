@@ -72,9 +72,9 @@ export default function ChainOfTrustLab() {
           justifyContent: 'center',
           background:
             st === 'ok'
-              ? 'rgba(70,214,198,.14)'
+              ? 'var(--wash-aqua-14)'
               : st === 'fail'
-                ? 'rgba(240,100,77,.14)'
+                ? 'var(--wash-verm-14)'
                 : 'transparent',
           flex: 'none',
         }}
@@ -91,7 +91,7 @@ export default function ChainOfTrustLab() {
       <StatusDot i={i} />
       <span
         className="tls-mono"
-        style={{ fontSize: 10.5, letterSpacing: '.06em', color: 'var(--bone-faint)' }}
+        style={{ fontSize: 10.5, letterSpacing: '.06em', color: 'var(--bone-label)' }}
       >
         {label}
       </span>
@@ -106,7 +106,7 @@ export default function ChainOfTrustLab() {
           <div className="tls-mono" style={{ fontSize: 13, color: 'var(--bone)' }}>
             {subject}
           </div>
-          <div className="tls-mono" style={{ fontSize: 10.5, color: 'var(--bone-faint)' }}>
+          <div className="tls-mono" style={{ fontSize: 10.5, color: 'var(--bone-label)' }}>
             issued by {issuer}
           </div>
         </div>

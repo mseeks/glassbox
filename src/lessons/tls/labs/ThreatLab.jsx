@@ -58,7 +58,7 @@ export default function ThreatLab() {
           <Globe size={16} style={{ color: 'var(--bone-dim)' }} />
           <span
             className="tls-mono"
-            style={{ fontSize: 10.5, letterSpacing: '.14em', color: 'var(--bone-faint)' }}
+            style={{ fontSize: 10.5, letterSpacing: '.14em', color: 'var(--bone-label)' }}
           >
             YOU SEND
           </span>
@@ -85,9 +85,9 @@ export default function ThreatLab() {
             borderRadius: 7,
             background:
               tone === 'broken'
-                ? 'rgba(240,100,77,.08)'
+                ? 'var(--wash-verm-08)'
                 : tone === 'sealed'
-                  ? 'rgba(70,214,198,.06)'
+                  ? 'var(--wash-aqua-06)'
                   : 'transparent',
             border: `1px solid ${tone === 'exposed' ? 'var(--line-soft)' : wireColor}`,
           }}
@@ -98,7 +98,7 @@ export default function ThreatLab() {
             style={{
               fontSize: 10.5,
               letterSpacing: '.1em',
-              color: 'var(--bone-faint)',
+              color: 'var(--bone-label)',
               flex: 'none',
             }}
           >
@@ -120,7 +120,7 @@ export default function ThreatLab() {
             style={{
               fontSize: 10.5,
               letterSpacing: '.14em',
-              color: s.okResp ? 'var(--bone-faint)' : 'var(--verm)',
+              color: s.okResp ? 'var(--bone-label)' : 'var(--verm)',
             }}
           >
             {s.responder} {!s.okResp && '✗'} RECEIVES

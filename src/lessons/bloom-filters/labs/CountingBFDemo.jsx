@@ -53,7 +53,7 @@ export function CountingBFDemo() {
             style={{
               fontSize: '0.7rem',
               letterSpacing: '0.25em',
-              color: 'rgba(196, 181, 253, 0.7)',
+              color: 'var(--bf-violet-eyebrow)',
               textTransform: 'uppercase',
             }}
           >
@@ -61,7 +61,7 @@ export function CountingBFDemo() {
           </div>
           <div
             className="bf-display"
-            style={{ fontSize: '1.5rem', color: '#f5e9d3', marginTop: '0.3rem' }}
+            style={{ fontSize: '1.5rem', color: 'var(--bf-ink-head)', marginTop: '0.3rem' }}
           >
             Bits become counters
           </div>
@@ -77,7 +77,7 @@ export function CountingBFDemo() {
           gridTemplateColumns: `repeat(${COLS}, 1fr)`,
           gap: '5px',
           padding: '1rem 0.85rem',
-          background: 'rgba(10, 10, 15, 0.45)',
+          background: 'var(--bf-well)',
           borderRadius: '3px',
           margin: '1rem 0',
         }}
@@ -93,22 +93,22 @@ export function CountingBFDemo() {
                 borderRadius: '2px',
                 background:
                   c === 0
-                    ? '#1a1a24'
-                    : `rgba(196, 181, 253, ${0.2 + Math.min(0.7, intensity * 0.7)})`,
-                border: `1px solid ${c === 0 ? 'rgba(232, 222, 200, 0.08)' : 'rgba(196, 181, 253, 0.4)'}`,
+                    ? 'var(--bf-cell-off)'
+                    : `rgba(var(--bf-counter-fill), calc(var(--bf-counter-base-alpha) + var(--bf-counter-span) * ${intensity}))`,
+                border: `1px solid ${c === 0 ? 'var(--bf-line)' : 'var(--bf-violet-line-4)'}`,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontFamily: 'JetBrains Mono, monospace',
                 fontSize: '0.75rem',
                 fontWeight: 600,
-                color: c === 0 ? '#3a3a44' : '#0a0a0f',
+                color: c === 0 ? 'var(--bf-counter-zero)' : 'var(--bf-counter-ink)',
                 transition: 'all 280ms ease',
                 transform: isPulse ? 'scale(1.15)' : 'scale(1)',
                 boxShadow: isPulse
                   ? pulse.kind === 'add'
-                    ? '0 0 12px 3px rgba(94, 234, 212, 0.6)'
-                    : '0 0 12px 3px rgba(251, 113, 133, 0.5)'
+                    ? '0 0 12px 3px var(--bf-teal-glow-strong)'
+                    : '0 0 12px 3px var(--bf-rose-glow)'
                   : 'none',
               }}
             >
@@ -148,22 +148,22 @@ export function CountingBFDemo() {
               style={{
                 fontSize: '0.75rem',
                 padding: '0.25em 0.5em 0.25em 0.6em',
-                background: 'rgba(196, 181, 253, 0.06)',
-                color: '#ddd6fe',
+                background: 'var(--bf-violet-fill)',
+                color: 'var(--bf-violet-ink)',
                 borderRadius: '2px',
-                border: '1px solid rgba(196, 181, 253, 0.2)',
+                border: '1px solid var(--bf-violet-line-2)',
                 cursor: 'pointer',
                 transition: 'all 180ms ease',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(251, 113, 133, 0.1)';
-                e.currentTarget.style.color = '#fda4af';
-                e.currentTarget.style.borderColor = 'rgba(251, 113, 133, 0.4)';
+                e.currentTarget.style.background = 'var(--bf-rose-fill)';
+                e.currentTarget.style.color = 'var(--bf-rose-ink)';
+                e.currentTarget.style.borderColor = 'var(--bf-rose-line)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(196, 181, 253, 0.06)';
-                e.currentTarget.style.color = '#ddd6fe';
-                e.currentTarget.style.borderColor = 'rgba(196, 181, 253, 0.2)';
+                e.currentTarget.style.background = 'var(--bf-violet-fill)';
+                e.currentTarget.style.color = 'var(--bf-violet-ink)';
+                e.currentTarget.style.borderColor = 'var(--bf-violet-line-2)';
               }}
             >
               {w} <Minus style={{ width: 10, height: 10 }} />

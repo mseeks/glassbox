@@ -44,7 +44,7 @@ export function TOC() {
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
             padding: '5px 10px',
-            color: active === it.id ? 'var(--brass)' : 'var(--ink-faint)',
+            color: active === it.id ? 'var(--brass)' : 'var(--ink-label)',
             borderLeft: active === it.id ? '1px solid var(--brass)' : '1px solid var(--border)',
             transition: 'all 0.25s',
           }}

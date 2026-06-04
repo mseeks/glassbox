@@ -71,17 +71,17 @@ export default function BruteForceLab() {
                   y1={q.y}
                   x2={p.x}
                   y2={p.y}
-                  stroke={isNearest || isBest ? C.amber : 'rgba(95,182,171,0.28)'}
                   strokeWidth="0.3"
+                  style={{ stroke: isNearest || isBest ? C.amber : C.hairline }}
                 />
               )}
               <circle
                 cx={p.x}
                 cy={p.y}
                 r={isNearest ? 2.4 : isCurrent ? 2.2 : 1.5}
-                fill={isNearest || isBest ? C.amber : measured ? C.ping : C.contact}
                 opacity={measured || isCurrent ? 1 : 0.55}
                 filter={isCurrent || isNearest ? 'url(#vpGlow)' : undefined}
+                style={{ fill: isNearest || isBest ? C.amber : measured ? C.ping : C.contact }}
               />
               {isCurrent && (
                 <circle
@@ -89,9 +89,9 @@ export default function BruteForceLab() {
                   cy={p.y}
                   r="3"
                   fill="none"
-                  stroke={C.ping}
                   strokeWidth="0.4"
                   opacity="0.8"
+                  style={{ stroke: C.ping }}
                 />
               )}
             </g>

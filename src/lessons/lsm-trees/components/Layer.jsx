@@ -22,16 +22,16 @@ export default function Layer({ label, sub, fill, h = 38, tomb, fresh, dim, foun
         position: 'relative',
         height: h,
         background: tomb ? 'var(--char)' : fill,
-        borderTop: '1px solid rgba(0,0,0,0.30)',
+        borderTop: '1px solid var(--lsm-cell-line-soft)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 14px',
         opacity: dim ? 0.3 : 1,
         boxShadow: found
-          ? 'inset 0 0 0 2px var(--writ), inset 0 0 28px rgba(227,88,44,0.30)'
+          ? 'inset 0 0 0 2px var(--writ), inset 0 0 28px var(--glow-writ-soft)'
           : tomb
-            ? 'inset 0 0 0 1px rgba(242,232,211,0.08)'
+            ? 'inset 0 0 0 1px var(--lsm-sheen)'
             : 'none',
         transition: 'opacity 0.35s, box-shadow 0.3s',
         overflow: 'hidden',
@@ -44,7 +44,7 @@ export default function Layer({ label, sub, fill, h = 38, tomb, fresh, dim, foun
             position: 'absolute',
             inset: 0,
             background:
-              'repeating-linear-gradient(45deg, transparent 0 5px, rgba(242,232,211,0.07) 5px 6px)',
+              'repeating-linear-gradient(45deg, transparent 0 5px, var(--lsm-sheen) 5px 6px)',
           }}
         />
       )}
@@ -54,7 +54,11 @@ export default function Layer({ label, sub, fill, h = 38, tomb, fresh, dim, foun
           fontSize: 11.5,
           fontWeight: 600,
           position: 'relative',
-          color: tomb ? 'rgba(242,232,211,0.62)' : useLight ? 'rgba(255,248,234,0.95)' : '#241404',
+          color: tomb
+            ? 'var(--lsm-tomb-ink)'
+            : useLight
+              ? 'var(--lsm-strata-lt)'
+              : 'var(--lsm-strata-dk)',
         }}
       >
         {label}
@@ -66,10 +70,10 @@ export default function Layer({ label, sub, fill, h = 38, tomb, fresh, dim, foun
             fontSize: 10.5,
             position: 'relative',
             color: tomb
-              ? 'rgba(242,232,211,0.4)'
+              ? 'var(--lsm-tomb-ink-soft)'
               : useLight
-                ? 'rgba(255,248,234,0.62)'
-                : 'rgba(36,20,4,0.6)',
+                ? 'var(--lsm-strata-lt-faint)'
+                : 'var(--lsm-strata-dk-faint)',
           }}
         >
           {sub}

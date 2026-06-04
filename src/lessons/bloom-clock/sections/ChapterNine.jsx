@@ -31,11 +31,11 @@ const StrategyCard = ({ title, eyebrow, color, children, glyph }) => (
     </div>
     <div
       className="bc-italic"
-      style={{ fontSize: 24, color: '#f0e8d2', marginBottom: 16, lineHeight: 1.2 }}
+      style={{ fontSize: 24, color: 'var(--bc-ink)', marginBottom: 16, lineHeight: 1.2 }}
     >
       {title}
     </div>
-    <div style={{ fontSize: 15.5, color: '#c8bfa5', lineHeight: 1.6 }}>{children}</div>
+    <div style={{ fontSize: 15.5, color: 'var(--bc-ink-dim)', lineHeight: 1.6 }}>{children}</div>
   </div>
 );
 
@@ -67,7 +67,12 @@ export const ChapterNine = () => (
         marginTop: 48,
       }}
     >
-      <StrategyCard eyebrow="EPOCH WINDOWS" title="Reset, on schedule" color="#f5b942" glyph="i">
+      <StrategyCard
+        eyebrow="EPOCH WINDOWS"
+        title="Reset, on schedule"
+        color="var(--bc-gold)"
+        glyph="i"
+      >
         Divide time into epochs (say, a window of a few minutes). At the boundary, mint a fresh
         empty clock. Comparisons within an epoch use the current clock, while cross-epoch
         comparisons fall back to a coarse epoch counter that only has to distinguish one window from
@@ -78,7 +83,7 @@ export const ChapterNine = () => (
       <StrategyCard
         eyebrow="STOCHASTIC DECAY"
         title="Forget a little, every event"
-        color="#b794f4"
+        color="var(--bc-violet)"
         glyph="ii"
       >
         On every local event, randomly decrement P slots by 1 (clamped to zero). No epoch boundary
@@ -91,7 +96,7 @@ export const ChapterNine = () => (
       <StrategyCard
         eyebrow="CHAINED CLOCKS"
         title="Stack new clocks as load grows"
-        color="#5eead4"
+        color="var(--bc-teal)"
         glyph="iii"
       >
         Inspired by scalable Bloom filters. Maintain a sequence of clocks: new events go into the

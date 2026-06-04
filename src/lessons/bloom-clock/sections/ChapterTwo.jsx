@@ -62,7 +62,7 @@ export const ChapterTwo = () => (
         </p>
       </Prose>
 
-      <Callout icon={AlertTriangle} title="The bill" color="#fb7185" tone="warn">
+      <Callout icon={AlertTriangle} title="The bill" color="var(--bc-rose)" tone="warn">
         Space per event: <strong>O(N)</strong>. Comparison: <strong>O(N)</strong>. Membership
         management: ongoing, non-trivial, and adversarial to the very network conditions that make
         distributed systems hard in the first place.

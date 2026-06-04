@@ -12,6 +12,13 @@
   --ink-bright: #fbf6e7;
   --ink-dim: #a59f8e;
   --ink-faint: #6b6655;
+  /* functional faint ink — ink-faint lifted to clear WCAG AA on the dark
+     grounds (surface/bg/bg-deeper) for every place it carries information:
+     labels, captions, mono values, table headers, nav/TOC links, citations,
+     and live sim readouts. --ink-faint itself is left untouched so decorative
+     eyebrows, ghost dots, ornaments, chevrons, and dim diagram fills keep their
+     hush. Functional text routes to --ink-label; decoration stays on --ink-faint */
+  --ink-label: #837e6c;
   --ink-ghost: #3e3a30;
 
   --alive: #a3e635;
@@ -30,6 +37,9 @@
   --gossip-glow: rgba(216, 180, 254, 0.18);
   --brass: #fda4af;
   --brass-deep: #9f6068;
+
+  /* hero background bloom (lime glow on the dark plate) */
+  --hero-wash: rgba(163, 230, 53, 0.045);
 
   font-family: 'Inter Tight', system-ui, sans-serif;
   font-weight: 400;
@@ -437,7 +447,7 @@
 .swim-toc a {
   display: block;
   padding: 6px 0;
-  color: var(--ink-faint);
+  color: var(--ink-label);
   text-decoration: none;
   border-left: 1px solid var(--border);
   padding-left: 14px;
@@ -461,7 +471,7 @@
   letter-spacing: 0.14em;
   font-size: 10.5px;
   font-weight: 500;
-  color: var(--ink-faint);
+  color: var(--ink-label);
   text-align: left;
   padding: 14px 12px;
   border-bottom: 1px solid var(--border-bright);
@@ -520,4 +530,115 @@
 .swim-root ::selection {
   background: var(--brass-deep);
   color: var(--ink-bright);
+}
+
+/* ─── Light theme — the naturalist's field journal ──────────────────── */
+/* A pressed-specimen ledger kept in the open air: warm manila/kraft paper
+   that has taken sun, written in sepia iron-gall ink. Each membership state
+   is a mounted specimen — field-green alive, burnt-amber suspect, madder
+   dead, ink-wash probe, violet-pigment gossip — and the signature warm rose
+   reads as a pressed rose petal flattened between the leaves. Colours that
+   glowed on the dark plate are DEEPENED for paper: a dark-mode halo becomes
+   a soft pigment bloom, a glow becomes a faint stain. Every functional ink,
+   label, and specimen tint is solved to clear WCAG AA on the paper it sits
+   on (reasoned in OKLCH — hue held, lightness/chroma re-solved for paper). */
+[data-theme='light'] .swim-root {
+  --bg: #e6d8ba;
+  --bg-deeper: #e0d0b0;
+  --surface: #efe4ca;
+  --surface-2: #e4d5b4;
+  --surface-3: #d9c8a4;
+  --border: #c4b189;
+  --border-bright: #a8946b;
+  --ink: #2b2417;
+  --ink-bright: #1a160d;
+  --ink-dim: #5e533a;
+  --ink-faint: #60562f;
+  /* functional label ink on paper — the sepia label tint already clears AA on
+     every paper ground, so it tracks --ink-faint; named for parity with dark */
+  --ink-label: #60562f;
+  --ink-ghost: #bdac84;
+
+  --alive: #3d6309;
+  --alive-glow: rgba(61, 99, 9, 0.14);
+  --alive-deep: #6f9a1f;
+  --suspect: #8f4207;
+  --suspect-glow: rgba(143, 66, 7, 0.13);
+  --suspect-deep: #c47410;
+  --dead: #a81a1a;
+  --dead-glow: rgba(168, 26, 26, 0.13);
+  --dead-deep: #d35a5a;
+  --probe: #0a5a86;
+  --probe-glow: rgba(10, 90, 134, 0.13);
+  --probe-deep: #4795bd;
+  --gossip: #6d29c4;
+  --gossip-glow: rgba(109, 41, 196, 0.12);
+  --brass: #97333e;
+  --brass-deep: #cf7d86;
+
+  /* hero bloom on paper: a warm rose-petal stain pressed into the head margin */
+  --hero-wash: rgba(151, 51, 62, 0.07);
+
+  /* The paper itself: faint ruled gridlines drawn over the kraft ground plus
+     a plate vignette darkening the page edges — the light analog of the dark
+     mode's edge glow. Composites over the --bg colour from the base rule. */
+  background-image:
+    linear-gradient(rgba(96, 86, 47, 0.05) 1px, transparent 1px),
+    radial-gradient(ellipse 120% 120% at 50% 50%, transparent 58%, rgba(70, 56, 28, 0.07) 100%);
+  background-size:
+    100% 30px,
+    100% 100%;
+  background-attachment: fixed;
+}
+
+/* Atmosphere — specimen stains bloomed into the paper, not light cast on
+   it. Warm sun in the head margin, a green field-wash and a teal water-wash
+   pooling at the corners, a violet pigment ghost mid-page. Kept soft so the
+   sepia text reads cleanly over them. */
+[data-theme='light'] .swim-root::before {
+  background-image:
+    radial-gradient(ellipse 90% 55% at 50% 0%, rgba(151, 51, 62, 0.06), transparent 62%),
+    radial-gradient(ellipse 70% 45% at 12% 18%, rgba(61, 99, 9, 0.06), transparent 60%),
+    radial-gradient(ellipse 60% 42% at 86% 96%, rgba(10, 90, 134, 0.055), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 60%, rgba(109, 41, 196, 0.04), transparent 62%);
+}
+
+/* Paper grain — the noise must settle INTO the paper as fibre, so it
+   darkens (multiply) rather than lifting (screen) as it does on the plate. */
+[data-theme='light'] .swim-root::after {
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+}
+
+/* Specimen-mount cards lift off the page with a soft warm shadow + a thin
+   inner highlight, the paper analog of the dark card's recessed glow. */
+[data-theme='light'] .swim-root .swim-card {
+  box-shadow:
+    0 1px 0 rgba(255, 250, 238, 0.6) inset,
+    0 8px 22px -14px rgba(70, 56, 28, 0.5);
+}
+
+/* Pinned-specimen canvas — a faintly toned inset plate within the journal,
+   ringed by a soft shadow rather than the dark mode's glow halo. */
+[data-theme='light'] .swim-root .cluster-canvas {
+  box-shadow:
+    0 2px 8px -4px rgba(70, 56, 28, 0.35),
+    0 0 0 1px rgba(168, 148, 107, 0.4) inset;
+}
+
+/* Chip borders — deepened specimen tints so each mount reads on paper. */
+[data-theme='light'] .swim-chip[data-tone='alive'] {
+  border-color: rgba(61, 99, 9, 0.45);
+}
+[data-theme='light'] .swim-chip[data-tone='suspect'] {
+  border-color: rgba(143, 66, 7, 0.45);
+}
+[data-theme='light'] .swim-chip[data-tone='dead'] {
+  border-color: rgba(168, 26, 26, 0.45);
+}
+[data-theme='light'] .swim-chip[data-tone='probe'] {
+  border-color: rgba(10, 90, 134, 0.45);
+}
+[data-theme='light'] .swim-chip[data-tone='gossip'] {
+  border-color: rgba(109, 41, 196, 0.45);
 }

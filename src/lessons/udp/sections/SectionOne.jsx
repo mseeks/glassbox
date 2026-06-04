@@ -175,7 +175,7 @@ export const SectionOne = () => {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          color: isActive ? '#1a1108' : 'var(--ink-faint)',
+                          color: isActive ? 'var(--udp-on-accent)' : 'var(--ink-faint-fn)',
                           fontFamily: 'JetBrains Mono',
                           fontSize: 10,
                           fontWeight: 700,
@@ -195,7 +195,7 @@ export const SectionOne = () => {
                         >
                           {hop.label}
                         </div>
-                        <div style={{ fontSize: 11, color: 'var(--ink-faint)' }}>{hop.sub}</div>
+                        <div style={{ fontSize: 11, color: 'var(--ink-faint-fn)' }}>{hop.sub}</div>
                       </div>
                       {isDropped && (
                         <Pill tone="lost" icon={XIcon}>

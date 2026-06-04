@@ -14,7 +14,7 @@ const Stat = ({ label, value, color }) => (
       className="udp-mono"
       style={{
         fontSize: 10.5,
-        color: 'var(--ink-faint)',
+        color: 'var(--ink-faint-fn)',
         letterSpacing: '0.1em',
         textTransform: 'uppercase',
         marginBottom: 4,
@@ -255,7 +255,7 @@ export const SectionFive = () => {
                 }}
               >
                 <Label>Sender</Label>
-                <span className="udp-mono" style={{ fontSize: 11, color: 'var(--ink-faint)' }}>
+                <span className="udp-mono" style={{ fontSize: 11, color: 'var(--ink-faint-fn)' }}>
                   send() × {packets.length}
                 </span>
               </div>
@@ -292,7 +292,10 @@ export const SectionFive = () => {
                         fontFamily: 'JetBrains Mono',
                         fontSize: 13,
                         fontWeight: 600,
-                        color: m.color,
+                        // Border/icon carry the loss identity (--lost); the
+                        // readable number uses the AA-cleared --lost-ink so
+                        // it passes on surface-2 without recolouring the swatch.
+                        color: p.fate === 'lost' ? 'var(--lost-ink)' : m.color,
                         position: 'relative',
                       }}
                       title={m.label}
@@ -307,7 +310,7 @@ export const SectionFive = () => {
                 style={{
                   marginTop: 8,
                   fontSize: 11,
-                  color: 'var(--ink-faint)',
+                  color: 'var(--ink-faint-fn)',
                   fontFamily: 'JetBrains Mono',
                   letterSpacing: '0.02em',
                 }}
@@ -391,7 +394,7 @@ export const SectionFive = () => {
                             right: -5,
                             fontSize: 8,
                             background: 'var(--warn)',
-                            color: '#1a1108',
+                            color: 'var(--udp-on-accent)',
                             padding: '1px 3px',
                             borderRadius: 2,
                             fontWeight: 700,
@@ -410,7 +413,7 @@ export const SectionFive = () => {
                     style={{
                       width: '100%',
                       textAlign: 'center',
-                      color: 'var(--ink-faint)',
+                      color: 'var(--ink-faint-fn)',
                       fontFamily: 'JetBrains Mono',
                       fontSize: 11,
                       padding: '34px 0',
@@ -426,7 +429,7 @@ export const SectionFive = () => {
                   style={{
                     marginTop: 8,
                     fontSize: 11,
-                    color: 'var(--ink-faint)',
+                    color: 'var(--ink-faint-fn)',
                     fontFamily: 'JetBrains Mono',
                     letterSpacing: '0.02em',
                   }}

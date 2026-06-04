@@ -146,9 +146,9 @@ export default function ReadLab() {
                     border: `2px solid ${reached ? 'var(--instr)' : 'var(--rule-soft)'}`,
                     background: t?.hit ? 'var(--writ)' : reached ? 'var(--instr)' : 'var(--paper)',
                     boxShadow: t?.hit
-                      ? '0 0 8px rgba(227,88,44,0.8)'
+                      ? '0 0 8px var(--glow-writ-strong)'
                       : reached
-                        ? '0 0 6px rgba(84,180,200,0.6)'
+                        ? '0 0 6px var(--glow-instr)'
                         : 'none',
                     transition: 'all 0.3s',
                   }}
@@ -173,7 +173,7 @@ export default function ReadLab() {
                 style={{
                   flex: 1,
                   background: STRATA[Math.min(i, 5)],
-                  border: '1px solid rgba(0,0,0,0.4)',
+                  border: '1px solid var(--lsm-cell-line)',
                   padding: '9px 13px',
                   opacity: t?.skipped ? 0.34 : 1,
                   transition: 'all 0.4s',
@@ -188,13 +188,13 @@ export default function ReadLab() {
                       style={{
                         fontSize: 10.5,
                         padding: '1px 5px',
-                        background: t?.hit && key === q ? 'var(--writ)' : 'rgba(0,0,0,0.22)',
+                        background: t?.hit && key === q ? 'var(--writ)' : 'var(--lsm-chip)',
                         color:
                           t?.hit && key === q
                             ? '#fff'
                             : lightText(i)
-                              ? 'rgba(255,248,234,0.92)'
-                              : '#241404',
+                              ? 'var(--lsm-strata-lt-2)'
+                              : 'var(--lsm-strata-dk)',
                       }}
                     >
                       {key}
@@ -208,7 +208,9 @@ export default function ReadLab() {
                       marginTop: 6,
                       fontStyle: 'italic',
                       fontSize: 11.5,
-                      color: lightText(i) ? 'rgba(255,248,234,0.85)' : 'rgba(36,20,4,0.72)',
+                      color: lightText(i)
+                        ? 'var(--lsm-strata-lt-soft)'
+                        : 'var(--lsm-strata-dk-soft)',
                     }}
                   >
                     {verdict}
@@ -271,7 +273,7 @@ export default function ReadLab() {
         style={{
           marginTop: 16,
           padding: '12px 15px',
-          background: done?.found ? 'rgba(227,88,44,0.12)' : 'var(--paper-3)',
+          background: done?.found ? 'var(--tint-writ)' : 'var(--paper-3)',
           border: `1px solid ${done?.found ? 'var(--writ)' : 'var(--rule-soft)'}`,
           fontStyle: 'italic',
           fontFamily: 'Vollkorn',

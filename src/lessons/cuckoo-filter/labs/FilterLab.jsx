@@ -411,7 +411,9 @@ export function FilterLab() {
             }}
           >
             {log.length === 0 && (
-              <div style={{ color: 'var(--text-faint)', fontStyle: 'italic' }}>(nothing yet)</div>
+              <div style={{ color: 'var(--cf-label-faint)', fontStyle: 'italic' }}>
+                (nothing yet)
+              </div>
             )}
             {log.map((entry, i) => (
               <div

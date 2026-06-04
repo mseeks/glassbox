@@ -19,8 +19,9 @@ export const ChapterSix = () => (
         <p>
           <em>A is less-than-or-equal-to B in every position</em> (and strictly less somewhere). We
           call this "A is dominated by B." The verdict:{' '}
-          <span style={{ color: '#b794f4' }}>A probably happened before B</span>. Probably. Because
-          as we'll see in a moment, two concurrent clocks can sometimes look this way by accident.
+          <span style={{ color: 'var(--bc-violet)' }}>A probably happened before B</span>. Probably.
+          Because as we'll see in a moment, two concurrent clocks can sometimes look this way by
+          accident.
         </p>
         <p>
           <em>The opposite: B is dominated by A.</em> Same verdict, reversed: B probably happened
@@ -31,11 +32,11 @@ export const ChapterSix = () => (
             Neither dominates. There's some position where A is bigger, and some position where B is
             bigger.
           </em>{' '}
-          The verdict: <span style={{ color: '#6ee7b7' }}>A and B are concurrent</span>. And this
-          one is different from the other two, because the verdict is <em>exact</em>: there is no
-          probabilistic uncertainty here, no false positive to worry about, and nothing whatsoever
-          to second-guess in the answer the comparison just handed back. Exact. We'll spend the next
-          chapter on why.
+          The verdict: <span style={{ color: 'var(--bc-emerald)' }}>A and B are concurrent</span>.
+          And this one is different from the other two, because the verdict is <em>exact</em>: there
+          is no probabilistic uncertainty here, no false positive to worry about, and nothing
+          whatsoever to second-guess in the answer the comparison just handed back. Exact. We'll
+          spend the next chapter on why.
         </p>
       </Prose>
     </div>

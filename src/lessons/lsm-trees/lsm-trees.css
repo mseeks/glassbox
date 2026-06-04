@@ -63,6 +63,43 @@
   --gold: #e3aa33; /* compaction in motion */
   --jade: #93b86a; /* bloom: definitely-not-here */
   --char: #0a0805; /* tombstones — a void */
+  /* inline-painted, theme-dependent — the dark survey bench & its hairlines/sheens */
+  --lsm-well: #0a0805; /* instrument well — the dark display ground inside figures */
+  --lsm-cell-line: rgba(0, 0, 0, 0.4); /* hairline between cells/files on a band */
+  --lsm-cell-line-soft: rgba(0, 0, 0, 0.3); /* lighter layer-top hairline */
+  --lsm-cell-shadow: rgba(0, 0, 0, 0.8); /* inset shadow on tombstone cells */
+  --lsm-chip: rgba(0, 0, 0, 0.22); /* dim key-chip on an opened stratum */
+  --lsm-sheen: rgba(242, 232, 211, 0.06); /* pale bone sheen lit on the dark well */
+  --lsm-sheen-soft: rgba(242, 232, 211, 0.05); /* fainter sheen wash on a polygon */
+  --lsm-well-ink: #a08c66; /* legible bone for captions/empty-states printed inside the well */
+  /* tombstone — a struck-out "nothing here" mark. Dark theme: a void ground
+     with bone text inked on it. Light theme drives the ground to a pale, inert
+     ash patch and the text to umber, so a deleted layer reads light, not as a
+     dark box dropped on the kraft. */
+  --lsm-tomb-ink: rgba(242, 232, 211, 0.62); /* tombstone label on the void */
+  --lsm-tomb-ink-soft: rgba(242, 232, 211, 0.4); /* its softer age caption */
+  /* strata core-sample labels — text inked directly ON a sediment band. Two
+     families: light text laid on the dark/deep bands, dark text on the bright
+     surface bands, each at a primary + a softer (caption) tier. Dark theme keeps
+     the luminous-band rgba values; light theme drives them to the extreme. */
+  --lsm-strata-lt: rgba(255, 248, 234, 0.95); /* light label on a deep band */
+  --lsm-strata-lt-2: rgba(255, 248, 234, 0.92);
+  --lsm-strata-lt-soft: rgba(255, 248, 234, 0.85); /* softer light caption */
+  --lsm-strata-lt-soft-2: rgba(255, 248, 234, 0.7);
+  --lsm-strata-lt-faint: rgba(255, 248, 234, 0.62); /* faint light footnote */
+  --lsm-strata-lt-faint-2: rgba(255, 248, 234, 0.6);
+  --lsm-strata-dk: #241404; /* dark label on a bright band */
+  --lsm-strata-dk-soft: rgba(36, 20, 4, 0.72); /* softer dark caption */
+  --lsm-strata-dk-faint: rgba(36, 20, 4, 0.6); /* faint dark footnote */
+  --lsm-strata-dk-faint-2: rgba(36, 20, 4, 0.55);
+  /* lit halos & washes — incandescence against the night table */
+  --glow-writ: rgba(227, 88, 44, 0.45); /* ember bloom on a title word */
+  --glow-writ-strong: rgba(227, 88, 44, 0.8); /* the live drill-bit / head, blazing */
+  --glow-writ-soft: rgba(227, 88, 44, 0.3); /* a faint ember halo on a small mark */
+  --glow-instr: rgba(84, 180, 200, 0.6); /* the survey light on the descending bit */
+  --glow-gold: rgba(227, 170, 51, 0.5); /* the gold ring of a compaction firing on the well */
+  --tint-writ: rgba(227, 88, 44, 0.12); /* a thin ember wash — stripes, the found banner */
+  --tint-gold: rgba(227, 170, 51, 0.13); /* compaction's gold wash — flush, rings, notes */
 
   font-family: 'Vollkorn', Georgia, serif;
   color: var(--ink);
@@ -378,4 +415,146 @@
   border-radius: 50%;
   background: var(--writ);
   cursor: pointer;
+}
+
+/* ─── Light theme — a FIELD SURVEY ON KRAFT ─── */
+/* The night survey table struck in daylight: a sheet of sandy kraft pinned to
+   the bench, core samples printed as pigment strata, every reading inked in
+   umber. The dark theme's glows become soft shadows and warm tints pressed
+   into the paper; the one dark survives is the instrument well — a polished
+   walnut tray inset into the kraft, where the lit samples still sit. */
+[data-theme='light'] .lsm {
+  /* surfaces — kraft sheets. base ground is sandy kraft; sheets lift toward a
+     clean leaf; paper-2 a tinted band, paper-3 a recessed inset, paper-4 a
+     raised chip catching the light */
+  --bg: #e3d2ac;
+  --paper: #ece0c2;
+  --paper-2: #d7c39a;
+  --paper-3: #cdb78a;
+  --paper-4: #f1e8d0;
+  /* text — umber ink, drawn dark on kraft */
+  --ink: #221a0d;
+  --ink-2: #3d2d18;
+  --ink-3: #5f4519;
+  --ink-faint: #604519;
+  /* rules — umber drawn a notch under the kraft */
+  --rule: #c2ac80;
+  --rule-soft: #ab9362;
+  --edge: #8f7748;
+  /* strata — sediment bands as pigment pressed into the sheet */
+  --s1: #c69a3c;
+  --s2: #b9842e;
+  --s3: #985818;
+  --s4: #84461b;
+  --s5: #693a1a;
+  --s6: #452817;
+  /* accents — retuned for the bright kraft ground, identity intact */
+  --writ: #962c09; /* writes — incandescent sediment, banked into a kraft-tag ember */
+  --writ-2: #7d2407;
+  --instr: #114a52; /* the instrument: reads, boreholes, survey marks */
+  --instr-2: #0d4049;
+  --instr-3: #3a9aab; /* a lit survey teal — reads on the walnut well */
+  --gold: #6e4a03; /* compaction in motion */
+  --jade: #3d5a1c; /* bloom: definitely-not-here */
+  /* tombstone — a deleted layer / dead cell. Not a dark box on the kraft: a
+     pale, desaturated ash patch, recessed a touch below the tray so it reads as
+     an inert "nothing here" beside the live amber sediment, but stays light. */
+  --char: #c8bda6;
+  /* inline-painted, theme-dependent — a recessed KRAFT survey tray: deeper than
+     the page so it still reads as an inset well, but light to match the page */
+  --lsm-well: #d4bf90; /* instrument well — a recessed kraft tray the samples sit in */
+  --lsm-cell-line: rgba(36, 26, 14, 0.5); /* warm hairline between cells/files */
+  --lsm-cell-line-soft: rgba(36, 26, 14, 0.35); /* lighter layer-top hairline */
+  --lsm-cell-shadow: rgba(80, 64, 36, 0.28); /* soft umber inset on a light tombstone cell */
+  --lsm-chip: rgba(36, 26, 14, 0.32); /* dim key-chip on an opened stratum */
+  --lsm-sheen: rgba(255, 248, 230, 0.12); /* warm sheen lit on the walnut well */
+  --lsm-sheen-soft: rgba(255, 248, 230, 0.08); /* fainter sheen wash on a polygon */
+  --lsm-well-ink: #5f4519; /* legible dark ink for captions/empty-states on the kraft well */
+  /* tombstone text struck dark on the pale ash patch (was bone-on-void) */
+  --lsm-tomb-ink: #3d2d18; /* tombstone label on the ash patch */
+  --lsm-tomb-ink-soft: rgba(61, 45, 24, 0.72); /* its softer age caption */
+  /* strata labels driven to the contrast extreme on the kraft sediment bands:
+     near-black ink on the bright surface bands, near-white on the deep ones, so
+     every label clears AA on its own band. No alpha — alpha bled the labels into
+     the pigment (sub-AA at 10.5px). The bands themselves are untouched. */
+  --lsm-strata-lt: #fefaf0;
+  --lsm-strata-lt-2: #fefaf0;
+  --lsm-strata-lt-soft: #fefaf0;
+  --lsm-strata-lt-soft-2: #fefaf0;
+  --lsm-strata-lt-faint: #fefaf0;
+  --lsm-strata-lt-faint-2: #fefaf0;
+  --lsm-strata-dk: #180f04;
+  --lsm-strata-dk-soft: #180f04;
+  --lsm-strata-dk-faint: #180f04;
+  --lsm-strata-dk-faint-2: #180f04;
+  /* halos & washes re-struck for kraft: glows on the walnut well stay
+     incandescent; a title's glow becomes a soft ember bloom, washes turn to
+     umber/gold pigment soaked into the sheet */
+  --glow-writ: rgba(196, 67, 27, 0.34); /* soft ember bloom on a kraft-printed title */
+  --glow-writ-strong: rgba(227, 88, 44, 0.85); /* the live bit/head, still blazing on the well */
+  --glow-writ-soft: rgba(227, 88, 44, 0.4); /* ember halo on a small mark in the well */
+  --glow-instr: rgba(58, 154, 171, 0.7); /* survey light on the descending bit */
+  --glow-gold: rgba(227, 170, 51, 0.5); /* the gold ring of a compaction firing on the well */
+  --tint-writ: rgba(150, 44, 9, 0.1); /* a thin ember wash soaked into kraft */
+  --tint-gold: rgba(110, 74, 3, 0.1); /* compaction's gold wash on the sheet */
+
+  /* atmosphere — soft ember glow at the head and a teal survey-light at the
+     foot pressed into the kraft, over faint ruled survey gridlines */
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -8%, rgba(150, 44, 9, 0.07), transparent 60%),
+    radial-gradient(ellipse 80% 50% at 50% 112%, rgba(17, 74, 82, 0.07), transparent 58%),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(95, 69, 25, 0.045) 31px 32px),
+    repeating-linear-gradient(90deg, transparent 0 31px, rgba(95, 69, 25, 0.04) 31px 32px),
+    var(--bg);
+}
+
+/* grain reads as tooth pressed into the kraft, not a glow */
+[data-theme='light'] .lsm::before {
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+}
+
+[data-theme='light'] .lsm .toc-row:hover {
+  background: rgba(61, 45, 24, 0.07);
+}
+
+[data-theme='light'] .lsm .prose code {
+  background: rgba(150, 44, 9, 0.1);
+}
+
+[data-theme='light'] .lsm .btn-w:hover {
+  color: #fdf3e8;
+}
+[data-theme='light'] .lsm .btn-i:hover {
+  color: #eef6f7;
+}
+
+/* a captioned figure reads as a kraft plate raised off the bench: a soft umber
+   drop-shadow below, a bright deckle-edge sheen along the top */
+[data-theme='light'] .lsm .fig {
+  background: linear-gradient(180deg, var(--paper), var(--paper-2));
+  box-shadow:
+    0 22px 48px -32px rgba(40, 28, 12, 0.45),
+    0 2px 0 rgba(40, 28, 12, 0.08),
+    inset 0 1px 0 rgba(255, 250, 240, 0.6);
+}
+[data-theme='light'] .lsm .fig-soft {
+  background: rgba(61, 45, 24, 0.05);
+}
+
+[data-theme='light'] .lsm .note {
+  background: rgba(110, 74, 3, 0.1);
+}
+/* the note's header is read as a heading — deepen it a hair past AA on the
+   recessed kraft inset (paper-3) without touching the shared --gold token that
+   colors the note's rule, compaction rings & marks elsewhere */
+[data-theme='light'] .lsm .note-h {
+  color: #654200;
+}
+
+[data-theme='light'] :where(.lsm) input[type='range'] {
+  background: var(--rule-soft);
+}
+[data-theme='light'] :where(.lsm) input[type='range']::-webkit-slider-thumb {
+  box-shadow: 0 0 7px rgba(150, 44, 9, 0.45);
 }

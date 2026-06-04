@@ -167,15 +167,15 @@ export default function SpongeLab() {
                           ? lastTouched === 1
                             ? 'var(--jade)'
                             : 'var(--copper)'
-                          : 'rgba(224,122,60,0.4)'
-                        : 'rgba(141,155,176,0.35)'),
+                          : 'var(--sha-cop-edge)'
+                        : 'var(--sha-ste-edge)'),
                     background: isRate
                       ? touched
                         ? lastTouched === 1
                           ? 'var(--jade-glow)'
                           : 'var(--copper-glow)'
-                        : 'rgba(224,122,60,0.05)'
-                      : 'rgba(141,155,176,0.06)',
+                        : 'var(--sha-cop-wash)'
+                      : 'var(--sha-ste-wash)',
                     color: isRate ? 'var(--copper-bright)' : 'var(--steel-dim)',
                     transition: 'all .3s',
                   }}

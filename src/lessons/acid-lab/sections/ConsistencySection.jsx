@@ -10,7 +10,7 @@ export const ConsistencySection = forwardRef(function ConsistencySection(_props,
           letter="C"
           kicker="The invariants axis"
           name="Consistency"
-          accent="#f0abfc"
+          accent="var(--iso-pink)"
           intro="The softest of the four. It is also the one you have actually been studying all along, without it being named."
         />
       </div>
@@ -29,7 +29,7 @@ function ConsistencyBody() {
             fontSize: 10,
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
-            color: 'rgba(232, 222, 200, 0.45)',
+            color: 'rgba(var(--iso-ink-rgb), 0.72)',
             marginBottom: 6,
           }}
         >
@@ -40,7 +40,7 @@ function ConsistencyBody() {
           style={{
             fontSize: 22,
             fontWeight: 500,
-            color: '#e8dec8',
+            color: 'var(--ink)',
             margin: 0,
             fontStyle: 'italic',
           }}
@@ -55,7 +55,7 @@ function ConsistencyBody() {
           style={{
             fontSize: 16,
             lineHeight: 1.65,
-            color: 'rgba(232, 222, 200, 0.88)',
+            color: 'rgba(var(--iso-ink-rgb), 0.88)',
             margin: 0,
           }}
           dangerouslySetInnerHTML={{
@@ -70,7 +70,7 @@ function ConsistencyBody() {
           style={{
             fontSize: 16,
             lineHeight: 1.65,
-            color: 'rgba(232, 222, 200, 0.88)',
+            color: 'rgba(var(--iso-ink-rgb), 0.88)',
             margin: '14px 0 0',
           }}
           dangerouslySetInnerHTML={{
@@ -88,8 +88,8 @@ function ConsistencyBody() {
             style={{
               padding: '16px 18px',
               borderRadius: 8,
-              background: 'rgba(240, 171, 252, 0.04)',
-              border: '1px solid rgba(240, 171, 252, 0.2)',
+              background: 'rgba(var(--iso-pink-rgb), 0.04)',
+              border: '1px solid rgba(var(--iso-pink-rgb), 0.2)',
             }}
           >
             <div
@@ -98,7 +98,7 @@ function ConsistencyBody() {
                 fontSize: 9,
                 letterSpacing: '0.16em',
                 textTransform: 'uppercase',
-                color: '#f0abfc',
+                color: 'var(--iso-pink)',
                 marginBottom: 8,
                 fontWeight: 600,
               }}
@@ -107,9 +107,9 @@ function ConsistencyBody() {
             </div>
             <div
               className="iso-body"
-              style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(232, 222, 200, 0.85)' }}
+              style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(var(--iso-ink-rgb), 0.85)' }}
             >
-              <strong style={{ color: '#e8dec8' }}>Constraints.</strong> NOT NULL, UNIQUE, CHECK,
+              <strong style={{ color: 'var(--ink)' }}>Constraints.</strong> NOT NULL, UNIQUE, CHECK,
               foreign keys, primary keys. The narrow slice of consistency the database can guarantee
               directly. A transaction that would violate any of these is rejected at commit time.
             </div>
@@ -119,8 +119,8 @@ function ConsistencyBody() {
             style={{
               padding: '16px 18px',
               borderRadius: 8,
-              background: 'rgba(232, 222, 200, 0.04)',
-              border: '1px solid rgba(232, 222, 200, 0.12)',
+              background: 'rgba(var(--iso-ink-rgb), 0.04)',
+              border: '1px solid rgba(var(--iso-ink-rgb), 0.12)',
             }}
           >
             <div
@@ -129,7 +129,7 @@ function ConsistencyBody() {
                 fontSize: 9,
                 letterSpacing: '0.16em',
                 textTransform: 'uppercase',
-                color: 'rgba(232, 222, 200, 0.6)',
+                color: 'rgba(var(--iso-ink-rgb), 0.7)',
                 marginBottom: 8,
                 fontWeight: 600,
               }}
@@ -138,12 +138,13 @@ function ConsistencyBody() {
             </div>
             <div
               className="iso-body"
-              style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(232, 222, 200, 0.85)' }}
+              style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(var(--iso-ink-rgb), 0.85)' }}
             >
-              <strong style={{ color: '#e8dec8' }}>Application logic.</strong> Higher-level business
-              rules: "withdrawal cannot exceed balance," "at least one moderator per channel." The
-              database does not know your domain. Your transactions must individually preserve these
-              rules; the database guarantees only that *if* they do, concurrency cannot break them.
+              <strong style={{ color: 'var(--ink)' }}>Application logic.</strong> Higher-level
+              business rules: "withdrawal cannot exceed balance," "at least one moderator per
+              channel." The database does not know your domain. Your transactions must individually
+              preserve these rules; the database guarantees only that *if* they do, concurrency
+              cannot break them.
             </div>
           </div>
         </div>
@@ -153,8 +154,8 @@ function ConsistencyBody() {
             marginTop: 22,
             padding: '14px 18px',
             borderRadius: 8,
-            background: 'rgba(251, 113, 133, 0.06)',
-            border: '1px solid rgba(251, 113, 133, 0.2)',
+            background: 'rgba(var(--iso-coral-rgb), 0.06)',
+            border: '1px solid rgba(var(--iso-coral-rgb), 0.2)',
           }}
         >
           <div
@@ -163,7 +164,7 @@ function ConsistencyBody() {
               fontSize: 9,
               letterSpacing: '0.16em',
               textTransform: 'uppercase',
-              color: '#fb7185',
+              color: 'var(--iso-coral)',
               marginBottom: 6,
               fontWeight: 600,
             }}
@@ -175,7 +176,7 @@ function ConsistencyBody() {
             style={{
               fontSize: 14,
               lineHeight: 1.6,
-              color: 'rgba(232, 222, 200, 0.85)',
+              color: 'rgba(var(--iso-ink-rgb), 0.85)',
               margin: 0,
             }}
             dangerouslySetInnerHTML={{

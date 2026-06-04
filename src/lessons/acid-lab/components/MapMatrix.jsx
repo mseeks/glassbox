@@ -29,7 +29,7 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
             fontSize: 10,
             letterSpacing: '0.22em',
             textTransform: 'uppercase',
-            color: 'rgba(232, 222, 200, 0.55)',
+            color: 'rgba(var(--iso-ink-rgb), 0.78)',
             marginBottom: 6,
           }}
         >
@@ -41,7 +41,7 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
             fontSize: 'clamp(22px, 2.4vw, 28px)',
             fontWeight: 500,
             margin: 0,
-            color: '#e8dec8',
+            color: 'var(--ink)',
             fontStyle: 'italic',
           }}
         >
@@ -51,7 +51,7 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
           className="iso-body"
           style={{
             fontSize: 14,
-            color: 'rgba(232, 222, 200, 0.55)',
+            color: 'rgba(var(--iso-ink-rgb), 0.78)',
             margin: '8px auto 0',
             maxWidth: 480,
             lineHeight: 1.55,
@@ -74,7 +74,7 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
                     textAlign: 'left',
                     padding: '4px 10px 12px',
                     fontSize: 9,
-                    color: 'rgba(232, 222, 200, 0.55)',
+                    color: 'rgba(var(--iso-ink-rgb), 0.78)',
                     fontWeight: 500,
                     letterSpacing: '0.14em',
                     textTransform: 'uppercase',
@@ -92,7 +92,7 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
                         textAlign: 'center',
                         padding: '4px 6px 12px',
                         fontSize: 10,
-                        color: active ? '#e8dec8' : 'rgba(232, 222, 200, 0.5)',
+                        color: active ? 'var(--ink)' : 'rgba(var(--iso-ink-rgb), 0.65)',
                         fontWeight: active ? 700 : 500,
                         letterSpacing: '0.06em',
                       }}
@@ -103,7 +103,7 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
                         style={{
                           height: 2,
                           marginTop: 6,
-                          background: active ? '#5eead4' : 'transparent',
+                          background: active ? 'var(--iso-teal)' : 'transparent',
                           borderRadius: 999,
                         }}
                       />
@@ -125,9 +125,9 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
                       style={{
                         padding: '10px 10px',
                         fontSize: 13,
-                        color: isActiveRow ? '#e8dec8' : 'rgba(232, 222, 200, 0.65)',
+                        color: isActiveRow ? 'var(--ink)' : 'rgba(var(--iso-ink-rgb), 0.65)',
                         fontWeight: isActiveRow ? 600 : 400,
-                        borderTop: ri > 0 ? '1px solid rgba(232, 222, 200, 0.05)' : 'none',
+                        borderTop: ri > 0 ? '1px solid rgba(var(--iso-ink-rgb), 0.05)' : 'none',
                         whiteSpace: 'nowrap',
                       }}
                     >
@@ -137,7 +137,7 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
                           width: 4,
                           height: 4,
                           borderRadius: 999,
-                          background: isActiveRow ? '#5eead4' : 'transparent',
+                          background: isActiveRow ? 'var(--iso-teal)' : 'transparent',
                           marginRight: 8,
                           transform: 'translateY(-2px)',
                         }}
@@ -153,7 +153,7 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
                           style={{
                             textAlign: 'center',
                             padding: '6px 6px',
-                            borderTop: ri > 0 ? '1px solid rgba(232, 222, 200, 0.05)' : 'none',
+                            borderTop: ri > 0 ? '1px solid rgba(var(--iso-ink-rgb), 0.05)' : 'none',
                           }}
                         >
                           <button
@@ -162,15 +162,22 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
                               width: 30,
                               height: 30,
                               borderRadius: 6,
-                              border: isActiveCell ? '1px solid #5eead4' : '1px solid transparent',
+                              border: isActiveCell
+                                ? '1px solid var(--iso-teal)'
+                                : '1px solid transparent',
                               background: isActiveCell
-                                ? 'rgba(94, 234, 212, 0.15)'
+                                ? 'rgba(var(--iso-teal-rgb), 0.15)'
                                 : v === 1
-                                  ? 'rgba(52, 211, 153, 0.06)'
+                                  ? 'rgba(var(--iso-green-rgb), 0.06)'
                                   : v === 0.5
-                                    ? 'rgba(251, 191, 36, 0.06)'
-                                    : 'rgba(251, 113, 133, 0.06)',
-                              color: v === 1 ? '#34d399' : v === 0.5 ? '#fbbf24' : '#fb7185',
+                                    ? 'rgba(var(--iso-amber-rgb), 0.06)'
+                                    : 'rgba(var(--iso-coral-rgb), 0.06)',
+                              color:
+                                v === 1
+                                  ? 'var(--iso-green)'
+                                  : v === 0.5
+                                    ? 'var(--iso-amber)'
+                                    : 'var(--iso-coral)',
                               fontFamily: 'JetBrains Mono, monospace',
                               fontSize: 13,
                               fontWeight: 600,
@@ -181,16 +188,16 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
                             title={`${row.anomaly} at ${l.name}: ${v === 1 ? 'prevented' : v === 0.5 ? 'depends' : 'permitted'}`}
                             onMouseEnter={(e) => {
                               if (!isActiveCell)
-                                e.currentTarget.style.background = 'rgba(232, 222, 200, 0.06)';
+                                e.currentTarget.style.background = 'rgba(var(--iso-ink-rgb), 0.06)';
                             }}
                             onMouseLeave={(e) => {
                               if (!isActiveCell) {
                                 e.currentTarget.style.background =
                                   v === 1
-                                    ? 'rgba(52, 211, 153, 0.06)'
+                                    ? 'rgba(var(--iso-green-rgb), 0.06)'
                                     : v === 0.5
-                                      ? 'rgba(251, 191, 36, 0.06)'
-                                      : 'rgba(251, 113, 133, 0.06)';
+                                      ? 'rgba(var(--iso-amber-rgb), 0.06)'
+                                      : 'rgba(var(--iso-coral-rgb), 0.06)';
                               }
                             }}
                           >
@@ -204,8 +211,8 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
                                   width: 8,
                                   height: 8,
                                   borderRadius: 999,
-                                  background: '#5eead4',
-                                  boxShadow: '0 0 8px #5eead4',
+                                  background: 'var(--iso-teal)',
+                                  boxShadow: '0 0 8px var(--iso-teal)',
                                 }}
                               />
                             )}
@@ -224,16 +231,19 @@ export function MapMatrix({ scenarioId, levelId, onSelectCell }) {
           className="iso-body"
           style={{
             fontSize: 12,
-            color: 'rgba(232, 222, 200, 0.55)',
+            color: 'rgba(var(--iso-ink-rgb), 0.78)',
             marginTop: 16,
             lineHeight: 1.5,
             textAlign: 'center',
           }}
         >
-          <span style={{ color: '#34d399', fontWeight: 600 }}>✓ prevented</span> &nbsp;·&nbsp;
-          <span style={{ color: '#fbbf24', fontWeight: 600 }}>~ implementation-dependent</span>{' '}
+          <span style={{ color: 'var(--iso-green)', fontWeight: 600 }}>✓ prevented</span>{' '}
           &nbsp;·&nbsp;
-          <span style={{ color: '#fb7185', fontWeight: 600 }}>✗ permitted</span>
+          <span style={{ color: 'var(--iso-amber)', fontWeight: 600 }}>
+            ~ implementation-dependent
+          </span>{' '}
+          &nbsp;·&nbsp;
+          <span style={{ color: 'var(--iso-coral)', fontWeight: 600 }}>✗ permitted</span>
         </div>
       </div>
     </section>

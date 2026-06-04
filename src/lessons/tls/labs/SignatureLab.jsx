@@ -55,7 +55,7 @@ export default function SignatureLab() {
 
       <label
         className="tls-mono"
-        style={{ fontSize: 10.5, letterSpacing: '.14em', color: 'var(--bone-faint)' }}
+        style={{ fontSize: 10.5, letterSpacing: '.14em', color: 'var(--bone-label)' }}
       >
         SERVER'S MESSAGE
       </label>

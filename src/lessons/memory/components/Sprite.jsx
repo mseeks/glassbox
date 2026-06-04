@@ -26,7 +26,11 @@ export const SH = HERO_SPRITE.length;
 export default function Sprite({ mirror = false, hue = 'amber', px = 6 }) {
   const body = hue === 'steel' ? 'var(--steel)' : hue === 'rose' ? 'var(--rose)' : 'var(--amber)';
   const acc =
-    hue === 'steel' ? 'var(--steel-dim)' : hue === 'rose' ? '#b8503a' : 'var(--amber-deep)';
+    hue === 'steel'
+      ? 'var(--steel-dim)'
+      : hue === 'rose'
+        ? 'var(--mw-rose-acc)'
+        : 'var(--amber-deep)';
   const cells = [];
   for (let y = 0; y < SH; y++)
     for (let x = 0; x < SW; x++) {
@@ -51,7 +55,7 @@ export default function Sprite({ mirror = false, hue = 'amber', px = 6 }) {
       style={{
         display: 'block',
         maxWidth: SW * px,
-        filter: `drop-shadow(0 0 6px ${hue === 'steel' ? 'rgba(115,188,207,.4)' : hue === 'rose' ? 'rgba(232,135,112,.4)' : 'rgba(246,181,69,.4)'})`,
+        filter: `drop-shadow(0 0 6px ${hue === 'steel' ? 'var(--mw-steel-bloom)' : hue === 'rose' ? 'var(--mw-rose-bloom)' : 'var(--mw-amber-bloom)'})`,
       }}
     >
       {cells}

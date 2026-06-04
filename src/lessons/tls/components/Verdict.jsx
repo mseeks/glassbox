@@ -8,7 +8,7 @@ export default function Verdict({ ok, okText = 'VERIFIED', noText = 'REJECTED' }
       style={{
         borderColor: ok ? 'var(--aqua)' : 'var(--verm)',
         color: ok ? 'var(--aqua-bright)' : 'var(--verm-bright)',
-        background: ok ? 'rgba(70,214,198,.1)' : 'rgba(240,100,77,.12)',
+        background: ok ? 'var(--wash-aqua-10)' : 'var(--wash-verm-12)',
       }}
     >
       {ok ? <Check size={13} /> : <X size={13} />}

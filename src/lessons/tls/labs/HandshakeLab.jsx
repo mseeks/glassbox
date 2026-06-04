@@ -217,7 +217,7 @@ export default function HandshakeLab() {
                   fontSize: 11.5,
                   maxWidth: '88%',
                   borderColor: shown ? (isApp ? 'var(--aqua)' : 'var(--line)') : 'var(--line-soft)',
-                  background: isApp && shown ? 'rgba(70,214,198,.08)' : 'var(--ink-2)',
+                  background: isApp && shown ? 'var(--wash-aqua-08)' : 'var(--ink-2)',
                   color: col,
                 }}
               >

@@ -133,7 +133,7 @@ export function EpidemicSim() {
               left: 16,
               fontFamily: 'JetBrains Mono, monospace',
               fontSize: 10,
-              color: 'var(--ink-faint)',
+              color: 'var(--ink-label)',
               letterSpacing: '0.12em',
             }}
           >
@@ -168,7 +168,7 @@ export function EpidemicSim() {
                 textAnchor="end"
                 fontSize="9"
                 fontFamily="JetBrains Mono, monospace"
-                fill="var(--ink-faint)"
+                fill="var(--ink-label)"
               >
                 100%
               </text>
@@ -178,7 +178,7 @@ export function EpidemicSim() {
                 textAnchor="end"
                 fontSize="9"
                 fontFamily="JetBrains Mono, monospace"
-                fill="var(--ink-faint)"
+                fill="var(--ink-label)"
               >
                 0
               </text>
@@ -188,7 +188,7 @@ export function EpidemicSim() {
                 textAnchor="end"
                 fontSize="9"
                 fontFamily="JetBrains Mono, monospace"
-                fill="var(--ink-faint)"
+                fill="var(--ink-label)"
               >
                 round
               </text>
@@ -246,7 +246,7 @@ export function EpidemicSim() {
             </svg>
           </div>
           <div style={{ borderTop: '1px solid var(--border)', paddingTop: 14, marginTop: 8 }}>
-            <div className="swim-label" style={{ color: 'var(--ink-faint)', marginBottom: 6 }}>
+            <div className="swim-label" style={{ color: 'var(--ink-label)', marginBottom: 6 }}>
               EXPECTED CONVERGENCE
             </div>
             <div

@@ -275,7 +275,7 @@ export function FullClusterSim() {
             fontSize: 11,
           }}
         >
-          <span style={{ color: 'var(--ink-faint)' }}>
+          <span style={{ color: 'var(--ink-label)' }}>
             R<span style={{ color: 'var(--brass)' }}>{round}</span>
           </span>
           <span className="swim-chip" data-tone="alive">
@@ -396,7 +396,7 @@ export function FullClusterSim() {
             left: 16,
             fontFamily: 'JetBrains Mono',
             fontSize: 10,
-            color: 'var(--ink-faint)',
+            color: 'var(--ink-label)',
             letterSpacing: '0.1em',
           }}
         >

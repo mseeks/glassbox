@@ -1,9 +1,17 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { getLessonById, indexPage, pages } from '../lesson-catalog.js';
+import ThemeToggle from './ThemeToggle.jsx';
 import './nav.css';
 
 const navLabelFor = (page) => (page.id === indexPage.id ? 'Index' : page.label);
+
+// The index page has no lesson accent; give it a warm tan so the active "Index"
+// pill keeps a legible dark label in BOTH themes (without it, the pill falls back
+// to --ink, which is dark in light mode → invisible dark-on-dark text).
+const INDEX_ACCENT = '#c2a878';
+const accentFor = (id) =>
+  getLessonById(id)?.accent || (id === indexPage.id ? INDEX_ACCENT : undefined);
 
 // The lesson switcher. On desktop it's the familiar wrapping pill bar; below
 // 768px (driven entirely by nav.css) it collapses to a hamburger + the current
@@ -14,7 +22,7 @@ export default function Nav({ activePage, onSelect }) {
   const navRef = useRef(null);
   const menuId = useId();
 
-  const activeAccent = getLessonById(activePage.id)?.accent;
+  const activeAccent = accentFor(activePage.id);
   const currentLabel = navLabelFor(activePage);
 
   // While the mobile dropdown is open, close it on Escape or an outside tap.
@@ -43,6 +51,7 @@ export default function Nav({ activePage, onSelect }) {
 
   return (
     <nav ref={navRef} className="lesson-nav" aria-label="Lesson navigation">
+      <ThemeToggle />
       <div className="lesson-nav__bar">
         <button
           type="button"
@@ -67,7 +76,7 @@ export default function Nav({ activePage, onSelect }) {
       <ul id={menuId} className="lesson-nav__list" data-open={open}>
         {pages.map((page) => {
           const isActive = page.id === activePage.id;
-          const accent = getLessonById(page.id)?.accent;
+          const accent = accentFor(page.id);
 
           return (
             <li key={page.id}>

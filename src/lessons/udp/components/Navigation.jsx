@@ -58,7 +58,7 @@ export const Navigation = () => {
           right: 18,
           zIndex: 100,
           background: open ? 'var(--signal)' : 'var(--surface-2)',
-          color: open ? '#1a1108' : 'var(--ink)',
+          color: open ? 'var(--udp-on-accent)' : 'var(--ink)',
           border: `1px solid ${open ? 'var(--signal)' : 'var(--line-bright)'}`,
           padding: '10px 14px',
           borderRadius: 4,
@@ -70,7 +70,7 @@ export const Navigation = () => {
           cursor: 'pointer',
           backdropFilter: 'blur(8px)',
           transition: 'all 0.18s',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+          boxShadow: 'var(--udp-nav-shadow)',
         }}
       >
         {open ? 'Close' : '☰ Nav'}
@@ -83,7 +83,7 @@ export const Navigation = () => {
             top: 60,
             right: 18,
             zIndex: 99,
-            background: 'rgba(13, 20, 24, 0.95)',
+            background: 'var(--udp-nav-bg)',
             backdropFilter: 'blur(12px)',
             border: '1px solid var(--line-bright)',
             borderRadius: 4,

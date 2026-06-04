@@ -19,7 +19,7 @@ export function AcidGlanceCards({ activeSection, onJumpSection }) {
             fontSize: 10,
             letterSpacing: '0.22em',
             textTransform: 'uppercase',
-            color: 'rgba(232, 222, 200, 0.55)',
+            color: 'rgba(var(--iso-ink-rgb), 0.78)',
             marginBottom: 8,
           }}
         >
@@ -31,7 +31,7 @@ export function AcidGlanceCards({ activeSection, onJumpSection }) {
             fontSize: 'clamp(24px, 2.6vw, 30px)',
             fontWeight: 500,
             margin: 0,
-            color: '#e8dec8',
+            color: 'var(--ink)',
             fontStyle: 'italic',
           }}
         >
@@ -41,7 +41,7 @@ export function AcidGlanceCards({ activeSection, onJumpSection }) {
           className="iso-body"
           style={{
             fontSize: 14,
-            color: 'rgba(232, 222, 200, 0.6)',
+            color: 'rgba(var(--iso-ink-rgb), 0.7)',
             margin: '8px auto 0',
             maxWidth: 540,
             lineHeight: 1.55,
@@ -84,14 +84,14 @@ function AcidCard({ prop, active, onClick }) {
         position: 'relative',
         textAlign: 'left',
         cursor: 'pointer',
-        border: '1px solid ' + (active ? prop.accent : 'rgba(232, 222, 200, 0.08)'),
+        border: '1px solid ' + (active ? prop.accentVar : 'rgba(var(--iso-ink-rgb), 0.08)'),
         background: active
-          ? `linear-gradient(180deg, rgba(${hexToRgb(prop.accent)}, 0.04) 0%, #14141c 60%)`
-          : '#14141c',
+          ? `linear-gradient(180deg, rgba(${hexToRgb(prop.accent)}, 0.04) 0%, var(--iso-card) 60%)`
+          : 'var(--iso-card)',
         transition: 'all 220ms ease',
         boxShadow: active
           ? `0 0 0 1px ${prop.accent}33, 0 12px 40px -16px ${prop.accent}55`
-          : '0 8px 24px -12px rgba(0,0,0,0.6)',
+          : '0 8px 24px -12px var(--iso-shadow)',
       }}
       onMouseEnter={(e) => {
         if (!active) {
@@ -101,7 +101,7 @@ function AcidCard({ prop, active, onClick }) {
       }}
       onMouseLeave={(e) => {
         if (!active) {
-          e.currentTarget.style.borderColor = 'rgba(232, 222, 200, 0.08)';
+          e.currentTarget.style.borderColor = 'rgba(var(--iso-ink-rgb), 0.08)';
           e.currentTarget.style.transform = 'translateY(0)';
         }
       }}
@@ -113,7 +113,7 @@ function AcidCard({ prop, active, onClick }) {
             fontSize: 56,
             fontWeight: 400,
             lineHeight: 0.85,
-            color: prop.accent,
+            color: prop.accentVar,
             fontStyle: 'italic',
             fontVariationSettings: "'opsz' 144",
           }}
@@ -126,7 +126,7 @@ function AcidCard({ prop, active, onClick }) {
             style={{
               fontSize: 17,
               fontWeight: 600,
-              color: '#e8dec8',
+              color: 'var(--ink)',
               lineHeight: 1.1,
             }}
           >
@@ -138,7 +138,7 @@ function AcidCard({ prop, active, onClick }) {
               fontSize: 9,
               letterSpacing: '0.16em',
               textTransform: 'uppercase',
-              color: 'rgba(232, 222, 200, 0.55)',
+              color: 'rgba(var(--iso-ink-rgb), 0.78)',
               marginTop: 2,
             }}
           >
@@ -153,7 +153,7 @@ function AcidCard({ prop, active, onClick }) {
         className="iso-body"
         style={{
           fontSize: 13,
-          color: 'rgba(232, 222, 200, 0.7)',
+          color: 'rgba(var(--iso-ink-rgb), 0.7)',
           lineHeight: 1.5,
           fontStyle: 'italic',
           marginBottom: 10,
@@ -167,7 +167,7 @@ function AcidCard({ prop, active, onClick }) {
         className="iso-body"
         style={{
           fontSize: 13,
-          color: '#e8dec8',
+          color: 'var(--ink)',
           lineHeight: 1.5,
           marginBottom: 12,
           minHeight: 38,
@@ -180,28 +180,12 @@ function AcidCard({ prop, active, onClick }) {
         className="iso-mono"
         style={{
           fontSize: 11,
-          color: prop.accent,
-          fontWeight: 500,
-          opacity: 0.85,
+          color: prop.accentVar,
+          fontWeight: 600,
         }}
       >
         {prop.mechanism}
       </div>
-
-      {prop.centerpiece && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 10,
-            right: 10,
-            fontSize: 10,
-            color: prop.accent,
-            letterSpacing: '0.1em',
-          }}
-        >
-          ★
-        </div>
-      )}
     </button>
   );
 }

@@ -35,7 +35,6 @@ export function SectionDivider({ letter, name, kicker, accent, intro }) {
           textTransform: 'uppercase',
           color: accent,
           marginBottom: 6,
-          opacity: 0.8,
         }}
       >
         {kicker}
@@ -46,7 +45,7 @@ export function SectionDivider({ letter, name, kicker, accent, intro }) {
           fontSize: 'clamp(34px, 4.5vw, 48px)',
           fontWeight: 500,
           margin: 0,
-          color: '#e8dec8',
+          color: 'var(--ink)',
           lineHeight: 1.05,
         }}
       >
@@ -58,7 +57,7 @@ export function SectionDivider({ letter, name, kicker, accent, intro }) {
           style={{
             fontSize: 'clamp(16px, 1.7vw, 18px)',
             lineHeight: 1.6,
-            color: 'rgba(232, 222, 200, 0.78)',
+            color: 'rgba(var(--iso-ink-rgb), 0.78)',
             margin: '20px auto 0',
             maxWidth: 580,
           }}

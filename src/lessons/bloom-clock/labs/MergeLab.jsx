@@ -10,6 +10,10 @@ const BarRow = ({
   clock,
   label,
   accent,
+  barTop,
+  barBot,
+  glow,
+  edge,
   maxVal,
   takesMax,
   highlight,
@@ -30,7 +34,7 @@ const BarRow = ({
       <div className="bc-italic" style={{ fontSize: 20, color: accent }}>
         {label}
       </div>
-      <div className="bc-mono" style={{ fontSize: 11, color: '#5e5747' }}>
+      <div className="bc-mono" style={{ fontSize: 11, color: 'var(--bc-ink-faint)' }}>
         weight {clockWeight(clock, kVal).toFixed(1)}
       </div>
     </div>
@@ -40,8 +44,8 @@ const BarRow = ({
         gap: 3,
         alignItems: 'flex-end',
         padding: '10px 12px',
-        background: 'rgba(15, 19, 38, 0.5)',
-        border: '1px solid rgba(45, 52, 88, 0.5)',
+        background: 'var(--bc-inset-5)',
+        border: '1px solid var(--bc-rule)',
         borderRadius: 3,
       }}
     >
@@ -65,10 +69,10 @@ const BarRow = ({
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'flex-end',
-                background: 'rgba(255, 255, 255, 0.025)',
+                background: 'var(--bc-sheen-2)',
                 borderRadius: 2,
                 border:
-                  highlight && isMax ? `1px solid ${accent}88` : '1px solid rgba(255,255,255,0.04)',
+                  highlight && isMax ? `1px solid ${edge}` : '1px solid var(--bc-sheen-border)',
               }}
             >
               {v > 0 && (
@@ -76,15 +80,18 @@ const BarRow = ({
                   style={{
                     width: '100%',
                     height: `${Math.max(3, (v / maxVal) * 100)}%`,
-                    background: `linear-gradient(180deg, ${accent}ee, ${accent}66)`,
-                    boxShadow: `0 0 10px ${accent}44`,
+                    background: `linear-gradient(180deg, ${barTop}, ${barBot})`,
+                    boxShadow: `0 0 10px ${glow}`,
                     borderRadius: '1px 1px 0 0',
                     transition: 'height 300ms cubic-bezier(0.22, 1, 0.36, 1)',
                   }}
                 />
               )}
             </div>
-            <div className="bc-mono" style={{ fontSize: 9, color: v > 0 ? accent : '#3d3d3d' }}>
+            <div
+              className="bc-mono"
+              style={{ fontSize: 9, color: v > 0 ? accent : 'var(--bc-ink-ghost)' }}
+            >
               {v}
             </div>
           </div>
@@ -151,22 +158,42 @@ export const MergeLab = () => {
   return (
     <div className="bc-panel-elevated" style={{ padding: 32 }}>
       <div style={{ marginBottom: 24 }}>
-        <div className="bc-eyebrow" style={{ color: '#b794f4' }}>
+        <div className="bc-eyebrow" style={{ color: 'var(--bc-violet)' }}>
           LAB · MERGE
         </div>
-        <div className="bc-italic" style={{ fontSize: 26, color: '#f0e8d2', marginTop: 4 }}>
+        <div className="bc-italic" style={{ fontSize: 26, color: 'var(--bc-ink)', marginTop: 4 }}>
           Pointwise max, position by position
         </div>
       </div>
 
       <div style={{ display: 'grid', gap: 18 }}>
-        <BarRow clock={clockA} label="Clock A" accent="#f5b942" maxVal={allMax} kVal={K} />
+        <BarRow
+          clock={clockA}
+          label="Clock A"
+          accent="var(--bc-gold)"
+          barTop="var(--bc-gold-bar-top)"
+          barBot="var(--bc-gold-bar-bot)"
+          glow="var(--bc-gold-glow)"
+          edge="var(--bc-gold-edge)"
+          maxVal={allMax}
+          kVal={K}
+        />
         <div className="bc-divider">
           <span className="bc-mono" style={{ fontSize: 10 }}>
             +
           </span>
         </div>
-        <BarRow clock={clockB} label="Clock B" accent="#5eead4" maxVal={allMax} kVal={K} />
+        <BarRow
+          clock={clockB}
+          label="Clock B"
+          accent="var(--bc-teal)"
+          barTop="var(--bc-teal-bar-top)"
+          barBot="var(--bc-teal-bar-bot)"
+          glow="var(--bc-teal-glow)"
+          edge="var(--bc-teal-edge)"
+          maxVal={allMax}
+          kVal={K}
+        />
         {showingMerge && merged && (
           <>
             <div className="bc-divider">
@@ -177,7 +204,11 @@ export const MergeLab = () => {
             <BarRow
               clock={merged}
               label="Merged"
-              accent="#b794f4"
+              accent="var(--bc-violet)"
+              barTop="var(--bc-violet-bar-top)"
+              barBot="var(--bc-violet-bar-bot)"
+              glow="var(--bc-violet-glow)"
+              edge="var(--bc-violet-edge)"
               maxVal={allMax}
               takesMax
               highlight
@@ -194,7 +225,12 @@ export const MergeLab = () => {
         <div style={{ display: 'flex', gap: 6 }}>
           <span
             className="bc-mono"
-            style={{ fontSize: 11, color: '#5e5747', alignSelf: 'center', marginRight: 6 }}
+            style={{
+              fontSize: 11,
+              color: 'var(--bc-ink-faint)',
+              alignSelf: 'center',
+              marginRight: 6,
+            }}
           >
             A:
           </span>
@@ -204,8 +240,8 @@ export const MergeLab = () => {
               onClick={() => addToA(id)}
               className="bc-btn"
               style={{
-                borderColor: 'rgba(245, 185, 66, 0.4)',
-                color: '#f5b942',
+                borderColor: 'var(--bc-gold-edge)',
+                color: 'var(--bc-gold)',
                 padding: '6px 12px',
                 fontSize: 11,
               }}
@@ -217,7 +253,12 @@ export const MergeLab = () => {
         <div style={{ display: 'flex', gap: 6 }}>
           <span
             className="bc-mono"
-            style={{ fontSize: 11, color: '#5e5747', alignSelf: 'center', marginRight: 6 }}
+            style={{
+              fontSize: 11,
+              color: 'var(--bc-ink-faint)',
+              alignSelf: 'center',
+              marginRight: 6,
+            }}
           >
             B:
           </span>
@@ -227,8 +268,8 @@ export const MergeLab = () => {
               onClick={() => addToB(id)}
               className="bc-btn"
               style={{
-                borderColor: 'rgba(94, 234, 212, 0.4)',
-                color: '#5eead4',
+                borderColor: 'var(--bc-teal-edge)',
+                color: 'var(--bc-teal)',
                 padding: '6px 12px',
                 fontSize: 11,
               }}
@@ -247,7 +288,7 @@ export const MergeLab = () => {
         </div>
       </div>
 
-      <Callout title="The merge" color="#b794f4">
+      <Callout title="The merge" color="var(--bc-violet)">
         At every position, the merged clock takes the <em>larger</em> of A's value and B's value.
         Information flows monotonically. Counters never decrease. This is what makes the merge
         associative, commutative, and idempotent: properties that let a whole cluster gossip clocks

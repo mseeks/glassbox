@@ -129,7 +129,7 @@ export default function AssemblyLineLab() {
                     ? 'var(--copper-bright)'
                     : passed
                       ? 'var(--bone-dim)'
-                      : 'var(--bone-faint)',
+                      : 'var(--bone-faint-fn)',
                   transition: 'all .3s',
                   whiteSpace: 'nowrap',
                 }}

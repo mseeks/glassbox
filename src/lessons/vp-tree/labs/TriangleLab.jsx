@@ -55,15 +55,14 @@ export default function TriangleLab() {
   const Handle = ({ k, color, label }) => (
     <g style={{ cursor: 'grab' }}>
       <circle cx={pts[k].x} cy={pts[k].y} r="5.5" fill="transparent" />
-      <circle cx={pts[k].x} cy={pts[k].y} r="2.4" fill={color} filter="url(#vpGlow)" />
+      <circle cx={pts[k].x} cy={pts[k].y} r="2.4" filter="url(#vpGlow)" style={{ fill: color }} />
       <text
         x={pts[k].x}
         y={pts[k].y - 4.2}
-        fill={color}
         fontSize="4.4"
         fontFamily="var(--font-mono)"
         textAnchor="middle"
-        style={{ letterSpacing: '0.04em' }}
+        style={{ fill: color, letterSpacing: '0.04em' }}
       >
         {label}
       </text>
@@ -87,8 +86,8 @@ export default function TriangleLab() {
       >
         <defs>
           <radialGradient id="triAmber" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={C.amber} stopOpacity="0.45" />
-            <stop offset="100%" stopColor={C.amber} stopOpacity="0" />
+            <stop offset="0%" stopOpacity="0.45" style={{ stopColor: C.amber }} />
+            <stop offset="100%" stopOpacity="0" style={{ stopColor: C.amber }} />
           </radialGradient>
           <filter id="vpGlow2" x="-60%" y="-60%" width="220%" height="220%">
             <feGaussianBlur stdDeviation="0.7" result="b" />
@@ -104,42 +103,42 @@ export default function TriangleLab() {
           y1={pts.v.y}
           x2={pts.p.x}
           y2={pts.p.y}
-          stroke={C.ping}
           strokeWidth="0.5"
+          style={{ stroke: C.ping }}
         />
         <line
           x1={pts.q.x}
           y1={pts.q.y}
           x2={pts.v.x}
           y2={pts.v.y}
-          stroke={C.amber}
           strokeWidth="0.5"
+          style={{ stroke: C.amber }}
         />
         <line
           x1={pts.q.x}
           y1={pts.q.y}
           x2={pts.p.x}
           y2={pts.p.y}
-          stroke={C.bone3}
           strokeWidth="0.5"
           strokeDasharray="1.5 1.5"
+          style={{ stroke: C.bone3 }}
         />
         {/* midpoint labels for the two known sides */}
         <text
           x={(pts.v.x + pts.p.x) / 2 + 1}
           y={(pts.v.y + pts.p.y) / 2}
-          fill={C.ping}
           fontSize="3.6"
           fontFamily="var(--font-mono)"
+          style={{ fill: C.ping }}
         >
           a = {a.toFixed(1)}
         </text>
         <text
           x={(pts.q.x + pts.v.x) / 2 - 13}
           y={(pts.q.y + pts.v.y) / 2}
-          fill={C.amber}
           fontSize="3.6"
           fontFamily="var(--font-mono)"
+          style={{ fill: C.amber }}
         >
           b = {b.toFixed(1)}
         </text>
@@ -170,9 +169,9 @@ export default function TriangleLab() {
               bottom: 0,
               left: (lower / scale) * 100 + '%',
               width: ((upper - lower) / scale) * 100 + '%',
-              background: 'rgba(63,224,198,0.16)',
-              borderLeft: '1px solid ' + C.ping,
-              borderRight: '1px solid ' + C.ping,
+              background: 'var(--ping-soft)',
+              borderLeft: '1px solid var(--ping)',
+              borderRight: '1px solid var(--ping)',
             }}
           />
           {/* actual c marker */}
@@ -183,8 +182,8 @@ export default function TriangleLab() {
               bottom: -3,
               left: (c / scale) * 100 + '%',
               width: 2,
-              background: C.amber,
-              boxShadow: '0 0 7px ' + C.amber,
+              background: 'var(--amber)',
+              boxShadow: '0 0 7px var(--amber)',
             }}
           />
           <div
@@ -195,7 +194,7 @@ export default function TriangleLab() {
               transform: 'translateX(-50%)',
               fontFamily: 'var(--mono)',
               fontSize: 9.5,
-              color: C.ping,
+              color: 'var(--ping)',
             }}
           >
             {lower.toFixed(1)}
@@ -208,7 +207,7 @@ export default function TriangleLab() {
               transform: 'translateX(-50%)',
               fontFamily: 'var(--mono)',
               fontSize: 9.5,
-              color: C.ping,
+              color: 'var(--ping)',
             }}
           >
             {upper.toFixed(1)}
@@ -221,7 +220,7 @@ export default function TriangleLab() {
               transform: 'translateX(-50%)',
               fontFamily: 'var(--mono)',
               fontSize: 9.5,
-              color: C.amber,
+              color: 'var(--amber)',
             }}
           >
             {c.toFixed(1)}
@@ -234,15 +233,15 @@ export default function TriangleLab() {
             marginTop: 20,
             fontFamily: 'var(--mono)',
             fontSize: 10.5,
-            color: C.bone3,
+            color: 'var(--bone-3)',
             letterSpacing: '.04em',
           }}
         >
           <span>
-            <span style={{ color: C.ping }}>▮</span> the true distance must lie in this band
+            <span style={{ color: 'var(--ping)' }}>▮</span> the true distance must lie in this band
           </span>
           <span>
-            <span style={{ color: C.amber }}>▮</span> where it actually is
+            <span style={{ color: 'var(--amber)' }}>▮</span> where it actually is
           </span>
         </div>
       </div>
@@ -267,9 +266,9 @@ export default function TriangleLab() {
       <div className="vp-caption">
         Knowing only two sides of a triangle pins the third inside a band: it can&apos;t be shorter
         than
-        <span style={{ color: C.ping }}> |a − b|</span> nor longer than{' '}
-        <span style={{ color: C.ping }}> a + b</span>. Drag the query close to the landmark and the
-        band collapses, so you nearly know the answer without measuring it. That{' '}
+        <span style={{ color: 'var(--ping)' }}> |a − b|</span> nor longer than{' '}
+        <span style={{ color: 'var(--ping)' }}> a + b</span>. Drag the query close to the landmark
+        and the band collapses, so you nearly know the answer without measuring it. That{' '}
         <em>lower bound</em> is the whole game. If the closest a region could <em>possibly</em> be
         is still farther than a contact you already hold, you can throw the entire region away
         unmeasured.

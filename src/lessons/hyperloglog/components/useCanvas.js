@@ -1,12 +1,16 @@
 import { useEffect, useRef } from 'react';
+import { useTheme } from '../../../shared/useTheme.js';
 
 // A device-pixel-ratio-aware <canvas> hook. Sizes the canvas to its parent's
 // width (height from a data-aspect ratio), re-renders on resize via a
 // ResizeObserver, and calls the latest `draw(ctx, w, h)` in CSS pixels.
+// The draws read their palette from CSS custom properties on the canvas, so a
+// theme flip must force a redraw — `theme` rides in the effect deps for that.
 export function useCanvas(draw, deps) {
   const ref = useRef(null);
   const drawRef = useRef(draw);
   drawRef.current = draw;
+  const { theme } = useTheme();
   useEffect(() => {
     const cv = ref.current;
     if (!cv) return;
@@ -29,6 +33,6 @@ export function useCanvas(draw, deps) {
     return () => ro.disconnect();
     // deps is a caller-provided array (a reusable hook), so it can't be statically checked
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps);
+  }, [theme, ...(deps || [])]);
   return ref;
 }

@@ -107,7 +107,7 @@ export default function WireEncoder() {
       </div>
       <div
         style={{
-          background: '#060a0e',
+          background: 'var(--gx-well)',
           border: '1px solid var(--line)',
           borderRadius: 10,
           padding: 14,
@@ -250,7 +250,7 @@ function SizeBar({ label, bytes, pct, color, glow }) {
         style={{
           flex: 1,
           height: 22,
-          background: '#060a0e',
+          background: 'var(--gx-well)',
           border: '1px solid var(--line)',
           borderRadius: 6,
           overflow: 'hidden',

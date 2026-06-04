@@ -234,7 +234,7 @@ export default function MemoryTimeline() {
         width="100%"
         style={{
           display: 'block',
-          background: 'rgba(6,9,15,.5)',
+          background: 'var(--mw-void-wash)',
           border: '1px solid var(--line)',
           borderRadius: 10,
         }}
@@ -264,7 +264,7 @@ export default function MemoryTimeline() {
         {shownPts.length > 1 && (
           <path
             d={`${linePath} L${shownPts[shownPts.length - 1].x.toFixed(1)} ${H - padB} L${shownPts[0].x.toFixed(1)} ${H - padB} Z`}
-            fill="rgba(246,181,69,.10)"
+            style={{ fill: 'var(--mw-amber-area)' }}
           />
         )}
         <path
@@ -297,13 +297,15 @@ export default function MemoryTimeline() {
             style={{ cursor: playing ? 'default' : 'pointer' }}
           >
             {p.shown && i === sel && (
-              <circle cx={p.x} cy={p.cy} r="11" fill="rgba(246,181,69,.22)" />
+              <circle cx={p.x} cy={p.cy} r="11" style={{ fill: 'var(--mw-amber-halo)' }} />
             )}
             <circle
               cx={p.x}
               cy={p.cy}
               r={i === sel ? 5.5 : 4}
-              fill={p.shown ? (i === sel ? 'var(--amber-hi)' : 'var(--amber)') : '#2c364f'}
+              style={{
+                fill: p.shown ? (i === sel ? 'var(--amber-hi)' : 'var(--amber)') : 'var(--mw-off)',
+              }}
               stroke={p.shown ? 'var(--gallery)' : 'none'}
               strokeWidth="1.5"
             />
@@ -312,17 +314,29 @@ export default function MemoryTimeline() {
           </g>
         ))}
         {/* y label */}
-        <text x={padL} y={padT - 4} fill="var(--faint)" fontSize="12" fontFamily="JetBrains Mono">
+        <text
+          x={padL}
+          y={padT - 4}
+          fill="var(--mw-faint-fn)"
+          fontSize="12"
+          fontFamily="JetBrains Mono"
+        >
           bytes ({mode})
         </text>
-        <text x={padL} y={H - 8} fill="var(--faint)" fontSize="12" fontFamily="JetBrains Mono">
+        <text
+          x={padL}
+          y={H - 8}
+          fill="var(--mw-faint-fn)"
+          fontSize="12"
+          fontFamily="JetBrains Mono"
+        >
           {Y0}
         </text>
         <text
           x={W - padR}
           y={H - 8}
           textAnchor="end"
-          fill="var(--faint)"
+          fill="var(--mw-faint-fn)"
           fontSize="12"
           fontFamily="JetBrains Mono"
         >
@@ -363,7 +377,7 @@ export default function MemoryTimeline() {
         <div style={{ fontSize: 14.5, color: 'var(--dim)', marginTop: 7 }}>
           <strong style={{ color: 'var(--ivory)' }}>Ran:</strong> {e.ran}
         </div>
-        <div style={{ fontSize: 13.5, color: 'var(--faint)', marginTop: 5 }}>{e.eq}</div>
+        <div style={{ fontSize: 13.5, color: 'var(--mw-faint-fn)', marginTop: 5 }}>{e.eq}</div>
       </div>
       <p className="footnote" style={{ marginTop: 10 }}>
         Notice where the dashed line falls: for the first ~35 years, an entire computer held less

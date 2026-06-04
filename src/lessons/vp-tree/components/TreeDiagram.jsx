@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { layoutTree } from '../engine/index.js';
-import { C } from './helpers.js';
 
 // Renders the VP-tree as an in-order binary diagram: nodes positioned by the
 // engine's layoutTree, with path / pruned / current highlighting driven by the
@@ -31,6 +30,7 @@ export default function TreeDiagram({
           pb = map[b];
         const pruned = prunedSet && (prunedSet.has(a) || prunedSet.has(b));
         const onPath = pathSet && pathSet.has(a) && pathSet.has(b);
+        const stroke = pruned ? 'var(--coral-dim)' : onPath ? 'var(--ping)' : 'var(--tree-link)';
         return (
           <line
             key={i}
@@ -38,11 +38,11 @@ export default function TreeDiagram({
             y1={Y(pa.depth)}
             x2={X(pb.idx)}
             y2={Y(pb.depth)}
-            stroke={pruned ? C.coralDim : onPath ? C.ping : 'rgba(110,138,134,0.45)'}
             strokeWidth={onPath ? 0.7 : 0.4}
             vectorEffect="non-scaling-stroke"
             strokeDasharray={pruned ? '1.2 1.2' : 'none'}
             opacity={pruned ? 0.7 : 1}
+            style={{ stroke }}
           />
         );
       })}
@@ -52,7 +52,7 @@ export default function TreeDiagram({
         const pruned = prunedSet && prunedSet.has(id);
         const onPath = pathSet && pathSet.has(id);
         const cur = currentId === Number(id);
-        const fill = pruned ? C.coral : onPath ? C.ping : C.bone3;
+        const fill = pruned ? 'var(--coral)' : onPath ? 'var(--ping)' : 'var(--bone-3)';
         return (
           <g key={id}>
             {cur && (
@@ -61,18 +61,18 @@ export default function TreeDiagram({
                 cy={Y(p.depth)}
                 r="2.9"
                 fill="none"
-                stroke={C.amber}
                 strokeWidth="0.6"
                 vectorEffect="non-scaling-stroke"
+                style={{ stroke: 'var(--amber)' }}
               />
             )}
             <circle
               cx={X(p.idx)}
               cy={Y(p.depth)}
               r={onPath || cur ? 1.7 : 1.3}
-              fill={fill}
               opacity={pruned ? 0.8 : 1}
               filter={cur ? 'url(#vpGlow)' : undefined}
+              style={{ fill }}
             />
           </g>
         );

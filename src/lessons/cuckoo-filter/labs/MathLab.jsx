@@ -339,7 +339,7 @@ export function MathLab() {
                     fontFamily="JetBrains Mono"
                     fontStyle="italic"
                     fontSize={10}
-                    fill={b === bucketSize ? 'var(--cuc)' : 'var(--text-faint)'}
+                    fill={b === bucketSize ? 'var(--cuc)' : 'var(--cf-label-faint)'}
                     letterSpacing="0.06em"
                   >
                     b={b}

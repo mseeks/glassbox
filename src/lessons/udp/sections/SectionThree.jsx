@@ -18,7 +18,7 @@ const FieldCell = ({ field, cols, selected, onClick }) => {
         padding: '18px 10px',
         background: active ? 'var(--signal)' : 'var(--surface)',
         border: `1px solid ${active ? 'var(--signal)' : 'var(--line-bright)'}`,
-        color: active ? '#1a1108' : 'var(--ink)',
+        color: active ? 'var(--udp-on-accent)' : 'var(--ink)',
         cursor: 'pointer',
         transition: 'all 0.15s',
         textAlign: 'center',
@@ -71,7 +71,7 @@ const DetailRow = ({ label, children }) => (
       className="udp-mono"
       style={{
         fontSize: 11,
-        color: 'var(--ink-faint)',
+        color: 'var(--ink-faint-fn)',
         letterSpacing: '0.08em',
         textTransform: 'uppercase',
       }}
@@ -185,7 +185,7 @@ export const SectionThree = () => {
             }}
           >
             <Label>Fig. 4: The UDP header (RFC 768)</Label>
-            <div className="udp-mono" style={{ fontSize: 11, color: 'var(--ink-faint)' }}>
+            <div className="udp-mono" style={{ fontSize: 11, color: 'var(--ink-faint-fn)' }}>
               ┌─ 32 bits wide ─┐
             </div>
           </div>
@@ -199,7 +199,7 @@ export const SectionThree = () => {
               marginBottom: 4,
               fontFamily: 'JetBrains Mono',
               fontSize: 9,
-              color: 'var(--ink-faint)',
+              color: 'var(--ink-faint-fn)',
               textAlign: 'center',
             }}
           >
@@ -267,7 +267,7 @@ export const SectionThree = () => {
               display: 'none',
               marginTop: 14,
               fontSize: 11,
-              color: 'var(--ink-faint)',
+              color: 'var(--ink-faint-fn)',
               fontFamily: 'JetBrains Mono',
               letterSpacing: '0.1em',
               textAlign: 'center',

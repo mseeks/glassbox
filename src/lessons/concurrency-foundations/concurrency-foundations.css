@@ -11,6 +11,13 @@
   --ink: #f4ecd9;
   --ink-dim: #c8bea6;
   --ink-faint: #827965;
+  /* Functional-label ink: a hair lighter than --ink-faint (OKLCH lightness
+     nudged up, hue + chroma held) so simulator text a reader must read — the
+     store-buffer label and its "empty" state readout, thread role lines, the
+     memory caption, and the Part-rail nav numerals — clear WCAG AA on their
+     dark grounds. Kept distinct from --ink-faint so the intentionally-faint
+     hush (eyebrows, kickers, struck-through code, footer) stays unflattened. */
+  --ink-label: #908772;
   --amber: #9ab8e8;
   --amber-glow: #9ab8e822;
   --cyan: #64d8cf;
@@ -22,6 +29,24 @@
   --violet: #b49cff;
   --shadow-soft: 0 18px 55px rgba(0, 0, 0, 0.24);
   --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.18);
+  /* Inline diagram/code washes (painted inline in JSX; flip with the theme).
+     Translucent hues pinned over a specific ground — in light mode they
+     deepen toward the retuned steel-blue / teal / emerald accents so the
+     fills stay coherent with their var()-driven strokes. */
+  --cf-wash-ok: rgba(110, 231, 183, 0.15);
+  --cf-wash-table: rgba(154, 184, 232, 0.05);
+  --cf-wash-cell: rgba(154, 184, 232, 0.18);
+  --cf-slot-teal-on: rgba(94, 234, 212, 0.25);
+  --cf-slot-teal-off: rgba(94, 234, 212, 0.1);
+  --cf-slot-gold-on: rgba(154, 184, 232, 0.25);
+  --cf-slot-gold-off: rgba(154, 184, 232, 0.1);
+  /* Happens-before arrow gradient (painted in JSX): the visible flow from the
+     release op → synchronizes-with → the acquire op. Keyed to the accent trio so
+     the curve matches the boxes it joins — steel-blue release, emerald edge, teal
+     acquire. */
+  --cf-hb-arrow-from: #9ab8e8;
+  --cf-hb-arrow-mid: #6ee7b7;
+  --cf-hb-arrow-to: #5eead4;
 }
 
 :where(.lesson-root) * {
@@ -276,7 +301,10 @@
   border-radius: 999px;
   background: rgba(17, 24, 39, 0.62);
   backdrop-filter: blur(10px);
-  color: var(--ink-faint);
+  /* Functional nav: these are the Part numerals that link to each chapter
+     (Primitives / Liveness / Patterns / Actors / …) — text a reader navigates
+     by, so route to --ink-label to clear AA on the pill's dark glass ground. */
+  color: var(--ink-label);
   font-family: 'Fraunces', serif;
   font-size: 0.95rem;
   font-style: italic;
@@ -722,7 +750,7 @@
 .thread-name {
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: var(--ink-faint);
+  color: var(--ink-label);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   margin-bottom: 0.85rem;
@@ -750,7 +778,7 @@
 
 .instr.next {
   color: var(--ink);
-  background: rgba(251, 191, 36, 0.08);
+  background: rgba(154, 184, 232, 0.08);
   border-left-color: var(--amber);
 }
 
@@ -787,7 +815,7 @@
 .buffer-label {
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  color: var(--ink-faint);
+  color: var(--ink-label);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-right: auto;
@@ -845,7 +873,7 @@
 .memory-label {
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: var(--ink-faint);
+  color: var(--ink-label);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   margin-bottom: 0.65rem;
@@ -938,7 +966,7 @@
 }
 
 .btn.primary:hover {
-  background: rgba(251, 191, 36, 0.15);
+  background: rgba(154, 184, 232, 0.15);
 }
 .btn.danger {
   color: var(--rose);
@@ -1165,10 +1193,10 @@ HAPPENS-BEFORE DIAGRAM
 .hb-zone-publish {
   background: radial-gradient(
     ellipse at 70% 50%,
-    rgba(251, 191, 36, 0.1),
-    rgba(251, 191, 36, 0.03) 70%
+    rgba(154, 184, 232, 0.1),
+    rgba(154, 184, 232, 0.03) 70%
   );
-  border: 1px dashed rgba(251, 191, 36, 0.35);
+  border: 1px dashed rgba(154, 184, 232, 0.35);
 }
 
 .hb-zone-receive {
@@ -1204,7 +1232,7 @@ HAPPENS-BEFORE DIAGRAM
 
 .hb-zone-publish .hb-zone-tag {
   color: var(--amber);
-  border: 1px solid rgba(251, 191, 36, 0.4);
+  border: 1px solid rgba(154, 184, 232, 0.4);
 }
 .hb-zone-receive .hb-zone-tag {
   color: var(--cyan);
@@ -1271,7 +1299,7 @@ HAPPENS-BEFORE DIAGRAM
 .hb-op-release {
   border-color: var(--amber);
   color: var(--amber);
-  box-shadow: 0 0 22px rgba(251, 191, 36, 0.18);
+  box-shadow: 0 0 22px rgba(154, 184, 232, 0.18);
 }
 
 .hb-op-acquire {
@@ -1912,7 +1940,7 @@ CHAPTER 6: ACTOR DIAGRAM
 
 /* Mental-model callout */
 .mental-model {
-  background: linear-gradient(135deg, rgba(94, 234, 212, 0.04), rgba(251, 191, 36, 0.04));
+  background: linear-gradient(135deg, rgba(94, 234, 212, 0.04), rgba(154, 184, 232, 0.04));
   border: 1px solid var(--border);
   border-left: 2px solid var(--cyan);
   border-radius: 8px;
@@ -2239,4 +2267,269 @@ CHAPTER 6: ACTOR DIAGRAM
   font-size: 0.85rem;
   color: var(--ink-faint);
   margin: 0.5rem 0 0;
+}
+
+/* ─── Light theme — the engineer's drafting blueprint ─── */
+/* Not warm paper: a cool blue-white sheet of drafting vellum read in clean
+   daylight — graphite ink, steel-blue ruling, the analytic calm of a textbook
+   chapter on memory models. The cool ground is the deliberate complement to the
+   dark default's near-black. The steel-blue signature deepens to hold contrast
+   on the sheet; teal / emerald / rose / violet are pulled to saturated, ink-deep
+   tones that read like coloured drafting pencils, never pastels. Every accent
+   clears WCAG AA on the ground it sits on. Most of the skin cascades from the
+   tokens below; the rest are targeted overrides for the hardcoded literals
+   (gradient stops, washes, shadows, the paper-grain + ruling atmosphere). */
+[data-theme='light'] .lesson-root {
+  --bg: #e8edf4;
+  --bg-deep: #dae2ee;
+  --surface: #f0f4fa;
+  --surface-2: #e1e8f2;
+  --surface-raised: #eceff7;
+  --border: #c2cdde;
+  --border-bright: #a3b3cc;
+  --ink: #1c2430;
+  --ink-dim: #46536b;
+  --ink-faint: #556380;
+  /* On the bright sheet --ink-faint already clears AA on every card ground, so
+     the functional-label ink simply tracks it — no separate retune needed; the
+     split exists only to lift the dark theme's faint labels. */
+  --ink-label: #556380;
+  --amber: #2f5fa8;
+  --amber-glow: #2f5fa81e;
+  --cyan: #0a6f68;
+  --cyan-glow: #0a6f681c;
+  --emerald: #1c7044;
+  --emerald-glow: #1c70441c;
+  --rose: #b82e4a;
+  --rose-glow: #b82e4a1c;
+  --violet: #5a44c8;
+  /* Shadows are cast in cool graphite, not warm brown — paper under cold light */
+  --shadow-soft: 0 18px 48px rgba(28, 44, 78, 0.12);
+  --shadow-card: 0 10px 26px rgba(28, 44, 78, 0.09);
+  /* Inline washes — coloured-pencil tints keyed to the retuned drafting accents
+     so the SVG fills stay coherent with their var()-driven strokes */
+  --cf-wash-ok: rgba(28, 112, 68, 0.16);
+  --cf-wash-table: rgba(47, 95, 168, 0.06);
+  --cf-wash-cell: rgba(47, 95, 168, 0.16);
+  --cf-slot-teal-on: rgba(10, 111, 104, 0.22);
+  --cf-slot-teal-off: rgba(10, 111, 104, 0.1);
+  --cf-slot-gold-on: rgba(47, 95, 168, 0.2);
+  --cf-slot-gold-off: rgba(47, 95, 168, 0.1);
+  color-scheme: light;
+}
+
+/* Atmosphere — daylight pooling on the drafting sheet: cool teal + steel-blue
+   tints, plus a faint steel-blue ruled grid laid over the whole page like the
+   feint lines on engineering vellum. */
+[data-theme='light'] .lesson-root::before {
+  background-image:
+    radial-gradient(ellipse at 18% 0%, rgba(10, 111, 104, 0.055), transparent 52%),
+    radial-gradient(ellipse at 84% 12%, rgba(47, 95, 168, 0.06), transparent 48%),
+    linear-gradient(to bottom, rgba(47, 95, 168, 0.05) 1px, transparent 1px),
+    linear-gradient(to right, rgba(47, 95, 168, 0.05) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    100% 100%,
+    34px 34px,
+    34px 34px;
+}
+
+/* The drafting grain stays cool and barely-there, multiplying into the sheet */
+[data-theme='light'] .lesson-root::after {
+  opacity: 0.022;
+  mix-blend-mode: multiply;
+}
+
+/* prose inline code — keep the teal legible against the paper chip */
+[data-theme='light'] .lesson-root .prose code {
+  background: var(--surface-2);
+  color: var(--cyan);
+  border-color: var(--border);
+}
+
+/* part-rail pills — translucent over the cool sheet instead of dark glass.
+   Tracks --ink-label (identical to --ink-faint here) so the functional-nav
+   routing matches the dark theme; both clear AA on the pale pill. */
+[data-theme='light'] .lesson-root .part-rail-link {
+  border-color: rgba(85, 99, 128, 0.32);
+  background: rgba(240, 244, 250, 0.68);
+  color: var(--ink-label);
+}
+
+[data-theme='light'] .lesson-root .part-rail-link:hover,
+[data-theme='light'] .lesson-root .part-rail-link:focus-visible,
+[data-theme='light'] .lesson-root .part-rail-link.active {
+  color: var(--amber);
+  border-color: rgba(47, 95, 168, 0.5);
+  background: rgba(47, 95, 168, 0.1);
+}
+
+[data-theme='light'] .lesson-root .part-rail-link.active {
+  box-shadow: 0 0 0 4px rgba(47, 95, 168, 0.1);
+}
+
+/* chapter accent line + node — a steel-blue rule trailing off the sheet */
+[data-theme='light'] .lesson-root .chapter-line {
+  background: linear-gradient(90deg, var(--amber), rgba(47, 95, 168, 0.22), transparent);
+}
+
+/* code block — a printed listing on the vellum, faint daylight sheen on top */
+[data-theme='light'] .lesson-root .code {
+  background: linear-gradient(180deg, rgba(28, 44, 78, 0.03), transparent 42%), var(--bg-deep);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+[data-theme='light'] .lesson-root .code-label {
+  border-color: rgba(85, 99, 128, 0.3);
+  background: rgba(225, 232, 242, 0.82);
+}
+
+/* primary / danger buttons — darken the hover wash to match retuned accents */
+[data-theme='light'] .lesson-root .btn.primary:hover {
+  background: rgba(47, 95, 168, 0.16);
+}
+
+/* simulator "next instruction" highlight — was hardcoded amber rgba */
+[data-theme='light'] .lesson-root .instr.next {
+  background: rgba(47, 95, 168, 0.1);
+}
+
+/* hero + TOC legibility on the bare drafting sheet. These read directly on
+   --bg (no card surface beneath them), and the shared secondary tokens —
+   tuned for body prose on cards — sit a touch faint here. The TOC numerals,
+   chapter blurbs and the hero subtitle are content a reader is meant to read,
+   so deepen them in OKLCH (hue held, lightness lowered) until they clear AA
+   comfortably on the sheet; the scroll hint is pushed well past its ~3:1 floor.
+   Light-only + selector-scoped so the loved dark theme and the body tokens
+   everywhere else are untouched. */
+[data-theme='light'] .lesson-root .toc-num {
+  color: #215098;
+}
+
+[data-theme='light'] .lesson-root .toc-desc,
+[data-theme='light'] .lesson-root .hero-subtitle {
+  color: #3e4b62;
+}
+
+[data-theme='light'] .lesson-root .hero-scroll {
+  color: #475571;
+}
+
+/* reorder swapped-line highlight — was hardcoded rose rgba */
+[data-theme='light'] .lesson-root .reorder-line.swapped {
+  background: rgba(184, 46, 74, 0.1);
+}
+
+/* memory panel gradient */
+[data-theme='light'] .lesson-root .memory {
+  background: linear-gradient(180deg, var(--bg-deep), var(--surface));
+}
+
+/* happens-before zones — the publish (steel-blue) and receive (teal) regions,
+   tinted like the two coloured pencils that mark a memory-ordering diagram */
+[data-theme='light'] .lesson-root .hb-zone-publish {
+  background: radial-gradient(
+    ellipse at 70% 50%,
+    rgba(47, 95, 168, 0.12),
+    rgba(47, 95, 168, 0.035) 70%
+  );
+  border-color: rgba(47, 95, 168, 0.38);
+}
+
+[data-theme='light'] .lesson-root .hb-zone-receive {
+  background: radial-gradient(
+    ellipse at 30% 50%,
+    rgba(10, 111, 104, 0.12),
+    rgba(10, 111, 104, 0.035) 70%
+  );
+  border-color: rgba(10, 111, 104, 0.38);
+}
+
+[data-theme='light'] .lesson-root .hb-zone-publish .hb-zone-tag {
+  border-color: rgba(47, 95, 168, 0.42);
+}
+
+[data-theme='light'] .lesson-root .hb-zone-receive .hb-zone-tag {
+  border-color: rgba(10, 111, 104, 0.42);
+}
+
+/* happens-before arrowhead glow + switch label + op glows. On paper these
+   become soft coloured haloes rather than the dark mode's emissive bloom. */
+[data-theme='light'] .lesson-root .hb-arrowhead {
+  filter: drop-shadow(0 1px 5px rgba(10, 111, 104, 0.45));
+}
+
+[data-theme='light'] .lesson-root .hb-sw-label {
+  box-shadow: 0 1px 14px rgba(28, 112, 68, 0.18);
+}
+
+[data-theme='light'] .lesson-root .hb-op-release {
+  box-shadow: 0 1px 14px rgba(47, 95, 168, 0.16);
+}
+
+[data-theme='light'] .lesson-root .hb-op-acquire {
+  box-shadow: 0 1px 14px rgba(10, 111, 104, 0.16);
+}
+
+[data-theme='light'] .lesson-root .hb-op-badge-ok {
+  background: rgba(28, 112, 68, 0.13);
+}
+
+[data-theme='light'] .lesson-root .hb-op-badge-warn {
+  /* Deepen the warn badge's rose text (OKLCH lightness lowered, hue + chroma
+     held) so the "stale read" caption clears WCAG AA on its own rose-tinted
+     chip; the shared --rose token that paints the diagram's strokes/swatches
+     is left at its calibrated value. */
+  color: #aa1e3f;
+  background: rgba(184, 46, 74, 0.13);
+}
+
+/* dining-philosophers deadlock swatch — hardcoded rose stripes */
+[data-theme='light'] .lesson-root .dp-swatch.dashed {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--rose) 0,
+    var(--rose) 3px,
+    transparent 3px,
+    transparent 6px
+  ) !important;
+}
+
+/* mental-model callout — twin-tint wash retuned to teal + steel-blue pencils */
+[data-theme='light'] .lesson-root .mental-model {
+  background: linear-gradient(135deg, rgba(10, 111, 104, 0.06), rgba(47, 95, 168, 0.06));
+}
+
+/* happens-before arrow gradient — tokenised in the JSX; deepen for the sheet
+   so the release→synchronizes-with→acquire flow reads as ink, not neon */
+[data-theme='light'] .lesson-root {
+  --cf-hb-arrow-from: #2f5fa8;
+  --cf-hb-arrow-mid: #1c7044;
+  --cf-hb-arrow-to: #0a6f68;
+}
+
+/* raised panels — the top sheen stays a cool daylight glaze on the vellum,
+   borders firm up to the steel-blue ruling so cards sit crisp on the sheet */
+[data-theme='light'] .lesson-root .quiz,
+[data-theme='light'] .lesson-root .sim,
+[data-theme='light'] .lesson-root .hb-card,
+[data-theme='light'] .lesson-root .actor-card,
+[data-theme='light'] .lesson-root .dp-card,
+[data-theme='light'] .lesson-root .pat-diagram,
+[data-theme='light'] .lesson-root .cvp-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 38%), var(--surface);
+  border-color: rgba(163, 179, 204, 0.72);
+}
+
+[data-theme='light'] .lesson-root .defn-card,
+[data-theme='light'] .lesson-root .runtime-card,
+[data-theme='light'] .lesson-root .ref-card,
+[data-theme='light'] .lesson-root .closing-card,
+[data-theme='light'] .lesson-root .reorder-card,
+[data-theme='light'] .lesson-root .thread,
+[data-theme='light'] .lesson-root .memory,
+[data-theme='light'] .lesson-root .stat {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.46), rgba(255, 255, 255, 0) 46%), var(--surface);
 }

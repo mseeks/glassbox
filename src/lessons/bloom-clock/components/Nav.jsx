@@ -97,10 +97,13 @@ export const Nav = () => {
       {open && (
         <div className="bc-nav-overlay" onClick={() => setOpen(false)}>
           <div className="bc-nav-sheet" onClick={(e) => e.stopPropagation()}>
-            <div className="bc-eyebrow" style={{ color: '#f5b942', marginBottom: 4 }}>
+            <div className="bc-eyebrow" style={{ color: 'var(--bc-gold)', marginBottom: 4 }}>
               CHAPTERS
             </div>
-            <div className="bc-italic" style={{ fontSize: 26, color: '#f0e8d2', marginBottom: 20 }}>
+            <div
+              className="bc-italic"
+              style={{ fontSize: 26, color: 'var(--bc-ink)', marginBottom: 20 }}
+            >
               The Bloom Clock
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
@@ -116,7 +119,7 @@ export const Nav = () => {
                     style={{
                       fontSize: 10,
                       letterSpacing: '0.15em',
-                      color: '#5e5747',
+                      color: 'var(--bc-ink-faint)',
                       marginRight: 12,
                       display: 'inline-block',
                       minWidth: 28,
@@ -133,12 +136,12 @@ export const Nav = () => {
               style={{
                 marginTop: 32,
                 paddingTop: 20,
-                borderTop: '1px solid rgba(45, 52, 88, 0.4)',
+                borderTop: '1px solid var(--bc-rule-soft)',
               }}
             >
               <div
                 className="bc-mono"
-                style={{ fontSize: 10, letterSpacing: '0.2em', color: '#5e5747' }}
+                style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--bc-ink-faint)' }}
               >
                 DISTRIBUTED CAUSALITY
               </div>

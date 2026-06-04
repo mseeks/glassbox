@@ -102,8 +102,8 @@ export default function Variants() {
                 }}
               >
                 <span style={{ fontSize: 13, color: 'var(--bone-dim)', fontWeight: 500 }}>{k}</span>
-                <span style={{ fontSize: 13, color: '#d8cdba' }}>{a}</span>
-                <span style={{ fontSize: 13, color: '#d8cdba' }}>{b}</span>
+                <span style={{ fontSize: 13, color: 'var(--sha-body)' }}>{a}</span>
+                <span style={{ fontSize: 13, color: 'var(--sha-body)' }}>{b}</span>
               </div>
             ))}
           </div>

@@ -4,6 +4,38 @@
   font-family: 'Newsreader', Georgia, serif;
   color: var(--ink);
   background: var(--paper);
+
+  /* ─── Inline-literal tokens ───
+     The lesson paints heavily inline (text ink, ground panels, accent
+     washes/labels). Inline styles beat the [data-theme] CSS below, so these
+     literals are rerouted through tokens that flip. Native (dark) values
+     here equal the literals they replace; the light complements live in the
+     [data-theme='light'] .iso-root block.
+
+     --iso-ink-rgb is the parchment-ink channel triple, consumed as
+     rgba(var(--iso-ink-rgb), <alpha>) so every existing ink opacity is
+     preserved while the base flips to the warm near-black on paper.
+     The accent triples mirror the class-based washes/text in the theme
+     block (teal/amber/coral/green darken on paper; violet/pink too). */
+  --iso-ink-rgb: 232, 222, 200;
+  --iso-teal: #5eead4;
+  --iso-teal-rgb: 94, 234, 212;
+  --iso-amber: #fbbf24;
+  --iso-amber-rgb: 251, 191, 36;
+  --iso-coral: #fb7185;
+  --iso-coral-rgb: 251, 113, 133;
+  --iso-green: #34d399;
+  --iso-green-rgb: 52, 211, 153;
+  --iso-violet: #a78bfa;
+  --iso-violet-rgb: 167, 139, 250;
+  --iso-pink: #f0abfc;
+  --iso-pink-rgb: 240, 171, 252;
+  --iso-card: #14141c;
+  --iso-tab-active: #1a1a24;
+  --iso-inset: rgba(20, 20, 28, 0.5);
+  --iso-inset-strong: rgba(20, 20, 28, 0.6);
+  --iso-shadow: rgba(0, 0, 0, 0.6);
+  --iso-on-accent: #0a0a0f;
   background-image:
     radial-gradient(ellipse at 15% 20%, rgba(94, 234, 212, 0.05) 0%, transparent 50%),
     radial-gradient(ellipse at 85% 80%, rgba(251, 191, 36, 0.04) 0%, transparent 50%),
@@ -248,6 +280,16 @@
   cursor: not-allowed;
 }
 
+/* The isolation-level <select>. The dropdown chevron is a data-URI SVG whose
+   fill can't take a var(), so the colour is split out of the JSX into this
+   class: parchment ink on dark, sepia ink on the manila ledger (overridden in
+   the [data-theme='light'] block) so the arrow stays visible in both modes. */
+.iso-level-select {
+  background: rgba(232, 222, 200, 0.04)
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%23e8dec8' opacity='0.55' d='M0 0l5 6 5-6z'/></svg>")
+    no-repeat right 10px center;
+}
+
 @media (max-width: 860px) {
   .iso-acid-grid {
     grid-template-columns: 1fr 1fr !important;
@@ -291,4 +333,209 @@
     justify-content: center;
     gap: 10px 14px;
   }
+}
+
+/* ─── Light theme — the jurist's ledger ───
+   acid-lab is dark-native, but in light it becomes a lawyer's notebook: warm
+   manila paper, sepia-black iron-gall ink, a teal margin rule down the page,
+   and wax-seal accent colours pressed into the leaf. The dark mode glows; the
+   ledger casts soft shadows and shows its ruling instead.
+
+   The lesson paints almost everything through its own tokens + the shell's
+   --ink/--paper, so the bulk of the ledger comes from redefining those here.
+   --paper / --ink are overridden ON THE LESSON ROOT (not globally) to a true
+   manila/sepia, distinct from the shell's neutral beige. The accent text hues
+   are solved in OKLCH so each clears WCAG AA on both the manila ground and the
+   ivory card while staying vivid as a pressed seal (the bright dark pastels
+   would wash out to ~3:1 on paper, so they deepen and gain chroma). */
+[data-theme='light'] .iso-root {
+  /* Manila notebook leaf + sepia-black ink — the lesson's own ground, warmer
+     and more lawyerly than the shell's #f4efe4. */
+  --paper: #f1e7d2;
+  --ink: #272013;
+
+  /* The parchment-ink triple becomes the same deep sepia-black, so every
+     existing ink opacity reads as iron-gall ink soaking into manila. */
+  --iso-ink-rgb: 39, 32, 19;
+
+  /* Wax-seal accents: each deepened until AA-clean on both ground and card.
+     Teal keeps the signature identity as the margin-rule / Isolation hue. */
+  --iso-teal: #0b7268;
+  --iso-teal-rgb: 11, 114, 104;
+  --iso-amber: #8f4505;
+  --iso-amber-rgb: 143, 69, 5;
+  --iso-coral: #be123c;
+  --iso-coral-rgb: 190, 18, 60;
+  --iso-green: #0e6b63;
+  --iso-green-rgb: 14, 107, 99;
+  --iso-violet: #6d34cf;
+  --iso-violet-rgb: 109, 52, 207;
+  --iso-pink: #a91bb8;
+  --iso-pink-rgb: 169, 27, 184;
+  --iso-card: #fbf6ea;
+  --iso-tab-active: #ede2cc;
+  --iso-inset: rgba(39, 32, 19, 0.05);
+  --iso-inset-strong: rgba(39, 32, 19, 0.07);
+  --iso-shadow: rgba(39, 32, 19, 0.26);
+  /* Bright wax-seal gradient buttons carry an ivory label on paper, not the
+     dark on-accent ink the dark mode uses. */
+  --iso-on-accent: #fbf6ea;
+
+  /* The ledger atmosphere: a faint teal margin-bloom and an amber wax glow over
+     a warm manila vignette, plus a hairline ruled grid — the light analog of
+     the dark radial glow. The ruling sits under the content (zIndex 2). */
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 31px,
+      rgba(11, 114, 104, 0.05) 31px,
+      rgba(11, 114, 104, 0.05) 32px
+    ),
+    radial-gradient(ellipse at 15% 20%, rgba(11, 114, 104, 0.08) 0%, transparent 52%),
+    radial-gradient(ellipse at 85% 80%, rgba(143, 69, 5, 0.06) 0%, transparent 52%),
+    radial-gradient(ellipse at 50% 40%, rgba(247, 239, 222, 0.85) 0%, transparent 70%);
+}
+[data-theme='light'] .iso-root::before {
+  /* Paper grain reads as fibre darkening the leaf, not an additive glow. */
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+}
+/* The jurist's red margin rule: the single ruled line a legal pad / ledger
+   draws down the left to reserve a column for annotations. Faint, decorative,
+   behind content (z-index 0; content sits at z-index 2). */
+[data-theme='light'] .iso-root::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: linear-gradient(
+    to right,
+    transparent 46px,
+    rgba(190, 18, 60, 0.16) 46px,
+    rgba(190, 18, 60, 0.16) 47px,
+    transparent 47px
+  );
+}
+
+[data-theme='light'] .iso-rule {
+  background-image: linear-gradient(to right, transparent, rgba(39, 32, 19, 0.16), transparent);
+}
+[data-theme='light'] .iso-rule-short {
+  /* The short rule borrows the teal margin-rule hue: a ruled tick of ink. */
+  background-image: linear-gradient(to right, rgba(11, 114, 104, 0.5), transparent);
+}
+
+[data-theme='light'] .iso-card {
+  /* An ivory leaf laid on the manila ground: warm top highlight, soft pressed
+     shadow below, and a faint amber edge so cards read as paper, not panels. */
+  background: #fbf6ea;
+  border: 1px solid rgba(39, 32, 19, 0.11);
+  box-shadow:
+    0 1px 0 rgba(255, 253, 247, 0.7) inset,
+    0 10px 28px -16px rgba(39, 32, 19, 0.26);
+}
+
+[data-theme='light'] .iso-margin-num {
+  color: rgba(39, 32, 19, 0.4);
+}
+
+/* The volatile-memory panel's idle eyebrow ("in-flight (volatile)") is sepia
+   ink dimmed twice — 0.66 alpha × 0.85 opacity — to read as a quiet, inactive
+   region label. On the bright manila that compounds to ~3.8:1, just under AA
+   for a label the reader must still parse. Deepen the ink alpha in LIGHT only
+   (effective ≈0.66 with the 0.85 hush kept) so it clears AA while staying
+   visibly fainter than the active-state accent labels. Dark keeps its loved
+   value via the inline style, which already passes. */
+[data-theme='light'] .iso-root .iso-idle-label {
+  color: rgba(39, 32, 19, 0.78) !important;
+}
+
+/* T1 = teal, T2 = amber. The solid fills (.iso-t1-bg / .iso-t2-bg) keep the
+   bright family pastels — they only ever back the dark on-accent ink — while
+   the soft washes and text accents deepen to wax-seal hues for paper. */
+[data-theme='light'] .iso-t1-soft {
+  background: rgba(11, 114, 104, 0.1);
+  border-color: rgba(11, 114, 104, 0.34);
+}
+[data-theme='light'] .iso-t1-text {
+  color: #0b7268;
+}
+
+[data-theme='light'] .iso-t2-soft {
+  background: rgba(143, 69, 5, 0.1);
+  border-color: rgba(143, 69, 5, 0.34);
+}
+[data-theme='light'] .iso-t2-text {
+  color: #8f4505;
+}
+
+[data-theme='light'] .iso-anomaly-soft {
+  background: rgba(190, 18, 60, 0.09);
+  border-color: rgba(190, 18, 60, 0.36);
+}
+[data-theme='light'] .iso-anomaly-text {
+  color: #be123c;
+}
+[data-theme='light'] .iso-success-soft {
+  background: rgba(14, 107, 99, 0.1);
+  border-color: rgba(14, 107, 99, 0.36);
+}
+[data-theme='light'] .iso-success-text {
+  color: #0e6b63;
+}
+
+[data-theme='light'] .iso-pill-inactive {
+  color: rgba(39, 32, 19, 0.62);
+  border-color: rgba(39, 32, 19, 0.18);
+}
+[data-theme='light'] .iso-pill-inactive:hover {
+  color: rgba(39, 32, 19, 0.92);
+  border-color: rgba(39, 32, 19, 0.36);
+}
+
+[data-theme='light'] .iso-link {
+  color: rgba(39, 32, 19, 0.7);
+  text-decoration-color: rgba(39, 32, 19, 0.3);
+}
+
+[data-theme='light'] .iso-cta {
+  /* Deepened teal→green wax-seal gradient; the ivory --iso-on-accent label
+     reads ~5.4:1 on it, so the button is ink-bright on paper, not a pastel. */
+  background: linear-gradient(135deg, #0b7268 0%, #0e6b63 100%);
+}
+
+/* The step bar's "Auto" play button sets its 12px label to --iso-teal sitting
+   on its own rgba(teal, 0.14) chip; on the ledger that wash lands the seal teal
+   at ~4.4:1, a hair under AA for the control's text. Deepen ONLY this label a
+   minimal OKLCH step (hue held, L −0.034 → #00685e) so it clears AA without
+   touching the shared --iso-teal token that paints the margin rule and the T1
+   identity. Only present in the teal (paused/"Auto") state — the playing state
+   is --ink and unclassed. */
+[data-theme='light'] .iso-root .iso-auto-label {
+  color: #00685e !important;
+}
+[data-theme='light'] .iso-cta:hover {
+  box-shadow: 0 8px 24px -8px rgba(11, 114, 104, 0.45);
+}
+
+[data-theme='light'] .iso-step-arrow {
+  background: rgba(39, 32, 19, 0.04);
+  border-color: rgba(39, 32, 19, 0.18);
+}
+[data-theme='light'] .iso-step-arrow:hover:not(:disabled) {
+  background: rgba(39, 32, 19, 0.08);
+  border-color: rgba(39, 32, 19, 0.36);
+}
+[data-theme='light'] .iso-step-arrow:disabled {
+  color: rgba(39, 32, 19, 0.26);
+}
+
+[data-theme='light'] .iso-level-select {
+  /* Sepia chevron (#272013) on the ledger, so the dropdown arrow reads as ink
+     pressed into manila rather than a near-invisible pale mark. */
+  background: rgba(39, 32, 19, 0.04)
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%23272013' opacity='0.6' d='M0 0l5 6 5-6z'/></svg>")
+    no-repeat right 10px center;
 }

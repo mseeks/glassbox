@@ -157,11 +157,10 @@ export default function SearchLab() {
             cx={q.x}
             cy={q.y}
             r={F.tau}
-            fill="rgba(255,180,84,0.06)"
-            stroke={C.amber}
             strokeWidth="0.35"
             strokeDasharray="1.5 1.5"
             opacity="0.8"
+            style={{ fill: C.tauFill, stroke: C.amber }}
           />
         )}
         {/* current shell / pruned shell */}
@@ -171,8 +170,8 @@ export default function SearchLab() {
             cy={F.shell.y}
             r={F.shell.r}
             fill="none"
-            stroke={C.ping}
             strokeWidth="0.45"
+            style={{ stroke: C.ping }}
           />
         )}
         {F.pruneShell && (
@@ -181,14 +180,21 @@ export default function SearchLab() {
             cy={F.pruneShell.y}
             r={F.pruneShell.r}
             fill="none"
-            stroke={C.coral}
             strokeWidth="0.45"
             strokeDasharray="1.5 1.5"
+            style={{ stroke: C.coral }}
           />
         )}
         {/* connector when done */}
         {F.done && F.best && (
-          <line x1={q.x} y1={q.y} x2={F.best.x} y2={F.best.y} stroke={C.amber} strokeWidth="0.5" />
+          <line
+            x1={q.x}
+            y1={q.y}
+            x2={F.best.x}
+            y2={F.best.y}
+            strokeWidth="0.5"
+            style={{ stroke: C.amber }}
+          />
         )}
         {/* contacts */}
         {FIELD.map((p, i) => {
@@ -218,15 +224,29 @@ export default function SearchLab() {
                 cx={p.x}
                 cy={p.y}
                 r={r}
-                fill={fill}
                 opacity={op}
                 filter={isBest || isCurrent ? 'url(#vpGlow)' : undefined}
+                style={{ fill }}
               />
               {isCurrent && (
-                <circle cx={p.x} cy={p.y} r="3" fill="none" stroke={C.ping} strokeWidth="0.4" />
+                <circle
+                  cx={p.x}
+                  cy={p.y}
+                  r="3"
+                  fill="none"
+                  strokeWidth="0.4"
+                  style={{ stroke: C.ping }}
+                />
               )}
               {isBest && (
-                <circle cx={p.x} cy={p.y} r="3.4" fill="none" stroke={C.amber} strokeWidth="0.4" />
+                <circle
+                  cx={p.x}
+                  cy={p.y}
+                  r="3.4"
+                  fill="none"
+                  strokeWidth="0.4"
+                  style={{ stroke: C.amber }}
+                />
               )}
             </g>
           );
@@ -252,14 +272,14 @@ export default function SearchLab() {
         <div className="vp-cmprow">
           <span className="lbl">VP tree</span>
           <div className="track">
-            <div className="fill" style={{ width: pct + '%', background: C.ping }} />
+            <div className="fill" style={{ width: pct + '%', background: 'var(--ping)' }} />
           </div>
           <span className="num">{F.comps}</span>
         </div>
         <div className="vp-cmprow">
           <span className="lbl">Brute force</span>
           <div className="track">
-            <div className="fill" style={{ width: '100%', background: 'rgba(255,106,114,0.5)' }} />
+            <div className="fill" style={{ width: '100%', background: 'var(--coral-fill)' }} />
           </div>
           <span className="num">{N}</span>
         </div>
@@ -288,8 +308,9 @@ export default function SearchLab() {
 
       <div className="vp-treewrap">
         <div className="vp-plabel" style={{ marginBottom: 8 }}>
-          <span className="dot" /> the descent · <span style={{ color: C.ping }}>visited</span> ·{' '}
-          <span style={{ color: C.coral }}>pruned</span>
+          <span className="dot" /> the descent ·{' '}
+          <span style={{ color: 'var(--ping)' }}>visited</span> ·{' '}
+          <span style={{ color: 'var(--coral)' }}>pruned</span>
         </div>
         <TreeDiagram
           root={TREE}
@@ -304,11 +325,11 @@ export default function SearchLab() {
         <span className="pip" /> tap the scope to drop the query anywhere
       </div>
       <div className="vp-caption">
-        The dashed <span style={{ color: C.amber }}>amber circle</span> is our current best range.
-        It shrinks as we find closer contacts. At each vantage point we descend toward the query
-        first, then ask of the other side: could anything in there beat what we already hold? If the
-        triangle inequality says no, the whole
-        <span style={{ color: C.coral }}> region is pruned</span>, skipped without a single
+        The dashed <span style={{ color: 'var(--amber)' }}>amber circle</span> is our current best
+        range. It shrinks as we find closer contacts. At each vantage point we descend toward the
+        query first, then ask of the other side: could anything in there beat what we already hold?
+        If the triangle inequality says no, the whole
+        <span style={{ color: 'var(--coral)' }}> region is pruned</span>, skipped without a single
         measurement. The pruning is provably safe. It only ever discards contacts that cannot win.
       </div>
     </div>

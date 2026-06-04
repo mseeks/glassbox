@@ -1,4 +1,4 @@
-export const Eyebrow = ({ children, color = '#a89e85' }) => (
+export const Eyebrow = ({ children, color = 'var(--bc-ink-muted)' }) => (
   <div className="bc-eyebrow" style={{ color, marginBottom: 18 }}>
     {children}
   </div>
@@ -9,7 +9,7 @@ const ChapterNumber = ({ n }) => (
     className="bc-numeral bc-chapter-number"
     style={{
       fontSize: 32,
-      color: '#f5b942',
+      color: 'var(--bc-gold)',
       fontStyle: 'italic',
       display: 'inline-block',
       minWidth: 50,
@@ -21,18 +21,26 @@ const ChapterNumber = ({ n }) => (
 
 export const ChapterTitle = ({ number, eyebrow, title, sub }) => (
   <div style={{ marginBottom: 56 }}>
-    {eyebrow && <Eyebrow color="#f5b942">{eyebrow}</Eyebrow>}
+    {eyebrow && <Eyebrow color="var(--bc-gold)">{eyebrow}</Eyebrow>}
     <div className="bc-chapter-head">
       <ChapterNumber n={number} />
       <h2
         className="bc-display bc-chapter-title"
-        style={{ fontSize: 'clamp(34px, 5vw, 56px)', margin: 0, fontWeight: 400, color: '#f0e8d2' }}
+        style={{
+          fontSize: 'clamp(34px, 5vw, 56px)',
+          margin: 0,
+          fontWeight: 400,
+          color: 'var(--bc-ink)',
+        }}
       >
         {title}
       </h2>
     </div>
     {sub && (
-      <p className="bc-italic bc-chapter-sub" style={{ fontSize: 22, color: '#a89e85' }}>
+      <p
+        className="bc-italic bc-chapter-sub"
+        style={{ fontSize: 22, color: 'var(--bc-ink-muted)' }}
+      >
         {sub}
       </p>
     )}
@@ -48,13 +56,13 @@ export const Section = ({ children, narrow, id }) => (
 export const Prose = ({ children, dropcap }) => (
   <div
     className={`bc-prose ${dropcap ? 'bc-dropcap' : ''}`}
-    style={{ fontSize: 19, lineHeight: 1.72, color: '#d6ccb3' }}
+    style={{ fontSize: 19, lineHeight: 1.72, color: 'var(--bc-ink-prose)' }}
   >
     {children}
   </div>
 );
 
-export const PullQuote = ({ children, accent = '#f5b942' }) => (
+export const PullQuote = ({ children, accent = 'var(--bc-gold)' }) => (
   <div
     style={{
       margin: '56px 0 56px 0',
@@ -67,20 +75,20 @@ export const PullQuote = ({ children, accent = '#f5b942' }) => (
   </div>
 );
 
-export const Callout = ({ icon: Icon, title, children, color = '#b794f4', tone }) => {
+export const Callout = ({ icon: Icon, title, children, color = 'var(--bc-violet)', tone }) => {
   const bg =
     tone === 'warn'
-      ? 'rgba(251, 113, 133, 0.06)'
+      ? 'var(--bc-rose-wash)'
       : tone === 'note'
-        ? 'rgba(110, 231, 183, 0.05)'
-        : 'rgba(183, 148, 244, 0.05)';
+        ? 'var(--bc-emerald-wash)'
+        : 'var(--bc-violet-wash)';
   return (
     <div
       style={{
         margin: '32px 0',
         padding: '22px 26px',
         background: bg,
-        border: `1px solid ${color}33`,
+        border: `1px solid color-mix(in srgb, ${color} 22%, transparent)`,
         borderLeft: `3px solid ${color}`,
         borderRadius: 3,
         position: 'relative',
@@ -95,7 +103,7 @@ export const Callout = ({ icon: Icon, title, children, color = '#b794f4', tone }
           {title}
         </div>
       </div>
-      <div style={{ fontSize: 16.5, color: '#c8bfa5', lineHeight: 1.65 }}>{children}</div>
+      <div style={{ fontSize: 16.5, color: 'var(--bc-ink-dim)', lineHeight: 1.65 }}>{children}</div>
     </div>
   );
 };
@@ -104,12 +112,12 @@ export const Code = ({ children }) => (
   <code
     className="bc-mono"
     style={{
-      background: 'rgba(45, 52, 88, 0.4)',
-      color: '#f5b942',
+      background: 'var(--bc-control-bg)',
+      color: 'var(--bc-gold)',
       padding: '2px 7px',
       borderRadius: 3,
       fontSize: '0.9em',
-      border: '1px solid rgba(61, 69, 118, 0.3)',
+      border: '1px solid var(--bc-code-border)',
     }}
   >
     {children}

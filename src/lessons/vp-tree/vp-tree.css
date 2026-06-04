@@ -10,16 +10,49 @@
   --ping: #3fe0c6;
   --ping-bright: #74f1dd;
   --ping-dim: rgba(63, 224, 198, 0.55);
+  --ping-soft: rgba(63, 224, 198, 0.16);
   --amber: #ffb454;
   --amber-bright: #ffc878;
   --amber-soft: rgba(255, 180, 84, 0.14);
   --coral: #ff6a72;
   --coral-soft: rgba(255, 106, 114, 0.14);
+  /* brute-force comparison bar — a translucent coral fill on a track */
+  --coral-fill: rgba(255, 106, 114, 0.5);
+  /* dimmed coral for pruned tree edges */
+  --coral-dim: rgba(255, 106, 114, 0.55);
+  /* idle (unvisited) tree-diagram links — faint contour on the plate */
+  --tree-link: rgba(110, 138, 134, 0.45);
   --bone: #e8f1ed;
   --bone-2: #a6bdb8;
   --bone-3: #6e8a86;
   --bone-4: #4f6b68;
+  /* functional card taxonomy tag — lifted off the shared decorative --bone-4
+     so it clears AA on the card ground without de-fainting .rn / .sig */
+  --vp-tag-ink: #6e8b88;
   --grid: rgba(63, 224, 198, 0.1);
+  /* ── scope instrument face + the marks drawn into it ──
+     The SVG labs paint these via the C palette (helpers.js) routed through
+     `style`, so the sonar face and every ping/amber/contact mark FLIP with the
+     theme. In dark mode this is the abyssal-teal screen glowing in the deep. */
+  --vp-scope-face: #041017;
+  --vp-scope-glow: rgba(63, 224, 198, 0.05);
+  --vp-scope-grid: rgba(63, 224, 198, 0.11);
+  --vp-svg-ping: #3fe0c6;
+  --vp-svg-ping-dim: rgba(63, 224, 198, 0.5);
+  --vp-svg-amber: #ffb454;
+  --vp-svg-coral: #ff6a72;
+  --vp-svg-coral-dim: rgba(255, 106, 114, 0.55);
+  --vp-svg-contact: #5fb6ab;
+  --vp-svg-bone: #e8f1ed;
+  --vp-svg-bone-2: #a6bdb8;
+  --vp-svg-bone-3: #6e8a86;
+  /* faint hairline ranging-lines / idle rings drawn on the scope */
+  --vp-svg-hairline: rgba(95, 182, 171, 0.28);
+  --vp-svg-ring-idle: rgba(63, 224, 198, 0.22);
+  --vp-svg-tau-fill: rgba(255, 180, 84, 0.06);
+  /* prose body ink — also painted inline on the masthead intro paragraph,
+     so it must flip via a token (inline styles beat the .vp-prose rule) */
+  --vp-prose-ink: #cfdedb;
   --display: 'Big Shoulders Display', sans-serif;
   --body: 'Spectral', Georgia, serif;
   --mono: var(--font-mono);
@@ -273,7 +306,7 @@
 
 .vp-root .vp-prose p {
   font-size: clamp(16px, 2.2vw, 17.5px);
-  color: #cfdedb;
+  color: var(--vp-prose-ink);
   margin: 0 0 19px;
   max-width: 64ch;
 }
@@ -397,7 +430,7 @@
   aspect-ratio: 1/1;
   display: block;
   background:
-    radial-gradient(circle at 50% 50%, rgba(63, 224, 198, 0.05), transparent 70%), #041017;
+    radial-gradient(circle at 50% 50%, var(--vp-scope-glow), transparent 70%), var(--vp-scope-face);
   border: 1px solid var(--edge-soft);
   border-radius: 2px;
   touch-action: none;
@@ -660,7 +693,7 @@
   font-size: 9.5px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--bone-4);
+  color: var(--vp-tag-ink);
   display: block;
   margin-top: 9px;
 }
@@ -763,4 +796,153 @@
   .vp-root .vp-cmprow .lbl {
     width: 64px;
   }
+}
+
+/* ─── Light theme — a HYDROGRAPHIC CHART IN DAYLIGHT ─── */
+/* The dark default is the scope glowing in the abyss; light mode is the same
+   survey lifted onto the chart table at midday. Ground is pale teal-tinted
+   soundings paper (cool, not beige) with a faint ruled fathom-grid and two soft
+   tinted washes where the dark mode had its radial glows. Ink is deep abyssal
+   teal; the aqua ping deepens to a sea-green and the amber ping darkens to a
+   burnt signal-amber, both retuned to hold WCAG AA on paper. The sonar SCOPE
+   itself (the SVG instrument screen) deliberately keeps its dark face — a lit
+   display recessed into the chart — so its bright readout still reads. */
+[data-theme='light'] .vp-root {
+  --abyss: #dce8e3;
+  --abyss-2: #d2e0db;
+  --panel: #e9f1ed;
+  --panel-2: #e0ebe6;
+  --edge: rgba(8, 92, 82, 0.28);
+  --edge-soft: rgba(8, 92, 82, 0.13);
+  --ping: #06655a;
+  --ping-bright: #08766a;
+  --ping-dim: rgba(6, 101, 90, 0.5);
+  --ping-soft: rgba(6, 101, 90, 0.16);
+  --amber: #945007;
+  --amber-bright: #7c4305;
+  --amber-soft: rgba(148, 80, 7, 0.15);
+  --coral: #ad2632;
+  --coral-soft: rgba(173, 38, 50, 0.13);
+  /* brute-force bar reads as a strong burnt-coral on the pale track */
+  --coral-fill: rgba(173, 38, 50, 0.85);
+  /* pruned tree edges read clearly as a dashed burnt-coral on the plate */
+  --coral-dim: rgba(173, 38, 50, 0.85);
+  /* idle tree links: a faint teal-slate contour, like soundings on the chart */
+  --tree-link: rgba(63, 91, 86, 0.55);
+  --bone: #0c2521;
+  --bone-2: #2f4d48;
+  --bone-3: #3f5b56;
+  --bone-4: #4a665f;
+  /* light tag already clears AA on the pale card; hold it unchanged */
+  --vp-tag-ink: #4a665f;
+  --grid: rgba(8, 92, 82, 0.14);
+  /* prose ink: a deep teal-slate readable on the pale soundings paper */
+  --vp-prose-ink: #243f3b;
+  /* paper tints reused by the textures below */
+  --vp-paper-ping: rgba(6, 101, 90, 0.07);
+  --vp-paper-amber: rgba(148, 80, 7, 0.06);
+
+  /* ── scope instrument face in daylight ──
+     The sonar screen is no longer a dark display recessed into the chart; it is
+     a pale teal-tinted instrument face printed on the soundings paper, recessed
+     by a soft inset shadow (see .vp-scope below), not by going dark. The marks
+     drawn into it deepen so the aqua ping / signal-amber / coral identity holds
+     against the light ground. */
+  --vp-scope-face: #e4eeea;
+  --vp-scope-glow: rgba(6, 101, 90, 0.05);
+  --vp-scope-grid: rgba(8, 92, 82, 0.16);
+  --vp-svg-ping: #06655a;
+  --vp-svg-ping-dim: rgba(6, 101, 90, 0.55);
+  --vp-svg-amber: #a05604;
+  --vp-svg-coral: #ad2632;
+  --vp-svg-coral-dim: rgba(173, 38, 50, 0.6);
+  --vp-svg-contact: #3f7a72;
+  --vp-svg-bone: #0c2521;
+  --vp-svg-bone-2: #2f4d48;
+  --vp-svg-bone-3: #3f5b56;
+  --vp-svg-hairline: rgba(63, 122, 114, 0.45);
+  --vp-svg-ring-idle: rgba(6, 101, 90, 0.32);
+  --vp-svg-tau-fill: rgba(160, 86, 4, 0.1);
+}
+
+/* the ground: two soft soundings washes (where the dark glows were) over a
+   ruled fathom-grid that the abyss had only as a faint dot field */
+[data-theme='light'] .vp-root {
+  background:
+    radial-gradient(1100px 700px at 78% -8%, var(--vp-paper-ping), transparent 60%),
+    radial-gradient(900px 600px at 8% 102%, var(--vp-paper-amber), transparent 55%),
+    repeating-linear-gradient(0deg, transparent 0 47px, var(--grid) 47px 48px),
+    repeating-linear-gradient(90deg, transparent 0 47px, var(--grid) 47px 48px), var(--abyss);
+}
+/* fine grain: dark teal flecks pressed into the paper, not white sparkle */
+[data-theme='light'] .vp-root::before {
+  opacity: 0.5;
+  background-image: radial-gradient(rgba(12, 37, 33, 0.045) 1px, transparent 1px);
+}
+
+/* sticky nav wash flips to a paper gradient */
+[data-theme='light'] .vp-root .vp-nav {
+  background: linear-gradient(var(--abyss), rgba(220, 232, 227, 0.84));
+}
+
+/* plates read as paper laid on paper: a soft drop shadow + a faint inner
+   highlight instead of the dark mode's recessed glow */
+[data-theme='light'] .vp-root .vp-plate {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.55) inset,
+    0 2px 14px rgba(8, 60, 54, 0.07);
+}
+/* statcells / cards / tracks: a hairline top highlight so they sit ON the paper */
+[data-theme='light'] .vp-root .vp-statcell,
+[data-theme='light'] .vp-root .vp-card {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+}
+
+/* prose body color flips via the --vp-prose-ink token (defined above), so the
+   masthead's inline-styled intro paragraph flips too */
+
+/* solid ping button: dark text on bright ping → pale paper text on deep ping */
+[data-theme='light'] .vp-root .vp-btn.solid {
+  color: #eef5f1;
+}
+
+/* range thumb halos keyed to the deep ping */
+[data-theme='light'] .vp-root input[type='range'].vp-range::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgba(6, 101, 90, 0.18);
+}
+[data-theme='light'] .vp-root input[type='range'].vp-range::-moz-range-thumb {
+  box-shadow: 0 0 0 4px rgba(6, 101, 90, 0.18);
+}
+[data-theme='light'] .vp-root .vp-btn:hover:not(:disabled) {
+  background: rgba(6, 101, 90, 0.1);
+}
+
+/* the dot indicator glow softens to a faint sounding on paper */
+[data-theme='light'] .vp-root .vp-plabel .dot {
+  box-shadow: 0 0 6px rgba(6, 101, 90, 0.55);
+}
+
+/* status banners: keep semantics, retune borders/text to read on the washes */
+[data-theme='light'] .vp-root .vp-status.prune {
+  border-color: rgba(173, 38, 50, 0.42);
+  color: #8f2129;
+}
+[data-theme='light'] .vp-root .vp-status.found {
+  border-color: rgba(148, 80, 7, 0.5);
+  color: #6e3d05;
+}
+
+/* the sonar face goes LIGHT in daylight: the pale teal instrument face flips in
+   via --vp-scope-face/--vp-scope-glow (set above), and the SVG marks deepen via
+   the --vp-svg-* tokens, so nothing in the scope reads as a dark box. We keep
+   the recessed-display feel with a soft inset shadow + a firmer frame instead of
+   going dark. */
+[data-theme='light'] .vp-root .vp-scope {
+  border-color: rgba(8, 92, 82, 0.32);
+  box-shadow: 0 1px 7px rgba(8, 60, 54, 0.1) inset;
+}
+
+/* hint pip glow */
+[data-theme='light'] .vp-root .vp-hint .pip {
+  box-shadow: 0 0 6px rgba(148, 80, 7, 0.55);
 }

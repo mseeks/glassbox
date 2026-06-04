@@ -72,7 +72,7 @@ function RingCloud() {
           cy={d.y}
           r="1.25"
           fill="none"
-          stroke={d.on ? 'var(--amber)' : '#2c364f'}
+          style={{ stroke: d.on ? 'var(--amber)' : 'var(--mw-off)' }}
           strokeWidth="0.4"
         />
       ))}
@@ -98,7 +98,7 @@ function MediaStage({ m }) {
               borderRadius: 8,
               color: 'var(--amber-hi)',
               fontSize: 22,
-              background: 'rgba(246,181,69,.06)',
+              background: 'var(--mw-amber-tint)',
             }}
           >
             {c}
@@ -122,7 +122,7 @@ function MediaStage({ m }) {
         ))}
         <span
           className="mono"
-          style={{ fontSize: 10, color: 'var(--faint)', marginLeft: 2, paddingBottom: 6 }}
+          style={{ fontSize: 10, color: 'var(--mw-faint-fn)', marginLeft: 2, paddingBottom: 6 }}
         >
           × ~20
         </span>
@@ -241,10 +241,10 @@ export default function RememberHero() {
           />
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 5 }}>
-          <span className="mono" style={{ fontSize: 10, color: 'var(--faint)' }}>
+          <span className="mono" style={{ fontSize: 10, color: 'var(--mw-faint-fn)' }}>
             1 B
           </span>
-          <span className="mono" style={{ fontSize: 10, color: 'var(--faint)' }}>
+          <span className="mono" style={{ fontSize: 10, color: 'var(--mw-faint-fn)' }}>
             8 GB · log scale
           </span>
         </div>

@@ -166,7 +166,7 @@ export default function DiffieHellmanLab() {
           style={{
             borderColor: 'var(--aqua)',
             color: 'var(--aqua-bright)',
-            background: 'rgba(70,214,198,.08)',
+            background: 'var(--wash-aqua-08)',
             fontSize: 12.5,
           }}
         >

@@ -70,7 +70,7 @@ export function DecouplingDiagram() {
             fontFamily="JetBrains Mono"
             fontSize="10"
             letterSpacing="0.14em"
-            fill="var(--ink-faint)"
+            fill="var(--ink-label)"
           >
             SCALES AS
           </text>
@@ -142,7 +142,7 @@ export function DecouplingDiagram() {
             fontFamily="JetBrains Mono"
             fontSize="10"
             letterSpacing="0.14em"
-            fill="var(--ink-faint)"
+            fill="var(--ink-label)"
           >
             CONVERGES IN
           </text>

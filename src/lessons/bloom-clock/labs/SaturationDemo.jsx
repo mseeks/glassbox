@@ -93,14 +93,14 @@ export const SaturationDemo = () => {
         }}
       >
         <div>
-          <div className="bc-eyebrow" style={{ color: '#fb7185' }}>
+          <div className="bc-eyebrow" style={{ color: 'var(--bc-rose)' }}>
             LAB · SATURATION
           </div>
-          <div className="bc-italic" style={{ fontSize: 26, color: '#f0e8d2', marginTop: 4 }}>
+          <div className="bc-italic" style={{ fontSize: 26, color: 'var(--bc-ink)', marginTop: 4 }}>
             Watch the clock fall apart
           </div>
         </div>
-        <div className="bc-mono" style={{ fontSize: 11, color: '#5e5747' }}>
+        <div className="bc-mono" style={{ fontSize: 11, color: 'var(--bc-ink-faint)' }}>
           m = {M}, k = {K}, two concurrent timelines
         </div>
       </div>
@@ -108,9 +108,12 @@ export const SaturationDemo = () => {
       {/* Live clocks */}
       <div style={{ display: 'grid', gap: 14, marginBottom: 18 }}>
         <div>
-          <div className="bc-italic" style={{ fontSize: 18, color: '#f5b942', marginBottom: 6 }}>
+          <div
+            className="bc-italic"
+            style={{ fontSize: 18, color: 'var(--bc-gold)', marginBottom: 6 }}
+          >
             Clock A,{' '}
-            <span className="bc-mono" style={{ fontSize: 11, color: '#5e5747' }}>
+            <span className="bc-mono" style={{ fontSize: 11, color: 'var(--bc-ink-faint)' }}>
               weight {clockWeight(clockA, K).toFixed(0)}
             </span>
           </div>
@@ -120,8 +123,8 @@ export const SaturationDemo = () => {
               gap: 2,
               alignItems: 'flex-end',
               padding: '8px 10px',
-              background: 'rgba(15, 19, 38, 0.5)',
-              border: '1px solid rgba(45, 52, 88, 0.5)',
+              background: 'var(--bc-inset-5)',
+              border: '1px solid var(--bc-rule)',
               borderRadius: 3,
               height: 60,
             }}
@@ -150,9 +153,12 @@ export const SaturationDemo = () => {
           </div>
         </div>
         <div>
-          <div className="bc-italic" style={{ fontSize: 18, color: '#5eead4', marginBottom: 6 }}>
+          <div
+            className="bc-italic"
+            style={{ fontSize: 18, color: 'var(--bc-teal)', marginBottom: 6 }}
+          >
             Clock B,{' '}
-            <span className="bc-mono" style={{ fontSize: 11, color: '#5e5747' }}>
+            <span className="bc-mono" style={{ fontSize: 11, color: 'var(--bc-ink-faint)' }}>
               weight {clockWeight(clockB, K).toFixed(0)}
             </span>
           </div>
@@ -162,8 +168,8 @@ export const SaturationDemo = () => {
               gap: 2,
               alignItems: 'flex-end',
               padding: '8px 10px',
-              background: 'rgba(15, 19, 38, 0.5)',
-              border: '1px solid rgba(45, 52, 88, 0.5)',
+              background: 'var(--bc-inset-5)',
+              border: '1px solid var(--bc-rule)',
               borderRadius: 3,
               height: 60,
             }}
@@ -183,8 +189,9 @@ export const SaturationDemo = () => {
                     style={{
                       width: '100%',
                       height: `${Math.max(2, (v / maxVal) * 44)}px`,
-                      background: 'linear-gradient(180deg, #5eead4ee, #5eead466)',
-                      boxShadow: '0 0 8px rgba(94, 234, 212, 0.35)',
+                      background:
+                        'linear-gradient(180deg, var(--bc-teal-bar-top), var(--bc-teal-bar-bot))',
+                      boxShadow: '0 0 8px var(--bc-teal-glow)',
                       borderRadius: '1px 1px 0 0',
                     }}
                   />
@@ -200,8 +207,8 @@ export const SaturationDemo = () => {
         <div
           style={{
             padding: 14,
-            background: 'rgba(15, 19, 38, 0.4)',
-            border: '1px solid rgba(45, 52, 88, 0.4)',
+            background: 'var(--bc-inset-4)',
+            border: '1px solid var(--bc-rule-soft)',
             borderRadius: 3,
           }}
         >
@@ -214,10 +221,10 @@ export const SaturationDemo = () => {
               fontSize: 22,
               color:
                 currentVerdict === 'concurrent'
-                  ? '#6ee7b7'
+                  ? 'var(--bc-emerald)'
                   : currentVerdict === 'equal'
-                    ? '#f5b942'
-                    : '#fb7185',
+                    ? 'var(--bc-gold)'
+                    : 'var(--bc-rose)',
             }}
           >
             {currentVerdict === 'before' && 'A → B (FP)'}
@@ -229,8 +236,8 @@ export const SaturationDemo = () => {
         <div
           style={{
             padding: 14,
-            background: 'rgba(15, 19, 38, 0.4)',
-            border: '1px solid rgba(45, 52, 88, 0.4)',
+            background: 'var(--bc-inset-4)',
+            border: '1px solid var(--bc-rule-soft)',
             borderRadius: 3,
           }}
         >
@@ -241,7 +248,12 @@ export const SaturationDemo = () => {
             className="bc-italic"
             style={{
               fontSize: 22,
-              color: fpRate > 0.3 ? '#fb7185' : fpRate > 0.05 ? '#f5b942' : '#6ee7b7',
+              color:
+                fpRate > 0.3
+                  ? 'var(--bc-rose)'
+                  : fpRate > 0.05
+                    ? 'var(--bc-gold)'
+                    : 'var(--bc-emerald)',
             }}
           >
             {(fpRate * 100).toFixed(1)}%
@@ -250,15 +262,15 @@ export const SaturationDemo = () => {
         <div
           style={{
             padding: 14,
-            background: 'rgba(15, 19, 38, 0.4)',
-            border: '1px solid rgba(45, 52, 88, 0.4)',
+            background: 'var(--bc-inset-4)',
+            border: '1px solid var(--bc-rule-soft)',
             borderRadius: 3,
           }}
         >
           <div className="bc-eyebrow" style={{ marginBottom: 4, fontSize: 9 }}>
             STEPS
           </div>
-          <div className="bc-italic" style={{ fontSize: 22, color: '#f0e8d2' }}>
+          <div className="bc-italic" style={{ fontSize: 22, color: 'var(--bc-ink)' }}>
             {step}
           </div>
         </div>
@@ -277,7 +289,7 @@ export const SaturationDemo = () => {
         </button>
       </div>
 
-      <Callout title="What you're watching" color="#fb7185" tone="warn">
+      <Callout title="What you're watching" color="var(--bc-rose)" tone="warn">
         Both clocks are recording <em>completely independent</em> events. They are always,
         truthfully, concurrent. Early on, the structure recognizes this: the verdict reads
         "concurrent." As weight piles on, slots saturate, and the verdict starts flipping to false

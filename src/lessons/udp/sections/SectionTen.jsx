@@ -22,10 +22,12 @@ const QuicFeature = ({ title, body }) => (
 export const SectionTen = () => {
   const [scenario, setScenario] = useState('h2'); // 'h2' (HTTP/2 over TCP) or 'h3' (HTTP/3 over QUIC)
   const [phase, setPhase] = useState('idle');
+  // Stream tints map to the lesson's semantic accents (tcp / ok / signal) via
+  // tokens so they deepen correctly on paper; `soft` is the matching tinted fill.
   const [streams, setStreams] = useState([
-    { id: 'A', name: 'index.html', packets: [], color: '#7da5c0' },
-    { id: 'B', name: 'styles.css', packets: [], color: '#7fdba0' },
-    { id: 'C', name: 'app.js', packets: [], color: '#ff8c42' },
+    { id: 'A', name: 'index.html', packets: [], color: 'var(--tcp)', soft: 'var(--tcp-soft)' },
+    { id: 'B', name: 'styles.css', packets: [], color: 'var(--ok)', soft: 'var(--ok-soft)' },
+    { id: 'C', name: 'app.js', packets: [], color: 'var(--signal)', soft: 'var(--signal-soft)' },
   ]);
   const timers = useRef([]);
 
@@ -263,7 +265,7 @@ export const SectionTen = () => {
                             </span>
                           );
                         } else {
-                          bg = st.color + '22';
+                          bg = st.soft;
                           bd = st.color;
                           content = <Check size={14} color={st.color} strokeWidth={2.5} />;
                         }

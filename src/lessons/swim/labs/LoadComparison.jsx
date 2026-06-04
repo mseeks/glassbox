@@ -147,7 +147,7 @@ export function LoadComparison() {
         </div>
         <div style={{ padding: '24px 26px', display: 'flex', flexDirection: 'column', gap: 18 }}>
           <div>
-            <div className="swim-label" style={{ color: 'var(--ink-faint)', marginBottom: 8 }}>
+            <div className="swim-label" style={{ color: 'var(--ink-label)', marginBottom: 8 }}>
               Messages / round
             </div>
             <div
@@ -191,7 +191,7 @@ export function LoadComparison() {
           </div>
           <div style={{ height: 1, background: 'var(--border)' }} />
           <div>
-            <div className="swim-label" style={{ color: 'var(--ink-faint)', marginBottom: 8 }}>
+            <div className="swim-label" style={{ color: 'var(--ink-label)', marginBottom: 8 }}>
               Per-node load
             </div>
             <div className="swim-mono" style={{ fontSize: 13, color: 'var(--ink)' }}>
@@ -200,7 +200,7 @@ export function LoadComparison() {
           </div>
           <div style={{ height: 1, background: 'var(--border)' }} />
           <div>
-            <div className="swim-label" style={{ color: 'var(--ink-faint)', marginBottom: 8 }}>
+            <div className="swim-label" style={{ color: 'var(--ink-label)', marginBottom: 8 }}>
               Single point of failure?
             </div>
             <div

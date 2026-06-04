@@ -8,6 +8,8 @@
   --ink-dim: rgba(232, 222, 200, 0.72);
   --ink-faint: rgba(232, 222, 200, 0.42);
   --rule: rgba(232, 222, 200, 0.12);
+  /* The "off" cell of the Bloom bit-grid glyph — a near-invisible empty slot. */
+  --idx-glyph-off: rgba(232, 222, 200, 0.08);
   color: var(--ink);
   background: var(--bg);
   min-height: calc(100vh - 53px);
@@ -86,20 +88,18 @@
   color: var(--ink-dim);
   margin: 18px 0 0;
 }
-.idx-rule {
-  height: 1px;
-  width: 100%;
-  background: linear-gradient(90deg, transparent, var(--rule), transparent);
-  margin: 64px 0 56px;
-}
-
 .idx-section-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10.5px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--ink-faint);
-  margin: 0 0 22px;
+  /* Functional label ("pick one") — lifted off the shared faint token so this
+     read-me text clears WCAG AA on --bg without de-fainting the decorative
+     eyebrow/footer wordmark that share --ink-faint. Same ink hue, raised alpha
+     (0.42 → 0.54): 3.31:1 → 4.78:1 on #0a0a0f. */
+  color: rgba(232, 222, 200, 0.54);
+  /* Top margin carries the hero → collection breathing room. */
+  margin: 80px 0 22px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -220,7 +220,11 @@
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  /* Functional wordmark — lifted off the shared faint token so this read-me text
+     clears WCAG AA on --bg without de-fainting the decorative eyebrow that also
+     rides --ink-faint. Same ink hue, raised alpha (0.42 → 0.58): 3.31:1 →
+     5.30:1 on #0a0a0f. (Mirrors the scoped .idx-section-label lift above.) */
+  color: rgba(232, 222, 200, 0.58);
   display: flex;
   gap: 14px;
   align-items: center;
@@ -498,4 +502,169 @@
   50% {
     opacity: 0.95;
   }
+}
+
+/* ─── Light theme — a champagne constellation chart ─────────────────────────
+   The index is native-dark (warm near-black sky, multi-accent constellation).
+   The light skin is its daytime complement: not a flip but a re-plate — the
+   same star chart drawn on warm champagne paper. The ground is a faintly
+   gold-cast cream (#f4ecd8, OKLCH L0.94 H89 — deliberately NOT a grey beige);
+   over it sit four soft accent pools (the dark sky's glows become tints), a
+   pale ruled celestial grid, and a scatter of inked star-points — the paper
+   analog of the dark page's atmosphere.
+
+   The lesson accents are pastels tuned to glow on black; on paper they would
+   vanish (every one fails AA on cream as text). So in light mode IndexPage.jsx
+   swaps each `--card-accent` for a DEEPENED daytime-star value (same OKLCH hue,
+   lower L + richer C) — vivid jewel tones that read as daytime stars. Those
+   stars carry the colour on the decorative rim, top-bar, and glyph; the small
+   functional labels (card eyebrow + CTA) drop to ink here so they stay crisply
+   legible regardless of which star a card wears. The glass cube is relit too:
+   the additive screen-blend nebula that glows on black is rebuilt as a denser
+   chromatic cloud reading as coloured light trapped in glass over paper. */
+[data-theme='light'] .idx-root {
+  --bg: #f4ecd8;
+  --ink: #2c2418;
+  --ink-dim: rgba(44, 36, 24, 0.74);
+  --ink-faint: rgba(44, 36, 24, 0.66);
+  --rule: rgba(44, 36, 24, 0.16);
+  /* Empty bit-grid cell, re-inked so it reads as a blank slot on paper. */
+  --idx-glyph-off: rgba(44, 36, 24, 0.08);
+}
+/* Accent pools + a pale ruled celestial grid: the dark sky's four corner glows
+   become soft colour tints on paper, laid over a faint right-ascension/
+   declination ruling so the cream reads as a star chart, not a blank sheet. */
+[data-theme='light'] .idx-root::before {
+  background-image:
+    radial-gradient(ellipse at 18% 18%, rgba(64, 100, 176, 0.11), transparent 50%),
+    radial-gradient(ellipse at 82% 22%, rgba(0, 138, 122, 0.09), transparent 50%),
+    radial-gradient(ellipse at 38% 82%, rgba(208, 64, 78, 0.08), transparent 55%),
+    radial-gradient(ellipse at 78% 86%, rgba(124, 96, 200, 0.09), transparent 55%),
+    repeating-linear-gradient(0deg, transparent 0 63px, rgba(44, 36, 24, 0.028) 63px 64px),
+    repeating-linear-gradient(90deg, transparent 0 63px, rgba(44, 36, 24, 0.028) 63px 64px);
+}
+/* The grain reads as a soft multiply on paper rather than an additive overlay;
+   a layer of inked star-points is dropped over it so the chart twinkles faintly
+   even between the cards. */
+[data-theme='light'] .idx-root::after {
+  background-image:
+    radial-gradient(1.4px 1.4px at 12% 22%, rgba(44, 36, 24, 0.42), transparent 60%),
+    radial-gradient(1px 1px at 28% 64%, rgba(44, 36, 24, 0.34), transparent 60%),
+    radial-gradient(1.2px 1.2px at 47% 14%, rgba(64, 100, 176, 0.4), transparent 60%),
+    radial-gradient(1px 1px at 63% 78%, rgba(208, 64, 78, 0.32), transparent 60%),
+    radial-gradient(1.3px 1.3px at 78% 32%, rgba(0, 134, 120, 0.38), transparent 60%),
+    radial-gradient(1px 1px at 88% 70%, rgba(124, 96, 200, 0.34), transparent 60%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+[data-theme='light'] .idx-h1 em {
+  color: rgba(44, 36, 24, 0.52);
+}
+
+/* Cards: a faint warm tint with a touched-up border so the per-card daytime
+   star (inline --card-accent) on the rim + top bar still pops against paper. */
+[data-theme='light'] .idx-card {
+  background: rgba(44, 36, 24, 0.04);
+  border-color: rgba(44, 36, 24, 0.14);
+}
+[data-theme='light'] .idx-card:hover,
+[data-theme='light'] .idx-card:focus-visible {
+  background: rgba(44, 36, 24, 0.07);
+  border-color: var(--card-accent, rgba(44, 36, 24, 0.36));
+}
+/* The small functional labels read in ink on paper — the deepened star is a
+   little dark for body-size mono text on the card, and dropping it to ink keeps
+   every card's eyebrow + CTA solidly legible while the glyph carries the hue. */
+[data-theme='light'] .idx-card-eyebrow,
+[data-theme='light'] .idx-card-cta {
+  color: var(--ink-dim);
+}
+[data-theme='light'] .idx-card-subtitle {
+  color: rgba(44, 36, 24, 0.72);
+}
+/* Restore the section label to its paper ink for light mode — the dark-theme
+   literal above is a deliberately scoped AA lift and must not leak onto the
+   cream ground (light already clears AA at 4.68:1). */
+[data-theme='light'] .idx-section-label {
+  color: rgba(44, 36, 24, 0.66);
+}
+/* Same story for the footer wordmark: its dark-theme literal would all but
+   vanish on cream, so restore it to the paper faint ink (4.68:1 on #f4ecd8). */
+[data-theme='light'] .idx-footer {
+  color: var(--ink-faint);
+}
+
+/* ── Glass cube, relit for paper ──────────────────────────────────────────
+   The dark build leans on additive light (screen blend, bright whites) that
+   washes out over a light ground. Here the glow is a denser chromatic pool, the
+   faces gain darker ink strokes so the cube's edges read, and the nebula's
+   white-hot core is dialled down while its colour stops are deepened so the
+   cloud still glows like trapped light rather than turning to milk. */
+[data-theme='light'] .gb-glow {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(64, 100, 176, 0.32), transparent 52%),
+    radial-gradient(circle at 40% 62%, rgba(0, 138, 122, 0.2), transparent 56%),
+    radial-gradient(circle at 62% 58%, rgba(124, 96, 200, 0.24), transparent 56%);
+}
+[data-theme='light'] .gb-face {
+  border-color: rgba(44, 36, 24, 0.32);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 252, 240, 0.5),
+    inset 0 0 16px rgba(64, 100, 176, 0.06);
+  background: linear-gradient(135deg, rgba(64, 100, 176, 0.07), rgba(124, 96, 200, 0.05));
+}
+[data-theme='light'] .gb-face::after {
+  background: linear-gradient(
+    125deg,
+    transparent 45%,
+    rgba(255, 252, 240, 0.42) 49.5%,
+    transparent 54%
+  );
+}
+[data-theme='light'] .gb-right {
+  background: linear-gradient(135deg, rgba(0, 138, 122, 0.07), rgba(64, 100, 176, 0.03));
+}
+[data-theme='light'] .gb-left {
+  background: linear-gradient(135deg, rgba(124, 96, 200, 0.07), rgba(64, 100, 176, 0.03));
+}
+[data-theme='light'] .gb-top {
+  background: linear-gradient(135deg, rgba(44, 36, 24, 0.06), rgba(64, 100, 176, 0.05));
+  border-color: rgba(44, 36, 24, 0.26);
+}
+[data-theme='light'] .gb-bottom {
+  background: linear-gradient(135deg, rgba(64, 100, 176, 0.04), rgba(44, 36, 24, 0.08));
+  border-color: rgba(44, 36, 24, 0.4);
+}
+[data-theme='light'] .gb-nebula-back {
+  opacity: 0.62;
+  background:
+    radial-gradient(circle at 32% 40%, rgba(124, 96, 200, 0.82), transparent 48%),
+    radial-gradient(circle at 70% 62%, rgba(0, 138, 122, 0.62), transparent 50%),
+    radial-gradient(circle at 56% 28%, rgba(64, 100, 176, 0.72), transparent 46%),
+    radial-gradient(circle at 64% 74%, rgba(208, 64, 78, 0.5), transparent 50%);
+}
+[data-theme='light'] .gb-nebula-front {
+  background:
+    radial-gradient(circle at 52% 50%, rgba(255, 252, 240, 0.95), rgba(255, 252, 240, 0) 13%),
+    radial-gradient(circle at 38% 36%, rgba(124, 96, 200, 0.92), transparent 44%),
+    radial-gradient(circle at 66% 54%, rgba(0, 138, 122, 0.82), transparent 46%),
+    radial-gradient(circle at 56% 70%, rgba(208, 64, 78, 0.66), transparent 46%),
+    radial-gradient(circle at 48% 26%, rgba(64, 100, 176, 0.88), transparent 44%),
+    radial-gradient(circle at 70% 32%, rgba(208, 64, 120, 0.58), transparent 38%);
+  box-shadow:
+    0 0 20px 2px rgba(64, 100, 176, 0.34),
+    0 0 44px 8px rgba(124, 96, 200, 0.16);
+}
+[data-theme='light'] .gb-stars {
+  background-image:
+    radial-gradient(1.4px 1.4px at 22% 30%, rgba(255, 252, 240, 0.95), transparent 60%),
+    radial-gradient(1.1px 1.1px at 70% 24%, rgba(44, 36, 24, 0.5), transparent 60%),
+    radial-gradient(1px 1px at 38% 66%, rgba(255, 252, 240, 0.85), transparent 60%),
+    radial-gradient(1.3px 1.3px at 80% 60%, rgba(124, 96, 200, 0.9), transparent 60%),
+    radial-gradient(1px 1px at 56% 46%, rgba(255, 252, 240, 0.9), transparent 60%),
+    radial-gradient(1.1px 1.1px at 28% 48%, rgba(64, 100, 176, 0.85), transparent 60%),
+    radial-gradient(1px 1px at 64% 76%, rgba(44, 36, 24, 0.45), transparent 60%),
+    radial-gradient(1.2px 1.2px at 48% 18%, rgba(0, 138, 122, 0.82), transparent 60%),
+    radial-gradient(1px 1px at 74% 44%, rgba(255, 252, 240, 0.7), transparent 60%);
 }

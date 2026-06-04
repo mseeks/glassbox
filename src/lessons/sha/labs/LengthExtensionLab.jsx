@@ -127,10 +127,10 @@ export default function LengthExtensionLab() {
       {/* attacker side */}
       <div
         style={{
-          border: '1px solid rgba(245,71,111,0.35)',
+          border: '1px solid var(--sha-cer-edge)',
           borderRadius: 10,
           padding: '13px 14px',
-          background: 'rgba(245,71,111,0.04)',
+          background: 'var(--sha-cer-wash)',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
@@ -189,7 +189,7 @@ export default function LengthExtensionLab() {
                 gap: 8,
                 padding: '8px 11px',
                 borderRadius: 8,
-                background: forged.match ? 'rgba(245,71,111,0.12)' : 'var(--jade-glow)',
+                background: forged.match ? 'var(--cerise-glow)' : 'var(--jade-glow)',
                 border: '1px solid ' + (forged.match ? 'var(--cerise)' : 'var(--jade)'),
               }}
             >

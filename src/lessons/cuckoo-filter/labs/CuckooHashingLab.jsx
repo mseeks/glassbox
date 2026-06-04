@@ -242,7 +242,7 @@ export function CuckooHashingLab() {
                 padding: '16px 18px',
                 border: '1px dashed var(--line)',
                 background: 'transparent',
-                color: 'var(--text-faint)',
+                color: 'var(--cf-label-faint)',
                 fontFamily: 'IBM Plex Serif',
                 fontStyle: 'italic',
                 fontSize: 14,
@@ -301,7 +301,9 @@ export function CuckooHashingLab() {
             }}
           >
             {log.length === 0 && (
-              <div style={{ color: 'var(--text-faint)', fontStyle: 'italic' }}>(nothing yet)</div>
+              <div style={{ color: 'var(--cf-label-faint)', fontStyle: 'italic' }}>
+                (nothing yet)
+              </div>
             )}
             {log.map((entry, i) => (
               <div

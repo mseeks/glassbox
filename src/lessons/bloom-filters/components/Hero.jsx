@@ -45,10 +45,10 @@ export function Hero() {
             <div
               key={i}
               style={{
-                background: b ? '#c4b5fd' : 'rgba(232, 222, 200, 0.05)',
+                background: b ? 'var(--bf-violet)' : 'var(--bf-line-faint)',
                 borderRadius: '1px',
                 transition: 'background 900ms ease',
-                boxShadow: b ? '0 0 6px rgba(196, 181, 253, 0.4)' : 'none',
+                boxShadow: b ? '0 0 6px var(--bf-violet-glow)' : 'none',
                 minHeight: 0,
               }}
             />
@@ -66,7 +66,7 @@ export function Hero() {
             style={{
               fontSize: '0.78rem',
               letterSpacing: '0.32em',
-              color: 'rgba(196, 181, 253, 0.75)',
+              color: 'var(--bf-violet-eyebrow)',
               textTransform: 'uppercase',
             }}
           >
@@ -85,7 +85,10 @@ export function Hero() {
         >
           Bloom
           <br />
-          <span className="bf-display-italic" style={{ fontWeight: 300, color: '#c4b5fd' }}>
+          <span
+            className="bf-display-italic"
+            style={{ fontWeight: 300, color: 'var(--bf-violet)' }}
+          >
             Filters.
           </span>
         </h1>
@@ -93,7 +96,11 @@ export function Hero() {
         <div className="bf-fade-up mt-10 max-w-3xl" style={{ animationDelay: '0.45s' }}>
           <p
             className="bf-body"
-            style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', lineHeight: 1.55, color: '#d4c5a0' }}
+            style={{
+              fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+              lineHeight: 1.55,
+              color: 'var(--bf-ink-body)',
+            }}
           >
             Ten bits to know if anything belongs. A complete tour of the data structure that traded
             certainty for memory, and changed how big systems answer the oldest question in
@@ -111,9 +118,9 @@ export function Hero() {
               style={{
                 width: '12px',
                 height: '12px',
-                background: '#c4b5fd',
+                background: 'var(--bf-violet)',
                 borderRadius: '1px',
-                boxShadow: '0 0 8px rgba(196, 181, 253, 0.5)',
+                boxShadow: '0 0 8px var(--bf-violet-glow-strong)',
               }}
             />
             <span className="bf-ui bf-mark-muted" style={{ fontSize: '0.85rem' }}>
@@ -125,8 +132,8 @@ export function Hero() {
               style={{
                 width: '12px',
                 height: '12px',
-                background: 'rgba(232, 222, 200, 0.1)',
-                border: '1px solid rgba(232, 222, 200, 0.15)',
+                background: 'var(--bf-line-1)',
+                border: '1px solid var(--bf-line-15)',
                 borderRadius: '1px',
               }}
             />
@@ -140,7 +147,7 @@ export function Hero() {
         </div>
 
         <div className="bf-fade-up mt-20" style={{ animationDelay: '1s' }}>
-          <ChevronDown style={{ width: 24, height: 24, color: 'rgba(232, 222, 200, 0.4)' }} />
+          <ChevronDown style={{ width: 24, height: 24, color: 'var(--bf-line-4)' }} />
         </div>
       </div>
     </section>

@@ -51,14 +51,14 @@ export const VectorClockLab = () => {
   };
 
   const nodeColors = [
-    '#f5b942',
-    '#b794f4',
-    '#6ee7b7',
-    '#fb7185',
-    '#5eead4',
-    '#a78bfa',
-    '#f59e0b',
-    '#34d399',
+    'var(--bc-gold)',
+    'var(--bc-violet)',
+    'var(--bc-emerald)',
+    'var(--bc-rose)',
+    'var(--bc-teal)',
+    'var(--bc-node-6)',
+    'var(--bc-node-7)',
+    'var(--bc-node-8)',
   ];
 
   return (
@@ -74,15 +74,15 @@ export const VectorClockLab = () => {
         }}
       >
         <div>
-          <div className="bc-eyebrow" style={{ color: '#6ee7b7' }}>
+          <div className="bc-eyebrow" style={{ color: 'var(--bc-emerald)' }}>
             LAB · VECTOR CLOCK
           </div>
-          <div className="bc-italic" style={{ fontSize: 26, color: '#f0e8d2', marginTop: 4 }}>
+          <div className="bc-italic" style={{ fontSize: 26, color: 'var(--bc-ink)', marginTop: 4 }}>
             Watch the size grow with N
           </div>
         </div>
-        <div className="bc-mono" style={{ fontSize: 12, color: '#a89e85' }}>
-          per-event size: <span style={{ color: '#fb7185' }}>{nodes.length} integers</span>
+        <div className="bc-mono" style={{ fontSize: 12, color: 'var(--bc-ink-muted)' }}>
+          per-event size: <span style={{ color: 'var(--bc-rose)' }}>{nodes.length} integers</span>
         </div>
       </div>
 
@@ -111,11 +111,13 @@ export const VectorClockLab = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     background:
-                      v > 0 ? `${nodeColors[j % nodeColors.length]}22` : 'rgba(255,255,255,0.02)',
-                    border: `1px solid ${v > 0 ? nodeColors[j % nodeColors.length] + '66' : 'rgba(255,255,255,0.05)'}`,
+                      v > 0
+                        ? `color-mix(in srgb, ${nodeColors[j % nodeColors.length]} 14%, transparent)`
+                        : 'var(--bc-sheen)',
+                    border: `1px solid ${v > 0 ? `color-mix(in srgb, ${nodeColors[j % nodeColors.length]} 42%, transparent)` : 'var(--bc-sheen-border-2)'}`,
                     borderRadius: 3,
                     fontSize: 14,
-                    color: v > 0 ? nodeColors[j % nodeColors.length] : '#5e5747',
+                    color: v > 0 ? nodeColors[j % nodeColors.length] : 'var(--bc-ink-faint)',
                     transition: 'all 200ms',
                     flexShrink: 0,
                   }}
@@ -139,9 +141,9 @@ export const VectorClockLab = () => {
                     }
                   }}
                   style={{
-                    background: 'rgba(45, 52, 88, 0.4)',
-                    border: '1px solid rgba(61, 69, 118, 0.6)',
-                    color: '#f0e8d2',
+                    background: 'var(--bc-control-bg)',
+                    border: '1px solid var(--bc-control-border)',
+                    color: 'var(--bc-ink)',
                     padding: '8px 12px',
                     borderRadius: 3,
                     fontSize: 12,
@@ -172,13 +174,13 @@ export const VectorClockLab = () => {
           <RotateCcw size={13} /> reset
         </button>
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div className="bc-mono" style={{ fontSize: 11, color: '#5e5747' }}>
+          <div className="bc-mono" style={{ fontSize: 11, color: 'var(--bc-ink-faint)' }}>
             total bytes carried per event: {nodes.length * 4}
           </div>
         </div>
       </div>
 
-      <Callout title="What to notice" color="#6ee7b7" tone="note">
+      <Callout title="What to notice" color="var(--bc-emerald)" tone="note">
         Each row is one node's <em>view of the world</em>. Slot j in node i's vector answers a
         single question: how many events from node j have I, transitively, heard about? Now add a
         node. Every existing vector grows, and the bytes carried on every future event grow right

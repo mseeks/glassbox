@@ -41,9 +41,9 @@ const CriteriaBar = ({ name, tip, value, color }) => (
         >
           {name}
         </div>
-        <div style={{ fontSize: 11, color: 'var(--ink-faint)', marginTop: 1 }}>{tip}</div>
+        <div style={{ fontSize: 11, color: 'var(--ink-faint-fn)', marginTop: 1 }}>{tip}</div>
       </div>
-      <div className="udp-mono" style={{ fontSize: 11, color: 'var(--ink-faint)' }}>
+      <div className="udp-mono" style={{ fontSize: 11, color: 'var(--ink-faint-fn)' }}>
         {value}/5
       </div>
     </div>
@@ -392,7 +392,7 @@ export const SectionSeven = () => {
                   borderRadius: 3,
                   fontSize: 11,
                   fontFamily: 'JetBrains Mono',
-                  color: 'var(--ink-faint)',
+                  color: 'var(--ink-faint-fn)',
                   letterSpacing: '0.05em',
                   lineHeight: 1.5,
                 }}

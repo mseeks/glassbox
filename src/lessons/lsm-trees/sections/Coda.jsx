@@ -22,7 +22,7 @@ export default function Coda() {
           Stop fighting
           <br />
           the{' '}
-          <span style={{ color: 'var(--writ)', textShadow: '0 0 34px rgba(227,88,44,0.4)' }}>
+          <span style={{ color: 'var(--writ)', textShadow: '0 0 34px var(--glow-writ)' }}>
             arrow of time.
           </span>
         </h2>

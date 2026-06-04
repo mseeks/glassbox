@@ -325,7 +325,7 @@ export function ProbeSimulator() {
             fontFamily: 'JetBrains Mono, monospace',
             fontSize: 10,
             letterSpacing: '0.16em',
-            color: 'var(--ink-faint)',
+            color: 'var(--ink-label)',
             textTransform: 'uppercase',
           }}
         >
@@ -367,7 +367,7 @@ export function ProbeSimulator() {
       >
         <div
           className="swim-mono"
-          style={{ fontSize: 11, color: 'var(--ink-faint)', maxWidth: 460 }}
+          style={{ fontSize: 11, color: 'var(--ink-label)', maxWidth: 460 }}
         >
           {!linkFailed && !targetDead && 'Default: direct probe succeeds, no fallback needed.'}
           {linkFailed &&

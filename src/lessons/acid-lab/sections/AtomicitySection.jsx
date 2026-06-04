@@ -10,7 +10,7 @@ export const AtomicitySection = forwardRef(function AtomicitySection(_props, ref
           letter="A"
           kicker="The failure axis"
           name="Atomicity"
-          accent="#a78bfa"
+          accent="var(--iso-violet)"
           intro="What happens when a transaction is interrupted mid-flight? Atomicity says: it must either fully happen or not happen at all. Nothing in between. The mechanism that makes this possible is the **write-ahead log**, a small, fsync'd journal that becomes the source of truth at the moment of commit. Three scenarios show how it works."
         />
       </div>

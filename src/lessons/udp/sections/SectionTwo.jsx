@@ -80,7 +80,7 @@ export const SectionTwo = () => {
               </h3>
               <span
                 className="udp-mono"
-                style={{ fontSize: 11, color: 'var(--ink-faint)', letterSpacing: '0.1em' }}
+                style={{ fontSize: 11, color: 'var(--ink-faint-fn)', letterSpacing: '0.1em' }}
               >
                 THE MANAGED STREAM
               </span>
@@ -100,7 +100,7 @@ export const SectionTwo = () => {
               </h3>
               <span
                 className="udp-mono"
-                style={{ fontSize: 11, color: 'var(--ink-faint)', letterSpacing: '0.1em' }}
+                style={{ fontSize: 11, color: 'var(--ink-faint-fn)', letterSpacing: '0.1em' }}
               >
                 THE RAW DATAGRAM
               </span>
@@ -203,7 +203,7 @@ export const SectionTwo = () => {
                 f.udp.startsWith('Removed') ? (
                   <span
                     style={{
-                      color: 'var(--ink-faint)',
+                      color: 'var(--ink-faint-fn)',
                       fontFamily: 'JetBrains Mono',
                       fontWeight: 600,
                       fontSize: 13,
@@ -292,7 +292,7 @@ export const SectionTwo = () => {
                   display: 'flex',
                   fontFamily: 'JetBrains Mono',
                   fontSize: 10,
-                  color: 'var(--ink-faint)',
+                  color: 'var(--ink-faint-fn)',
                   marginTop: 4,
                   gap: 14,
                 }}
@@ -364,7 +364,7 @@ export const SectionTwo = () => {
                 style={{
                   fontFamily: 'JetBrains Mono',
                   fontSize: 10,
-                  color: 'var(--ink-faint)',
+                  color: 'var(--ink-faint-fn)',
                   marginTop: 4,
                 }}
               >

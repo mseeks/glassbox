@@ -209,7 +209,7 @@ export function SaturationDemo() {
             style={{
               fontSize: '0.7rem',
               letterSpacing: '0.25em',
-              color: 'rgba(196, 181, 253, 0.7)',
+              color: 'var(--bf-violet-eyebrow)',
               textTransform: 'uppercase',
             }}
           >
@@ -217,7 +217,7 @@ export function SaturationDemo() {
           </div>
           <div
             className="bf-display"
-            style={{ fontSize: '1.85rem', color: '#f5e9d3', marginTop: '0.3rem' }}
+            style={{ fontSize: '1.85rem', color: 'var(--bf-ink-head)', marginTop: '0.3rem' }}
           >
             Saturation
           </div>
@@ -228,7 +228,7 @@ export function SaturationDemo() {
           <span className="bf-spec-pill">n = {step}</span>
           <span
             className="bf-spec-pill"
-            style={{ color: '#ddd6fe', borderColor: 'rgba(196, 181, 253, 0.3)' }}
+            style={{ color: 'var(--bf-violet-ink)', borderColor: 'var(--bf-violet-line-3)' }}
           >
             FPR ≈ {step === 0 ? '0' : (theoreticalFPR * 100).toFixed(1)}%
           </span>
@@ -245,7 +245,7 @@ export function SaturationDemo() {
           gridTemplateColumns: `repeat(${COLS}, 1fr)`,
           gap: '4px',
           padding: '0.9rem 0.85rem',
-          background: 'rgba(10, 10, 15, 0.45)',
+          background: 'var(--bf-well)',
           borderRadius: '3px',
           marginBottom: '1rem',
         }}
@@ -258,7 +258,7 @@ export function SaturationDemo() {
       <div className="grid md:grid-cols-3 gap-4 mb-4">
         <div
           className="bf-panel"
-          style={{ padding: '0.85rem 1rem', background: 'rgba(10, 10, 15, 0.4)' }}
+          style={{ padding: '0.85rem 1rem', background: 'var(--bf-well-soft)' }}
         >
           <div
             className="bf-ui bf-mark-muted"
@@ -266,7 +266,10 @@ export function SaturationDemo() {
           >
             bits set
           </div>
-          <div className="bf-display mt-1" style={{ fontSize: '1.4rem', color: '#ddd6fe' }}>
+          <div
+            className="bf-display mt-1"
+            style={{ fontSize: '1.4rem', color: 'var(--bf-violet-ink)' }}
+          >
             {setCount} / {M}
           </div>
           <div className="bf-mono bf-mark-muted mt-1" style={{ fontSize: '0.7rem' }}>
@@ -275,7 +278,7 @@ export function SaturationDemo() {
         </div>
         <div
           className="bf-panel"
-          style={{ padding: '0.85rem 1rem', background: 'rgba(10, 10, 15, 0.4)' }}
+          style={{ padding: '0.85rem 1rem', background: 'var(--bf-well-soft)' }}
         >
           <div
             className="bf-ui bf-mark-muted"
@@ -288,7 +291,11 @@ export function SaturationDemo() {
             style={{
               fontSize: '1.4rem',
               color:
-                theoreticalFPR > 0.5 ? '#fda4af' : theoreticalFPR > 0.1 ? '#c4b5fd' : '#5eead4',
+                theoreticalFPR > 0.5
+                  ? 'var(--bf-rose-ink)'
+                  : theoreticalFPR > 0.1
+                    ? 'var(--bf-violet-ink)'
+                    : 'var(--bf-teal-ink)',
             }}
           >
             {(theoreticalFPR * 100).toFixed(theoreticalFPR < 0.001 ? 4 : 1)}%
@@ -299,7 +306,7 @@ export function SaturationDemo() {
         </div>
         <div
           className="bf-panel"
-          style={{ padding: '0.85rem 1rem', background: 'rgba(10, 10, 15, 0.4)' }}
+          style={{ padding: '0.85rem 1rem', background: 'var(--bf-well-soft)' }}
         >
           <div
             className="bf-ui bf-mark-muted"
@@ -311,7 +318,12 @@ export function SaturationDemo() {
             className="bf-display mt-1"
             style={{
               fontSize: '1.4rem',
-              color: fpr > 0.5 ? '#fda4af' : fpr > 0.1 ? '#c4b5fd' : '#5eead4',
+              color:
+                fpr > 0.5
+                  ? 'var(--bf-rose-ink)'
+                  : fpr > 0.1
+                    ? 'var(--bf-violet-ink)'
+                    : 'var(--bf-teal-ink)',
             }}
           >
             {(fpr * 100).toFixed(fpr < 0.001 ? 4 : 1)}%
@@ -335,9 +347,9 @@ export function SaturationDemo() {
           style={{
             width: '100%',
             height: 'auto',
-            background: 'rgba(10, 10, 15, 0.5)',
+            background: 'var(--bf-well-deep)',
             borderRadius: '3px',
-            border: '1px solid rgba(232, 222, 200, 0.06)',
+            border: '1px solid var(--bf-line-soft)',
           }}
         >
           {[0, 0.25, 0.5, 0.75, 1].map((p) => (
@@ -347,14 +359,14 @@ export function SaturationDemo() {
                 y1={yS(p)}
                 x2={W - PAD_R}
                 y2={yS(p)}
-                stroke="rgba(232, 222, 200, 0.06)"
+                style={{ stroke: 'var(--bf-line-soft)' }}
                 strokeWidth="0.5"
               />
               <text
                 x={PAD_L - 4}
                 y={yS(p) + 3}
                 fontSize="9"
-                fill="#a89e8a"
+                style={{ fill: 'var(--bf-ink-muted)' }}
                 textAnchor="end"
                 fontFamily="JetBrains Mono"
               >
@@ -369,14 +381,14 @@ export function SaturationDemo() {
                 y1={PAD_T}
                 x2={xS(nn)}
                 y2={H - PAD_B}
-                stroke="rgba(232, 222, 200, 0.06)"
+                style={{ stroke: 'var(--bf-line-soft)' }}
                 strokeWidth="0.5"
               />
               <text
                 x={xS(nn)}
                 y={H - PAD_B + 12}
                 fontSize="9"
-                fill="#a89e8a"
+                style={{ fill: 'var(--bf-ink-muted)' }}
                 textAnchor="middle"
                 fontFamily="JetBrains Mono"
               >
@@ -390,7 +402,7 @@ export function SaturationDemo() {
             y1={PAD_T}
             x2={xS(15)}
             y2={H - PAD_B}
-            stroke="#5eead4"
+            style={{ stroke: 'var(--bf-teal-ink)' }}
             strokeWidth="1"
             strokeDasharray="2 4"
             opacity="0.5"
@@ -399,7 +411,7 @@ export function SaturationDemo() {
             x={xS(15) + 4}
             y={PAD_T + 10}
             fontSize="8"
-            fill="#5eead4"
+            style={{ fill: 'var(--bf-teal-ink)' }}
             fontFamily="Inter Tight"
             fontWeight="600"
           >
@@ -408,7 +420,7 @@ export function SaturationDemo() {
           {/* Curve */}
           <path
             d={histPath}
-            stroke="#c4b5fd"
+            style={{ stroke: 'var(--bf-violet)' }}
             strokeWidth="1.75"
             fill="none"
             strokeLinejoin="round"
@@ -418,8 +430,7 @@ export function SaturationDemo() {
               cx={xS(history[history.length - 1].n)}
               cy={yS(history[history.length - 1].fpr)}
               r="3.5"
-              fill="#c4b5fd"
-              stroke="#0a0a0f"
+              style={{ fill: 'var(--bf-violet)', stroke: 'var(--bf-marker-edge)' }}
               strokeWidth="1.5"
             />
           )}
@@ -454,7 +465,7 @@ export function SaturationDemo() {
               next: <span className="bf-mark-amber">"{SAT_WORDS[step]}"</span>
             </>
           ) : (
-            <span style={{ color: '#fda4af' }}>list exhausted</span>
+            <span style={{ color: 'var(--bf-rose-ink)' }}>list exhausted</span>
           )}
         </div>
       </div>
