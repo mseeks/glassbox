@@ -17,6 +17,10 @@ const COLOR_SCHEME_QUERY = '(prefers-color-scheme: dark)';
 // so the mobile browser chrome (theme-color) agrees with the page.
 const META_COLOR = { dark: '#0a0a0f', light: '#f4efe4' };
 
+// The tab icon per theme: a dark-glass mark and its parchment twin (public/).
+// Swapped here so the favicon follows the in-app toggle, not just the OS.
+const FAVICON = { dark: '/favicon.svg', light: '/favicon-light.svg' };
+
 function systemPrefersDark() {
   if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return false;
   return window.matchMedia(COLOR_SCHEME_QUERY).matches;
@@ -45,6 +49,8 @@ function applyDom() {
   root.style.colorScheme = theme;
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute('content', META_COLOR[theme]);
+  const icon = document.querySelector('link[rel="icon"]');
+  if (icon) icon.setAttribute('href', FAVICON[theme]);
 }
 
 function recompute() {

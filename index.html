@@ -8,6 +8,9 @@
       content="Glassbox: the black box, made of glass. A small library of interactive systems lessons you can poke, prod, and see straight through."
     />
     <meta name="theme-color" content="#0a0a0f" />
+    <!-- The tab icon has a light twin; the pre-paint script below points this at
+         the right one. Declared before that script so it exists when it runs. -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <!-- Pre-paint theme resolution: set <html data-theme> from the stored
          preference (+ the OS for 'system') BEFORE first paint so there is no
          light/dark flash. This mirrors resolveTheme() in src/shared/theme.js;
@@ -28,12 +31,13 @@
           root.style.colorScheme = theme;
           var meta = document.querySelector('meta[name="theme-color"]');
           if (meta) meta.setAttribute('content', dark ? '#0a0a0f' : '#f4efe4');
+          var icon = document.querySelector('link[rel="icon"]');
+          if (icon) icon.setAttribute('href', dark ? '/favicon.svg' : '/favicon-light.svg');
         } catch (e) {
           /* storage/matchMedia blocked → leave the dark default in place */
         }
       })();
     </script>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- JetBrains Mono is the shared family-glue monospace (--font-mono), used by
