@@ -9,7 +9,16 @@
   --line-soft: #16302f;
   --bone: #ece6d8;
   --bone-dim: #a9b3ad;
-  --bone-faint: #6f817d;
+  /* the functional small-mono tier: party/role labels, value & status mono,
+     step counters, trust-store chips, column captions, nav numbers. Lifted in
+     OKLCH (hue + chroma held, lightness raised from the original #6f817d) so
+     every use — including the sibling chips/mono a per-selector pass missed —
+     clears WCAG AA (>=4.5) on every dark ground (ink-2/panel/panel-2/ink). */
+  --bone-faint: #7e908c;
+  /* functional small-mono labels (step/role captions, cert "issued by"): now
+     identical to the lifted --bone-faint above — the two tiers are uniformly
+     functional in dark, so the label token simply tracks it. */
+  --bone-label: #7e908c;
   --aqua: #46d6c6;
   --aqua-bright: #7ff0e2;
   --aqua-deep: #1d8e84;
@@ -20,6 +29,18 @@
   --verm-bright: #ff8a76;
   --verm-deep: #a83422;
   --steel: #7e9aa0;
+  /* inline accent washes (tints of the signature accents over panel/inset
+     surfaces) — flipped in the [data-theme='light'] block so JSX inline
+     styles recolor with the theme */
+  --wash-aqua-03: rgba(70, 214, 198, 0.03);
+  --wash-aqua-06: rgba(70, 214, 198, 0.06);
+  --wash-aqua-08: rgba(70, 214, 198, 0.08);
+  --wash-aqua-10: rgba(70, 214, 198, 0.1);
+  --wash-aqua-14: rgba(70, 214, 198, 0.14);
+  --wash-verm-06: rgba(240, 100, 77, 0.06);
+  --wash-verm-08: rgba(240, 100, 77, 0.08);
+  --wash-verm-12: rgba(240, 100, 77, 0.12);
+  --wash-verm-14: rgba(240, 100, 77, 0.14);
   background: var(--ink);
   color: var(--bone);
   font-family: 'Schibsted Grotesk', system-ui, sans-serif;
@@ -621,4 +642,100 @@
   .tls-padtop {
     padding-top: 52px;
   }
+}
+
+/* ─── Light theme — complementary to the dark default ─── */
+/* Warm paper switchboard: inked aqua channel, struck brass, deepened vermilion. */
+[data-theme='light'] .tls-root {
+  --ink: #ece4d4;
+  --ink-2: #e3d9c4;
+  --panel: #f4eee0;
+  --panel-2: #ece3d1;
+  --line: #968969;
+  --line-soft: #c2b69a;
+  --bone: #1b2826;
+  --bone-dim: #3c4944;
+  /* foreground tokens deepened in OKLCH (hue held) so small mono/label/value
+     text clears WCAG AA on the warm tinted panels/insets it sits on */
+  --bone-faint: #505952;
+  /* functional-label token: in paper mode --bone-faint already clears AA, so
+     the label token tracks it (parity, no light-mode visual change) */
+  --bone-label: #505952;
+  --aqua: #006a62;
+  --aqua-bright: #11635c;
+  --aqua-deep: #0e6b63;
+  --brass: #a87c1f;
+  --brass-bright: #7a580b;
+  --brass-deep: #c79a3e;
+  --verm: #ab1c01;
+  --verm-bright: #9c2814;
+  --verm-deep: #e0644d;
+  --steel: #4d625e;
+  /* inline accent washes recast as tints of the darkened paper-mode accents */
+  --wash-aqua-03: rgba(27, 141, 131, 0.05);
+  --wash-aqua-06: rgba(27, 141, 131, 0.08);
+  --wash-aqua-08: rgba(27, 141, 131, 0.1);
+  --wash-aqua-10: rgba(27, 141, 131, 0.12);
+  --wash-aqua-14: rgba(27, 141, 131, 0.14);
+  --wash-verm-06: rgba(198, 58, 35, 0.07);
+  --wash-verm-08: rgba(198, 58, 35, 0.09);
+  --wash-verm-12: rgba(198, 58, 35, 0.12);
+  --wash-verm-14: rgba(198, 58, 35, 0.14);
+}
+[data-theme='light'] .tls-root::before {
+  background:
+    radial-gradient(900px 600px at 78% -8%, rgba(27, 141, 131, 0.12), transparent 60%),
+    radial-gradient(800px 700px at 8% 12%, rgba(168, 124, 31, 0.08), transparent 55%),
+    linear-gradient(180deg, #f1eadb, #ece4d3 60%, #e6ddc9);
+}
+[data-theme='light'] .tls-root::after {
+  opacity: 0.5;
+}
+
+/* segmented control + button washes (hardcoded accent rgba) */
+[data-theme='light'] .tls-segbtn.on {
+  background: rgba(27, 141, 131, 0.12);
+}
+[data-theme='light'] .tls-segbtn.on-brass {
+  background: rgba(168, 124, 31, 0.13);
+}
+[data-theme='light'] .tls-segbtn.on-verm {
+  background: rgba(198, 58, 35, 0.12);
+}
+[data-theme='light'] .tls-btn {
+  background: rgba(27, 141, 131, 0.12);
+}
+[data-theme='light'] .tls-btn:hover {
+  background: rgba(27, 141, 131, 0.2);
+}
+
+/* lock badge washes */
+[data-theme='light'] .tls-lockbadge.sealed {
+  background: rgba(27, 141, 131, 0.12);
+}
+[data-theme='light'] .tls-lockbadge.broken {
+  background: rgba(198, 58, 35, 0.12);
+}
+
+/* rail active glow (aqua now darker — keep a soft halo) */
+[data-theme='light'] .tls-rail a.active .dot {
+  box-shadow: 0 0 8px rgba(27, 141, 131, 0.55);
+}
+
+/* topbar / sheet scrims become warm paper */
+[data-theme='light'] .tls-topbar {
+  background: rgba(241, 234, 219, 0.86);
+}
+[data-theme='light'] .tls-sheet {
+  background: rgba(241, 234, 219, 0.97);
+}
+[data-theme='light'] .tls-sheet a:active,
+[data-theme='light'] .tls-sheet a.active {
+  background: rgba(27, 141, 131, 0.1);
+}
+
+/* swatch frame: dark hairline + lighter inset on paper */
+[data-theme='light'] .tls-swatch {
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.18);
 }

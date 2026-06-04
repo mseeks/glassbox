@@ -180,15 +180,15 @@ export function Ch07HappensBefore() {
                 >
                   <defs>
                     <linearGradient id="hbArrowGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#fbbf24" />
-                      <stop offset="50%" stopColor="#6ee7b7" />
-                      <stop offset="100%" stopColor="#5eead4" />
+                      <stop offset="0%" stopColor="var(--cf-hb-arrow-from)" />
+                      <stop offset="50%" stopColor="var(--cf-hb-arrow-mid)" />
+                      <stop offset="100%" stopColor="var(--cf-hb-arrow-to)" />
                     </linearGradient>
                   </defs>
                   {/* Halo */}
                   <path
                     d={`M ${t1Op2x} ${arrowStartY} C ${t1Op2x} ${(arrowStartY + arrowEndY) / 2}, ${t2Op1x} ${(arrowStartY + arrowEndY) / 2}, ${t2Op1x} ${arrowEndY}`}
-                    stroke="#6ee7b7"
+                    stroke="var(--cf-hb-arrow-mid)"
                     strokeWidth="10"
                     strokeOpacity="0.14"
                     fill="none"
@@ -216,7 +216,7 @@ export function Ch07HappensBefore() {
                   }}
                 >
                   <svg width="16" height="16" viewBox="0 0 16 16">
-                    <path d="M 8 14 L 1 2 L 15 2 Z" fill="#5eead4" />
+                    <path d="M 8 14 L 1 2 L 15 2 Z" fill="var(--cf-hb-arrow-to)" />
                   </svg>
                 </div>
               )}

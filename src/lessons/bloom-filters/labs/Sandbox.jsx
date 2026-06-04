@@ -292,14 +292,14 @@ export function Sandbox() {
       );
     if (lastResult.kind === 'duplicate') {
       return (
-        <div className="bf-ui" style={{ color: '#a89e8a', fontSize: '0.88rem' }}>
+        <div className="bf-ui" style={{ color: 'var(--bf-ink-muted)', fontSize: '0.88rem' }}>
           <span className="bf-mono bf-mark-amber">"{lastResult.word}"</span> already inserted
         </div>
       );
     }
     if (lastResult.kind === 'inserted') {
       return (
-        <div className="bf-ui" style={{ fontSize: '0.88rem', color: '#86efac' }}>
+        <div className="bf-ui" style={{ fontSize: '0.88rem', color: 'var(--bf-emerald-ink)' }}>
           inserted <span className="bf-mono bf-mark-amber">"{lastResult.word}"</span> at positions{' '}
           <span className="bf-mono">[{lastResult.positions.join(', ')}]</span>
         </div>
@@ -321,7 +321,7 @@ export function Sandbox() {
             <span className="bf-mono bf-mark-amber" style={{ fontSize: '0.95rem' }}>
               "{word}"
             </span>
-            <ArrowRight style={{ width: 14, height: 14, color: '#a89e8a' }} />
+            <ArrowRight style={{ width: 14, height: 14, color: 'var(--bf-ink-muted)' }} />
             {verdict === 'no' && (
               <span className="bf-verdict bf-verdict-no">
                 <Check style={{ width: 12, height: 12 }} /> Definitely not
@@ -376,7 +376,7 @@ export function Sandbox() {
             style={{
               fontSize: '0.7rem',
               letterSpacing: '0.25em',
-              color: 'rgba(196, 181, 253, 0.7)',
+              color: 'var(--bf-violet-eyebrow)',
               textTransform: 'uppercase',
             }}
           >
@@ -384,7 +384,7 @@ export function Sandbox() {
           </div>
           <div
             className="bf-display"
-            style={{ fontSize: '1.85rem', color: '#f5e9d3', marginTop: '0.3rem' }}
+            style={{ fontSize: '1.85rem', color: 'var(--bf-ink-head)', marginTop: '0.3rem' }}
           >
             The Sandbox
           </div>
@@ -397,8 +397,8 @@ export function Sandbox() {
           <span
             className="bf-spec-pill"
             style={{
-              color: n > 0 ? '#ddd6fe' : '#a89e8a',
-              borderColor: n > 0 ? 'rgba(196, 181, 253, 0.3)' : undefined,
+              color: n > 0 ? 'var(--bf-violet-ink)' : 'var(--bf-ink-muted)',
+              borderColor: n > 0 ? 'var(--bf-violet-line-3)' : undefined,
             }}
           >
             FPR ≈ {n === 0 ? '–' : (theoreticalFPR * 100).toFixed(2) + '%'}
@@ -416,7 +416,7 @@ export function Sandbox() {
           gridTemplateColumns: `repeat(${COLS}, 1fr)`,
           gap: '5px',
           padding: '1.25rem 1rem 1rem',
-          background: 'rgba(10, 10, 15, 0.45)',
+          background: 'var(--bf-well)',
           borderRadius: '3px',
           marginBottom: '1.25rem',
           position: 'relative',
@@ -436,8 +436,8 @@ export function Sandbox() {
                     anim.type === 'queried' &&
                     anim.failedAt !== -1 &&
                     anim.positions.indexOf(i) === anim.failedAt
-                      ? '#fda4af'
-                      : '#5eead4',
+                      ? 'var(--bf-rose-ink)'
+                      : 'var(--bf-teal-ink)',
                   fontFamily: 'JetBrains Mono, monospace',
                   opacity: 0.9,
                   whiteSpace: 'nowrap',
@@ -463,17 +463,15 @@ export function Sandbox() {
         <span>{M - 1}</span>
       </div>
 
-      <div
-        className="flex gap-1 mb-3"
-        style={{ borderBottom: '1px solid rgba(232, 222, 200, 0.1)' }}
-      >
+      <div className="flex gap-1 mb-3" style={{ borderBottom: '1px solid var(--bf-line-1)' }}>
         <button
           className="bf-ui"
           style={{
             background: 'none',
             border: 'none',
-            color: mode === 'insert' ? '#ddd6fe' : '#a89e8a',
-            borderBottom: mode === 'insert' ? '2px solid #c4b5fd' : '2px solid transparent',
+            color: mode === 'insert' ? 'var(--bf-violet-ink)' : 'var(--bf-ink-muted)',
+            borderBottom:
+              mode === 'insert' ? '2px solid var(--bf-violet)' : '2px solid transparent',
             padding: '0.6em 1em',
             fontSize: '0.85rem',
             fontWeight: 500,
@@ -499,8 +497,9 @@ export function Sandbox() {
           style={{
             background: 'none',
             border: 'none',
-            color: mode === 'query' ? '#5eead4' : '#a89e8a',
-            borderBottom: mode === 'query' ? '2px solid #5eead4' : '2px solid transparent',
+            color: mode === 'query' ? 'var(--bf-teal-ink)' : 'var(--bf-ink-muted)',
+            borderBottom:
+              mode === 'query' ? '2px solid var(--bf-teal-ink)' : '2px solid transparent',
             padding: '0.6em 1em',
             fontSize: '0.85rem',
             fontWeight: 500,
@@ -612,12 +611,15 @@ export function Sandbox() {
                 style={{
                   width: 26,
                   height: 26,
-                  background: k === kk ? 'rgba(196, 181, 253, 0.15)' : 'transparent',
-                  border: `1px solid ${k === kk ? 'rgba(196, 181, 253, 0.5)' : 'rgba(232, 222, 200, 0.12)'}`,
-                  color: k === kk ? '#ddd6fe' : '#a89e8a',
+                  background: k === kk ? 'var(--bf-violet-fill-2)' : 'transparent',
+                  border: `1px solid ${k === kk ? 'var(--bf-violet-line-5)' : 'var(--bf-line-strong)'}`,
+                  color: k === kk ? 'var(--bf-violet-ink)' : 'var(--bf-ink-muted)',
                   borderRadius: '2px',
                   cursor: locked ? 'not-allowed' : 'pointer',
-                  opacity: locked && k !== kk ? 0.45 : 1,
+                  // The locked alternatives stay dimmed to read as inactive, but
+                  // the digit is information the reader parses — keep enough
+                  // opacity that the (deepened) ink clears AA on light paper.
+                  opacity: locked && k !== kk ? 0.75 : 1,
                   fontSize: '0.78rem',
                 }}
               >
@@ -630,7 +632,7 @@ export function Sandbox() {
 
       <div
         className="bf-panel"
-        style={{ padding: '0.85rem 1rem', minHeight: '3rem', background: 'rgba(10, 10, 15, 0.4)' }}
+        style={{ padding: '0.85rem 1rem', minHeight: '3rem', background: 'var(--bf-well-soft)' }}
       >
         {renderVerdict()}
       </div>
@@ -651,10 +653,10 @@ export function Sandbox() {
                 style={{
                   fontSize: '0.78rem',
                   padding: '0.2em 0.55em',
-                  background: 'rgba(196, 181, 253, 0.06)',
-                  color: '#ddd6fe',
+                  background: 'var(--bf-violet-fill)',
+                  color: 'var(--bf-violet-ink)',
                   borderRadius: '2px',
-                  border: '1px solid rgba(196, 181, 253, 0.2)',
+                  border: '1px solid var(--bf-violet-line-2)',
                 }}
               >
                 {item}

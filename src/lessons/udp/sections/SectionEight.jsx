@@ -136,7 +136,7 @@ export const SectionEight = () => {
                     >
                       {s.name}
                     </div>
-                    <div style={{ fontSize: 11, color: 'var(--ink-faint)', marginTop: 4 }}>
+                    <div style={{ fontSize: 11, color: 'var(--ink-faint-fn)', marginTop: 4 }}>
                       {s.caption}
                     </div>
                   </div>

@@ -61,7 +61,7 @@ export default function MitmLab() {
           <>
             <div
               className="tls-party"
-              style={{ borderColor: 'var(--verm)', background: 'rgba(240,100,77,.06)' }}
+              style={{ borderColor: 'var(--verm)', background: 'var(--wash-verm-06)' }}
             >
               <div className="nm" style={{ color: 'var(--verm)' }}>
                 <UserMinus size={13} />

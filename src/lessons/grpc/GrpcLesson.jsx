@@ -37,7 +37,7 @@ export default function GrpcLesson() {
           style={{
             textAlign: 'center',
             padding: '30px 20px 50px',
-            color: 'var(--ink-faint2)',
+            color: 'var(--ink-faint2-fn)',
             fontFamily: 'var(--font-mono)',
             fontSize: 10.5,
             letterSpacing: '0.12em',

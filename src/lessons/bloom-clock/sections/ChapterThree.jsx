@@ -37,7 +37,7 @@ export const ChapterThree = () => (
       </p>
     </Prose>
 
-    <PullQuote accent="#b794f4">
+    <PullQuote accent="var(--bc-violet)">
       Fixed size. Probabilistic in one direction.
       <br />
       Exact in the other.

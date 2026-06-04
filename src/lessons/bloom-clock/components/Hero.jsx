@@ -62,15 +62,20 @@ export const Hero = () => {
         }}
       >
         {bars.map((h, i) => {
-          const colorChoice = i % 17 === 0 ? '#b794f4' : i % 23 === 0 ? '#6ee7b7' : '#f5b942';
+          const colorChoice =
+            i % 17 === 0
+              ? 'var(--bc-violet)'
+              : i % 23 === 0
+                ? 'var(--bc-emerald)'
+                : 'var(--bc-gold)';
           return (
             <div
               key={i}
               style={{
                 flex: 1,
                 height: `${h * 60}%`,
-                background: `linear-gradient(180deg, ${colorChoice}cc 0%, ${colorChoice}22 100%)`,
-                boxShadow: `0 0 16px ${colorChoice}44`,
+                background: `linear-gradient(180deg, color-mix(in srgb, ${colorChoice} 80%, transparent) 0%, color-mix(in srgb, ${colorChoice} 13%, transparent) 100%)`,
+                boxShadow: `0 0 16px color-mix(in srgb, ${colorChoice} 27%, transparent)`,
                 transition: 'height 1.2s ease-out',
                 borderRadius: '1px 1px 0 0',
               }}
@@ -88,7 +93,7 @@ export const Hero = () => {
           animation: 'bc-fade-up 900ms 100ms both',
         }}
       >
-        <div className="bc-eyebrow" style={{ color: '#f5b942', wordSpacing: '0.3em' }}>
+        <div className="bc-eyebrow" style={{ color: 'var(--bc-gold)', wordSpacing: '0.3em' }}>
           DISTRIBUTED CAUSALITY
         </div>
       </div>
@@ -98,7 +103,7 @@ export const Hero = () => {
         <h1 className="bc-display bc-hero-title">
           The Bloom
           <br />
-          <span className="bc-italic" style={{ color: '#f5b942' }}>
+          <span className="bc-italic" style={{ color: 'var(--bc-gold)' }}>
             Clock
           </span>
         </h1>
@@ -118,7 +123,7 @@ export const Hero = () => {
             fontFamily: "'Instrument Serif', serif",
             fontStyle: 'italic',
             fontSize: 'clamp(20px, 2.6vw, 30px)',
-            color: '#c8bfa5',
+            color: 'var(--bc-ink-dim)',
             maxWidth: 720,
             lineHeight: 1.35,
             margin: 0,
@@ -142,25 +147,25 @@ export const Hero = () => {
           <div className="bc-eyebrow" style={{ marginBottom: 6, fontSize: 10 }}>
             Asks
           </div>
-          <div className="bc-italic" style={{ fontSize: 22, color: '#f0e8d2' }}>
-            did <span style={{ color: '#f5b942' }}>A</span> happen before{' '}
-            <span style={{ color: '#f5b942' }}>B</span>?
+          <div className="bc-italic" style={{ fontSize: 22, color: 'var(--bc-ink)' }}>
+            did <span style={{ color: 'var(--bc-gold)' }}>A</span> happen before{' '}
+            <span style={{ color: 'var(--bc-gold)' }}>B</span>?
           </div>
         </div>
         <div>
           <div className="bc-eyebrow" style={{ marginBottom: 6, fontSize: 10 }}>
             Answers
           </div>
-          <div className="bc-italic" style={{ fontSize: 22, color: '#f0e8d2' }}>
-            <span style={{ color: '#b794f4' }}>probably</span> ·{' '}
-            <span style={{ color: '#6ee7b7' }}>certainly not</span>
+          <div className="bc-italic" style={{ fontSize: 22, color: 'var(--bc-ink)' }}>
+            <span style={{ color: 'var(--bc-violet)' }}>probably</span> ·{' '}
+            <span style={{ color: 'var(--bc-emerald)' }}>certainly not</span>
           </div>
         </div>
         <div>
           <div className="bc-eyebrow" style={{ marginBottom: 6, fontSize: 10 }}>
             Costs
           </div>
-          <div className="bc-italic" style={{ fontSize: 22, color: '#f0e8d2' }}>
+          <div className="bc-italic" style={{ fontSize: 22, color: 'var(--bc-ink)' }}>
             fixed bits, regardless of cluster size
           </div>
         </div>
@@ -183,11 +188,11 @@ export const Hero = () => {
       >
         <div
           className="bc-mono"
-          style={{ fontSize: 10, letterSpacing: '0.25em', color: '#5e5747' }}
+          style={{ fontSize: 10, letterSpacing: '0.25em', color: 'var(--bc-ink-faint)' }}
         >
           BEGIN
         </div>
-        <ChevronDown size={16} color="#5e5747" />
+        <ChevronDown size={16} style={{ color: 'var(--bc-ink-faint)' }} />
       </div>
     </section>
   );

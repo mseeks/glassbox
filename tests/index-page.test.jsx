@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import IndexPage from '../src/index-page/IndexPage.jsx';
 import { lessons } from '../src/lesson-catalog.js';
+import { setPref } from '../src/shared/useTheme.js';
 
 afterEach(cleanup);
 
@@ -24,10 +25,25 @@ describe('IndexPage', () => {
     expect(onSelect).toHaveBeenCalledWith('udp');
   });
 
-  it('tints each card with its lesson accent', () => {
-    render(<IndexPage onSelectLesson={() => {}} />);
+  it('tints each card with its lesson accent — the catalog accent in dark, a deepened variant in light', () => {
     const udp = lessons.find((l) => l.id === 'udp');
-    const card = screen.getByRole('button', { name: 'Open UDP' });
-    expect(card.style.getPropertyValue('--card-accent')).toBe(udp.accent);
+
+    // Dark mode (the loved reference): cards use the catalog accent verbatim.
+    setPref('dark');
+    const dark = render(<IndexPage onSelectLesson={() => {}} />);
+    expect(
+      screen.getByRole('button', { name: 'Open UDP' }).style.getPropertyValue('--card-accent'),
+    ).toBe(udp.accent);
+    dark.unmount();
+
+    // Light mode: cards still get a concrete accent (a deepened variant tuned to
+    // read on the cream index ground), so the tint wiring holds in both themes.
+    setPref('light');
+    render(<IndexPage onSelectLesson={() => {}} />);
+    expect(
+      screen.getByRole('button', { name: 'Open UDP' }).style.getPropertyValue('--card-accent'),
+    ).toMatch(/^#[0-9a-f]{3,6}$/i);
+
+    setPref('system');
   });
 });

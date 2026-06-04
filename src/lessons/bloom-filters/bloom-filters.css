@@ -1,6 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter+Tight:wght@400;500;600;700&display=swap');
 
 .bf-root {
+  /* ─── Inline-painted tokens (mirrored in the [data-theme='light'] block) ───
+     These exist so colours that are written INLINE in the JSX (style props,
+     SVG fill/stroke) can flip with the theme — inline styles beat any CSS
+     rule, so they cannot be recoloured by a [data-theme] selector alone.
+     Dark values below equal the original inline literals; the light block
+     re-grounds them to read intentionally on warm paper. */
+  --bf-ink-head: #f5e9d3; /* parchment heading ink (lab titles) */
+  --bf-ink-body: #d4c5a0; /* hero subhead body ink */
+  --bf-ink-muted: #a89e8a; /* muted labels / SVG axis text */
+  --bf-violet-ink: #ddd6fe; /* pale-violet ink + value emphasis */
+  --bf-teal-ink: #5eead4; /* teal text */
+  --bf-rose-ink: #fda4af; /* rose text */
+  --bf-emerald-ink: #86efac; /* emerald text */
+  --bf-violet: #c4b5fd; /* signature violet fill (set cells, curve) */
+  --bf-rose: #fb7185; /* solid rose fill (overload bar) */
+  --bf-cell-off: #1a1a24; /* off-state cell ground */
+  --bf-well: rgba(10, 10, 15, 0.45); /* inner sunken well */
+  --bf-well-soft: rgba(10, 10, 15, 0.4); /* lighter inner well */
+  --bf-well-deep: rgba(10, 10, 15, 0.5); /* SVG chart well */
+  --bf-card: rgba(20, 20, 28, 0.6); /* raised filter card */
+  --bf-marker-edge: #0a0a0f; /* SVG marker contrast ring */
+  --bf-counter-ink: #0a0a0f; /* dark text on the violet counter fill */
+  --bf-counter-zero: #3a3a44; /* zero-counter text on an off cell */
+  /* Parchment-ink hairlines/washes (warm-black on light). */
+  --bf-line: rgba(232, 222, 200, 0.08);
+  --bf-line-soft: rgba(232, 222, 200, 0.06);
+  --bf-line-strong: rgba(232, 222, 200, 0.12);
+  --bf-line-faint: rgba(232, 222, 200, 0.05);
+  --bf-line-15: rgba(232, 222, 200, 0.15);
+  --bf-line-1: rgba(232, 222, 200, 0.1);
+  --bf-line-3: rgba(232, 222, 200, 0.3);
+  --bf-line-4: rgba(232, 222, 200, 0.4);
+  /* Violet structural washes (deepen on light). */
+  --bf-violet-fill: rgba(196, 181, 253, 0.06);
+  --bf-violet-fill-2: rgba(196, 181, 253, 0.15);
+  --bf-violet-line-2: rgba(196, 181, 253, 0.2);
+  --bf-violet-line-3: rgba(196, 181, 253, 0.3);
+  --bf-violet-line-4: rgba(196, 181, 253, 0.4);
+  --bf-violet-line-5: rgba(196, 181, 253, 0.5);
+  --bf-violet-eyebrow: rgba(196, 181, 253, 0.7); /* lab eyebrow label */
+  /* Teal / rose washes for lab surfaces (block highlight, hit cells). These
+     mirror the inline literals so they flip on light; dark = original glow. */
+  --bf-teal-fill: rgba(94, 234, 212, 0.08); /* block-highlight ground */
+  --bf-teal-line: rgba(94, 234, 212, 0.3); /* block / hit-cell border */
+  --bf-teal-glow: rgba(94, 234, 212, 0.5); /* hit-cell glow */
+  --bf-teal-glow-strong: rgba(94, 234, 212, 0.6); /* add-pulse glow */
+  --bf-rose-fill: rgba(251, 113, 133, 0.1); /* remove-tag hover ground */
+  --bf-rose-line: rgba(251, 113, 133, 0.4); /* line-hit / hover border */
+  --bf-rose-glow: rgba(251, 113, 133, 0.5); /* remove-pulse glow */
+  --bf-violet-glow: rgba(196, 181, 253, 0.4); /* hero / set-cell glow */
+  --bf-violet-glow-strong: rgba(196, 181, 253, 0.5); /* legend swatch glow */
+  --bf-counter-fill: 196, 181, 253; /* counter plate rgb (alpha-ramped) */
+  --bf-counter-base-alpha: 0.2; /* counter plate base alpha */
+  --bf-counter-span: 0.7; /* alpha added at full count (intensity = 1) */
+
   font-family: 'Newsreader', Georgia, serif;
   color: var(--ink);
   background: var(--paper);
@@ -467,4 +522,356 @@
   .bf-prose p {
     font-size: 1rem;
   }
+}
+
+/* ─── Light theme — the broadsheet edition ───
+
+   Not the dark mode flipped, and emphatically NOT warm beige: this is a cool,
+   printed broadsheet. A soft off-white newsprint ground with the faintest
+   blue-grey cast (the colour of cheap rag paper under a north window), dense
+   near-black type with a cool neutral cast (printed ink, not sepia), and the
+   signature violet pulled down into a deep ink-violet that reads as a *rule*
+   pressed into the page rather than a glow floating above it. The probabilistic
+   subject — a set you can only answer "definitely not / probably yes" about —
+   wants the authority of print: crisp hairlines, ruled gridlines, a plate-grey
+   off cell. Every dark-mode glow becomes a soft shadow or a deepened tint here. */
+[data-theme='light'] .bf-root {
+  --paper: #eceef1;
+  --ink: #1a1c22;
+  --rule-soft: rgba(26, 28, 34, 0.06);
+
+  /* Inline-painted tokens re-grounded for cool newsprint (see .bf-root).
+     Pastels that glowed on black are deepened (lower L, higher chroma) so
+     they read as printed ink on paper while keeping their hue identity. */
+  --bf-ink-head: #14161b;
+  --bf-ink-body: #33363d;
+  /* Deepened in OKLCH (hue/chroma held, L 0.43→0.34) so the .bf-mono
+     line-index + k-selector labels stay legible at their inline opacity even
+     on the violet-fill-2 / teal tints, where the lighter grey dipped under AA. */
+  --bf-ink-muted: #34373f;
+  /* Violet value-ink pulled one more OKLCH step deeper (L 0.46→0.41, hue held)
+     so the .bf-mono k-selector value clears AA on its own violet-fill-2 chip. */
+  --bf-violet-ink: #4922ae;
+  --bf-teal-ink: #0b6f63;
+  --bf-rose-ink: #bf1740;
+  --bf-emerald-ink: #0a6b40;
+  --bf-violet: #6a4bd1;
+  --bf-rose: #c2143f;
+  --bf-cell-off: #d7dade;
+  --bf-well: rgba(249, 250, 252, 0.6);
+  --bf-well-soft: rgba(249, 250, 252, 0.5);
+  --bf-well-deep: rgba(249, 250, 252, 0.66);
+  --bf-card: rgba(247, 248, 250, 0.66);
+  --bf-marker-edge: #f9fafc;
+  /* Counting BF: a deep ink-violet plate behind cream digits (the inverse of
+     the dark mode's dark ink on bright pastel — on paper the violet is dark). */
+  --bf-counter-fill: 72, 48, 158;
+  --bf-counter-base-alpha: 0.7;
+  --bf-counter-span: 0.78;
+  --bf-counter-ink: #f4f1ff;
+  --bf-counter-zero: #8a8f99;
+  --bf-line: rgba(26, 28, 34, 0.12);
+  --bf-line-soft: rgba(26, 28, 34, 0.1);
+  --bf-line-strong: rgba(26, 28, 34, 0.16);
+  --bf-line-faint: rgba(26, 28, 34, 0.08);
+  --bf-line-15: rgba(26, 28, 34, 0.18);
+  --bf-line-1: rgba(26, 28, 34, 0.14);
+  --bf-line-3: rgba(26, 28, 34, 0.28);
+  --bf-line-4: rgba(26, 28, 34, 0.36);
+  --bf-violet-fill: rgba(106, 75, 209, 0.09);
+  --bf-violet-fill-2: rgba(106, 75, 209, 0.16);
+  --bf-violet-line-2: rgba(106, 75, 209, 0.3);
+  --bf-violet-line-3: rgba(106, 75, 209, 0.4);
+  --bf-violet-line-4: rgba(106, 75, 209, 0.52);
+  --bf-violet-line-5: rgba(106, 75, 209, 0.62);
+  --bf-violet-eyebrow: rgba(85, 53, 191, 0.85);
+  /* Teal / rose / violet washes deepened to print on paper. The glows become
+     soft printed tints — denser fills, firmer borders, no luminous bloom. */
+  --bf-teal-fill: rgba(11, 111, 99, 0.1);
+  --bf-teal-line: rgba(11, 111, 99, 0.42);
+  --bf-teal-glow: rgba(11, 111, 99, 0.35);
+  --bf-teal-glow-strong: rgba(11, 111, 99, 0.42);
+  --bf-rose-fill: rgba(209, 29, 80, 0.12);
+  --bf-rose-line: rgba(209, 29, 80, 0.44);
+  --bf-rose-glow: rgba(209, 29, 80, 0.35);
+  --bf-violet-glow: rgba(106, 75, 209, 0.3);
+  --bf-violet-glow-strong: rgba(106, 75, 209, 0.35);
+
+  color: var(--ink);
+  background: var(--paper);
+  /* On paper the dark central vignette inverts to a faint cool highlight, and
+     the corner washes become soft printed tints — violet at the masthead,
+     teal in the gutter — like ink that bled slightly into the rag. */
+  background-image:
+    radial-gradient(ellipse at 12% 18%, rgba(106, 75, 209, 0.09) 0%, transparent 55%),
+    radial-gradient(ellipse at 88% 82%, rgba(11, 111, 99, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 42%, rgba(252, 253, 255, 0.7) 0%, transparent 72%);
+}
+
+/* The grain layer reads as the tooth of newsprint pressed into the page —
+   a multiply darkens the fibres rather than an overlay lifting them. */
+[data-theme='light'] .bf-root::before {
+  opacity: 0.055;
+  mix-blend-mode: multiply;
+}
+
+/* Bit-grid keyframes carry hardcoded grounds for the off / mid / set states.
+   Retune them to a paper-grounded violet so the flip still pops. */
+[data-theme='light'] .bf-bit.set-just {
+  animation: bf-bit-flip-light 600ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+[data-theme='light'] .bf-bit.fail {
+  animation: bf-bit-fail-light 700ms ease-out forwards;
+}
+@keyframes bf-bit-flip-light {
+  0% {
+    transform: scale(0.5);
+    background-color: #d7dade;
+    box-shadow: 0 0 0 0 rgba(106, 75, 209, 0);
+  }
+  50% {
+    transform: scale(1.2);
+    background-color: #7c5cdc;
+    box-shadow: 0 0 12px 3px rgba(106, 75, 209, 0.35);
+  }
+  100% {
+    transform: scale(1);
+    background-color: #6a4bd1;
+    box-shadow: 0 1px 3px 0 rgba(26, 28, 34, 0.22);
+  }
+}
+@keyframes bf-bit-fail-light {
+  0% {
+    background-color: #d7dade;
+  }
+  30% {
+    background-color: #d11540;
+    box-shadow: 0 0 12px 3px rgba(191, 23, 64, 0.35);
+  }
+  100% {
+    background-color: #d7dade;
+    box-shadow: 0 0 0 0 rgba(191, 23, 64, 0);
+  }
+}
+/* Teal pulse stays meaningful; deepen it for the lighter ground. */
+@keyframes bf-bit-pulse-light {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(11, 111, 99, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px rgba(11, 111, 99, 0);
+  }
+}
+[data-theme='light'] .bf-bit.checking {
+  animation: bf-bit-pulse-light 1.1s ease-in-out infinite;
+  border-color: #0b6f63;
+}
+
+/* Prose: dense cool-black body column, deepened violet/teal/rose accents that
+   hold contrast and read like a printed broadsheet's running text. */
+[data-theme='light'] .bf-prose p {
+  color: #33363d;
+}
+[data-theme='light'] .bf-prose strong {
+  color: #5535bf;
+}
+[data-theme='light'] .bf-prose em {
+  color: #14161b;
+}
+[data-theme='light'] .bf-prose code {
+  background: rgba(11, 111, 99, 0.1);
+  color: #0b6f63;
+  border: 1px solid rgba(11, 111, 99, 0.3);
+}
+
+/* Editorial heads — a violet dateline rule and a near-black masthead. */
+[data-theme='light'] .bf-chapter-num {
+  color: rgba(85, 53, 191, 0.9);
+}
+[data-theme='light'] .bf-chapter-title {
+  color: #14161b;
+}
+
+/* The bit cells — the lesson's signature. Off cells are a cool plate-grey
+   pressed into the newsprint; set cells the violet accent deepened to sit as
+   printed ink on light paper, with a soft drop-shadow instead of a glow. */
+[data-theme='light'] .bf-bit {
+  background-color: #d7dade;
+  border: 1px solid rgba(26, 28, 34, 0.13);
+}
+[data-theme='light'] .bf-bit.set {
+  background-color: #6a4bd1;
+  border-color: rgba(106, 75, 209, 0.55);
+  box-shadow: 0 1px 2px rgba(26, 28, 34, 0.18);
+}
+[data-theme='light'] .bf-bit.highlight {
+  box-shadow:
+    0 0 0 2px #0b6f63,
+    0 2px 8px rgba(11, 111, 99, 0.3);
+}
+[data-theme='light'] .bf-bit.highlight-amber {
+  box-shadow:
+    0 0 0 2px #6a4bd1,
+    0 2px 8px rgba(106, 75, 209, 0.28);
+}
+[data-theme='light'] .bf-bit.highlight-rose {
+  box-shadow:
+    0 0 0 2px #d11540,
+    0 2px 8px rgba(191, 23, 64, 0.3);
+  background-color: #d7dade !important;
+}
+
+/* Verdict chips — keep semantics (negative = green, positive = violet,
+   false-positive = rose, true-positive = emerald) with darker label inks
+   tuned to clear AA on their own tinted chip ground. */
+[data-theme='light'] .bf-verdict-no {
+  background: rgba(16, 122, 87, 0.12);
+  border: 1px solid rgba(16, 122, 87, 0.42);
+  color: #0a6748;
+}
+[data-theme='light'] .bf-verdict-yes {
+  background: rgba(106, 75, 209, 0.12);
+  border: 1px solid rgba(106, 75, 209, 0.44);
+  color: #5535bf;
+}
+[data-theme='light'] .bf-verdict-fp {
+  background: rgba(209, 29, 80, 0.12);
+  border: 1px solid rgba(209, 29, 80, 0.44);
+  color: #b31338;
+}
+[data-theme='light'] .bf-verdict-tp {
+  background: rgba(16, 122, 87, 0.12);
+  border: 1px solid rgba(16, 122, 87, 0.44);
+  color: #0a6b40;
+}
+
+/* Controls. Borders use a cool-black rgba so they register crisply on paper. */
+[data-theme='light'] .bf-btn {
+  border: 1px solid rgba(26, 28, 34, 0.22);
+  background: rgba(26, 28, 34, 0.035);
+  color: #1a1c22;
+}
+[data-theme='light'] .bf-btn:hover {
+  background: rgba(26, 28, 34, 0.08);
+  border-color: rgba(26, 28, 34, 0.36);
+}
+[data-theme='light'] .bf-btn.primary {
+  background: rgba(106, 75, 209, 0.12);
+  border-color: rgba(106, 75, 209, 0.44);
+  color: #5535bf;
+}
+[data-theme='light'] .bf-btn.primary:hover {
+  background: rgba(106, 75, 209, 0.18);
+  border-color: rgba(106, 75, 209, 0.62);
+}
+[data-theme='light'] .bf-btn.accent {
+  background: rgba(11, 111, 99, 0.1);
+  border-color: rgba(11, 111, 99, 0.44);
+  color: #0b6f63;
+}
+[data-theme='light'] .bf-btn.accent:hover {
+  background: rgba(11, 111, 99, 0.16);
+  border-color: rgba(11, 111, 99, 0.62);
+}
+[data-theme='light'] .bf-btn.danger {
+  background: rgba(209, 29, 80, 0.1);
+  border-color: rgba(209, 29, 80, 0.4);
+  color: #b31338;
+}
+
+[data-theme='light'] .bf-input {
+  background: rgba(26, 28, 34, 0.035);
+  border: 1px solid rgba(26, 28, 34, 0.2);
+}
+[data-theme='light'] .bf-input:focus {
+  border-color: rgba(106, 75, 209, 0.58);
+  background: rgba(106, 75, 209, 0.05);
+}
+[data-theme='light'] .bf-input::placeholder {
+  color: rgba(26, 28, 34, 0.42);
+}
+
+[data-theme='light'] .bf-slider {
+  background: rgba(26, 28, 34, 0.16);
+}
+[data-theme='light'] .bf-slider::-webkit-slider-thumb {
+  background: #6a4bd1;
+  box-shadow:
+    0 0 0 1px rgba(106, 75, 209, 0.45),
+    0 1px 4px rgba(26, 28, 34, 0.25);
+}
+[data-theme='light'] .bf-slider::-moz-range-thumb {
+  background: #6a4bd1;
+}
+
+/* Panels: a cool-white card lifted off the newsprint with a crisp hairline
+   and the softest printed-edge shadow — a clipping of the broadsheet. */
+[data-theme='light'] .bf-panel {
+  background: rgba(247, 248, 250, 0.72);
+  border: 1px solid rgba(26, 28, 34, 0.13);
+  box-shadow: 0 1px 2px rgba(26, 28, 34, 0.05);
+}
+
+[data-theme='light'] .bf-pullquote {
+  color: #14161b;
+  border-left: 2px solid rgba(106, 75, 209, 0.55);
+}
+
+[data-theme='light'] .bf-divider-bit {
+  background: rgba(26, 28, 34, 0.17);
+}
+[data-theme='light'] .bf-divider-bit.on {
+  background: rgba(106, 75, 209, 0.62);
+}
+
+[data-theme='light'] .bf-toc-link {
+  color: rgba(26, 28, 34, 0.68);
+}
+[data-theme='light'] .bf-toc-link:hover {
+  color: #5535bf;
+  border-left-color: rgba(106, 75, 209, 0.58);
+}
+[data-theme='light'] .bf-toc-link.active {
+  color: #5535bf;
+  border-left-color: #6a4bd1;
+}
+
+/* Inline marks — deepened so each colour clears contrast on paper. */
+[data-theme='light'] .bf-mark-amber {
+  color: #5535bf;
+}
+[data-theme='light'] .bf-mark-teal {
+  color: #0b6f63;
+}
+[data-theme='light'] .bf-mark-rose {
+  color: #bf1740;
+}
+[data-theme='light'] .bf-mark-emerald {
+  color: #0a6b40;
+}
+[data-theme='light'] .bf-mark-muted {
+  color: #4b4f57;
+}
+
+[data-theme='light'] .bf-spec-pill {
+  color: #4b4f57;
+  border: 1px solid rgba(26, 28, 34, 0.15);
+}
+
+/* Formula block — a cool-white plate inset into the column with the
+   signature violet rule down its left edge, like a set-off display equation. */
+[data-theme='light'] .bf-formula {
+  background: rgba(247, 248, 250, 0.75);
+  border: 1px solid rgba(26, 28, 34, 0.13);
+  border-left: 3px solid #6a4bd1;
+}
+[data-theme='light'] .bf-formula .lhs {
+  color: #0b6f63;
+}
+[data-theme='light'] .bf-formula .op {
+  color: #4b4f57;
+}
+[data-theme='light'] .bf-formula .num {
+  color: #5535bf;
 }

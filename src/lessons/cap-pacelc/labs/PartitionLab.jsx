@@ -174,7 +174,7 @@ export function PartitionLab() {
           top: 46, // sits just below the page-level top nav
           zIndex: 10,
           padding: '14px 18px',
-          background: 'rgba(5, 8, 15, 0.92)',
+          background: 'var(--cap-control-bar)',
           backdropFilter: 'blur(8px)',
           WebkitBackdropFilter: 'blur(8px)',
           borderBottom: '1px solid var(--border)',

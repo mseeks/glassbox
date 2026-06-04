@@ -57,7 +57,7 @@ export default function ApolloSpeck() {
             position: 'relative',
             width: 'min(82vw,400px)',
             aspectRatio: '1',
-            background: 'radial-gradient(circle at 50% 50%, #0d1424, #070a12)',
+            background: 'radial-gradient(circle at 50% 50%, var(--mw-stage-a), var(--mw-stage-b))',
             border: '1px solid var(--line2)',
             borderRadius: 12,
             overflow: 'hidden',
@@ -72,7 +72,7 @@ export default function ApolloSpeck() {
                   cy={o.y}
                   r={o.r}
                   fill="none"
-                  stroke={o.on ? 'rgba(246,181,69,.5)' : '#2a3756'}
+                  style={{ stroke: o.on ? 'var(--mw-amber-faint)' : 'var(--mw-off2)' }}
                   strokeWidth={0.18}
                   vectorEffect="non-scaling-stroke"
                 />
@@ -101,11 +101,13 @@ export default function ApolloSpeck() {
                   cx="50"
                   cy="50"
                   r={speckSide * 0.5}
-                  fill="rgba(255,211,132,.18)"
                   stroke="var(--amber-hi)"
                   strokeWidth="1.4"
                   vectorEffect="non-scaling-stroke"
-                  style={{ filter: 'drop-shadow(0 0 6px rgba(246,181,69,.9))' }}
+                  style={{
+                    fill: 'var(--mw-speck-fill)',
+                    filter: 'drop-shadow(0 0 6px var(--mw-amber-glow))',
+                  }}
                 >
                   {M < 6 && !reduced && (
                     <animate
@@ -145,10 +147,10 @@ export default function ApolloSpeck() {
           aria-valuetext={`${M < 10 ? M.toFixed(1) : Math.round(M)}× magnified`}
         />
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 5 }}>
-          <span className="mono" style={{ fontSize: 10, color: 'var(--faint)' }}>
+          <span className="mono" style={{ fontSize: 10, color: 'var(--mw-faint-fn)' }}>
             your phone (1×)
           </span>
-          <span className="mono" style={{ fontSize: 10, color: 'var(--faint)' }}>
+          <span className="mono" style={{ fontSize: 10, color: 'var(--mw-faint-fn)' }}>
             Apollo ({Math.round(SIDE)}×)
           </span>
         </div>
@@ -169,7 +171,12 @@ export default function ApolloSpeck() {
       <div style={{ marginTop: 6, paddingTop: 14, borderTop: '1px solid var(--line)' }}>
         <div
           className="mono"
-          style={{ fontSize: 10, color: 'var(--faint)', letterSpacing: '.16em', marginBottom: 8 }}
+          style={{
+            fontSize: 10,
+            color: 'var(--mw-faint-fn)',
+            letterSpacing: '.16em',
+            marginBottom: 8,
+          }}
         >
           SIZED AGAINST APOLLO'S 76 KB
         </div>

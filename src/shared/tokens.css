@@ -13,7 +13,19 @@
    The JetBrains Mono stack is the single strongest piece of shared
    visual identity across the collection. Standardised here so every
    lesson and the shell render numerics, credits, and eyebrows in the
-   same metal. */
+   same metal.
+
+   Light / dark. The whole collection is dual-mode. The shell's family-glue
+   tokens have two values, switched by the `data-theme` attribute the inline
+   script in index.html sets on <html> before first paint (the site-wide
+   light/dark switch lives in src/shared/useTheme.js / ThemeToggle.jsx). Dark is
+   the unattributed default so the historical look survives even if that script
+   never runs; the light values layer on under :root[data-theme='light'].
+
+   Each lesson keeps its own bespoke palette and ships the complementary mode as
+   a `[data-theme='…'] .<root>{}` override block in its own <slug>.css. The
+   theme-parity MHE loop (agents/theme-parity.ts) audits that every lesson has
+   both. */
 
 :root {
   /* Dark warm-paper background used by the shell + the lessons whose
@@ -29,6 +41,33 @@
   --rule: rgba(232, 222, 200, 0.16);
   --rule-soft: rgba(232, 222, 200, 0.06);
 
+  /* Sticky-nav chrome (frosted bar). Tokenised so it flips with the theme. */
+  --nav-bg: rgba(10, 10, 15, 0.94);
+  --nav-border: rgba(232, 222, 200, 0.12);
+  /* Ink for the active nav pill's label — a dark ink that sits on the bright
+     lesson accent in BOTH modes (in dark this equals --paper). */
+  --nav-active-ink: var(--paper);
+
   /* The single shared monospace, applied uniformly across the collection. */
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  color-scheme: dark;
+}
+
+/* Light family glue — the shell's complementary mode. Warm paper / warm-black
+   ink, the same temperature as the dark default rather than a clinical white.
+   Mirrors the already-light lessons (b-trees #e8e2d2 / merkle-trees #ece4d0). */
+:root[data-theme='light'] {
+  --paper: #f4efe4;
+  --ink: #2a2620;
+  --rule: rgba(42, 38, 32, 0.18);
+  --rule-soft: rgba(42, 38, 32, 0.06);
+
+  --nav-bg: rgba(244, 239, 228, 0.9);
+  --nav-border: rgba(42, 38, 32, 0.14);
+  /* The lesson accents are bright pastels, so the active pill keeps a DARK
+     label on the accent in light mode too (not a flip to the light --paper). */
+  --nav-active-ink: #1a1712;
+
+  color-scheme: light;
 }

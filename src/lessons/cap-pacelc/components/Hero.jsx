@@ -407,7 +407,7 @@ export function Hero() {
               <React.Fragment key={i}>
                 <span
                   style={{
-                    color: phase === i ? status.color : 'var(--ink-ghost)',
+                    color: phase === i ? status.color : 'var(--cap-step-inactive)',
                     transition: 'color 300ms ease',
                     fontWeight: phase === i ? 600 : 400,
                   }}

@@ -15,6 +15,10 @@
   --ink: #d9d2c4;
   --ink-dim: #8b8676;
   --ink-faint: #5f5c52;
+  /* functional captions (readout units, .cap explainer lines) must clear AA on
+     --panel2, so they ride a hair brighter than the faint hush --ink-faint
+     keeps for ambient ornament (the SplitBits divider, the .sig colophon) */
+  --unit-ink: #89867b;
   --brass: #e3a13c;
   --brass-hi: #f3c877;
   --brass-lo: #8a6b2e;
@@ -263,7 +267,7 @@
 .hll .cap {
   font-family: var(--mono);
   font-size: 11.5px;
-  color: var(--ink-faint);
+  color: var(--unit-ink);
   letter-spacing: 0.03em;
   text-align: center;
   margin-top: 14px;
@@ -312,7 +316,7 @@
 .hll .read .ru {
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--ink-faint);
+  color: var(--unit-ink);
   margin-top: 3px;
 }
 
@@ -598,4 +602,115 @@
   .hll .readgrid {
     grid-template-columns: 1fr !important;
   }
+}
+
+/* ═══ Light theme — the control room in daylight ═══════════════════════════
+   The dark default is a room at night: phosphor glowing in the black. Daylight
+   does not invert that — it lights the BENCH. So the ground becomes warm pale
+   instrument grey (a painted-steel panel under shop lights, NOT beige paper),
+   the brass dials turn from polished gold to a deeper machined bronze that
+   bites on the grey, and the phosphor cyan deepens to a wet deep-teal lacquer.
+   Every dark glow has a daylight twin: the room's top glow becomes a brass
+   dial-bloom, the floor glow a teal phosphor-bleed; the dark's white inset
+   sheen becomes a true highlight on brushed metal; soft cast shadows give the
+   panels real relief. The canvas readouts stay genuine dark instrument
+   screens — a lit lab still has dark scopes — so the JSX phosphor literals
+   keep their ground. Every token below is tuned to clear WCAG AA on the exact
+   surface it sits on. ─────────────────────────────────────────────────────── */
+[data-theme='light'] .hll {
+  --bg: #e7e4dc;
+  --panel: #f0ede5;
+  --panel2: #dedacf;
+  --raise: #d3cec1;
+  --line: #c7c1b2;
+  --line2: #b4ad9b;
+  --ink: #2b2820;
+  --ink-dim: #5d574a;
+  --ink-faint: #675f4e;
+  --unit-ink: #675f4e; /* light: the faint already clears AA on the pale plate */
+  --brass: #8a5a11;
+  --brass-hi: #6f4910;
+  --brass-lo: #b48a3e;
+  --cyan: #0a6358;
+  --cyan-dim: #076a60;
+  --cyan-glow: rgba(10, 99, 88, 0.3);
+  --magenta: #a81950;
+  --magenta-dim: #d98aaa;
+  --truth: #1a1308;
+}
+/* engineering grid: warm graphite hairlines etched into the painted panel */
+[data-theme='light'] .hll::before {
+  background-image:
+    linear-gradient(rgba(43, 40, 32, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(43, 40, 32, 0.055) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 120% 90% at 50% 0%, #000 30%, transparent 88%);
+}
+/* the room's two glows reborn as daylight: a brass dial-bloom up top, a teal
+   phosphor-bleed at the floor, plus a faint cool sky-wash so the grey reads
+   as lit metal rather than flat card stock */
+[data-theme='light'] .hll::after {
+  background:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(138, 90, 17, 0.1), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 80% 110%, rgba(10, 99, 88, 0.07), transparent 60%),
+    linear-gradient(180deg, rgba(232, 236, 240, 0.5), transparent 38%);
+}
+/* instrument panel: brushed-metal highlight + a real cast shadow for relief */
+[data-theme='light'] .hll .panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7), transparent 26%),
+    radial-gradient(ellipse 140% 80% at 50% -20%, rgba(255, 252, 244, 0.6), transparent 55%),
+    var(--panel);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.75) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.35) inset,
+    0 24px 54px -30px rgba(43, 33, 12, 0.42),
+    0 2px 6px -2px rgba(43, 33, 12, 0.16);
+}
+/* recessed readout wells: faint inner shadow so they sink into the plate */
+[data-theme='light'] .hll .read,
+[data-theme='light'] .hll .nx {
+  box-shadow: inset 0 1px 2px rgba(43, 33, 12, 0.06);
+}
+/* the live status dot keeps its lit-LED bloom against the brighter tab */
+[data-theme='light'] .hll .panel .ptab .dot {
+  box-shadow: 0 0 7px var(--cyan-glow);
+}
+/* buttons: hover/primary literals retuned for the lit bench */
+[data-theme='light'] .hll button.btn:hover {
+  background: #c8c2b3;
+}
+[data-theme='light'] .hll button.btn.primary {
+  background: linear-gradient(180deg, #e7dcc2, #d9cbab);
+}
+/* segmented "on" pill: a backlit key — pale glyph on deep-teal lacquer */
+[data-theme='light'] .hll .seg button.on {
+  background: var(--cyan-dim);
+  color: #f4f1e9;
+}
+/* idx bit highlight: a warmer brass wash that holds on the lighter ground */
+[data-theme='light'] .hll .bitstr .idxb {
+  background: rgba(138, 90, 17, 0.16);
+}
+/* range thumb: bronze knurl with a tight daylight bloom */
+[data-theme='light'] .hll input[type='range']::-webkit-slider-thumb {
+  background: var(--brass);
+  box-shadow: 0 0 7px rgba(138, 90, 17, 0.4);
+}
+[data-theme='light'] .hll input[type='range']::-moz-range-thumb {
+  background: var(--brass);
+}
+/* canvas screens stay genuine dark instrument scopes — a lit lab still has
+   dark glass; the JSX hardcodes phosphor cyan + cream onto exactly this */
+[data-theme='light'] .hll .cv-frame {
+  background: #0b0f13;
+  border-color: #2a2f3b;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 2px 14px rgba(0, 0, 0, 0.55),
+    0 1px 0 rgba(255, 255, 255, 0.55);
+}
+/* text-input readout: a pale recessed field that holds the deep-teal entry */
+[data-theme='light'] .hll input[type='text'] {
+  background: #f4f1e9;
+  box-shadow: inset 0 1px 3px rgba(43, 33, 12, 0.1);
 }

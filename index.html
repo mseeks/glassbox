@@ -8,6 +8,31 @@
       content="Glassbox: the black box, made of glass. A small library of interactive systems lessons you can poke, prod, and see straight through."
     />
     <meta name="theme-color" content="#0a0a0f" />
+    <!-- Pre-paint theme resolution: set <html data-theme> from the stored
+         preference (+ the OS for 'system') BEFORE first paint so there is no
+         light/dark flash. This mirrors resolveTheme() in src/shared/theme.js;
+         src/shared/useTheme.js owns every change after hydration. -->
+    <script>
+      (function () {
+        try {
+          var pref = localStorage.getItem('glassbox-theme');
+          if (pref !== 'light' && pref !== 'dark' && pref !== 'system') pref = 'system';
+          var dark =
+            pref === 'dark' ||
+            (pref === 'system' &&
+              typeof window.matchMedia === 'function' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var theme = dark ? 'dark' : 'light';
+          var root = document.documentElement;
+          root.setAttribute('data-theme', theme);
+          root.style.colorScheme = theme;
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', dark ? '#0a0a0f' : '#f4efe4');
+        } catch (e) {
+          /* storage/matchMedia blocked → leave the dark default in place */
+        }
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

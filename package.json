@@ -11,6 +11,7 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:watch": "vitest",
+    "audit:contrast": "node scripts/contrast-audit.js",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -27,6 +28,9 @@
     "loop:promise-hygiene": "npm --prefix agents run promise-hygiene",
     "loop:motion-gate": "npm --prefix agents run motion-gate",
     "loop:style-isolation": "npm --prefix agents run style-isolation",
+    "loop:theme-parity": "npm --prefix agents run theme-parity",
+    "loop:token-hygiene": "npm --prefix agents run token-hygiene",
+    "loop:contrast": "npm --prefix agents run contrast",
     "loop:a11y-source": "npm --prefix agents run a11y-source",
     "loop:content-accuracy": "npm --prefix agents run content-accuracy"
   },

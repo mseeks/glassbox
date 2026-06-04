@@ -17,6 +17,9 @@
     "promise-hygiene": "tsx promise-hygiene.ts",
     "motion-gate": "tsx motion-gate.ts",
     "style-isolation": "tsx style-isolation.ts",
+    "theme-parity": "tsx theme-parity.ts",
+    "token-hygiene": "tsx token-hygiene.ts",
+    "contrast": "tsx contrast.ts",
     "a11y-source": "tsx a11y-source.ts",
     "content-accuracy": "tsx content-accuracy.ts",
     "typecheck": "tsc --noEmit"

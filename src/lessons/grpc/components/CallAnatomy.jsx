@@ -38,7 +38,7 @@ export default function CallAnatomy() {
               borderLeft: `3px solid ${f.c}`,
               borderRadius: 8,
               padding: '11px 14px',
-              background: '#060a0e',
+              background: 'var(--gx-well)',
             }}
           >
             <div

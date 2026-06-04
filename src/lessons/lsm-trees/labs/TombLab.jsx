@@ -57,7 +57,7 @@ export default function TombLab() {
       </div>
       <div
         style={{
-          background: '#0a0805',
+          background: 'var(--lsm-well)',
           border: '1px solid var(--rule-soft)',
           padding: 8,
           display: 'grid',
@@ -73,9 +73,9 @@ export default function TombLab() {
               position: 'relative',
               borderRadius: 1,
               background: c === 't' ? 'var(--char)' : 'var(--s2)',
-              border: c === 't' ? '1px solid var(--rule-soft)' : '1px solid rgba(0,0,0,0.4)',
+              border: c === 't' ? '1px solid var(--rule-soft)' : '1px solid var(--lsm-cell-line)',
               boxShadow:
-                c === 'l' ? '0 0 5px rgba(215,161,75,0.4)' : 'inset 0 0 4px rgba(0,0,0,0.8)',
+                c === 'l' ? '0 0 5px rgba(215,161,75,0.4)' : 'inset 0 0 4px var(--lsm-cell-shadow)',
             }}
           >
             {c === 't' && (

@@ -22,7 +22,14 @@ export const ConstructionLab = () => {
   useEffect(() => () => clearTimeout(highlightTimer.current), []);
 
   const NODES = ['Alice', 'Bob', 'Carol', 'Dan', 'Eve', 'Frank'];
-  const NODE_COLORS = ['#f5b942', '#b794f4', '#6ee7b7', '#fb7185', '#5eead4', '#a78bfa'];
+  const NODE_COLORS = [
+    'var(--bc-gold)',
+    'var(--bc-violet)',
+    'var(--bc-emerald)',
+    'var(--bc-rose)',
+    'var(--bc-teal)',
+    'var(--bc-node-6)',
+  ];
 
   const record = (nodeId) => {
     const positions = hashesFor(nodeId, k, m);
@@ -57,10 +64,10 @@ export const ConstructionLab = () => {
         }}
       >
         <div>
-          <div className="bc-eyebrow" style={{ color: '#f5b942' }}>
+          <div className="bc-eyebrow" style={{ color: 'var(--bc-gold)' }}>
             LAB · CONSTRUCTION
           </div>
-          <div className="bc-italic" style={{ fontSize: 26, color: '#f0e8d2', marginTop: 4 }}>
+          <div className="bc-italic" style={{ fontSize: 26, color: 'var(--bc-ink)', marginTop: 4 }}>
             Record an event. Watch k counters rise.
           </div>
         </div>
@@ -72,11 +79,11 @@ export const ConstructionLab = () => {
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
             <span
               className="bc-mono"
-              style={{ fontSize: 11, color: '#a89e85', letterSpacing: '0.1em' }}
+              style={{ fontSize: 11, color: 'var(--bc-ink-muted)', letterSpacing: '0.1em' }}
             >
               SLOTS · m
             </span>
-            <span className="bc-italic" style={{ fontSize: 20, color: '#f5b942' }}>
+            <span className="bc-italic" style={{ fontSize: 20, color: 'var(--bc-gold)' }}>
               {m}
             </span>
           </div>
@@ -95,11 +102,11 @@ export const ConstructionLab = () => {
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
             <span
               className="bc-mono"
-              style={{ fontSize: 11, color: '#a89e85', letterSpacing: '0.1em' }}
+              style={{ fontSize: 11, color: 'var(--bc-ink-muted)', letterSpacing: '0.1em' }}
             >
               HASHES · k
             </span>
-            <span className="bc-italic" style={{ fontSize: 20, color: '#f5b942' }}>
+            <span className="bc-italic" style={{ fontSize: 20, color: 'var(--bc-gold)' }}>
               {k}
             </span>
           </div>
@@ -123,8 +130,8 @@ export const ConstructionLab = () => {
       <div
         style={{
           padding: 24,
-          background: 'rgba(15, 19, 38, 0.6)',
-          border: '1px solid rgba(45, 52, 88, 0.6)',
+          background: 'var(--bc-inset-6)',
+          border: '1px solid var(--bc-rule-strong)',
           borderRadius: 4,
           marginBottom: 22,
           position: 'relative',
@@ -161,11 +168,11 @@ export const ConstructionLab = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'flex-end',
-                    background: highlighted ? 'rgba(245, 185, 66, 0.08)' : 'rgba(255,255,255,0.02)',
+                    background: highlighted ? 'var(--bc-gold-wash)' : 'var(--bc-sheen)',
                     borderRadius: 2,
                     border: highlighted
-                      ? '1px solid rgba(245, 185, 66, 0.4)'
-                      : '1px solid rgba(255,255,255,0.04)',
+                      ? '1px solid var(--bc-gold-edge)'
+                      : '1px solid var(--bc-sheen-border)',
                     transition: 'background 200ms, border-color 200ms',
                   }}
                 >
@@ -186,13 +193,13 @@ export const ConstructionLab = () => {
                   className="bc-mono"
                   style={{
                     fontSize: 10,
-                    color: v > 0 ? '#f5b942' : '#3d3d3d',
+                    color: v > 0 ? 'var(--bc-gold)' : 'var(--bc-ink-ghost)',
                     fontWeight: 500,
                   }}
                 >
                   {v}
                 </div>
-                <div className="bc-mono" style={{ fontSize: 9, color: '#3d3d3d' }}>
+                <div className="bc-mono" style={{ fontSize: 9, color: 'var(--bc-ink-ghost)' }}>
                   {i}
                 </div>
               </div>
@@ -205,24 +212,24 @@ export const ConstructionLab = () => {
             display: 'flex',
             justifyContent: 'space-between',
             paddingTop: 14,
-            borderTop: '1px solid rgba(45, 52, 88, 0.5)',
+            borderTop: '1px solid var(--bc-rule)',
             fontSize: 12,
           }}
         >
-          <div className="bc-mono" style={{ color: '#a89e85' }}>
-            <span style={{ color: '#5e5747' }}>weight ≈ </span>
-            <span style={{ color: '#f5b942' }}>{weight.toFixed(1)}</span>
-            <span style={{ color: '#5e5747' }}> events</span>
+          <div className="bc-mono" style={{ color: 'var(--bc-ink-muted)' }}>
+            <span style={{ color: 'var(--bc-ink-faint)' }}>weight ≈ </span>
+            <span style={{ color: 'var(--bc-gold)' }}>{weight.toFixed(1)}</span>
+            <span style={{ color: 'var(--bc-ink-faint)' }}> events</span>
           </div>
-          <div className="bc-mono" style={{ color: '#a89e85' }}>
-            <span style={{ color: '#5e5747' }}>slots used: </span>
-            <span style={{ color: '#f5b942' }}>
+          <div className="bc-mono" style={{ color: 'var(--bc-ink-muted)' }}>
+            <span style={{ color: 'var(--bc-ink-faint)' }}>slots used: </span>
+            <span style={{ color: 'var(--bc-gold)' }}>
               {clock.filter((v) => v > 0).length}/{m}
             </span>
           </div>
-          <div className="bc-mono" style={{ color: '#a89e85' }}>
-            <span style={{ color: '#5e5747' }}>max counter: </span>
-            <span style={{ color: '#f5b942' }}>{maxValue}</span>
+          <div className="bc-mono" style={{ color: 'var(--bc-ink-muted)' }}>
+            <span style={{ color: 'var(--bc-ink-faint)' }}>max counter: </span>
+            <span style={{ color: 'var(--bc-gold)' }}>{maxValue}</span>
           </div>
         </div>
       </div>
@@ -235,9 +242,9 @@ export const ConstructionLab = () => {
             onClick={() => record(id)}
             className="bc-btn"
             style={{
-              borderColor: `${NODE_COLORS[i]}55`,
+              borderColor: `color-mix(in srgb, ${NODE_COLORS[i]} 38%, transparent)`,
               color: NODE_COLORS[i],
-              background: `${NODE_COLORS[i]}11`,
+              background: `color-mix(in srgb, ${NODE_COLORS[i]} 9%, transparent)`,
             }}
           >
             event at {id}
@@ -253,21 +260,21 @@ export const ConstructionLab = () => {
         <div
           style={{
             padding: '14px 18px',
-            background: 'rgba(245, 185, 66, 0.06)',
-            border: '1px solid rgba(245, 185, 66, 0.2)',
-            borderLeft: '3px solid #f5b942',
+            background: 'var(--bc-gold-wash)',
+            border: '1px solid var(--bc-gold-edge)',
+            borderLeft: '3px solid var(--bc-gold)',
             borderRadius: 3,
             fontSize: 15,
-            color: '#c8bfa5',
+            color: 'var(--bc-ink-dim)',
           }}
         >
           <span
             className="bc-mono"
-            style={{ fontSize: 11, color: '#f5b942', letterSpacing: '0.15em' }}
+            style={{ fontSize: 11, color: 'var(--bc-gold)', letterSpacing: '0.15em' }}
           >
             LAST EVENT
           </span>{' '}
-          <span style={{ color: '#f0e8d2' }}>
+          <span style={{ color: 'var(--bc-ink)' }}>
             "{lastEvent}" hashed to positions{' '}
             {positionsForLastEvent.map((p, i) => (
               <React.Fragment key={i}>
@@ -280,7 +287,7 @@ export const ConstructionLab = () => {
         </div>
       )}
 
-      <Callout title="What to notice" color="#b794f4">
+      <Callout title="What to notice" color="var(--bc-violet)">
         Every node maps to a <em>fixed set of k positions</em>, deterministic from its identity. Two
         nodes can share positions. That's where the noise comes from later. But size never grows:
         you can pick m once and put a thousand nodes in your cluster without changing a single slot.

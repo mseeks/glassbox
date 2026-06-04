@@ -5,8 +5,8 @@ export function renderProseMarkdown(text) {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/\*\*(.+?)\*\*/g, '<strong style="color:#e8dec8;font-weight:600">$1</strong>')
-    .replace(/\*(.+?)\*/g, '<em style="color:rgba(232,222,200,0.85)">$1</em>');
+    .replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--ink);font-weight:600">$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em style="color:rgba(var(--iso-ink-rgb),0.85)">$1</em>');
 }
 
 export function hexToRgb(hex) {

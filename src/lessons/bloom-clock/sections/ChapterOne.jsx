@@ -38,10 +38,10 @@ export const ChapterOne = () => (
       </p>
     </Prose>
 
-    <PullQuote accent="#f5b942">
-      The question isn't <span style={{ color: '#f5b942' }}>when</span>.
+    <PullQuote accent="var(--bc-gold)">
+      The question isn't <span style={{ color: 'var(--bc-gold)' }}>when</span>.
       <br />
-      The question is <span style={{ color: '#f5b942' }}>before</span>.
+      The question is <span style={{ color: 'var(--bc-gold)' }}>before</span>.
     </PullQuote>
 
     <Prose>

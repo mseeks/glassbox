@@ -13,8 +13,8 @@ export function Footer() {
               width: '7px',
               height: '7px',
               borderRadius: '1px',
-              background: b ? 'rgba(196, 181, 253, 0.5)' : 'rgba(232, 222, 200, 0.12)',
-              boxShadow: b ? '0 0 4px rgba(196, 181, 253, 0.3)' : 'none',
+              background: b ? 'var(--bf-violet-line-5)' : 'var(--bf-line-strong)',
+              boxShadow: b ? '0 0 4px var(--bf-violet-glow)' : 'none',
             }}
           />
         ))}
@@ -25,7 +25,7 @@ export function Footer() {
           className="bf-display-italic"
           style={{
             fontSize: '1.35rem',
-            color: '#a89e8a',
+            color: 'var(--bf-ink-muted)',
             lineHeight: 1.45,
             maxWidth: '36rem',
             margin: '0 auto',

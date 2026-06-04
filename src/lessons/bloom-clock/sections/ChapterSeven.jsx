@@ -32,7 +32,7 @@ export const ChapterSeven = () => (
       </p>
     </Prose>
 
-    <PullQuote accent="#6ee7b7">
+    <PullQuote accent="var(--bc-emerald)">
       "Concurrent" is a mathematical certainty.
       <br />
       "Before" is an educated guess.

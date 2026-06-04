@@ -78,7 +78,7 @@ export default function AcidLabLesson() {
             textAlign: 'center',
             marginTop: 32,
             paddingTop: 32,
-            borderTop: '1px solid rgba(232, 222, 200, 0.06)',
+            borderTop: '1px solid rgba(var(--iso-ink-rgb), 0.06)',
           }}
         >
           <div
@@ -86,12 +86,12 @@ export default function AcidLabLesson() {
             style={{
               fontSize: 18,
               fontStyle: 'italic',
-              color: 'rgba(232, 222, 200, 0.45)',
+              color: 'rgba(var(--iso-ink-rgb), 0.72)',
             }}
           >
             Four letters, four guarantees,
             <br />
-            <span style={{ color: 'rgba(232, 222, 200, 0.3)' }}>
+            <span style={{ color: 'rgba(var(--iso-ink-rgb), 0.66)' }}>
               one database that keeps its promises.
             </span>
           </div>

@@ -11,7 +11,7 @@ export const SynthesisSection = forwardRef(function SynthesisSection(_props, ref
           letter="∴"
           kicker="Putting it all together"
           name="Synthesis"
-          accent="#e8dec8"
+          accent="var(--ink)"
         />
       </div>
       <SynthesisBody />
@@ -29,7 +29,7 @@ function SynthesisBody() {
             fontSize: 10,
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
-            color: 'rgba(232, 222, 200, 0.45)',
+            color: 'rgba(var(--iso-ink-rgb), 0.72)',
             marginBottom: 6,
           }}
         >
@@ -40,7 +40,7 @@ function SynthesisBody() {
           style={{
             fontSize: 22,
             fontWeight: 500,
-            color: '#e8dec8',
+            color: 'var(--ink)',
             margin: 0,
             fontStyle: 'italic',
           }}
@@ -55,7 +55,7 @@ function SynthesisBody() {
           style={{
             fontSize: 16,
             lineHeight: 1.65,
-            color: 'rgba(232, 222, 200, 0.85)',
+            color: 'rgba(var(--iso-ink-rgb), 0.85)',
             margin: '0 0 22px',
           }}
           dangerouslySetInnerHTML={{
@@ -76,8 +76,8 @@ function SynthesisBody() {
             marginTop: 24,
             padding: '16px 18px',
             borderRadius: 8,
-            background: 'rgba(94, 234, 212, 0.04)',
-            border: '1px solid rgba(94, 234, 212, 0.2)',
+            background: 'rgba(var(--iso-teal-rgb), 0.04)',
+            border: '1px solid rgba(var(--iso-teal-rgb), 0.2)',
           }}
         >
           <div
@@ -86,7 +86,7 @@ function SynthesisBody() {
               fontSize: 9,
               letterSpacing: '0.16em',
               textTransform: 'uppercase',
-              color: '#5eead4',
+              color: 'var(--iso-teal)',
               marginBottom: 8,
               fontWeight: 600,
             }}
@@ -98,7 +98,7 @@ function SynthesisBody() {
             style={{
               fontSize: 15,
               lineHeight: 1.6,
-              color: 'rgba(232, 222, 200, 0.88)',
+              color: 'rgba(var(--iso-ink-rgb), 0.88)',
               margin: 0,
             }}
             dangerouslySetInnerHTML={{
@@ -115,10 +115,18 @@ function SynthesisBody() {
 
 function SynthesisPhase({ phase, isLast }) {
   const propColors = {
-    A: '#a78bfa',
-    C: '#f0abfc',
-    I: '#5eead4',
-    D: '#fbbf24',
+    A: 'var(--iso-violet)',
+    C: 'var(--iso-pink)',
+    I: 'var(--iso-teal)',
+    D: 'var(--iso-amber)',
+  };
+  // Channel triples for the letter chip's wash + border, so they darken on
+  // paper in step with the text colours above (1f ≈ 0.12, 55 ≈ 0.33).
+  const propRgb = {
+    A: '--iso-violet-rgb',
+    C: '--iso-pink-rgb',
+    I: '--iso-teal-rgb',
+    D: '--iso-amber-rgb',
   };
 
   return (
@@ -139,7 +147,7 @@ function SynthesisPhase({ phase, isLast }) {
             style={{
               fontSize: 16,
               fontWeight: 600,
-              color: '#e8dec8',
+              color: 'var(--ink)',
               letterSpacing: '0.04em',
             }}
           >
@@ -149,7 +157,7 @@ function SynthesisPhase({ phase, isLast }) {
             className="iso-body"
             style={{
               fontSize: 12,
-              color: 'rgba(232, 222, 200, 0.5)',
+              color: 'rgba(var(--iso-ink-rgb), 0.72)',
               marginTop: 4,
               fontStyle: 'italic',
               lineHeight: 1.4,
@@ -164,7 +172,7 @@ function SynthesisPhase({ phase, isLast }) {
               className="iso-body"
               style={{
                 fontSize: 13,
-                color: 'rgba(232, 222, 200, 0.55)',
+                color: 'rgba(var(--iso-ink-rgb), 0.78)',
                 fontStyle: 'italic',
                 padding: '6px 0',
               }}
@@ -187,8 +195,8 @@ function SynthesisPhase({ phase, isLast }) {
                     width: 28,
                     height: 28,
                     borderRadius: 6,
-                    background: `${propColors[letter]}1f`,
-                    border: `1px solid ${propColors[letter]}55`,
+                    background: `rgba(var(${propRgb[letter]}), 0.12)`,
+                    border: `1px solid rgba(var(${propRgb[letter]}), 0.33)`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -211,7 +219,7 @@ function SynthesisPhase({ phase, isLast }) {
                   style={{
                     fontSize: 14,
                     lineHeight: 1.55,
-                    color: 'rgba(232, 222, 200, 0.85)',
+                    color: 'rgba(var(--iso-ink-rgb), 0.85)',
                   }}
                   dangerouslySetInnerHTML={{ __html: renderProseMarkdown(note) }}
                 />
@@ -224,7 +232,7 @@ function SynthesisPhase({ phase, isLast }) {
         <div
           style={{
             height: 1,
-            background: 'rgba(232, 222, 200, 0.06)',
+            background: 'rgba(var(--iso-ink-rgb), 0.06)',
             marginLeft: 0,
             marginRight: 0,
           }}

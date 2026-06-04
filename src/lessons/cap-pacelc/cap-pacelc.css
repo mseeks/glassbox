@@ -14,7 +14,7 @@
   --ink: #f0e8d6;
   --ink-2: #d8d0bc;
   --ink-dim: #a8a294;
-  --ink-faint: #5c5a4f;
+  --ink-faint: #878479;
   --ink-ghost: #3a3a35;
 
   /* signals */
@@ -33,6 +33,20 @@
   --violet: #c4b5fd;
   --violet-glow: rgba(196, 181, 253, 0.22);
   --violet-soft: rgba(196, 181, 253, 0.08);
+
+  /* lab inline-paint tokens (assume a specific ground; flipped for light) */
+  --cap-control-bar: rgba(5, 8, 15, 0.92);
+  --cap-node-quorum: rgba(196, 181, 253, 0.15);
+  --cap-node-sheen: rgba(255, 255, 255, 0.04);
+
+  /* Hero phase-step indicator — the dimmed-but-still-readable labels of the
+     phases the animation is *not* currently on (the lit one carries status
+     color). These are functional sequence text the reader follows, so both
+     modes clear AA: the original ghost (#3a3a35) read only 1.75:1 on the
+     --bg-deep plate, so dark lightens it along the same hue (OKLCH hue/chroma
+     held, lightness raised) to ~4.6:1 while staying visibly softer than the
+     active/label inks; light deepens it the same way (see light override). */
+  --cap-step-inactive: #7a7a74;
 }
 
 :where(.cap-root) * {
@@ -506,4 +520,106 @@
 
 .no-select {
   user-select: none;
+}
+
+/* ─── Light theme — the observatory at noon ─── */
+/* The same star-chart, read by daylight: a pale, faintly COOL vellum plate
+   (cool cream, never yellow) carrying the night-sky map. Coral stays the
+   annotating hand; the emerald/cyan/violet/amber that glowed against the dark
+   sky now sit, deepened, as inks on the chart. Tokens carry almost the entire
+   design (every SVG diagram reads var(--coral)/--cyan/--ink/etc.), so we retune
+   the palette here, then patch only the handful of CSS-level color literals that
+   don't flow from a token. Every body/UI/label/value pair clears WCAG AA on the
+   ground it actually sits on; the deepened signals also clear AA as node-label
+   text over their own faint *-soft disc, even on the plate (--bg-deep). */
+[data-theme='light'] .cap-root {
+  /* depths — cool vellum plate instead of warm night sky */
+  --bg: #e8eaef;
+  --bg-deep: #e3e6ec;
+  --surface: #eef0f4;
+  --surface-2: #e4e7ee;
+  --surface-3: #d8dce6;
+  --border: #c2c7d4;
+  --border-bright: #a3aabd;
+
+  /* inks — deep cool slate-blues, the printed lines of the chart (≥10:1 body) */
+  --ink: #1c2234;
+  --ink-2: #353d52;
+  --ink-dim: #586075;
+  --ink-faint: #5e6679;
+  --ink-ghost: #b9bfce;
+
+  /* signals — deepened for the plate, hues preserved; the night's glow becomes
+     ink that still reads at AA even washed over its own faint disc */
+  --coral: #ad2727;
+  --coral-glow: rgba(173, 39, 39, 0.2);
+  --coral-soft: rgba(173, 39, 39, 0.1);
+  --emerald: #0a6543;
+  --emerald-glow: rgba(10, 101, 67, 0.2);
+  --emerald-soft: rgba(10, 101, 67, 0.1);
+  --cyan: #0a627c;
+  --cyan-glow: rgba(10, 98, 124, 0.2);
+  --cyan-soft: rgba(10, 98, 124, 0.1);
+  --amber: #7d570a;
+  --amber-glow: rgba(125, 87, 10, 0.2);
+  --amber-soft: rgba(125, 87, 10, 0.1);
+  --violet: #5d44b5;
+  --violet-glow: rgba(93, 68, 181, 0.2);
+  --violet-soft: rgba(93, 68, 181, 0.1);
+
+  /* lab inline-paint tokens — re-grounded for cool vellum */
+  --cap-control-bar: rgba(227, 230, 236, 0.92);
+  --cap-node-quorum: rgba(93, 68, 181, 0.16);
+  --cap-node-sheen: rgba(28, 34, 52, 0.05);
+
+  /* Hero phase-step inactive labels — the ghost slate (#b9bfce) read only 1.47:1
+     on the --bg-deep plate; deepened along the same cool-slate hue (OKLCH hue
+     preserved, lightness lowered) to clear AA (~4.8:1) while staying visibly
+     softer than the active/section inks. */
+  --cap-step-inactive: #5b6376;
+}
+
+/* Background washes — faint sunlit haze over the plate: a cyan dawn at upper
+   left, a coral annotation-glow at lower right, a breath of violet at center. */
+[data-theme='light'] .cap-root {
+  background-image:
+    radial-gradient(ellipse 1200px 800px at 15% -10%, rgba(10, 98, 124, 0.07), transparent 60%),
+    radial-gradient(ellipse 1000px 700px at 90% 110%, rgba(173, 39, 39, 0.055), transparent 60%),
+    radial-gradient(ellipse 800px 600px at 50% 50%, rgba(93, 68, 181, 0.035), transparent 70%);
+}
+
+/* Star-chart ruling — the daylight analog of the dark sky's nebulae: a faint
+   cool coordinate grid, like the printed graticule of an astronomical plate.
+   Fixed so it reads as the paper beneath, not a foreground layer; it sits below
+   the noise grain and the content (z-index 0 < ::before's 1 < .cap-content's 2). */
+[data-theme='light'] .cap-root::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(86, 96, 117, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(86, 96, 117, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Noise overlay — on paper, `overlay` blows out; a faint multiply reads as the
+   tooth of the printed plate without muddying the ground. */
+[data-theme='light'] .cap-root::before {
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+}
+
+/* Sticky nav — frosted vellum rather than frosted night. Scoped under the lesson
+   root: .topnav is a generic class other lessons reuse and data-theme lives on
+   <html>, so a bare `[data-theme='light'] .topnav` would bleed cross-lesson.
+   (The strong-text wash and the .btn.primary:hover color already cascade from
+   the retuned --coral-soft / --bg tokens above, so no separate rule is needed.) */
+[data-theme='light'] .cap-root .topnav {
+  background: rgba(232, 234, 239, 0.85);
+}
+
+[data-theme='light'] .cap-root .topnav::after {
+  background: linear-gradient(to right, rgba(232, 234, 239, 0), rgba(232, 234, 239, 0.92));
 }

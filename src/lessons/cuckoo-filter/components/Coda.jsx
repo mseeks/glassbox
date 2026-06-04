@@ -92,7 +92,7 @@ export function Coda() {
                 fontStyle: 'normal',
                 fontSize: 11,
                 letterSpacing: '0.06em',
-                color: 'var(--text-faint)',
+                color: 'var(--cf-label-faint)',
               }}
             >
               "Cuckoo Filter: Practically Better Than Bloom" · CoNEXT 2014

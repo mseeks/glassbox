@@ -3,7 +3,7 @@ import { ChapterTitle, Prose, Section } from '../components/atoms.jsx';
 
 const UseCard = ({ tone, items }) => {
   const isGood = tone === 'good';
-  const color = isGood ? '#6ee7b7' : '#fb7185';
+  const color = isGood ? 'var(--bc-emerald)' : 'var(--bc-rose)';
   return (
     <div
       style={{
@@ -23,7 +23,7 @@ const UseCard = ({ tone, items }) => {
             <div style={{ marginTop: 6 }}>
               {isGood ? <Check size={15} color={color} /> : <XIcon size={15} color={color} />}
             </div>
-            <div style={{ fontSize: 16, color: '#c8bfa5', lineHeight: 1.55 }}>{it}</div>
+            <div style={{ fontSize: 16, color: 'var(--bc-ink-dim)', lineHeight: 1.55 }}>{it}</div>
           </li>
         ))}
       </ul>

@@ -46,7 +46,7 @@ export function Section09() {
 
         <div>
           <div className="swim-label" style={{ color: 'var(--brass)', marginBottom: 16 }}>
-            LIFEGUARD <span style={{ color: 'var(--ink-faint)' }}>· Dadgar et al., 2018</span>
+            LIFEGUARD <span style={{ color: 'var(--ink-label)' }}>· Dadgar et al., 2018</span>
           </div>
           <div className="swim-prose swim-mid">
             <p>

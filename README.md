@@ -29,9 +29,14 @@ cracks them open.
 | TLS                     | A private, verified channel across a hostile public wire        | aqua       | Spectral            | IETF · RFC 8446                   |
 
 Each lesson lives under `src/lessons/<slug>/`. It ships its own prose and CSS,
-plus a few small interactive labs. They share a common paper (`#0a0a0f`
-background, parchment ink, **JetBrains Mono** for every numeric/credit/eyebrow),
-but each carries its own display typography and accent color.
+plus a few small interactive labs. They share a common paper (parchment ink,
+**JetBrains Mono** for every numeric/credit/eyebrow), but each carries its own
+display typography and accent color.
+
+The whole collection is **light/dark**. A System / Light / Dark switch in the nav
+sets a `data-theme` attribute on `<html>` — it follows your OS until you pick,
+then your choice persists and wins. Every lesson ships a complementary version of
+its design for the other mode, so the toggle re-skins the entire site.
 
 Lessons load lazily via `React.lazy`. The entry bundle stays small, and each
 lesson's chunk only ships when it's opened.
@@ -80,8 +85,12 @@ src/
                            derived per id, one source of truth)
   index-page/              the landing index (IndexPage, Glyph, index-page.css)
   shared/
-    tokens.css             design tokens (paper, parchment ink, --font-mono)
+    tokens.css             design tokens (paper, parchment ink, --font-mono;
+                           light/dark values keyed on data-theme)
     utilities.css          shell-scoped utility classes + global reduced-motion
+    theme.js               pure light/dark precedence model (System/Light/Dark)
+    useTheme.js            store/hook: applies the theme to <html>, tracks the OS
+    ThemeToggle.jsx        the System/Light/Dark switch parked in the nav
     usePrefersReducedMotion.js   gate JS/SMIL motion (see Design notes)
     reveal.jsx             reveal-on-scroll hooks + <Reveal>
     useScrollSpy.js        active-section spy + reduced-motion scrollToId
@@ -93,7 +102,7 @@ src/
       labs/                interactive widgets
       components/          lesson-local building blocks
       engine/index.js      pure, unit-tested logic, no React/DOM (all 18)
-      <slug>.css           the lesson's own type + accent system
+      <slug>.css           the lesson's own type + accent system, both modes
 tests/
   <lesson>-engine.test.js  Vitest, one suite per engine
   lesson-catalog.test.js   registry shape + query-param resolution
@@ -102,8 +111,8 @@ tests/
 ```
 
 Every lesson keeps its logic in a pure `engine/index.js`, backed by a Vitest
-suite. `bloom-filters/engine/index.js` (tested in `tests/bloom-math.test.js`) is
-the canonical example.
+suite. `src/lessons/bloom-filters/engine/index.js` (tested in
+`tests/bloom-math.test.js`) is the canonical example.
 
 ## Design notes
 

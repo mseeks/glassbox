@@ -7,17 +7,17 @@ export const AsymmetryVisualization = () => (
       <div
         style={{
           padding: 22,
-          background: 'rgba(110, 231, 183, 0.05)',
-          border: '1px solid rgba(110, 231, 183, 0.3)',
+          background: 'var(--bc-emerald-wash)',
+          border: '1px solid var(--bc-emerald-edge)',
           borderRadius: 4,
         }}
       >
-        <div className="bc-eyebrow" style={{ color: '#6ee7b7', marginBottom: 14 }}>
+        <div className="bc-eyebrow" style={{ color: 'var(--bc-emerald)', marginBottom: 14 }}>
           IF A → B HAPPENS
         </div>
         <div
           className="bc-italic"
-          style={{ fontSize: 18, color: '#f0e8d2', marginBottom: 18, lineHeight: 1.45 }}
+          style={{ fontSize: 18, color: 'var(--bc-ink)', marginBottom: 18, lineHeight: 1.45 }}
         >
           Then every increment that went into A gets merged into B via pointwise max.
         </div>
@@ -31,21 +31,27 @@ export const AsymmetryVisualization = () => (
           }}
         >
           <div style={{ textAlign: 'center' }}>
-            <div className="bc-italic" style={{ fontSize: 24, color: '#f5b942' }}>
+            <div className="bc-italic" style={{ fontSize: 24, color: 'var(--bc-gold)' }}>
               A
             </div>
-            <div className="bc-mono" style={{ fontSize: 11, color: '#5e5747', marginTop: 4 }}>
+            <div
+              className="bc-mono"
+              style={{ fontSize: 11, color: 'var(--bc-ink-faint)', marginTop: 4 }}
+            >
               some clock
             </div>
           </div>
-          <div className="bc-italic" style={{ fontSize: 22, color: '#6ee7b7' }}>
+          <div className="bc-italic" style={{ fontSize: 22, color: 'var(--bc-emerald)' }}>
             →
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div className="bc-italic" style={{ fontSize: 24, color: '#5eead4' }}>
+            <div className="bc-italic" style={{ fontSize: 24, color: 'var(--bc-teal)' }}>
               B
             </div>
-            <div className="bc-mono" style={{ fontSize: 11, color: '#5e5747', marginTop: 4 }}>
+            <div
+              className="bc-mono"
+              style={{ fontSize: 11, color: 'var(--bc-ink-faint)', marginTop: 4 }}
+            >
               contains A's history
             </div>
           </div>
@@ -53,18 +59,23 @@ export const AsymmetryVisualization = () => (
         <div
           style={{
             padding: 14,
-            background: 'rgba(110, 231, 183, 0.08)',
-            border: '1px solid rgba(110, 231, 183, 0.25)',
+            background: 'var(--bc-emerald-wash)',
+            border: '1px solid var(--bc-emerald-edge)',
             borderRadius: 3,
           }}
         >
           <div
             className="bc-mono"
-            style={{ fontSize: 11, color: '#6ee7b7', letterSpacing: '0.1em', marginBottom: 6 }}
+            style={{
+              fontSize: 11,
+              color: 'var(--bc-emerald)',
+              letterSpacing: '0.1em',
+              marginBottom: 6,
+            }}
           >
             CONSEQUENCE
           </div>
-          <div style={{ fontSize: 16, color: '#c8bfa5', lineHeight: 1.55 }}>
+          <div style={{ fontSize: 16, color: 'var(--bc-ink-dim)', lineHeight: 1.55 }}>
             B[i] ≥ A[i] at <em>every</em> position i. So if you ever see A[i] {'>'} B[i] anywhere, A{' '}
             <em>cannot</em> have happened before B.
           </div>
@@ -75,17 +86,17 @@ export const AsymmetryVisualization = () => (
       <div
         style={{
           padding: 22,
-          background: 'rgba(183, 148, 244, 0.05)',
-          border: '1px solid rgba(183, 148, 244, 0.3)',
+          background: 'var(--bc-violet-wash)',
+          border: '1px solid var(--bc-violet-edge)',
           borderRadius: 4,
         }}
       >
-        <div className="bc-eyebrow" style={{ color: '#b794f4', marginBottom: 14 }}>
+        <div className="bc-eyebrow" style={{ color: 'var(--bc-violet)', marginBottom: 14 }}>
           IF A ‖ B (CONCURRENT)
         </div>
         <div
           className="bc-italic"
-          style={{ fontSize: 18, color: '#f0e8d2', marginBottom: 18, lineHeight: 1.45 }}
+          style={{ fontSize: 18, color: 'var(--bc-ink)', marginBottom: 18, lineHeight: 1.45 }}
         >
           A and B accumulated independently. They might overlap by chance.
         </div>
@@ -99,21 +110,27 @@ export const AsymmetryVisualization = () => (
           }}
         >
           <div style={{ textAlign: 'center' }}>
-            <div className="bc-italic" style={{ fontSize: 24, color: '#f5b942' }}>
+            <div className="bc-italic" style={{ fontSize: 24, color: 'var(--bc-gold)' }}>
               A
             </div>
-            <div className="bc-mono" style={{ fontSize: 11, color: '#5e5747', marginTop: 4 }}>
+            <div
+              className="bc-mono"
+              style={{ fontSize: 11, color: 'var(--bc-ink-faint)', marginTop: 4 }}
+            >
               independent
             </div>
           </div>
-          <div className="bc-italic" style={{ fontSize: 22, color: '#b794f4' }}>
+          <div className="bc-italic" style={{ fontSize: 22, color: 'var(--bc-violet)' }}>
             ‖
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div className="bc-italic" style={{ fontSize: 24, color: '#5eead4' }}>
+            <div className="bc-italic" style={{ fontSize: 24, color: 'var(--bc-teal)' }}>
               B
             </div>
-            <div className="bc-mono" style={{ fontSize: 11, color: '#5e5747', marginTop: 4 }}>
+            <div
+              className="bc-mono"
+              style={{ fontSize: 11, color: 'var(--bc-ink-faint)', marginTop: 4 }}
+            >
               independent
             </div>
           </div>
@@ -121,18 +138,23 @@ export const AsymmetryVisualization = () => (
         <div
           style={{
             padding: 14,
-            background: 'rgba(183, 148, 244, 0.08)',
-            border: '1px solid rgba(183, 148, 244, 0.25)',
+            background: 'var(--bc-violet-wash)',
+            border: '1px solid var(--bc-violet-edge)',
             borderRadius: 3,
           }}
         >
           <div
             className="bc-mono"
-            style={{ fontSize: 11, color: '#b794f4', letterSpacing: '0.1em', marginBottom: 6 }}
+            style={{
+              fontSize: 11,
+              color: 'var(--bc-violet)',
+              letterSpacing: '0.1em',
+              marginBottom: 6,
+            }}
           >
             CONSEQUENCE
           </div>
-          <div style={{ fontSize: 16, color: '#c8bfa5', lineHeight: 1.55 }}>
+          <div style={{ fontSize: 16, color: 'var(--bc-ink-dim)', lineHeight: 1.55 }}>
             B's increments are independent of A's. They might <em>happen</em> to dominate A in every
             position by coincidence. That's the false positive.
           </div>
@@ -142,7 +164,7 @@ export const AsymmetryVisualization = () => (
 
     {/* The two errors */}
     <div style={{ marginTop: 32 }}>
-      <div className="bc-eyebrow" style={{ marginBottom: 16, color: '#a89e85' }}>
+      <div className="bc-eyebrow" style={{ marginBottom: 16, color: 'var(--bc-ink-muted)' }}>
         THE ERROR TABLE
       </div>
       <div className="bc-asym-table">
@@ -150,13 +172,13 @@ export const AsymmetryVisualization = () => (
           className="bc-asym-cell-h"
           style={{
             padding: '14px 18px',
-            background: 'rgba(15, 19, 38, 0.6)',
-            borderBottom: '1px solid rgba(45, 52, 88, 0.5)',
+            background: 'var(--bc-inset-6)',
+            borderBottom: '1px solid var(--bc-rule)',
           }}
         >
           <div
             className="bc-mono"
-            style={{ fontSize: 11, color: '#a89e85', letterSpacing: '0.12em' }}
+            style={{ fontSize: 11, color: 'var(--bc-ink-muted)', letterSpacing: '0.12em' }}
           >
             VERDICT
           </div>
@@ -165,14 +187,14 @@ export const AsymmetryVisualization = () => (
           className="bc-asym-cell-h"
           style={{
             padding: '14px 18px',
-            background: 'rgba(15, 19, 38, 0.6)',
-            borderBottom: '1px solid rgba(45, 52, 88, 0.5)',
-            borderLeft: '1px solid rgba(45, 52, 88, 0.5)',
+            background: 'var(--bc-inset-6)',
+            borderBottom: '1px solid var(--bc-rule)',
+            borderLeft: '1px solid var(--bc-rule)',
           }}
         >
           <div
             className="bc-mono"
-            style={{ fontSize: 11, color: '#a89e85', letterSpacing: '0.12em' }}
+            style={{ fontSize: 11, color: 'var(--bc-ink-muted)', letterSpacing: '0.12em' }}
           >
             FALSE POSITIVE?
           </div>
@@ -181,14 +203,14 @@ export const AsymmetryVisualization = () => (
           className="bc-asym-cell-h"
           style={{
             padding: '14px 18px',
-            background: 'rgba(15, 19, 38, 0.6)',
-            borderBottom: '1px solid rgba(45, 52, 88, 0.5)',
-            borderLeft: '1px solid rgba(45, 52, 88, 0.5)',
+            background: 'var(--bc-inset-6)',
+            borderBottom: '1px solid var(--bc-rule)',
+            borderLeft: '1px solid var(--bc-rule)',
           }}
         >
           <div
             className="bc-mono"
-            style={{ fontSize: 11, color: '#a89e85', letterSpacing: '0.12em' }}
+            style={{ fontSize: 11, color: 'var(--bc-ink-muted)', letterSpacing: '0.12em' }}
           >
             FALSE NEGATIVE?
           </div>
@@ -196,73 +218,77 @@ export const AsymmetryVisualization = () => (
 
         <div
           data-asym-label="verdict"
-          style={{ padding: '18px', borderBottom: '1px solid rgba(45, 52, 88, 0.4)' }}
+          style={{ padding: '18px', borderBottom: '1px solid var(--bc-rule-soft)' }}
         >
-          <div className="bc-italic" style={{ fontSize: 19, color: '#b794f4' }}>
+          <div className="bc-italic" style={{ fontSize: 19, color: 'var(--bc-violet)' }}>
             A → B
           </div>
-          <div style={{ fontSize: 13, color: '#5e5747', marginTop: 4 }}>"probably caused"</div>
+          <div style={{ fontSize: 13, color: 'var(--bc-ink-faint)', marginTop: 4 }}>
+            "probably caused"
+          </div>
         </div>
         <div
           data-asym-label="false positive?"
           style={{
             padding: '18px',
-            borderBottom: '1px solid rgba(45, 52, 88, 0.4)',
-            borderLeft: '1px solid rgba(45, 52, 88, 0.5)',
+            borderBottom: '1px solid var(--bc-rule-soft)',
+            borderLeft: '1px solid var(--bc-rule)',
             display: 'flex',
             alignItems: 'center',
             gap: 10,
           }}
         >
-          <XIcon size={16} color="#fb7185" />
-          <span style={{ fontSize: 14, color: '#fb7185' }}>yes, possible</span>
+          <XIcon size={16} color="var(--bc-rose)" />
+          <span style={{ fontSize: 14, color: 'var(--bc-rose)' }}>yes, possible</span>
         </div>
         <div
           data-asym-label="false negative?"
           style={{
             padding: '18px',
-            borderBottom: '1px solid rgba(45, 52, 88, 0.4)',
-            borderLeft: '1px solid rgba(45, 52, 88, 0.5)',
+            borderBottom: '1px solid var(--bc-rule-soft)',
+            borderLeft: '1px solid var(--bc-rule)',
             display: 'flex',
             alignItems: 'center',
             gap: 10,
           }}
         >
-          <Check size={16} color="#6ee7b7" />
-          <span style={{ fontSize: 14, color: '#6ee7b7' }}>never</span>
+          <Check size={16} color="var(--bc-emerald)" />
+          <span style={{ fontSize: 14, color: 'var(--bc-emerald)' }}>never</span>
         </div>
 
         <div data-asym-label="verdict" style={{ padding: '18px' }}>
-          <div className="bc-italic" style={{ fontSize: 19, color: '#6ee7b7' }}>
+          <div className="bc-italic" style={{ fontSize: 19, color: 'var(--bc-emerald)' }}>
             A ‖ B
           </div>
-          <div style={{ fontSize: 13, color: '#5e5747', marginTop: 4 }}>"certainly concurrent"</div>
+          <div style={{ fontSize: 13, color: 'var(--bc-ink-faint)', marginTop: 4 }}>
+            "certainly concurrent"
+          </div>
         </div>
         <div
           data-asym-label="false positive?"
           style={{
             padding: '18px',
-            borderLeft: '1px solid rgba(45, 52, 88, 0.5)',
+            borderLeft: '1px solid var(--bc-rule)',
             display: 'flex',
             alignItems: 'center',
             gap: 10,
           }}
         >
-          <Check size={16} color="#6ee7b7" />
-          <span style={{ fontSize: 14, color: '#6ee7b7' }}>never</span>
+          <Check size={16} color="var(--bc-emerald)" />
+          <span style={{ fontSize: 14, color: 'var(--bc-emerald)' }}>never</span>
         </div>
         <div
           data-asym-label="false negative?"
           style={{
             padding: '18px',
-            borderLeft: '1px solid rgba(45, 52, 88, 0.5)',
+            borderLeft: '1px solid var(--bc-rule)',
             display: 'flex',
             alignItems: 'center',
             gap: 10,
           }}
         >
-          <Check size={16} color="#6ee7b7" />
-          <span style={{ fontSize: 14, color: '#6ee7b7' }}>never</span>
+          <Check size={16} color="var(--bc-emerald)" />
+          <span style={{ fontSize: 14, color: 'var(--bc-emerald)' }}>never</span>
         </div>
       </div>
     </div>

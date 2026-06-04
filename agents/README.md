@@ -233,6 +233,90 @@ layer by design, never a leak.
 
 Run from the app root as `npm run loop:style-isolation <scope>`, or here as `npm run style-isolation <scope>`.
 
+### `npm run theme-parity <scope>`: light/dark dual-mode coverage loop
+
+**Read-only. Scope REQUIRED.** The theming sibling of `style-isolation`. The
+collection is dual-mode: the shell sets a `data-theme="light"|"dark"` attribute on
+`<html>` (the switch is `src/shared/useTheme.js` + `ThemeToggle.jsx`; the
+family-glue light/dark tokens live in `src/shared/tokens.css`), and each lesson
+keeps its bespoke palette as its NATIVE mode while shipping the complementary mode
+as a `[data-theme='…'] .<root>{}` override block in its own `<slug>.css`. A lesson
+that ships only one mode looks broken in the other (dark text on a dark ground, an
+un-recolored hardcoded gradient glowing through a light page). The harness parses
+each CSS file with the same brace-aware walker and reports per file: the native
+mode (from the root background's luminance), the count of `[data-theme]` override
+rules per mode, a literal-color coverage proxy (base vs. theme), and any override
+selector that may match GLOBALLY (a `[data-theme='light']` with nothing scoped
+after it leaks into the shell + every other lesson, the same hazard
+`style-isolation` guards). The agent Reads each and emits a strict three-bucket
+map: **Missing/incomplete complementary mode (add or extend) / Verified parity /
+Judgment-heavy** (a color deliberately the same in both modes, or inline-styled
+JSX colors CSS can't reach).
+
+- Visual parity is not something `vitest` / `eslint` / `vite build` can assert, so
+  — like `content-accuracy` — this loop only ever **maps**; the human crafts the
+  complementary skin. Every bucket-(1) finding is anchored to a quoted declaration.
+- The two light-native lessons (b-trees, merkle-trees) need a DARK complement;
+  every dark-native lesson needs a LIGHT one. The shell files
+  (`tokens.css` / `utilities.css` / `nav.css`) OWN the global `data-theme` layer
+  and are never a gap.
+- **Scope (required):** e.g. `src/lessons/`, `src/lessons/tls/tls.css`, `src/lessons/swim/`.
+- Uses **opus** (deciding whether a redefined token truly covers a declaration,
+  and separating a deliberate theme-invariant color from a real gap, is judgment).
+
+Run from the app root as `npm run loop:theme-parity <scope>`, or here as `npm run theme-parity <scope>`.
+
+### `npm run token-hygiene <scope>`: CSS custom-property integrity loop
+
+**Read-only. Scope REQUIRED.** The CSS-variable complement to the dead-code loop —
+the dangling/dead **custom properties** knip cannot see (it only reads JS). After a
+theme/token refactor a lesson accrues two faults: a `var(--x)` whose `--x` is defined
+nowhere reachable (a rename typo, a cross-lesson reference, a deleted token — it
+silently renders nothing or the fallback), and a `--x:` declared on a root that no
+rule or inline style ever reads (dead weight). The harness scans every `.css` +
+`.jsx`/`.js` in scope (**plus the shell layer and the lesson-kit, always reachable**,
+so a `var(--ink)` counts as defined and a lesson's `--lk-accent:` counts as used by
+the kit) for declarations (`--x:`) and references (`var(--x)`, incl. inline
+`style={{'--x': …}}`), diffs the two sets, and hands the agent the dangling refs +
+unused defs with file:line. The agent classifies into **Defect (fix) / Not-a-fault
+(a deliberate `var(--x, fallback)`, a cross-boundary token set/read in JS, an `--lk-*`
+contract) / Judgment-heavy**.
+
+- **Scope (required):** e.g. `src/lessons/`, `src/lessons/bloom-clock/`, `src/`.
+- Uses **opus** (separating a deliberate optional-with-fallback or JS-read token from
+  a genuine dangling ref / dead declaration is judgment). `--accent` (set by Nav per
+  pill) is whitelisted as cross-boundary.
+
+Run from the app root as `npm run loop:token-hygiene <scope>`, or here as `npm run token-hygiene <scope>`.
+
+### `npm run contrast [lesson-ids…]`: rendered color-contrast loop
+
+**Read-only. The legibility gate, judged on the RENDERED page.** `a11y-source` (the
+runtime axe gate) deliberately *excludes* color-contrast because the lessons use
+intentional artistic low-contrast; this is the loop that **does** measure it — but as
+a curated map, so decoration is kept and information text is fixed. Contrast can only
+be judged on the real cascade + computed colors + the `data-theme` switch, so — like
+`console-runtime` (which boots vitest) — the harness is **self-contained**: it builds
+the app, boots `vite preview`, runs the reveal-aware axe sweep
+(`scripts/contrast-audit.js` — every lesson × light/dark, scroll-revealed so below-fold
+content isn't measured mid-fade), tears the server down, and collapses the failing
+DOM nodes into **distinct foreground/background pairs**. The agent Reads each and
+classifies into **Fix to AA (sub-AA information text) / Intentional decorative (faint
+eyebrows, ghost chips, the dark originals' soft labels — keep) / Judgment-heavy**
+(borderline small text, labels on data swatches, semantic constants).
+
+- **No `<scope>`; default is the whole site (both themes).** Pass lesson ids to map a
+  subset: `npm run contrast swim tls`. Needs no running server — it builds + previews
+  itself (port 5191).
+- **Read-only; it only ever maps.** Visual fixes are the human's (or a redesign
+  workflow's) job — AA is not something `vitest`/`eslint`/`vite build` can assert, so
+  this is the standing legibility guardrail next to `theme-parity` (coverage) and
+  `token-hygiene` (variable integrity).
+- Uses **opus** (separating intentional artistic low-contrast from a real defect is
+  the crux judgment).
+
+Run from the app root as `npm run loop:contrast [ids…]`, or here as `npm run contrast [ids…]`.
+
 ### `npm run a11y-source <scope>`: source-level accessibility loop
 
 **Read-only. Scope REQUIRED.** The source-level complement to the runtime axe

@@ -7,9 +7,40 @@
   position: sticky;
   top: 0;
   z-index: 10000;
-  background: rgba(10, 10, 15, 0.94);
-  border-bottom: 1px solid rgba(232, 222, 200, 0.12);
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
   backdrop-filter: blur(10px);
+}
+
+/* Site-wide light/dark switch — icon-only, parked in the sticky nav's corner so
+   it sits in both the desktop pill bar and the mobile compact bar. The list /
+   bar below reserve right-edge room so pills and the current-label never slide
+   under it. */
+.theme-toggle {
+  position: absolute;
+  top: 7px;
+  right: 12px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  background: var(--rule-soft);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--rule);
+}
+
+.theme-toggle svg {
+  flex: none;
 }
 
 /* The compact mobile bar is hidden on desktop, where the pill list is inline. */
@@ -20,7 +51,7 @@
 .lesson-nav__list {
   list-style: none;
   margin: 0;
-  padding: 10px 12px;
+  padding: 10px 56px 10px 12px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -43,7 +74,7 @@
 }
 
 .lesson-nav__link[aria-current='page'] {
-  color: var(--paper);
+  color: var(--nav-active-ink);
   background: var(--accent, var(--ink));
   border-color: var(--accent, var(--ink));
 }
@@ -64,7 +95,7 @@
     align-items: center;
     box-sizing: border-box;
     width: 100%;
-    padding: 8px 12px;
+    padding: 8px 54px 8px 12px; /* right room for the absolute .theme-toggle */
   }
 
   .lesson-nav__toggle {

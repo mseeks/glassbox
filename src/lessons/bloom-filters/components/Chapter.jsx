@@ -13,7 +13,7 @@ export function Chapter({ num, title, anchor, children }) {
               width: '6px',
               height: '6px',
               borderRadius: '1px',
-              background: b ? 'rgba(196, 181, 253, 0.5)' : 'rgba(232, 222, 200, 0.12)',
+              background: b ? 'var(--bf-violet-line-5)' : 'var(--bf-line-strong)',
             }}
           />
         ))}

@@ -100,7 +100,7 @@ export default function RpcTypesLab() {
           ),
         )}
       </div>
-      <p style={{ fontSize: 14.5, color: '#b9cad3', margin: '16px 0 6px' }}>
+      <p style={{ fontSize: 14.5, color: 'var(--gx-prose-ink)', margin: '16px 0 6px' }}>
         <b style={{ color: 'var(--ink-bright)' }}>{t.desc}</b>
       </p>
       <p style={{ fontSize: 13.5, color: 'var(--ink-dim)', margin: 0 }}>Reach for it: {t.use}</p>

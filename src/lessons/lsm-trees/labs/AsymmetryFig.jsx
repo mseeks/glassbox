@@ -95,7 +95,7 @@ export default function AsymmetryFig() {
         <div
           style={{
             position: 'relative',
-            background: '#0a0805',
+            background: 'var(--lsm-well)',
             padding: 12,
             border: '1px solid var(--rule-soft)',
           }}
@@ -117,8 +117,8 @@ export default function AsymmetryFig() {
                           ? mode === 'append'
                             ? 'rgba(215,161,75,0.85)'
                             : 'rgba(227,88,44,0.30)'
-                          : 'rgba(242,232,211,0.06)',
-                      boxShadow: isHead ? '0 0 10px rgba(227,88,44,0.9)' : 'none',
+                          : 'var(--lsm-sheen)',
+                      boxShadow: isHead ? '0 0 10px var(--glow-writ-strong)' : 'none',
                       transition: mode === 'append' ? 'background 0.12s' : 'none',
                     }}
                   />

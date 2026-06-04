@@ -1,24 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
 
 .mk-root {
-  --ink: #0c100e;
-  --ink-2: #111713;
-  --plate: #141c17;
-  --plate-2: #18211b;
-  --line: #2a352d;
-  --line-bright: #3b4a3f;
-  --paper: #ece4d0;
-  --paper-dim: #b3ab97;
-  --paper-faint: #7c7a6a;
-  --patina: #5bc0a3;
-  --patina-deep: #3c8c77;
-  --patina-glow: #5bc0a322;
-  --gold: #d6b06a;
-  --gold-bright: #ecca86;
-  --gold-glow: #d6b06a26;
-  --cinnabar: #d85a40;
-  --cinnabar-glow: #d85a4022;
-  --slate: #5d6b62;
+  /* Dark — the blacklight vault / after-hours security press: a deep ink-green
+     ground like a press shut for the night, the verdigris guilloché lifted to a
+     faint glow, gold seals warmed under low light, cinnabar kept hot for danger. */
+  --ink: #070b09;
+  --ink-2: #0c1310;
+  --plate: #101a15;
+  --plate-2: #152019;
+  --line: #26342c;
+  --line-bright: #577061;
+  --paper: #efe7d3;
+  --paper-dim: #bcb49e;
+  --paper-faint: #8f8a76;
+  --patina: #63d1b0;
+  --patina-deep: #3fa085;
+  --patina-glow: #63d1b026;
+  --gold: #dbb56e;
+  --gold-bright: #f0d093;
+  --gold-glow: #dbb56e2b;
+  --cinnabar: #e8674b;
+  --cinnabar-glow: #e8674b26;
+  --slate: #62716a;
 
   font-family: 'Crimson Pro', Georgia, serif;
   color: var(--paper);
@@ -31,7 +34,8 @@
   -webkit-font-smoothing: antialiased;
 }
 
-/* engraving atmosphere */
+/* engraving atmosphere — the blacklight vault: verdigris guilloché glowing up
+   from the floor, a low warm gold pool from a single lamp on the press */
 .mk-root::before {
   content: '';
   position: fixed;
@@ -39,8 +43,9 @@
   z-index: 0;
   pointer-events: none;
   background-image:
-    radial-gradient(ellipse at 15% 8%, rgba(91, 192, 163, 0.07), transparent 55%),
-    radial-gradient(ellipse at 85% 95%, rgba(214, 176, 106, 0.06), transparent 55%);
+    radial-gradient(ellipse at 18% 6%, rgba(99, 209, 176, 0.12), transparent 56%),
+    radial-gradient(ellipse at 84% 96%, rgba(219, 181, 110, 0.09), transparent 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(99, 209, 176, 0.035), transparent 70%);
 }
 /* fine guilloché-style line texture */
 .mk-root::after {
@@ -326,7 +331,7 @@
   left: 0;
   right: 0;
   z-index: 50;
-  background: rgba(12, 16, 14, 0.82);
+  background: rgba(7, 11, 9, 0.84);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
@@ -480,4 +485,68 @@
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+/* ─── Light theme — the certificate of authenticity (the loved original, refined) ─── */
+/* Security-printing stock: warm cream rag paper with a faint cool watermark tint,
+   sepia engraving ink for the body, the verdigris deepened to an intaglio green and
+   the gold to an antique die so every accent — and the small hash labels engraved
+   inside the tree nodes — read at full WCAG contrast on paper. Nearly the whole
+   design (prose, SVG nodes/edges, labs, buttons) cascades from these redefined
+   tokens; only the few hardcoded washes/glass below need touch-ups. */
+[data-theme='light'] .mk-root {
+  --ink: #e8ddc5;
+  --ink-2: #ddd0b4;
+  --plate: #f3ecda;
+  --plate-2: #f9f4e7;
+  --line: #cdc19f;
+  --line-bright: #92804e;
+  --paper: #211c14;
+  --paper-dim: #4d4636;
+  --paper-faint: #605742;
+  --patina: #176650;
+  --patina-deep: #0f4d3d;
+  --patina-glow: #1766501f;
+  --gold: #7a5810;
+  --gold-bright: #6e4f0c;
+  --gold-glow: #7a58101f;
+  --cinnabar: #9e2e1a;
+  --cinnabar-glow: #9e2e1a1c;
+  --slate: #5a5e54;
+}
+
+/* engraving atmosphere — a soft intaglio wash on the certificate: verdigris ink
+   bleeding from the top corner, an antique-gold seal-glow at the foot, and a faint
+   cool watermark in the field so the paper has a security tint, never flat beige.
+   (The dark mode's floor-glow becomes a soft printed tint on paper.) */
+[data-theme='light'] .mk-root::before {
+  background-image:
+    radial-gradient(ellipse at 16% 7%, rgba(23, 102, 80, 0.1), transparent 56%),
+    radial-gradient(ellipse at 84% 95%, rgba(122, 88, 16, 0.08), transparent 55%),
+    radial-gradient(ellipse at 50% 42%, rgba(60, 96, 120, 0.04), transparent 68%);
+}
+/* fine guilloché texture — pull the noise right back so it reads as laid paper
+   fiber, a faint tooth on the stock, not grime */
+[data-theme='light'] .mk-root::after {
+  opacity: 0.22;
+}
+
+/* top bar — flip the dark frosted glass to a light frosted certificate stock */
+[data-theme='light'] .mk-nav {
+  background: rgba(243, 236, 218, 0.84);
+}
+
+/* ─── Dark elevation — the showpiece. Make the vault feel lit. ───
+   Engraved plates catch a thin verdigris highlight along their top edge (the
+   guilloché picking up the blacklight) and sink into the deep ink with a soft
+   shadow, so each lab reads as a steel plate on the press bed after hours.
+   Scoped to dark only; light keeps its flat, printed-on-paper calm. */
+[data-theme='dark'] .mk-root .mk-plate {
+  box-shadow:
+    inset 0 1px 0 rgba(99, 209, 176, 0.08),
+    0 14px 34px -22px rgba(0, 0, 0, 0.9);
+}
+/* the progress hairline glows verdigris→gold like a seal being struck */
+[data-theme='dark'] .mk-root .mk-progress {
+  box-shadow: 0 0 8px rgba(99, 209, 176, 0.45);
 }

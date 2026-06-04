@@ -212,7 +212,7 @@ function Glyph({ kind, color }) {
                 width="5"
                 height="5"
                 rx="0.5"
-                fill={b ? color : 'rgba(232, 222, 200, 0.08)'}
+                fill={b ? color : 'var(--idx-glyph-off)'}
                 fillOpacity={b ? 0.85 : 1}
               />
             )),

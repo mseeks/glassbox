@@ -122,7 +122,7 @@ export const Hero = () => {
             style={{
               position: 'relative',
               height: 24,
-              borderTop: '1px dashed rgba(232, 223, 199, 0.06)',
+              borderTop: '1px dashed var(--rule-soft)',
               paddingTop: 4,
             }}
           >
@@ -145,9 +145,13 @@ export const Hero = () => {
                       width: 20,
                       height: 20,
                       borderRadius: 3,
+                      // `color` drives currentColor, which the glow token reads —
+                      // so the emissive bloom (dark) / cast shadow (paper) keeps
+                      // each packet's own fate colour without a per-mode literal.
+                      color,
                       background: color,
                       border: `1px solid ${color}`,
-                      boxShadow: `0 0 12px ${color}, 0 0 4px ${color}`,
+                      boxShadow: 'var(--udp-glow-strong)',
                       willChange: 'transform, opacity',
                       animation: reduced ? 'none' : `${animName} ${p.duration}ms linear forwards`,
                     }}
@@ -241,7 +245,7 @@ export const Hero = () => {
             display: 'flex',
             alignItems: 'center',
             gap: 12,
-            color: 'var(--ink-faint)',
+            color: 'var(--ink-faint-fn)',
             fontFamily: 'JetBrains Mono',
             fontSize: 11,
             letterSpacing: '0.15em',

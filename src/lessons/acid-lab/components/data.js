@@ -504,12 +504,18 @@ export const MATRIX = [
 /* ────────────────────────────────────────────────────────────────────
 ACID PROPERTIES — high-level framing for the four pillars
 ──────────────────────────────────────────────────────────────────── */
+// Each pillar carries TWO forms of its accent: `accent` is the raw dark-mode
+// hex, used only where a bright pastel paints a faint decorative wash/glow
+// (hexToRgb → low-alpha gradient + box-shadow) that reads in both themes;
+// `accentVar` is the theme-flipping token, used everywhere the accent carries
+// TEXT, a glyph, or a border, so it deepens to a readable wax-seal on paper.
 export const ACID_PROPERTIES = [
   {
     letter: 'A',
     name: 'Atomicity',
     domain: 'Failure',
     accent: '#a78bfa',
+    accentVar: 'var(--iso-violet)',
     question: 'What if the transaction is interrupted mid-flight?',
     promise: 'All writes succeed together, or none do.',
     mechanism: 'Write-ahead log',
@@ -520,6 +526,7 @@ export const ACID_PROPERTIES = [
     name: 'Consistency',
     domain: 'Invariants',
     accent: '#f0abfc',
+    accentVar: 'var(--iso-pink)',
     question: 'What rules must the data always obey?',
     promise: 'Every committed transaction leaves the database valid.',
     mechanism: 'Constraints + application logic',
@@ -530,6 +537,7 @@ export const ACID_PROPERTIES = [
     name: 'Isolation',
     domain: 'Concurrency',
     accent: '#5eead4',
+    accentVar: 'var(--iso-teal)',
     question: 'What does each transaction see of the others?',
     promise: 'Concurrent execution behaves as the level promises.',
     mechanism: 'Locks · snapshots · SSI',
@@ -541,6 +549,7 @@ export const ACID_PROPERTIES = [
     name: 'Durability',
     domain: 'Persistence',
     accent: '#fbbf24',
+    accentVar: 'var(--iso-amber)',
     question: 'What survives a power outage?',
     promise: 'Once committed, it persists through any failure.',
     mechanism: 'fsync + replication',

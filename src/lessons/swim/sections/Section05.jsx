@@ -76,14 +76,14 @@ export function Section05() {
               <td className="label">dead(i)</td>
               <td className="swim-mono">anything</td>
               <td>
-                <span style={{ color: 'var(--ink-faint)' }}>discarded</span>
+                <span style={{ color: 'var(--ink-label)' }}>discarded</span>
               </td>
             </tr>
             <tr>
               <td className="label">any</td>
               <td className="swim-mono">_(j), j &lt; current_i</td>
               <td>
-                <span style={{ color: 'var(--ink-faint)' }}>discarded (stale)</span>
+                <span style={{ color: 'var(--ink-label)' }}>discarded (stale)</span>
               </td>
             </tr>
           </tbody>

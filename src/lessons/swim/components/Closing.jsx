@@ -70,7 +70,7 @@ export function Closing() {
               marginTop: 28,
               fontFamily: 'JetBrains Mono',
               fontSize: 10.5,
-              color: 'var(--ink-faint)',
+              color: 'var(--ink-label)',
               lineHeight: 1.7,
             }}
           >

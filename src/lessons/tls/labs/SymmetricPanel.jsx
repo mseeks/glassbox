@@ -27,7 +27,7 @@ export default function SymmetricPanel() {
         <div>
           <label
             className="tls-mono"
-            style={{ fontSize: 10.5, letterSpacing: '.14em', color: 'var(--bone-faint)' }}
+            style={{ fontSize: 10.5, letterSpacing: '.14em', color: 'var(--bone-label)' }}
           >
             MESSAGE
           </label>

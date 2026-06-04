@@ -39,7 +39,7 @@ export default function Coda() {
       style={{
         scrollMarginTop: 64,
         borderTop: '1px solid var(--line)',
-        background: 'linear-gradient(180deg, transparent, rgba(70,214,198,.03))',
+        background: 'linear-gradient(180deg, transparent, var(--wash-aqua-03))',
       }}
     >
       <div className="tls-wrap">

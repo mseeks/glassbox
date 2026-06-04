@@ -199,7 +199,7 @@ export const Coda = () => (
           fontSize: 11,
           letterSpacing: '0.12em',
           textTransform: 'uppercase',
-          color: 'var(--ink-faint)',
+          color: 'var(--ink-faint-fn)',
         }}
       >
         <span>End of transmission &nbsp;·&nbsp; RFC 768 &nbsp;·&nbsp; August 1980</span>

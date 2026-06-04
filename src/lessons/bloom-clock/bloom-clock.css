@@ -1,6 +1,83 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap');
 
 .bc-root {
+  /* ── Inline-palette tokens (flip in the [data-theme='light'] block below).
+         These mirror the inline literals the JSX paints for ink, ground,
+         hairlines, white sheens, AND the saturated star-accents — the bright
+         pastels read on the night ground but must DEEPEN on light paper to stay
+         legible as text, so they flow through tokens too. ── */
+  --bc-ink: #f0e8d2; /* primary ink — headings/titles */
+  --bc-ink-prose: #d6ccb3; /* prose body ink */
+  --bc-ink-dim: #c8bfa5; /* secondary / callout body ink */
+  --bc-ink-muted: #a89e85; /* muted labels / eyebrows */
+  --bc-ink-faint: #5e5747; /* faint mono captions */
+  --bc-ink-ghost: #3d3d3d; /* zero-value counter labels */
+
+  /* star-accents — the constellation's signal hues (bright on the night ground) */
+  --bc-gold: #f5b942;
+  --bc-emerald: #6ee7b7;
+  --bc-violet: #b794f4;
+  --bc-rose: #fb7185;
+  --bc-teal: #5eead4;
+
+  --bc-ground: #0a0e1e; /* the night-navy ground (SVG stroke ring) */
+  --bc-inset-6: rgba(15, 19, 38, 0.6); /* inset clock-display ground */
+  --bc-inset-5: rgba(15, 19, 38, 0.5);
+  --bc-inset-4: rgba(15, 19, 38, 0.4);
+  --bc-head-bg: rgba(24, 29, 54, 0.7); /* table header ground */
+
+  --bc-rule-strong: rgba(45, 52, 88, 0.6); /* navy hairlines */
+  --bc-rule: rgba(45, 52, 88, 0.5);
+  --bc-rule-soft: rgba(45, 52, 88, 0.4);
+  --bc-rule-faint: rgba(45, 52, 88, 0.3);
+  --bc-control-border: rgba(61, 69, 118, 0.6); /* select / chip border */
+  --bc-control-bg: rgba(45, 52, 88, 0.4); /* select / code chip ground */
+  --bc-code-border: rgba(61, 69, 118, 0.3);
+
+  --bc-sheen: rgba(255, 255, 255, 0.02); /* faint highlight washes on dark */
+  --bc-sheen-2: rgba(255, 255, 255, 0.025);
+  --bc-sheen-border: rgba(255, 255, 255, 0.04);
+  --bc-sheen-border-2: rgba(255, 255, 255, 0.05);
+
+  /* ── Translucent accent stops the JSX paints into gradients / washes /
+         glows. These replace broken `var(--bc-gold)ee`-style concatenation
+         in the labs (you cannot suffix hex onto a var()), and they flip with
+         the theme so a star-bar reads as a luminous mark on night OR a deep
+         ink-and-gold mark on paper. *-bar-top/bot drive the counter gradients,
+         *-glow the bloom, *-wash/*-edge the tinted cells & borders. ── */
+  --bc-gold-bar-top: rgba(245, 185, 66, 0.93);
+  --bc-gold-bar-bot: rgba(245, 185, 66, 0.4);
+  --bc-gold-glow: rgba(245, 185, 66, 0.27);
+  --bc-gold-wash: rgba(245, 185, 66, 0.06);
+  --bc-gold-edge: rgba(245, 185, 66, 0.4);
+  --bc-gold-edge-strong: rgba(245, 185, 66, 0.6);
+
+  --bc-teal-bar-top: rgba(94, 234, 212, 0.93);
+  --bc-teal-bar-bot: rgba(94, 234, 212, 0.4);
+  --bc-teal-glow: rgba(94, 234, 212, 0.35);
+  --bc-teal-wash: rgba(94, 234, 212, 0.06);
+  --bc-teal-edge: rgba(94, 234, 212, 0.4);
+
+  --bc-violet-bar-top: rgba(183, 148, 244, 0.93);
+  --bc-violet-bar-bot: rgba(183, 148, 244, 0.4);
+  --bc-violet-glow: rgba(183, 148, 244, 0.3);
+  --bc-violet-wash: rgba(183, 148, 244, 0.05);
+  --bc-violet-edge: rgba(183, 148, 244, 0.4);
+
+  --bc-emerald-glow: rgba(110, 231, 183, 0.3);
+  --bc-emerald-wash: rgba(110, 231, 183, 0.06);
+  --bc-emerald-edge: rgba(110, 231, 183, 0.3);
+
+  --bc-rose-glow: rgba(251, 113, 133, 0.4);
+  --bc-rose-wash: rgba(251, 113, 133, 0.06);
+  --bc-rose-edge: rgba(251, 113, 133, 0.35);
+
+  /* spare node-accents for the construction/vector labs beyond the five
+     named stars — extra catalogue stars on the chart */
+  --bc-node-6: #a78bfa;
+  --bc-node-7: #f59e0b;
+  --bc-node-8: #34d399;
+
   font-family: 'Crimson Pro', 'Iowan Old Style', Georgia, serif;
   color: #f0e8d2;
   background: #0a0e1e;
@@ -196,7 +273,7 @@
 .bc-btn-gold {
   background: linear-gradient(135deg, rgba(245, 185, 66, 0.18) 0%, rgba(245, 185, 66, 0.08) 100%);
   border-color: rgba(245, 185, 66, 0.45);
-  color: #f5b942;
+  color: var(--bc-gold);
 }
 .bc-btn-gold:hover:not(:disabled) {
   background: linear-gradient(135deg, rgba(245, 185, 66, 0.28) 0%, rgba(245, 185, 66, 0.15) 100%);
@@ -206,7 +283,7 @@
 .bc-btn-violet {
   background: linear-gradient(135deg, rgba(183, 148, 244, 0.18) 0%, rgba(183, 148, 244, 0.08) 100%);
   border-color: rgba(183, 148, 244, 0.45);
-  color: #b794f4;
+  color: var(--bc-violet);
 }
 .bc-btn-violet:hover:not(:disabled) {
   background: linear-gradient(135deg, rgba(183, 148, 244, 0.28) 0%, rgba(183, 148, 244, 0.15) 100%);
@@ -216,7 +293,7 @@
 .bc-btn-emerald {
   background: linear-gradient(135deg, rgba(110, 231, 183, 0.18) 0%, rgba(110, 231, 183, 0.08) 100%);
   border-color: rgba(110, 231, 183, 0.45);
-  color: #6ee7b7;
+  color: var(--bc-emerald);
 }
 .bc-btn-emerald:hover:not(:disabled) {
   background: linear-gradient(135deg, rgba(110, 231, 183, 0.28) 0%, rgba(110, 231, 183, 0.15) 100%);
@@ -260,7 +337,7 @@
 }
 
 .bc-link {
-  color: #b794f4;
+  color: var(--bc-violet);
   text-decoration: none;
   border-bottom: 1px dotted rgba(183, 148, 244, 0.4);
   transition:
@@ -336,7 +413,7 @@
   float: left;
   line-height: 0.86;
   padding: 0.08em 0.08em 0 0;
-  color: #f5b942;
+  color: var(--bc-gold);
   font-weight: 400;
 }
 
@@ -634,7 +711,7 @@
 }
 .bc-nav-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #f5b942, #b794f4, #6ee7b7);
+  background: linear-gradient(90deg, var(--bc-gold), var(--bc-violet), var(--bc-emerald));
   transition: width 100ms ease-out;
   box-shadow: 0 0 10px rgba(245, 185, 66, 0.6);
 }
@@ -697,7 +774,7 @@
   transform: translateX(0);
 }
 .bc-nav-dot[data-active='true'] {
-  color: #f5b942;
+  color: var(--bc-gold);
 }
 .bc-nav-dot[data-active='true'] .bc-nav-dot-inner {
   width: 8px;
@@ -705,7 +782,7 @@
   box-shadow: 0 0 10px rgba(245, 185, 66, 0.6);
 }
 .bc-nav-dot[data-active='true']:hover .bc-nav-dot-label {
-  color: #f5b942;
+  color: var(--bc-gold);
 }
 
 .bc-nav-hamburger {
@@ -798,8 +875,8 @@
   background: rgba(255, 255, 255, 0.02);
 }
 .bc-nav-sheet-item[data-active='true'] {
-  color: #f5b942;
-  border-left-color: #f5b942;
+  color: var(--bc-gold);
+  border-left-color: var(--bc-gold);
   background: rgba(245, 185, 66, 0.06);
 }
 
@@ -858,4 +935,358 @@
 
 .bc-root {
   overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════════
+       LIGHT THEME — the daytime star chart
+       Where the dark mode is the night sky itself, light mode is the
+       ASTRONOMER'S CHART of it: a sheet of warm champagne vellum the
+       constellation has been *plotted* onto in ink and deep gold. The
+       night-navy ground becomes aged paper; the radial nebula-glows invert
+       into soft pigment blooms; the constellation gains a faint ruled
+       coordinate grid (right-ascension / declination lines) the way a real
+       star plate is gridded. The five star-accents deepen — a bright pastel
+       that glows on black must drop in lightness and gain chroma to read as
+       a printed mark on paper — while keeping their hue identity so the
+       constellation still names itself gold / emerald / violet / rose / teal.
+       ═══════════════════════════════════════════════ */
+
+[data-theme='light'] .bc-root {
+  /* ── Inline-palette tokens, daylight values. Inks are constellation lines
+         drawn in sepia-black; the navy ground/hairlines/insets become aged
+         champagne vellum and soft taupe rules; the white night-sheens become
+         faint warm-shadow washes pressed into the paper. ── */
+  --bc-ink: #2b2922; /* heading ink — the darkest line on the plate */
+  --bc-ink-prose: #39342a; /* body ink */
+  --bc-ink-dim: #514838; /* callout / secondary body */
+  --bc-ink-muted: #6c5f3f; /* labels / eyebrows — deepened to pass AA on vellum */
+  --bc-ink-faint: #7b6d4c; /* faint mono chart annotations (units, axis ticks) */
+  --bc-ink-ghost: #b6a884; /* ghost coordinates: zero-value labels, mobile whispers */
+
+  /* star-accents redrawn for paper: each holds ≥4.5:1 as text on vellum and
+     stays unmistakably its hue. The pole star of the palette is gold. */
+  --bc-gold: #885809; /* deep-gold leaf — the signature, as printed pigment */
+  --bc-emerald: #0c6b4a;
+  --bc-violet: #5f3eaf;
+  --bc-rose: #b62740;
+  --bc-teal: #0a7060;
+
+  --bc-ground: #f2ead7; /* warm champagne vellum */
+  --bc-inset-6: rgba(236, 225, 202, 0.85); /* a charted plate pressed into the paper */
+  --bc-inset-5: rgba(236, 225, 202, 0.62);
+  --bc-inset-4: rgba(236, 225, 202, 0.46);
+  --bc-head-bg: rgba(236, 226, 205, 0.85);
+
+  --bc-rule-strong: rgba(118, 104, 70, 0.42); /* ink ruled lines */
+  --bc-rule: rgba(118, 104, 70, 0.32);
+  --bc-rule-soft: rgba(118, 104, 70, 0.22);
+  --bc-rule-faint: rgba(118, 104, 70, 0.16);
+  --bc-control-border: rgba(118, 104, 70, 0.42);
+  --bc-control-bg: rgba(118, 104, 70, 0.1);
+  --bc-code-border: rgba(118, 104, 70, 0.3);
+
+  --bc-sheen: rgba(58, 48, 24, 0.045); /* warm shadow pressed into vellum */
+  --bc-sheen-2: rgba(58, 48, 24, 0.05);
+  --bc-sheen-border: rgba(58, 48, 24, 0.08);
+  --bc-sheen-border-2: rgba(58, 48, 24, 0.09);
+
+  /* ── Translucent accents, daylight: the night-glow becomes printed ink —
+         a saturated top stop fading into the paper, a soft halo (not a neon
+         bloom), and tinted cell washes a shade more present than on black so
+         they survive the brighter ground. ── */
+  --bc-gold-bar-top: rgba(159, 110, 18, 0.92);
+  --bc-gold-bar-bot: rgba(176, 130, 40, 0.45);
+  --bc-gold-glow: rgba(143, 99, 16, 0.2);
+  --bc-gold-wash: rgba(143, 99, 16, 0.1);
+  --bc-gold-edge: rgba(143, 99, 16, 0.42);
+  --bc-gold-edge-strong: rgba(143, 99, 16, 0.62);
+
+  --bc-teal-bar-top: rgba(12, 118, 104, 0.92);
+  --bc-teal-bar-bot: rgba(40, 140, 126, 0.45);
+  --bc-teal-glow: rgba(12, 112, 96, 0.2);
+  --bc-teal-wash: rgba(12, 112, 96, 0.1);
+  --bc-teal-edge: rgba(12, 112, 96, 0.42);
+
+  --bc-violet-bar-top: rgba(95, 62, 175, 0.92);
+  --bc-violet-bar-bot: rgba(120, 92, 196, 0.45);
+  --bc-violet-glow: rgba(95, 62, 175, 0.2);
+  --bc-violet-wash: rgba(95, 62, 175, 0.08);
+  --bc-violet-edge: rgba(95, 62, 175, 0.4);
+
+  --bc-emerald-glow: rgba(12, 107, 74, 0.2);
+  --bc-emerald-wash: rgba(12, 107, 74, 0.09);
+  --bc-emerald-edge: rgba(12, 107, 74, 0.34);
+
+  --bc-rose-glow: rgba(182, 39, 64, 0.22);
+  --bc-rose-wash: rgba(182, 39, 64, 0.08);
+  --bc-rose-edge: rgba(182, 39, 64, 0.36);
+
+  /* catalogue stars beyond the five named ones, deepened for paper */
+  --bc-node-6: #6a4caf;
+  --bc-node-7: #9a6505;
+  --bc-node-8: #0c7a55;
+
+  color: #2b2922;
+  background: #f2ead7;
+  /* Soft pigment blooms (the inverse of the night nebula-glows) layered over
+     a faint right-ascension / declination grid ruled into the vellum — the
+     light analog of the dark mode's atmospheric radial tints. */
+  background-image:
+    radial-gradient(ellipse at 15% 10%, rgba(143, 99, 16, 0.09) 0%, transparent 52%),
+    radial-gradient(ellipse at 85% 88%, rgba(95, 62, 175, 0.07) 0%, transparent 52%),
+    radial-gradient(ellipse at 50% 50%, rgba(12, 107, 74, 0.045) 0%, transparent 68%),
+    linear-gradient(rgba(118, 104, 70, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(118, 104, 70, 0.05) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    64px 64px,
+    64px 64px;
+  background-attachment: fixed, fixed, fixed, scroll, scroll;
+}
+
+/* Paper grain — the night-noise plate, inverted to press grain INTO the
+   vellum (multiply) instead of lifting it (overlay). */
+[data-theme='light'] .bc-root::before {
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+}
+
+[data-theme='light'] .bc-eyebrow {
+  color: var(--bc-ink-muted);
+}
+
+/* ── Counter bars — the night's luminous fills become printed gold/ink
+       marks: a saturated pigment top fading toward the paper, with a soft
+       halo instead of a neon bloom. ── */
+[data-theme='light'] .bc-counter-bar {
+  background: linear-gradient(180deg, var(--bc-gold-bar-top) 0%, var(--bc-gold-bar-bot) 100%);
+  box-shadow:
+    0 0 10px var(--bc-gold-glow),
+    inset 0 1px 0 rgba(255, 245, 220, 0.4);
+}
+[data-theme='light'] .bc-counter-bar.empty {
+  background: rgba(58, 48, 24, 0.04);
+  box-shadow: inset 0 0 0 1px rgba(58, 48, 24, 0.08);
+}
+[data-theme='light'] .bc-counter-bar.violet {
+  background: linear-gradient(180deg, var(--bc-violet-bar-top) 0%, var(--bc-violet-bar-bot) 100%);
+  box-shadow: 0 0 10px var(--bc-violet-glow);
+}
+[data-theme='light'] .bc-counter-bar.emerald {
+  background: linear-gradient(180deg, var(--bc-teal-bar-top) 0%, var(--bc-teal-bar-bot) 100%);
+  box-shadow: 0 0 10px var(--bc-teal-glow);
+}
+[data-theme='light'] .bc-counter-bar.coral {
+  background: linear-gradient(180deg, rgba(182, 39, 64, 0.92) 0%, rgba(196, 70, 92, 0.45) 100%);
+  box-shadow: 0 0 10px var(--bc-rose-glow);
+}
+
+/* ── Panels — translucent night-glass becomes leaves of vellum laid on the
+       chart, with a soft warm cast shadow (the inverse of the dark glow). ── */
+[data-theme='light'] .bc-panel {
+  background: linear-gradient(180deg, rgba(246, 239, 223, 0.72) 0%, rgba(240, 232, 213, 0.84) 100%);
+  border: 1px solid rgba(118, 104, 70, 0.3);
+}
+[data-theme='light'] .bc-panel-elevated {
+  background: linear-gradient(180deg, rgba(250, 244, 230, 0.94) 0%, rgba(244, 236, 219, 0.97) 100%);
+  border: 1px solid rgba(118, 104, 70, 0.38);
+  box-shadow:
+    0 14px 42px rgba(58, 44, 16, 0.13),
+    0 1px 0 rgba(255, 252, 244, 0.7) inset;
+}
+
+/* ── Buttons ── */
+[data-theme='light'] .bc-btn {
+  background: rgba(118, 104, 70, 0.1);
+  border: 1px solid rgba(118, 104, 70, 0.34);
+  color: var(--bc-ink);
+}
+[data-theme='light'] .bc-btn:hover:not(:disabled) {
+  background: rgba(118, 104, 70, 0.18);
+  border-color: rgba(118, 104, 70, 0.5);
+}
+
+[data-theme='light'] .bc-btn-gold {
+  background: linear-gradient(135deg, rgba(143, 99, 16, 0.15) 0%, rgba(143, 99, 16, 0.06) 100%);
+  border-color: var(--bc-gold-edge-strong);
+  color: var(--bc-gold);
+}
+[data-theme='light'] .bc-btn-gold:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(143, 99, 16, 0.25) 0%, rgba(143, 99, 16, 0.12) 100%);
+  border-color: rgba(143, 99, 16, 0.78);
+}
+
+[data-theme='light'] .bc-btn-violet {
+  background: linear-gradient(135deg, rgba(95, 62, 175, 0.14) 0%, rgba(95, 62, 175, 0.06) 100%);
+  border-color: rgba(95, 62, 175, 0.55);
+  color: var(--bc-violet);
+}
+[data-theme='light'] .bc-btn-violet:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(95, 62, 175, 0.24) 0%, rgba(95, 62, 175, 0.12) 100%);
+  border-color: rgba(95, 62, 175, 0.78);
+}
+
+[data-theme='light'] .bc-btn-emerald {
+  background: linear-gradient(135deg, rgba(12, 107, 74, 0.14) 0%, rgba(12, 107, 74, 0.06) 100%);
+  border-color: rgba(12, 107, 74, 0.55);
+  color: var(--bc-emerald);
+}
+[data-theme='light'] .bc-btn-emerald:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(12, 107, 74, 0.24) 0%, rgba(12, 107, 74, 0.12) 100%);
+  border-color: rgba(12, 107, 74, 0.78);
+}
+
+/* ── Slider — vellum track, cream thumb ringed in deep gold ── */
+[data-theme='light'] .bc-slider {
+  background: rgba(118, 104, 70, 0.28);
+}
+[data-theme='light'] .bc-slider::-webkit-slider-thumb {
+  background: #fdfaf1;
+  border: 2px solid var(--bc-ground);
+  box-shadow:
+    0 0 0 1px var(--bc-gold-edge),
+    0 2px 6px rgba(58, 44, 16, 0.25);
+}
+[data-theme='light'] .bc-slider::-moz-range-thumb {
+  background: #fdfaf1;
+  border: 2px solid var(--bc-ground);
+}
+
+/* ── Links — keep the violet thread, deepened for paper ── */
+[data-theme='light'] .bc-link {
+  color: var(--bc-violet);
+  border-bottom: 1px dotted var(--bc-violet-edge);
+}
+[data-theme='light'] .bc-link:hover {
+  color: #4d3293;
+  border-bottom-color: rgba(77, 50, 147, 0.7);
+}
+
+[data-theme='light'] .bc-pullquote {
+  color: var(--bc-ink);
+}
+
+[data-theme='light'] .bc-hero-title {
+  color: #211f18;
+}
+
+/* ── Dividers ── */
+[data-theme='light'] .bc-divider {
+  color: rgba(118, 104, 70, 0.5);
+}
+[data-theme='light'] .bc-divider::before,
+[data-theme='light'] .bc-divider::after {
+  background: linear-gradient(90deg, transparent, rgba(118, 104, 70, 0.35), transparent);
+}
+
+/* ── Glows — a glow on black becomes a faint ink halo on paper, kept light
+       so the text stays crisp rather than smudged. ── */
+[data-theme='light'] .bc-glow-gold {
+  text-shadow: 0 0 16px var(--bc-gold-glow);
+}
+[data-theme='light'] .bc-glow-violet {
+  text-shadow: 0 0 16px var(--bc-violet-glow);
+}
+[data-theme='light'] .bc-glow-emerald {
+  text-shadow: 0 0 16px var(--bc-emerald-glow);
+}
+[data-theme='light'] .bc-glow-coral {
+  text-shadow: 0 0 16px var(--bc-rose-glow);
+}
+
+/* ── Prose emphasis ── */
+[data-theme='light'] .bc-prose em {
+  color: #5a4612;
+}
+[data-theme='light'] .bc-prose strong {
+  color: #48380e;
+}
+
+[data-theme='light'] .bc-dropcap::first-letter {
+  color: var(--bc-gold);
+}
+
+/* ── Responsive auto-label whisper text — ghost chart coordinates ── */
+[data-theme='light'] .bc-family-row > [data-cell]::before,
+[data-theme='light'] .bc-asym-table > [data-asym-label]::before {
+  color: var(--bc-ink-faint);
+}
+
+/* ── Vector-clock row card ── */
+[data-theme='light'] .bc-vc-row {
+  background: rgba(246, 239, 223, 0.62);
+  border: 1px solid rgba(118, 104, 70, 0.28);
+}
+
+/* ── Asym table outer frame ── */
+[data-theme='light'] .bc-asym-table {
+  border: 1px solid rgba(118, 104, 70, 0.34);
+}
+
+/* ═══════════════════════════════════════════════
+       NAVIGATION — light
+       ═══════════════════════════════════════════════ */
+[data-theme='light'] .bc-nav-progress {
+  background: rgba(118, 104, 70, 0.22);
+}
+[data-theme='light'] .bc-nav-progress-fill {
+  background: linear-gradient(90deg, var(--bc-gold), var(--bc-violet), var(--bc-teal));
+  box-shadow: 0 0 10px var(--bc-gold-glow);
+}
+
+[data-theme='light'] .bc-nav-dot {
+  color: rgba(118, 104, 70, 0.7);
+}
+[data-theme='light'] .bc-nav-dot-label {
+  color: var(--bc-ink-muted);
+}
+[data-theme='light'] .bc-nav-dot:hover {
+  color: var(--bc-ink);
+}
+[data-theme='light'] .bc-nav-dot[data-active='true'] {
+  color: var(--bc-gold);
+}
+[data-theme='light'] .bc-nav-dot[data-active='true'] .bc-nav-dot-inner {
+  box-shadow: 0 0 10px var(--bc-gold-glow);
+}
+[data-theme='light'] .bc-nav-dot[data-active='true']:hover .bc-nav-dot-label {
+  color: var(--bc-gold);
+}
+
+[data-theme='light'] .bc-nav-hamburger {
+  background: rgba(246, 239, 223, 0.88);
+  border: 1px solid rgba(118, 104, 70, 0.4);
+  color: var(--bc-ink);
+}
+[data-theme='light'] .bc-nav-hamburger:hover {
+  background: rgba(244, 236, 219, 0.97);
+  border-color: rgba(118, 104, 70, 0.6);
+}
+
+[data-theme='light'] .bc-nav-overlay {
+  background: rgba(58, 44, 16, 0.3);
+}
+[data-theme='light'] .bc-nav-sheet {
+  background: linear-gradient(180deg, #f7f0e2 0%, #f2ead7 100%);
+  border-left: 1px solid rgba(118, 104, 70, 0.35);
+  box-shadow: -24px 0 64px rgba(58, 44, 16, 0.24);
+}
+[data-theme='light'] .bc-nav-sheet-item {
+  color: var(--bc-ink-muted);
+}
+[data-theme='light'] .bc-nav-sheet-item:hover {
+  color: var(--bc-ink);
+  background: rgba(118, 104, 70, 0.07);
+}
+[data-theme='light'] .bc-nav-sheet-item[data-active='true'] {
+  color: var(--bc-gold);
+  border-left-color: var(--bc-gold);
+  background: var(--bc-gold-wash);
+}
+
+/* ── Horizontal bars scrollbar ── */
+[data-theme='light'] .bc-bars-scroll::-webkit-scrollbar-thumb {
+  background: rgba(118, 104, 70, 0.4);
 }

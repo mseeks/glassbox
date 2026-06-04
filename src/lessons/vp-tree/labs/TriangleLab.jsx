@@ -170,9 +170,9 @@ export default function TriangleLab() {
               bottom: 0,
               left: (lower / scale) * 100 + '%',
               width: ((upper - lower) / scale) * 100 + '%',
-              background: 'rgba(63,224,198,0.16)',
-              borderLeft: '1px solid ' + C.ping,
-              borderRight: '1px solid ' + C.ping,
+              background: 'var(--ping-soft)',
+              borderLeft: '1px solid var(--ping)',
+              borderRight: '1px solid var(--ping)',
             }}
           />
           {/* actual c marker */}
@@ -183,8 +183,8 @@ export default function TriangleLab() {
               bottom: -3,
               left: (c / scale) * 100 + '%',
               width: 2,
-              background: C.amber,
-              boxShadow: '0 0 7px ' + C.amber,
+              background: 'var(--amber)',
+              boxShadow: '0 0 7px var(--amber)',
             }}
           />
           <div
@@ -195,7 +195,7 @@ export default function TriangleLab() {
               transform: 'translateX(-50%)',
               fontFamily: 'var(--mono)',
               fontSize: 9.5,
-              color: C.ping,
+              color: 'var(--ping)',
             }}
           >
             {lower.toFixed(1)}
@@ -208,7 +208,7 @@ export default function TriangleLab() {
               transform: 'translateX(-50%)',
               fontFamily: 'var(--mono)',
               fontSize: 9.5,
-              color: C.ping,
+              color: 'var(--ping)',
             }}
           >
             {upper.toFixed(1)}
@@ -221,7 +221,7 @@ export default function TriangleLab() {
               transform: 'translateX(-50%)',
               fontFamily: 'var(--mono)',
               fontSize: 9.5,
-              color: C.amber,
+              color: 'var(--amber)',
             }}
           >
             {c.toFixed(1)}
@@ -234,15 +234,15 @@ export default function TriangleLab() {
             marginTop: 20,
             fontFamily: 'var(--mono)',
             fontSize: 10.5,
-            color: C.bone3,
+            color: 'var(--bone-3)',
             letterSpacing: '.04em',
           }}
         >
           <span>
-            <span style={{ color: C.ping }}>▮</span> the true distance must lie in this band
+            <span style={{ color: 'var(--ping)' }}>▮</span> the true distance must lie in this band
           </span>
           <span>
-            <span style={{ color: C.amber }}>▮</span> where it actually is
+            <span style={{ color: 'var(--amber)' }}>▮</span> where it actually is
           </span>
         </div>
       </div>
@@ -267,9 +267,9 @@ export default function TriangleLab() {
       <div className="vp-caption">
         Knowing only two sides of a triangle pins the third inside a band: it can&apos;t be shorter
         than
-        <span style={{ color: C.ping }}> |a − b|</span> nor longer than{' '}
-        <span style={{ color: C.ping }}> a + b</span>. Drag the query close to the landmark and the
-        band collapses, so you nearly know the answer without measuring it. That{' '}
+        <span style={{ color: 'var(--ping)' }}> |a − b|</span> nor longer than{' '}
+        <span style={{ color: 'var(--ping)' }}> a + b</span>. Drag the query close to the landmark
+        and the band collapses, so you nearly know the answer without measuring it. That{' '}
         <em>lower bound</em> is the whole game. If the closest a region could <em>possibly</em> be
         is still farther than a contact you already hold, you can throw the entire region away
         unmeasured.

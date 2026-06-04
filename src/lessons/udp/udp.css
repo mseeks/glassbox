@@ -97,7 +97,14 @@
   --ink: #e9dfc7;
   --ink-warm: #fff4d6;
   --ink-dim: #a8a08c;
-  --ink-faint: #6c6655;
+  --ink-faint: #6c6655; /* decorative tier: eyebrows, dividers, ASCII ornament */
+  /* Functional micro-caption tier — axis/legend/role labels, packet
+     counts, hop subs, status readouts the reader must actually read.
+     Same sepia hue as --ink-faint (OKLCH H held, C held), lifted in L
+     so it clears WCAG AA (≥4.5:1) on every panel ground it lands on
+     (surface-2, surface, surface-3, bg-deep, bg). --ink-faint stays
+     faint for the hush. */
+  --ink-faint-fn: #9a9482;
   --ink-ghost: #3e3a30;
 
   --signal: #ff8c42; /* datagram in flight, the signal fire */
@@ -111,6 +118,11 @@
   --lost: #d96565; /* loss, drop */
   --lost-soft: #d9656522;
   --lost-edge: #d9656555;
+  /* Lost identity as readable TEXT on a neutral panel chip (the loss
+     red is the swatch/border identity; this is a minimal OKLCH L-lift,
+     hue & chroma held, so the lost packet number clears AA on
+     surface-2 without recolouring the loss swatch). */
+  --lost-ink: #df6f6f;
 
   --tcp: #7da5c0; /* TCP foil — steel blue */
   --tcp-soft: #7da5c022;
@@ -118,6 +130,27 @@
 
   --warn: #e9c46a;
   --warn-soft: #e9c46a22;
+
+  /* Inline-painted values that must flip with the theme.
+     --udp-on-accent: label ink that sits ON a saturated accent fill
+       (signal/warn gradient/button) — near-black on the dark console.
+     --udp-nav-bg: translucent dropdown surface (the floating nav panel).
+     --udp-nav-shadow: the floating nav button's cast shadow.
+
+     Datagram glow recipe — a packet in flight throws light. On the dark
+     console this is an EMISSIVE bloom: two 0,0-offset blurs in the packet's
+     own colour (set inline via currentColor), no opacity loss. On paper a
+     glowing square would smudge, so the light block rewrites these to a
+     small grounded drop-shadow (graphite) plus a faint colour halo —
+     printed ink with a cast shadow, not a light source.
+       --udp-glow-strong: hero packets · --udp-glow-soft: channel dots. */
+  --udp-on-accent: #1a1108;
+  --udp-nav-bg: rgba(13, 20, 24, 0.95);
+  --udp-nav-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --udp-glow-strong: 0 0 12px currentColor, 0 0 4px currentColor;
+  --udp-glow-soft: 0 0 8px currentColor;
+  /* Ambient halo around a host/CPU box (always signal-tinted). */
+  --udp-glow-box: 0 0 16px var(--signal-soft);
 }
 
 :where(.udp-root) * {
@@ -616,4 +649,135 @@
   flex: 1;
   height: 1px;
   background: var(--line);
+}
+
+/* ─── Light theme — the daylight engineering console ─── */
+/* A sheet of cool blue-grey graph paper under bench light: ink-black
+   readout, ruled gridlines, a tangerine signal that has been DEEPENED
+   (not flipped) so the same fire reads as crisp print on white.
+   The whole design cascades from these tokens; the literals that bypass
+   them (the grid, washes, paper grain, glows-turned-shadows) are retuned
+   individually in the blocks below. Every text/UI pair here clears WCAG
+   AA on the ground it actually sits on — verified in OKLCH, solving
+   L/C for ratio while holding each hue's identity. */
+[data-theme='light'] .udp-root {
+  --bg: #eef1f4; /* pale cool grey-white — the graph-paper sheet */
+  --bg-deep: #e2e6ec; /* recessed wells: code blocks, readouts */
+  --surface: #f6f8fa; /* lifted panel — a clean cut of paper */
+  --surface-2: #eaeef2;
+  --surface-3: #dde3e9;
+  --line: #c3cdd6; /* ruled pencil line, cool */
+  --line-bright: #9aa8b4; /* a struck axis line */
+  --line-faint: #dde3ea;
+
+  --ink: #1a2026; /* graphite-black readout */
+  --ink-warm: #0a0e12; /* the darkest stroke — headings */
+  --ink-dim: #525d68; /* secondary labels, still well clear of AA */
+  --ink-faint: #5d6873; /* eyebrow / micro-caption tier (decorative) */
+  /* Paper-side functional micro-caption tier. On white the decorative
+     --ink-faint already clears AA (4.5+ on every panel ground), so the
+     functional tier simply tracks it — no separate deepening needed. */
+  --ink-faint-fn: #5d6873;
+  --ink-ghost: #b6c0ca; /* faint watermark stroke */
+
+  --signal: #993c03; /* datagram in flight — tangerine deepened for paper */
+  --signal-soft: #993c0318;
+  --signal-edge: #993c0340;
+
+  --ok: #176b35; /* delivered, success */
+  --ok-soft: #176b3518;
+  --ok-edge: #176b3555;
+
+  --lost: #a82828; /* loss, drop */
+  --lost-soft: #a8282818;
+  --lost-edge: #a8282855;
+  /* On paper the deepened loss red already clears AA as text (6:1 on
+     surface-2), so the readable-text variant tracks the identity. */
+  --lost-ink: #a82828;
+
+  --tcp: #2c5c83; /* TCP foil — steel blue */
+  --tcp-soft: #2c5c8318;
+  --tcp-edge: #2c5c8344;
+
+  --warn: #785608; /* duplication / caution amber */
+  --warn-soft: #78560818;
+
+  /* Inline-painted flips, paper-side: a near-white label that rides ON
+     the saturated tangerine fill (button/nav active), and a translucent
+     light surface for the floating nav dropdown. The emissive datagram
+     glow becomes a grounded ink shadow + faint same-colour halo, and the
+     nav button's cast shadow softens to a cool paper drop. */
+  --udp-on-accent: #fcf7ef;
+  --udp-nav-bg: rgba(246, 248, 250, 0.95);
+  --udp-nav-shadow: 0 6px 16px rgba(30, 44, 58, 0.16);
+  --udp-glow-strong: 0 1px 3px rgba(26, 32, 38, 0.32), 0 0 5px currentColor;
+  --udp-glow-soft: 0 1px 2px rgba(26, 32, 38, 0.26);
+  --udp-glow-box: 0 2px 8px rgba(30, 44, 58, 0.12), 0 0 0 1px var(--signal-soft);
+
+  /* Graph-paper ruling, scoped to this lesson's prefix. Faint cool grid
+     plus a slightly stronger decade line, painted in the background layer. */
+  --udp-grid: rgba(44, 92, 131, 0.07);
+  --udp-grid-major: rgba(44, 92, 131, 0.11);
+}
+
+/* Atmosphere: bench light + graph ruling + ink washes. Glows become
+   soft printed tints on paper; the grid is the signature of the console. */
+[data-theme='light'] .udp-root {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(153, 60, 3, 0.07), transparent 60%),
+    radial-gradient(ellipse 60% 45% at 100% 100%, rgba(23, 107, 53, 0.06), transparent 62%),
+    linear-gradient(var(--udp-grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--udp-grid-major) 1px, transparent 1px),
+    linear-gradient(var(--udp-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--udp-grid) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    100% 100%,
+    132px 132px,
+    132px 132px,
+    33px 33px,
+    33px 33px;
+  background-position:
+    0 0,
+    0 0,
+    -1px -1px,
+    -1px -1px,
+    -1px -1px,
+    -1px -1px;
+  background-attachment: scroll, scroll, fixed, fixed, fixed, fixed;
+}
+
+/* Paper grain: multiply so the noise reads as fiber pressed into the
+   sheet, never a grey haze laid on top. */
+[data-theme='light'] .udp-root::before {
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+}
+
+/* Primary button: pale label on the deepened tangerine; hover lifts the
+   fill one stop and stays in family (label still clears AA on it). */
+[data-theme='light'] .udp-btn-primary {
+  color: var(--udp-on-accent);
+}
+[data-theme='light'] .udp-btn-primary:hover {
+  background: #b8500a;
+  border-color: #b8500a;
+  color: var(--udp-on-accent);
+}
+
+/* Code block accent rail + section-tag dash inherit --signal already.
+   Slider thumb halo and scanline sweep: keyed to the retuned signal hue
+   as a soft printed wash rather than an emissive glow. */
+[data-theme='light'] .udp-slider {
+  background: var(--line-bright);
+}
+[data-theme='light'] .udp-slider::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px rgba(153, 60, 3, 0.2);
+}
+[data-theme='light'] .udp-slider::-moz-range-thumb {
+  box-shadow: 0 0 0 3px rgba(153, 60, 3, 0.2);
+}
+[data-theme='light'] .udp-scanline::after {
+  background: linear-gradient(90deg, transparent 0%, rgba(153, 60, 3, 0.14) 50%, transparent 100%);
 }

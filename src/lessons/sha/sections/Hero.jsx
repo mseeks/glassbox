@@ -85,7 +85,9 @@ export default function Hero() {
               <button className="btn primary" onClick={() => setFlipped((f) => !f)}>
                 <Repeat size={14} /> Flip one letter (o → i)
               </button>
-              <span style={{ fontSize: 13, color: 'var(--bone-faint)', fontFamily: 'var(--mono)' }}>
+              <span
+                style={{ fontSize: 13, color: 'var(--bone-faint-fn)', fontFamily: 'var(--mono)' }}
+              >
                 a single bit of intent, a wholly different fingerprint
               </span>
             </div>
@@ -105,7 +107,7 @@ export default function Hero() {
             flexWrap: 'wrap',
             fontFamily: 'var(--mono)',
             fontSize: 12.5,
-            color: 'var(--bone-faint)',
+            color: 'var(--bone-faint-fn)',
             animationDelay: '.3s',
           }}
         >

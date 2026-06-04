@@ -42,7 +42,7 @@ function PatBuffer({ x, y }) {
           y={y - 10}
           width={cw - 2}
           height={20}
-          fill={i < 3 ? 'rgba(251,191,36,0.18)' : 'transparent'}
+          style={{ fill: i < 3 ? 'var(--cf-wash-cell)' : 'transparent' }}
           stroke="var(--border-bright)"
           strokeWidth="1"
         />

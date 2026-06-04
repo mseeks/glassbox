@@ -1,5 +1,3 @@
-import { C } from '../components/helpers.js';
-
 // The hero masthead: a decorative sonar-sweep scope (CSS @keyframes, neutralized
 // under reduced motion via the lesson CSS) behind the title, signature eyebrow,
 // and a three-cell read strip framing the task / trick / catch.
@@ -9,8 +7,8 @@ export default function Masthead() {
       <svg className="vp-scope-bg" viewBox="0 0 100 100" aria-hidden="true">
         <defs>
           <linearGradient id="mastWedge" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor={C.ping} stopOpacity="0.0" />
-            <stop offset="100%" stopColor={C.ping} stopOpacity="0.28" />
+            <stop offset="0%" stopOpacity="0.0" style={{ stopColor: 'var(--ping)' }} />
+            <stop offset="100%" stopOpacity="0.28" style={{ stopColor: 'var(--ping)' }} />
           </linearGradient>
         </defs>
         {[16, 28, 40, 48].map((r) => (
@@ -20,12 +18,12 @@ export default function Masthead() {
             cy="50"
             r={r}
             fill="none"
-            stroke="rgba(63,224,198,0.16)"
             strokeWidth="0.2"
+            style={{ stroke: 'var(--grid)' }}
           />
         ))}
-        <line x1="50" y1="2" x2="50" y2="98" stroke="rgba(63,224,198,0.12)" strokeWidth="0.2" />
-        <line x1="2" y1="50" x2="98" y2="50" stroke="rgba(63,224,198,0.12)" strokeWidth="0.2" />
+        <line x1="50" y1="2" x2="50" y2="98" strokeWidth="0.2" style={{ stroke: 'var(--grid)' }} />
+        <line x1="2" y1="50" x2="98" y2="50" strokeWidth="0.2" style={{ stroke: 'var(--grid)' }} />
         <g className="vp-sweep">
           <path d="M50 50 L50 4 A46 46 0 0 1 82 18 Z" fill="url(#mastWedge)" />
         </g>
@@ -35,10 +33,10 @@ export default function Masthead() {
           cy="50"
           r="2"
           fill="none"
-          stroke={C.ping}
           strokeWidth="0.5"
+          style={{ stroke: 'var(--ping)' }}
         />
-        <circle cx="50" cy="50" r="1.4" fill={C.amber} />
+        <circle cx="50" cy="50" r="1.4" style={{ fill: 'var(--amber)' }} />
         {[
           [34, 30],
           [70, 40],
@@ -46,7 +44,14 @@ export default function Masthead() {
           [28, 64],
           [78, 66],
         ].map((p, i) => (
-          <circle key={i} cx={p[0]} cy={p[1]} r="1.1" fill={C.ping} opacity="0.7" />
+          <circle
+            key={i}
+            cx={p[0]}
+            cy={p[1]}
+            r="1.1"
+            opacity="0.7"
+            style={{ fill: 'var(--ping)' }}
+          />
         ))}
       </svg>
 
@@ -88,7 +93,10 @@ export default function Masthead() {
           </div>
         </div>
 
-        <p className="vp-prose" style={{ marginTop: 30, maxWidth: '60ch', color: '#cfdedb' }}>
+        <p
+          className="vp-prose"
+          style={{ marginTop: 30, maxWidth: '60ch', color: 'var(--vp-prose-ink)' }}
+        >
           What follows is a working instrument, not a slideshow. Every ring, every prune, and every
           counter you&apos;ll see is produced by a real vantage-point tree running in your browser.
           Nothing is faked. Move through the seven panels in order, each one adding a single idea on

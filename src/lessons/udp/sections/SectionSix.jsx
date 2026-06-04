@@ -60,7 +60,7 @@ const ProtocolLane = ({
         <h3 className="udp-display" style={{ fontSize: 30, color, margin: 0 }}>
           {name}
         </h3>
-        <span className="udp-mono" style={{ fontSize: 11, color: 'var(--ink-faint)' }}>
+        <span className="udp-mono" style={{ fontSize: 11, color: 'var(--ink-faint-fn)' }}>
           {delivered.length} / {total - (showStall ? 0 : 1)}
         </span>
       </div>
@@ -81,7 +81,7 @@ const ProtocolLane = ({
 
           let bg = 'var(--surface-2)';
           let bd = 'var(--line)';
-          let fg = 'var(--ink-faint)';
+          let fg = 'var(--ink-faint-fn)';
           let label = String(n);
           let stalled = false;
 
@@ -168,7 +168,7 @@ const ProtocolLane = ({
           gap: 6,
           fontSize: 11,
           fontFamily: 'JetBrains Mono',
-          color: 'var(--ink-faint)',
+          color: 'var(--ink-faint-fn)',
         }}
       >
         {showStall ? (
@@ -337,7 +337,7 @@ export const SectionSix = () => {
                 className="udp-mono"
                 style={{
                   fontSize: 10,
-                  color: 'var(--ink-faint)',
+                  color: 'var(--ink-faint-fn)',
                   marginTop: 4,
                   textAlign: 'right',
                 }}

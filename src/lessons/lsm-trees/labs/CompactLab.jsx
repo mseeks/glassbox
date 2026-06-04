@@ -48,17 +48,17 @@ const Panel = ({ title, sub, data, ra, wa, waColor, raColor }) => {
                 gap: 3,
                 alignItems: 'center',
                 minHeight: 24,
-                background: '#0a0805',
+                background: 'var(--lsm-well)',
                 padding: 4,
                 border: `1px solid ${ring ? 'var(--gold)' : 'var(--rule-soft)'}`,
-                boxShadow: ring ? '0 0 14px rgba(227,170,51,0.5)' : 'none',
+                boxShadow: ring ? '0 0 14px var(--glow-gold)' : 'none',
                 transition: 'box-shadow 0.3s, border-color 0.3s',
               }}
             >
               {data.L[i].length === 0 && (
                 <span
                   className="m"
-                  style={{ fontSize: 9, color: 'var(--ink-faint)', paddingLeft: 4 }}
+                  style={{ fontSize: 9, color: 'var(--lsm-well-ink)', paddingLeft: 4 }}
                 >
                   ·
                 </span>
@@ -70,7 +70,7 @@ const Panel = ({ title, sub, data, ra, wa, waColor, raColor }) => {
                     width: Math.max(12, Math.min(f.size * 7, 140)),
                     height: 15,
                     background: STRATA[i + 1],
-                    border: '1px solid rgba(0,0,0,0.4)',
+                    border: '1px solid var(--lsm-cell-line)',
                     transformOrigin: 'center',
                     animation: 'pop 0.4s ease-out',
                   }}
@@ -84,7 +84,7 @@ const Panel = ({ title, sub, data, ra, wa, waColor, raColor }) => {
         style={{
           marginTop: 10,
           padding: '9px 11px',
-          background: 'var(--paper-3)',
+          background: 'var(--paper)',
           border: '1px solid var(--rule-soft)',
         }}
       >
@@ -204,7 +204,7 @@ export default function CompactLab() {
           style={{
             marginTop: 16,
             padding: '12px 15px',
-            background: 'rgba(227,170,51,0.09)',
+            background: 'var(--tint-gold)',
             borderLeft: '3px solid var(--gold)',
             fontStyle: 'italic',
             fontFamily: 'Vollkorn',

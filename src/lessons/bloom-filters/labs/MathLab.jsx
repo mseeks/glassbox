@@ -57,7 +57,7 @@ export function MathLab() {
             style={{
               fontSize: '0.7rem',
               letterSpacing: '0.25em',
-              color: 'rgba(196, 181, 253, 0.7)',
+              color: 'var(--bf-violet-eyebrow)',
               textTransform: 'uppercase',
             }}
           >
@@ -65,7 +65,7 @@ export function MathLab() {
           </div>
           <div
             className="bf-display"
-            style={{ fontSize: '1.85rem', color: '#f5e9d3', marginTop: '0.3rem' }}
+            style={{ fontSize: '1.85rem', color: 'var(--bf-ink-head)', marginTop: '0.3rem' }}
           >
             The Math Lab
           </div>
@@ -126,19 +126,22 @@ export function MathLab() {
               <div className="flex items-center gap-3">
                 <label
                   className="bf-ui flex items-center gap-1.5"
-                  style={{ fontSize: '0.72rem', color: '#a89e8a', cursor: 'pointer' }}
+                  style={{ fontSize: '0.72rem', color: 'var(--bf-ink-muted)', cursor: 'pointer' }}
                 >
                   <input
                     type="checkbox"
                     checked={autoK}
                     onChange={(e) => setAutoK(e.target.checked)}
-                    style={{ accentColor: '#c4b5fd', cursor: 'pointer' }}
+                    style={{ accentColor: 'var(--bf-violet)', cursor: 'pointer' }}
                   />
                   use k*
                 </label>
                 <span
                   className="bf-mono"
-                  style={{ fontSize: '0.92rem', color: autoK ? '#5eead4' : '#ddd6fe' }}
+                  style={{
+                    fontSize: '0.92rem',
+                    color: autoK ? 'var(--bf-teal-ink)' : 'var(--bf-violet-ink)',
+                  }}
                 >
                   {effectiveK}
                 </span>
@@ -171,10 +174,7 @@ export function MathLab() {
           </div>
 
           {/* Outputs */}
-          <div
-            className="bf-panel"
-            style={{ padding: '1rem', background: 'rgba(10, 10, 15, 0.4)' }}
-          >
+          <div className="bf-panel" style={{ padding: '1rem', background: 'var(--bf-well-soft)' }}>
             <div className="flex justify-between items-baseline mb-3">
               <span
                 className="bf-ui bf-mark-muted"
@@ -184,7 +184,7 @@ export function MathLab() {
               </span>
               <span
                 className="bf-display"
-                style={{ fontSize: '1.7rem', color: '#c4b5fd', lineHeight: 1 }}
+                style={{ fontSize: '1.7rem', color: 'var(--bf-violet-ink)', lineHeight: 1 }}
               >
                 {(fprAtCurrentK * 100).toFixed(
                   fprAtCurrentK < 0.001 ? 4 : fprAtCurrentK < 0.01 ? 3 : 2,
@@ -226,9 +226,9 @@ export function MathLab() {
             style={{
               width: '100%',
               height: 'auto',
-              background: 'rgba(10, 10, 15, 0.5)',
+              background: 'var(--bf-well-deep)',
               borderRadius: '3px',
-              border: '1px solid rgba(232, 222, 200, 0.06)',
+              border: '1px solid var(--bf-line-soft)',
             }}
           >
             {/* Grid */}
@@ -241,14 +241,14 @@ export function MathLab() {
                     y1={y}
                     x2={W - PAD_R}
                     y2={y}
-                    stroke="rgba(232, 222, 200, 0.06)"
+                    style={{ stroke: 'var(--bf-line-soft)' }}
                     strokeWidth="0.5"
                   />
                   <text
                     x={PAD_L - 6}
                     y={y + 3}
                     fontSize="9"
-                    fill="#a89e8a"
+                    style={{ fill: 'var(--bf-ink-muted)' }}
                     textAnchor="end"
                     fontFamily="JetBrains Mono"
                   >
@@ -267,14 +267,14 @@ export function MathLab() {
                   y1={PAD_T}
                   x2={xScale(kk)}
                   y2={H - PAD_B}
-                  stroke="rgba(232, 222, 200, 0.06)"
+                  style={{ stroke: 'var(--bf-line-soft)' }}
                   strokeWidth="0.5"
                 />
                 <text
                   x={xScale(kk)}
                   y={H - PAD_B + 14}
                   fontSize="9"
-                  fill="#a89e8a"
+                  style={{ fill: 'var(--bf-ink-muted)' }}
                   textAnchor="middle"
                   fontFamily="JetBrains Mono"
                 >
@@ -285,7 +285,7 @@ export function MathLab() {
             {/* Curve */}
             <path
               d={pathD}
-              stroke="#c4b5fd"
+              style={{ stroke: 'var(--bf-violet)' }}
               strokeWidth="1.75"
               fill="none"
               strokeLinejoin="round"
@@ -297,7 +297,7 @@ export function MathLab() {
               y1={PAD_T}
               x2={xScale(kStar)}
               y2={H - PAD_B}
-              stroke="#5eead4"
+              style={{ stroke: 'var(--bf-teal-ink)' }}
               strokeWidth="1"
               strokeDasharray="3 3"
               opacity="0.55"
@@ -306,15 +306,14 @@ export function MathLab() {
               cx={xScale(kStar)}
               cy={yScale(fprAtOptimal)}
               r="4.5"
-              fill="#5eead4"
-              stroke="#0a0a0f"
+              style={{ fill: 'var(--bf-teal-ink)', stroke: 'var(--bf-marker-edge)' }}
               strokeWidth="1.5"
             />
             <text
               x={xScale(kStar) + 7}
               y={yScale(fprAtOptimal) - 8}
               fontSize="10"
-              fill="#5eead4"
+              style={{ fill: 'var(--bf-teal-ink)' }}
               fontFamily="Inter Tight"
               fontWeight="600"
             >
@@ -327,15 +326,14 @@ export function MathLab() {
                   cx={xScale(effectiveK)}
                   cy={yScale(fprAtCurrentK)}
                   r="4.5"
-                  fill="#c4b5fd"
-                  stroke="#0a0a0f"
+                  style={{ fill: 'var(--bf-violet)', stroke: 'var(--bf-marker-edge)' }}
                   strokeWidth="1.5"
                 />
                 <text
                   x={xScale(effectiveK)}
                   y={yScale(fprAtCurrentK) + 18}
                   fontSize="10"
-                  fill="#ddd6fe"
+                  style={{ fill: 'var(--bf-violet-ink)' }}
                   fontFamily="Inter Tight"
                   fontWeight="600"
                   textAnchor="middle"
@@ -349,7 +347,7 @@ export function MathLab() {
               x={W / 2}
               y={H - 4}
               fontSize="10"
-              fill="#a89e8a"
+              style={{ fill: 'var(--bf-ink-muted)' }}
               textAnchor="middle"
               fontFamily="Inter Tight"
               letterSpacing="0.08em"
@@ -360,7 +358,7 @@ export function MathLab() {
               x={10}
               y={H / 2}
               fontSize="10"
-              fill="#a89e8a"
+              style={{ fill: 'var(--bf-ink-muted)' }}
               textAnchor="middle"
               fontFamily="Inter Tight"
               letterSpacing="0.08em"
@@ -389,7 +387,12 @@ export function MathLab() {
                 <div
                   key={r.fpr}
                   className="flex justify-between"
-                  style={{ color: Math.abs(r.mn - bitsPerEl) < 0.5 ? '#ddd6fe' : '#a89e8a' }}
+                  style={{
+                    color:
+                      Math.abs(r.mn - bitsPerEl) < 0.5
+                        ? 'var(--bf-violet-ink)'
+                        : 'var(--bf-ink-muted)',
+                  }}
                 >
                   <span>{(r.fpr * 100).toFixed(r.fpr < 0.001 ? 4 : 2)}% FPR</span>
                   <span>

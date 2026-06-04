@@ -94,9 +94,9 @@ export function QuorumLab() {
                     r="11"
                     fill={
                       inBoth
-                        ? 'rgba(196, 181, 253, 0.15)'
+                        ? 'var(--cap-node-quorum)'
                         : inWrite || inRead
-                          ? 'rgba(255,255,255,0.04)'
+                          ? 'var(--cap-node-sheen)'
                           : 'var(--surface)'
                     }
                     stroke={inBoth ? 'var(--violet)' : 'var(--border-bright)'}

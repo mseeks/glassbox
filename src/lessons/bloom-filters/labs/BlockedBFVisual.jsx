@@ -65,7 +65,7 @@ export function BlockedBFVisual() {
         gridTemplateRows: `repeat(${LINES}, 1fr)`,
         gap: '6px',
         padding: '0.75rem',
-        background: 'rgba(10, 10, 15, 0.45)',
+        background: 'var(--bf-well)',
         borderRadius: '3px',
       }}
     >
@@ -80,9 +80,9 @@ export function BlockedBFVisual() {
               alignItems: 'center',
               gap: '8px',
               padding: '4px 6px',
-              background: isBlock ? 'rgba(94, 234, 212, 0.08)' : 'transparent',
+              background: isBlock ? 'var(--bf-teal-fill)' : 'transparent',
               borderRadius: '2px',
-              border: `1px solid ${lineHit ? 'rgba(251, 113, 133, 0.4)' : isBlock ? 'rgba(94, 234, 212, 0.3)' : 'transparent'}`,
+              border: `1px solid ${lineHit ? 'var(--bf-rose-line)' : isBlock ? 'var(--bf-teal-line)' : 'transparent'}`,
               transition: 'all 240ms ease',
             }}
           >
@@ -90,9 +90,9 @@ export function BlockedBFVisual() {
               className="bf-mono"
               style={{
                 fontSize: '0.62rem',
-                color: lineHit ? '#fda4af' : '#a89e8a',
+                color: lineHit ? 'var(--bf-rose-ink)' : 'var(--bf-ink-muted)',
                 minWidth: '1.5rem',
-                opacity: 0.7,
+                opacity: 0.82,
               }}
             >
               L{lineIdx}
@@ -113,10 +113,10 @@ export function BlockedBFVisual() {
                     key={j}
                     style={{
                       aspectRatio: '1 / 1',
-                      background: filterBits[idx] ? '#c4b5fd' : '#1a1a24',
-                      border: `1px solid ${isHit ? '#5eead4' : filterBits[idx] ? 'rgba(196, 181, 253, 0.4)' : 'rgba(232, 222, 200, 0.08)'}`,
+                      background: filterBits[idx] ? 'var(--bf-violet)' : 'var(--bf-cell-off)',
+                      border: `1px solid ${isHit ? 'var(--bf-teal-ink)' : filterBits[idx] ? 'var(--bf-violet-line-4)' : 'var(--bf-line)'}`,
                       borderRadius: '2px',
-                      boxShadow: isHit ? '0 0 8px 2px rgba(94, 234, 212, 0.5)' : 'none',
+                      boxShadow: isHit ? '0 0 8px 2px var(--bf-teal-glow)' : 'none',
                       transition: 'all 240ms ease',
                     }}
                   />
@@ -127,7 +127,7 @@ export function BlockedBFVisual() {
               className="bf-mono"
               style={{
                 fontSize: '0.62rem',
-                color: lineHit ? '#fda4af' : 'transparent',
+                color: lineHit ? 'var(--bf-rose-ink)' : 'transparent',
                 minWidth: '4.5rem',
               }}
             >
@@ -148,7 +148,7 @@ export function BlockedBFVisual() {
             style={{
               fontSize: '0.7rem',
               letterSpacing: '0.25em',
-              color: 'rgba(196, 181, 253, 0.7)',
+              color: 'var(--bf-violet-eyebrow)',
               textTransform: 'uppercase',
             }}
           >
@@ -156,7 +156,7 @@ export function BlockedBFVisual() {
           </div>
           <div
             className="bf-display"
-            style={{ fontSize: '1.5rem', color: '#f5e9d3', marginTop: '0.3rem' }}
+            style={{ fontSize: '1.5rem', color: 'var(--bf-ink-head)', marginTop: '0.3rem' }}
           >
             One cache miss, not k
           </div>
@@ -190,7 +190,7 @@ export function BlockedBFVisual() {
               className="bf-ui"
               style={{
                 fontSize: '0.75rem',
-                color: '#fda4af',
+                color: 'var(--bf-rose-ink)',
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
               }}
@@ -219,7 +219,7 @@ export function BlockedBFVisual() {
               className="bf-ui"
               style={{
                 fontSize: '0.75rem',
-                color: '#5eead4',
+                color: 'var(--bf-teal-ink)',
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
               }}

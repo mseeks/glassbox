@@ -1,32 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Libre+Franklin:wght@300;400;500;600;700&display=swap');
 
 .bt-root {
-  --paper: #e8e2d2;
-  --paper-2: #ded6c2;
-  --card: #f4efe2;
-  --card-2: #ebe4d3;
+  /* Warm linen card-stock, not flat beige: the ground carries a faint manila
+     warmth and the shadows go a shade cooler, so it reads as aged paper. The
+     ink ramp is three legible tiers of warm sepia — every tier clears AA on the
+     paper it sits on (ink-3 was retuned up from #938778 so readout labels and
+     footnotes stop dropping below 4.5:1). */
+  --paper: #e9e2d0;
+  --paper-2: #ddd4be;
+  --card: #f5f0e3;
+  --card-2: #ece5d3;
   --ink: #2a241d;
-  --ink-2: #6b6053;
-  --ink-3: #938778;
+  --ink-2: #5b5244;
+  --ink-3: #6c6354;
   --oak: #5c3f27;
   --oak-2: #79573a;
   --oak-deep: #4a3220;
-  --blue: #1e4f62;
+  --blue: #1c4d60;
   --blue-2: #2c748c;
-  --blue-wash: rgba(30, 79, 98, 0.1);
-  --stamp: #b23728;
-  --stamp-2: #c9543f;
-  --stamp-wash: rgba(178, 55, 40, 0.1);
-  --brass: #9c7a35;
-  --brass-2: #b89243;
-  --rule: rgba(42, 36, 29, 0.16);
-  --rule-2: rgba(42, 36, 29, 0.3);
+  --blue-wash: rgba(28, 77, 96, 0.1);
+  --stamp: #b13627;
+  --stamp-2: #bd4330;
+  --stamp-wash: rgba(177, 54, 39, 0.1);
+  /* brass deepened from #9c7a35 so the kit callout label (small text on a card
+     ground) clears AA; brass-2 stays the brighter highlight stop (lamplit
+     hardware) for the slider end + knob radial */
+  --brass: #816225;
+  --brass-2: #b48c3e;
+  --rule: rgba(42, 36, 29, 0.17);
+  --rule-2: rgba(42, 36, 29, 0.31);
+
+  /* tokens for colors also painted inline in JSX (SVG cell labels, chip
+     border tints) — defined in both modes so [data-theme] can flip them */
+  --bt-on-accent: #fff;
+  --bt-chip-stamp-border: rgba(177, 54, 39, 0.4);
+  --bt-chip-blue-border: rgba(28, 77, 96, 0.4);
 
   /* lesson-kit token contract — maps the kit to this light card-catalog palette.
      Only the Callout is adopted from the kit (see components/Callout.jsx); the
      bt-read/bt-chip/bt-slider widgets stay bespoke. */
   --lk-accent: var(--brass);
-  --lk-accent-tint: rgba(156, 122, 53, 0.08);
+  --lk-accent-tint: rgba(129, 98, 37, 0.1);
   --lk-ink: var(--ink);
   --lk-ink-dim: var(--ink-2);
   --lk-ink-faint: var(--ink-3);
@@ -39,7 +53,16 @@
   --lk-callout-body-size: 14.5px;
   --lk-callout-body-color: var(--ink);
 
-  background: var(--paper);
+  /* atmosphere: a wash of warm reading-lamp light pooling from the top and a
+     soft cooler settling at the foot, so the cream reads as a lit page on an
+     oak desk rather than a flat fill. Flipped in dark to a lamplit pool over
+     near-black. */
+  --bt-glow-warm: rgba(214, 180, 120, 0.22);
+  --bt-glow-edge: rgba(96, 78, 52, 0.07);
+  background:
+    radial-gradient(120% 70% at 50% -8%, var(--bt-glow-warm), transparent 60%),
+    radial-gradient(125% 80% at 50% 112%, var(--bt-glow-edge), transparent 55%), var(--paper);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: 'Libre Franklin', system-ui, sans-serif;
   font-weight: 400;
@@ -59,14 +82,20 @@
   font-family: var(--font-mono);
 }
 
-/* paper grain + faint horizontal rule texture, like aged card stock */
+/* paper grain + faint horizontal ruling, like aged ruled card stock: a fine
+   fractal speckle over a whisper of sepia catalog-card lines */
 .bt-grain {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 1;
   opacity: 0.55;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  background-image:
+    repeating-linear-gradient(
+      var(--bt-rule-line, rgba(74, 50, 32, 0.05)) 0 1px,
+      transparent 1px 29px
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
   mix-blend-mode: multiply;
 }
 .bt-progress {
@@ -377,12 +406,12 @@
 }
 .bt-chip-blue {
   color: var(--blue);
-  border-color: rgba(30, 79, 98, 0.4);
+  border-color: var(--bt-chip-blue-border);
   background: var(--blue-wash);
 }
 .bt-chip-stamp {
   color: var(--stamp);
-  border-color: rgba(178, 55, 40, 0.4);
+  border-color: var(--bt-chip-stamp-border);
   background: var(--stamp-wash);
 }
 .bt-chip-ink {
@@ -501,6 +530,7 @@
   transform: translateY(-7px);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 0 14px -5px var(--blue-wash),
     0 10px 18px -8px rgba(42, 36, 29, 0.6);
 }
 .bt-drawer-label {
@@ -544,4 +574,136 @@
   .bt-grid-2 {
     grid-template-columns: 1fr !important;
   }
+}
+
+/* ─── Dark theme — complementary to the light card-catalog default ───
+   The reading room after hours: warm near-black drawers, lamplit oak, and
+   petrol-blue guide tabs glowing under brass. Nearly the whole design cascades
+   from the palette tokens below; the rules after them only retune the
+   hardcoded literals (gradient stops, white insets, paper-grain blend, and the
+   drawer hardware) that don't flow through a token. */
+[data-theme='dark'] .bt-root {
+  /* The reading room after hours. The drawers go warm near-black, the oak is
+     lamplit (lifted a step so the guide-tab text and wood-grain read as wood,
+     not mud), and ink-3 is raised to a legible-faint sepia so readout labels
+     and footnotes clear AA. Petrol-blue keeps its glow as the signature accent;
+     brass-warm hardware catches the lamp. */
+  --paper: #1d1812;
+  --paper-2: #14110b;
+  --card: #2c271d;
+  --card-2: #352e22;
+  --ink: #efe6d4;
+  --ink-2: #b8ad96;
+  --ink-3: #9c9177;
+  --oak: #b58f62;
+  --oak-2: #cea273;
+  --oak-deep: #6f4f31;
+  --blue: #5fb4d6;
+  --blue-2: #8ccdea;
+  --blue-wash: rgba(95, 180, 214, 0.17);
+  --stamp: #e07a5f;
+  --stamp-2: #ee977e;
+  --stamp-wash: rgba(224, 122, 95, 0.17);
+  --brass: #cda44d;
+  --brass-2: #e2bf63;
+  --rule: rgba(239, 230, 212, 0.16);
+  --rule-2: rgba(239, 230, 212, 0.31);
+
+  /* dark ink reads better than white on the lightened accent fills; chip
+     border tints track the retuned petrol + stamp hues */
+  --bt-on-accent: #241710;
+  --bt-chip-stamp-border: rgba(224, 122, 95, 0.46);
+  --bt-chip-blue-border: rgba(95, 180, 214, 0.46);
+
+  --lk-accent-tint: rgba(205, 164, 77, 0.15);
+
+  /* a pool of lamplight from above warms the near-black; the foot settles back
+     into shadow. The fixed warm tint mirrors the light mode's reading lamp. */
+  --bt-glow-warm: rgba(214, 158, 86, 0.1);
+  --bt-glow-edge: rgba(0, 0, 0, 0.32);
+  --bt-rule-line: rgba(239, 230, 212, 0.035);
+}
+
+/* brighten the strong-text literal that doesn't read off a token */
+[data-theme='dark'] .bt-root .bt-p strong,
+[data-theme='dark'] .bt-root .bt-lead strong {
+  color: #fbf3e2;
+}
+
+/* paper grain: multiply vanishes on a dark ground, so lift it to screen and
+   dial it back to a faint phosphor speckle */
+[data-theme='dark'] .bt-root .bt-grain {
+  opacity: 0.16;
+  mix-blend-mode: screen;
+}
+
+/* index-card surface: kill the bright top-edge inset, deepen the cast shadow */
+[data-theme='dark'] .bt-root .bt-card {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 2px 7px rgba(0, 0, 0, 0.4),
+    0 14px 30px -22px rgba(0, 0, 0, 0.8);
+}
+[data-theme='dark'] .bt-root .bt-lab {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.42),
+    0 22px 44px -30px rgba(0, 0, 0, 0.85);
+}
+[data-theme='dark'] .bt-root .bt-lab-tab {
+  color: #211d17;
+  box-shadow: 0 3px 8px -3px rgba(0, 0, 0, 0.7);
+}
+
+/* button label colors: keep crisp text on the now-lighter accent fills */
+[data-theme='dark'] .bt-root .bt-btn-stamp {
+  color: #2a1a13;
+}
+[data-theme='dark'] .bt-root .bt-btn-blue {
+  color: #0f2630;
+}
+
+[data-theme='dark'] .bt-root .bt-slider::-webkit-slider-thumb {
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.6);
+}
+
+/* (chip tint borders track the retuned petrol + stamp hues automatically: the
+   base .bt-chip rules read --bt-chip-*-border, which the token block above
+   redefines for dark) */
+
+/* leaf-key hit + median/cmp cells: dark ink reads better than white on the
+   lighter accents */
+[data-theme='dark'] .bt-root .bt-leafkey.hit {
+  color: #2a1a13;
+}
+
+/* hero cabinet: a darker oak carcass with brass-warm drawers */
+[data-theme='dark'] .bt-root .bt-cabinet {
+  box-shadow:
+    0 3px 0 var(--oak-deep),
+    0 30px 60px -30px rgba(0, 0, 0, 0.9),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+[data-theme='dark'] .bt-root .bt-drawer {
+  background: linear-gradient(180deg, #936e45, #6f5234);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 214, 0.2),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.45);
+}
+/* the pulled drawer catches the reading lamp: a warm top sheen and a soft
+   petrol halo, echoing the glowing guide tabs */
+[data-theme='dark'] .bt-root .bt-drawer.open {
+  background: linear-gradient(180deg, #a47b4d, #7a5a39);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 214, 0.3),
+    0 0 16px -4px var(--blue-wash),
+    0 10px 18px -8px rgba(0, 0, 0, 0.7);
+}
+[data-theme='dark'] .bt-root .bt-drawer-label {
+  color: #2c2014;
+  background: #d8c39a;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.28);
+}
+[data-theme='dark'] .bt-root .bt-knob {
+  background: radial-gradient(circle at 35% 30%, var(--brass-2), #4a3520);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }

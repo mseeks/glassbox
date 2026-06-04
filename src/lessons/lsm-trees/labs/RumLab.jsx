@@ -68,8 +68,8 @@ export default function RumLab() {
           >
             <defs>
               <radialGradient id="rumglow" cx="50%" cy="55%" r="55%">
-                <stop offset="0%" stopColor="rgba(227,170,51,0.16)" />
-                <stop offset="100%" stopColor="rgba(227,170,51,0)" />
+                <stop offset="0%" stopColor="var(--tint-gold)" />
+                <stop offset="100%" stopColor="transparent" />
               </radialGradient>
             </defs>
             <polygon
@@ -78,7 +78,7 @@ export default function RumLab() {
             />
             <polygon
               points={`${A.x * 100},${A.y * 100} ${B.x * 100},${B.y * 100} ${C.x * 100},${C.y * 100}`}
-              fill="rgba(236,214,160,0.05)"
+              style={{ fill: 'var(--lsm-sheen-soft)' }}
               stroke="var(--edge)"
               strokeWidth="0.5"
             />
@@ -125,7 +125,7 @@ export default function RumLab() {
                 </text>
               </g>
             ))}
-            <circle cx={pos.x * 100} cy={pos.y * 100} r="6" fill="rgba(227,88,44,0.18)" />
+            <circle cx={pos.x * 100} cy={pos.y * 100} r="6" fill="var(--glow-writ-soft)" />
             <circle
               cx={pos.x * 100}
               cy={pos.y * 100}

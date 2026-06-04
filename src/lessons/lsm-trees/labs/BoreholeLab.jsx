@@ -91,7 +91,7 @@ export default function BoreholeLab() {
                   height: 14 + shaftH,
                   background: 'linear-gradient(180deg, var(--instr-3), var(--instr))',
                   transition: 'height 0.5s cubic-bezier(0.5,0,0.2,1)',
-                  boxShadow: '0 0 10px rgba(84,180,200,0.6)',
+                  boxShadow: '0 0 10px var(--glow-instr)',
                 }}
               >
                 <Pickaxe
@@ -101,7 +101,7 @@ export default function BoreholeLab() {
                     position: 'absolute',
                     bottom: -9,
                     left: -7,
-                    filter: 'drop-shadow(0 0 4px rgba(84,180,200,0.7))',
+                    filter: 'drop-shadow(0 0 4px var(--glow-instr))',
                   }}
                 />
               </div>

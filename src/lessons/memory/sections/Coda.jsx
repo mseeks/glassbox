@@ -17,7 +17,7 @@ export default function Coda() {
             <br />
             It just moved up the stack.
           </h2>
-          <p style={{ color: '#cdc7ba' }}>
+          <p style={{ color: 'var(--mw-body)' }}>
             When memory was scarce, genius went into fitting a whole world into a shoebox. Now that
             it is vast, genius goes into filling the ocean instead. We hold an entire artificial
             mind in memory at once. Same instinct. Four more orders of magnitude. The ring you wove

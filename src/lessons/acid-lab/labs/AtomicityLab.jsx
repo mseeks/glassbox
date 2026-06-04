@@ -123,8 +123,8 @@ function ScenarioTabs({ scenarioId, onChange }) {
           display: 'grid',
           gridTemplateColumns: `repeat(${ATOMICITY_SCENARIOS.length}, minmax(0, 1fr))`,
           gap: 4,
-          background: 'rgba(20, 20, 28, 0.5)',
-          border: '1px solid rgba(232, 222, 200, 0.06)',
+          background: 'var(--iso-inset)',
+          border: '1px solid rgba(var(--iso-ink-rgb), 0.06)',
           borderRadius: 10,
           padding: 4,
         }}
@@ -138,8 +138,8 @@ function ScenarioTabs({ scenarioId, onChange }) {
               className="iso-ui"
               style={{
                 padding: '12px 10px',
-                background: active ? '#1a1a24' : 'transparent',
-                color: active ? '#e8dec8' : 'rgba(232, 222, 200, 0.5)',
+                background: active ? 'var(--iso-tab-active)' : 'transparent',
+                color: active ? 'var(--ink)' : 'rgba(var(--iso-ink-rgb), 0.72)',
                 border: 'none',
                 borderRadius: 8,
                 cursor: 'pointer',
@@ -149,10 +149,10 @@ function ScenarioTabs({ scenarioId, onChange }) {
                 overflow: 'hidden',
               }}
               onMouseEnter={(e) => {
-                if (!active) e.currentTarget.style.color = '#e8dec8';
+                if (!active) e.currentTarget.style.color = 'var(--ink)';
               }}
               onMouseLeave={(e) => {
-                if (!active) e.currentTarget.style.color = 'rgba(232, 222, 200, 0.5)';
+                if (!active) e.currentTarget.style.color = 'rgba(var(--iso-ink-rgb), 0.72)';
               }}
             >
               <div
@@ -160,7 +160,7 @@ function ScenarioTabs({ scenarioId, onChange }) {
                   fontSize: 9,
                   letterSpacing: '0.16em',
                   textTransform: 'uppercase',
-                  color: active ? '#a78bfa' : 'rgba(232, 222, 200, 0.35)',
+                  color: active ? 'var(--iso-violet)' : 'rgba(var(--iso-ink-rgb), 0.7)',
                   marginBottom: 2,
                   fontWeight: 600,
                 }}
@@ -184,7 +184,8 @@ function ScenarioTabs({ scenarioId, onChange }) {
                     left: 0,
                     right: 0,
                     height: 2,
-                    background: 'linear-gradient(90deg, #a78bfa 0%, #f0abfc 100%)',
+                    background:
+                      'linear-gradient(90deg, var(--iso-violet) 0%, var(--iso-pink) 100%)',
                   }}
                 />
               )}
@@ -212,7 +213,7 @@ function ChapterTitle({ scenario, scenarioIdx }) {
           fontSize: 10,
           letterSpacing: '0.22em',
           textTransform: 'uppercase',
-          color: 'rgba(232, 222, 200, 0.55)',
+          color: 'rgba(var(--iso-ink-rgb), 0.78)',
           marginBottom: 8,
         }}
       >
@@ -224,7 +225,7 @@ function ChapterTitle({ scenario, scenarioIdx }) {
           fontSize: 'clamp(28px, 3.6vw, 40px)',
           fontWeight: 500,
           margin: 0,
-          color: '#e8dec8',
+          color: 'var(--ink)',
           lineHeight: 1.05,
           letterSpacing: '-0.015em',
         }}
@@ -266,41 +267,51 @@ function Stage({ step }) {
 function MemoryView({ step }) {
   const { active, crashed, recovered } = step;
 
-  let label, content, accent, accentSoft;
+  let label, content, accent, accentSoft, accentBorder;
   if (crashed) {
     label = 'in-flight (volatile)';
-    accent = '#fb7185';
-    accentSoft = 'rgba(251, 113, 133, 0.08)';
+    accent = 'var(--iso-coral)';
+    accentSoft = 'rgba(var(--iso-coral-rgb), 0.08)';
+    accentBorder = 'rgba(var(--iso-coral-rgb), 0.33)';
     content = (
-      <span className="iso-mono" style={{ fontSize: 14, color: '#fb7185', fontWeight: 500 }}>
+      <span
+        className="iso-mono"
+        style={{ fontSize: 14, color: 'var(--iso-coral)', fontWeight: 500 }}
+      >
         💥 volatile state lost
       </span>
     );
   } else if (recovered) {
     label = 'in-flight (volatile)';
-    accent = '#34d399';
-    accentSoft = 'rgba(52, 211, 153, 0.08)';
+    accent = 'var(--iso-green)';
+    accentSoft = 'rgba(var(--iso-green-rgb), 0.08)';
+    accentBorder = 'rgba(var(--iso-green-rgb), 0.33)';
     content = (
-      <span className="iso-mono" style={{ fontSize: 13, color: '#34d399', fontWeight: 500 }}>
+      <span
+        className="iso-mono"
+        style={{ fontSize: 13, color: 'var(--iso-green)', fontWeight: 500 }}
+      >
         ✓ system restarted, recovery complete
       </span>
     );
   } else if (!active) {
     label = 'in-flight (volatile)';
-    accent = 'rgba(232, 222, 200, 0.3)';
-    accentSoft = 'rgba(232, 222, 200, 0.02)';
+    accent = 'rgba(var(--iso-ink-rgb), 0.66)';
+    accentSoft = 'rgba(var(--iso-ink-rgb), 0.02)';
+    accentBorder = 'rgba(var(--iso-ink-rgb), 0.12)';
     content = (
       <span
         className="iso-body"
-        style={{ fontSize: 13, color: 'rgba(232, 222, 200, 0.55)', fontStyle: 'italic' }}
+        style={{ fontSize: 13, color: 'rgba(var(--iso-ink-rgb), 0.78)', fontStyle: 'italic' }}
       >
         no transaction in flight
       </span>
     );
   } else {
     label = 'T₁ (volatile, in memory)';
-    accent = '#fbbf24';
-    accentSoft = 'rgba(251, 191, 36, 0.06)';
+    accent = 'var(--iso-amber)';
+    accentSoft = 'rgba(var(--iso-amber-rgb), 0.06)';
+    accentBorder = 'rgba(var(--iso-amber-rgb), 0.33)';
     const writes = Object.entries(active.writes);
     const writesStr =
       writes.length > 0 ? writes.map(([k, v]) => `${k}=${v}`).join(', ') : '(no writes yet)';
@@ -311,13 +322,13 @@ function MemoryView({ step }) {
     };
     content = (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-        <span className="iso-mono" style={{ fontSize: 13, color: '#e8dec8' }}>
-          <span style={{ color: 'rgba(232, 222, 200, 0.5)' }}>writes pending:</span>{' '}
-          <span style={{ color: '#fbbf24', fontWeight: 600 }}>{writesStr}</span>
+        <span className="iso-mono" style={{ fontSize: 13, color: 'var(--ink)' }}>
+          <span style={{ color: 'rgba(var(--iso-ink-rgb), 0.72)' }}>writes pending:</span>{' '}
+          <span style={{ color: 'var(--iso-amber)', fontWeight: 600 }}>{writesStr}</span>
         </span>
-        <span className="iso-ui" style={{ fontSize: 11, color: 'rgba(232, 222, 200, 0.55)' }}>
+        <span className="iso-ui" style={{ fontSize: 11, color: 'rgba(var(--iso-ink-rgb), 0.78)' }}>
           status:{' '}
-          <span style={{ color: '#fbbf24', fontWeight: 500 }}>
+          <span style={{ color: 'var(--iso-amber)', fontWeight: 500 }}>
             {statusLabels[active.status] || active.status}
           </span>
         </span>
@@ -331,9 +342,7 @@ function MemoryView({ step }) {
         padding: '12px 16px',
         borderRadius: 8,
         background: accentSoft,
-        border:
-          '1px dashed ' +
-          (accent === 'rgba(232, 222, 200, 0.3)' ? 'rgba(232, 222, 200, 0.12)' : `${accent}55`),
+        border: '1px dashed ' + accentBorder,
         transition: 'all 300ms ease',
         minHeight: 72,
         display: 'flex',
@@ -342,7 +351,9 @@ function MemoryView({ step }) {
       }}
     >
       <div
-        className="iso-ui"
+        className={
+          'iso-ui' + (accent === 'rgba(var(--iso-ink-rgb), 0.66)' ? ' iso-idle-label' : '')
+        }
         style={{
           fontSize: 9,
           letterSpacing: '0.16em',
@@ -350,7 +361,7 @@ function MemoryView({ step }) {
           color: accent,
           marginBottom: 6,
           fontWeight: 600,
-          opacity: accent === 'rgba(232, 222, 200, 0.3)' ? 0.6 : 1,
+          opacity: accent === 'rgba(var(--iso-ink-rgb), 0.66)' ? 0.85 : 1,
         }}
       >
         {label}
@@ -369,8 +380,8 @@ function DiskDbView({ step }) {
       style={{
         padding: '14px 16px',
         borderRadius: 8,
-        background: 'rgba(232, 222, 200, 0.03)',
-        border: '1px solid rgba(232, 222, 200, 0.12)',
+        background: 'rgba(var(--iso-ink-rgb), 0.03)',
+        border: '1px solid rgba(var(--iso-ink-rgb), 0.12)',
         minHeight: 130,
       }}
     >
@@ -380,7 +391,7 @@ function DiskDbView({ step }) {
           fontSize: 9,
           letterSpacing: '0.16em',
           textTransform: 'uppercase',
-          color: 'rgba(232, 222, 200, 0.5)',
+          color: 'rgba(var(--iso-ink-rgb), 0.72)',
           marginBottom: 4,
           fontWeight: 600,
         }}
@@ -391,7 +402,7 @@ function DiskDbView({ step }) {
         className="iso-ui"
         style={{
           fontSize: 10,
-          color: 'rgba(232, 222, 200, 0.55)',
+          color: 'rgba(var(--iso-ink-rgb), 0.78)',
           marginBottom: 14,
           fontStyle: 'italic',
         }}
@@ -401,7 +412,10 @@ function DiskDbView({ step }) {
       <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
         {Object.entries(db).map(([k, v]) => (
           <div key={k} style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <span className="iso-mono" style={{ fontSize: 10, color: 'rgba(232, 222, 200, 0.45)' }}>
+            <span
+              className="iso-mono"
+              style={{ fontSize: 10, color: 'rgba(var(--iso-ink-rgb), 0.72)' }}
+            >
               {k}
             </span>
             <span
@@ -409,7 +423,7 @@ function DiskDbView({ step }) {
               style={{
                 fontSize: 26,
                 fontWeight: 500,
-                color: '#e8dec8',
+                color: 'var(--ink)',
                 lineHeight: 1,
                 fontVariantNumeric: 'tabular-nums',
               }}
@@ -432,8 +446,8 @@ function WalView({ step }) {
       style={{
         padding: '14px 16px',
         borderRadius: 8,
-        background: 'rgba(167, 139, 250, 0.04)',
-        border: '1px solid rgba(167, 139, 250, 0.2)',
+        background: 'rgba(var(--iso-violet-rgb), 0.04)',
+        border: '1px solid rgba(var(--iso-violet-rgb), 0.2)',
         minHeight: 130,
       }}
     >
@@ -443,7 +457,7 @@ function WalView({ step }) {
           fontSize: 9,
           letterSpacing: '0.16em',
           textTransform: 'uppercase',
-          color: '#a78bfa',
+          color: 'var(--iso-violet)',
           marginBottom: 4,
           fontWeight: 600,
         }}
@@ -454,7 +468,7 @@ function WalView({ step }) {
         className="iso-ui"
         style={{
           fontSize: 10,
-          color: 'rgba(167, 139, 250, 0.6)',
+          color: 'rgba(var(--iso-violet-rgb), 0.85)',
           marginBottom: 12,
           fontStyle: 'italic',
         }}
@@ -464,7 +478,7 @@ function WalView({ step }) {
       {wal.length === 0 ? (
         <div
           className="iso-body"
-          style={{ fontSize: 13, color: 'rgba(232, 222, 200, 0.35)', fontStyle: 'italic' }}
+          style={{ fontSize: 13, color: 'rgba(var(--iso-ink-rgb), 0.7)', fontStyle: 'italic' }}
         >
           (empty)
         </div>
@@ -490,8 +504,8 @@ function WalEntry({ entry, isLatest }) {
         gap: 10,
         padding: '4px 8px',
         borderRadius: 4,
-        background: isLatest ? 'rgba(167, 139, 250, 0.1)' : 'transparent',
-        borderLeft: '2px solid ' + (isLatest ? '#a78bfa' : 'transparent'),
+        background: isLatest ? 'rgba(var(--iso-violet-rgb), 0.1)' : 'transparent',
+        borderLeft: '2px solid ' + (isLatest ? 'var(--iso-violet)' : 'transparent'),
         transition: 'all 240ms ease',
       }}
       className={isLatest ? 'iso-tick-in' : ''}
@@ -500,7 +514,7 @@ function WalEntry({ entry, isLatest }) {
         className="iso-mono"
         style={{
           fontSize: 10,
-          color: 'rgba(232, 222, 200, 0.35)',
+          color: 'rgba(var(--iso-ink-rgb), 0.7)',
           fontVariantNumeric: 'tabular-nums',
           textAlign: 'right',
         }}
@@ -511,7 +525,7 @@ function WalEntry({ entry, isLatest }) {
         className="iso-mono"
         style={{
           fontSize: 13,
-          color: isCommit ? '#34d399' : isAbort ? '#fb7185' : '#e8dec8',
+          color: isCommit ? 'var(--iso-green)' : isAbort ? 'var(--iso-coral)' : 'var(--ink)',
           fontWeight: isCommit ? 600 : 500,
         }}
       >
@@ -522,7 +536,7 @@ function WalEntry({ entry, isLatest }) {
         ) : (
           <span style={{ letterSpacing: '0.04em' }}>{entry.type}</span>
         )}
-        <span style={{ color: 'rgba(232, 222, 200, 0.55)', marginLeft: 6, fontSize: 11 }}>
+        <span style={{ color: 'rgba(var(--iso-ink-rgb), 0.78)', marginLeft: 6, fontSize: 11 }}>
           {entry.txn}
         </span>
       </span>
@@ -533,7 +547,7 @@ function WalEntry({ entry, isLatest }) {
             fontSize: 9,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            color: '#34d399',
+            color: 'var(--iso-green)',
             fontWeight: 600,
           }}
         >
@@ -567,7 +581,7 @@ function StoryIntro({ scenario }) {
           className="iso-mono"
           style={{
             fontSize: 11,
-            color: 'rgba(232, 222, 200, 0.3)',
+            color: 'rgba(var(--iso-ink-rgb), 0.66)',
             flexShrink: 0,
             paddingTop: 6,
             minWidth: 32,
@@ -582,7 +596,7 @@ function StoryIntro({ scenario }) {
               fontSize: 9,
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
-              color: 'rgba(232, 222, 200, 0.55)',
+              color: 'rgba(var(--iso-ink-rgb), 0.78)',
               marginBottom: 8,
             }}
           >
@@ -593,7 +607,7 @@ function StoryIntro({ scenario }) {
             style={{
               fontSize: 'clamp(16px, 1.7vw, 19px)',
               lineHeight: 1.65,
-              color: 'rgba(232, 222, 200, 0.92)',
+              color: 'rgba(var(--iso-ink-rgb), 0.92)',
               margin: 0,
             }}
             dangerouslySetInnerHTML={{ __html: renderProseMarkdown(scenario.intro) }}
@@ -630,7 +644,7 @@ function StepProse({ step, scenario }) {
           className="iso-mono"
           style={{
             fontSize: 11,
-            color: 'rgba(232, 222, 200, 0.3)',
+            color: 'rgba(var(--iso-ink-rgb), 0.66)',
             flexShrink: 0,
             paddingTop: 6,
             minWidth: 32,
@@ -646,7 +660,7 @@ function StepProse({ step, scenario }) {
                 fontSize: 9,
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
-                color: isCrash ? '#fb7185' : '#34d399',
+                color: isCrash ? 'var(--iso-coral)' : 'var(--iso-green)',
                 fontWeight: 600,
                 marginBottom: 6,
               }}
@@ -659,7 +673,7 @@ function StepProse({ step, scenario }) {
             style={{
               fontSize: 'clamp(16px, 1.7vw, 19px)',
               lineHeight: 1.65,
-              color: 'rgba(232, 222, 200, 0.92)',
+              color: 'rgba(var(--iso-ink-rgb), 0.92)',
               margin: 0,
             }}
             dangerouslySetInnerHTML={{ __html: renderProseMarkdown(prose) }}
@@ -686,7 +700,7 @@ function StoryClose({ scenario }) {
           className="iso-mono"
           style={{
             fontSize: 11,
-            color: 'rgba(232, 222, 200, 0.3)',
+            color: 'rgba(var(--iso-ink-rgb), 0.66)',
             flexShrink: 0,
             paddingTop: 6,
             minWidth: 32,
@@ -701,7 +715,7 @@ function StoryClose({ scenario }) {
               fontSize: 9,
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
-              color: '#a78bfa',
+              color: 'var(--iso-violet)',
               fontWeight: 600,
               marginBottom: 8,
             }}
@@ -713,7 +727,7 @@ function StoryClose({ scenario }) {
             style={{
               fontSize: 'clamp(16px, 1.7vw, 19px)',
               lineHeight: 1.65,
-              color: 'rgba(232, 222, 200, 0.92)',
+              color: 'rgba(var(--iso-ink-rgb), 0.92)',
               margin: 0,
             }}
             dangerouslySetInnerHTML={{ __html: renderProseMarkdown(scenario.closing) }}
@@ -763,7 +777,7 @@ function ControlBar({
             background: 'none',
             border: 'none',
             cursor: hasPrev ? 'pointer' : 'not-allowed',
-            color: hasPrev ? 'rgba(232,222,200,0.7)' : 'rgba(232,222,200,0.25)',
+            color: hasPrev ? 'rgba(var(--iso-ink-rgb), 0.7)' : 'rgba(var(--iso-ink-rgb), 0.25)',
             fontSize: 13,
             padding: '8px 4px',
             display: 'inline-flex',
@@ -781,9 +795,9 @@ function ControlBar({
             padding: '8px 14px',
             borderRadius: 6,
             cursor: 'pointer',
-            background: 'rgba(232, 222, 200, 0.04)',
-            border: '1px solid rgba(232, 222, 200, 0.12)',
-            color: 'rgba(232, 222, 200, 0.85)',
+            background: 'rgba(var(--iso-ink-rgb), 0.04)',
+            border: '1px solid rgba(var(--iso-ink-rgb), 0.12)',
+            color: 'rgba(var(--iso-ink-rgb), 0.85)',
             fontSize: 12,
             fontWeight: 500,
             display: 'inline-flex',
@@ -802,9 +816,9 @@ function ControlBar({
             padding: '10px 18px',
             borderRadius: 6,
             background: hasNext
-              ? 'linear-gradient(135deg, #a78bfa 0%, #f0abfc 100%)'
-              : 'rgba(232,222,200,0.06)',
-            color: hasNext ? '#0a0a0f' : 'rgba(232,222,200,0.3)',
+              ? 'linear-gradient(135deg, var(--iso-violet) 0%, var(--iso-pink) 100%)'
+              : 'rgba(var(--iso-ink-rgb), 0.06)',
+            color: hasNext ? 'var(--iso-on-accent)' : 'rgba(var(--iso-ink-rgb), 0.66)',
             border: 'none',
             cursor: hasNext ? 'pointer' : 'not-allowed',
             fontSize: 13,
@@ -846,10 +860,13 @@ function ControlBar({
           style={{
             padding: '7px 14px',
             borderRadius: 999,
-            background: playing ? 'rgba(232, 222, 200, 0.14)' : 'rgba(167, 139, 250, 0.14)',
-            color: playing ? '#e8dec8' : '#a78bfa',
+            background: playing
+              ? 'rgba(var(--iso-ink-rgb), 0.14)'
+              : 'rgba(var(--iso-violet-rgb), 0.14)',
+            color: playing ? 'var(--ink)' : 'var(--iso-violet)',
             border:
-              '1px solid ' + (playing ? 'rgba(232, 222, 200, 0.2)' : 'rgba(167, 139, 250, 0.3)'),
+              '1px solid ' +
+              (playing ? 'rgba(var(--iso-ink-rgb), 0.2)' : 'rgba(var(--iso-violet-rgb), 0.3)'),
             cursor: 'pointer',
             fontSize: 12,
             fontWeight: 600,
@@ -881,7 +898,7 @@ function ControlBar({
               width: i === step ? 22 : 6,
               height: 6,
               borderRadius: 999,
-              background: i <= step ? '#e8dec8' : 'rgba(232, 222, 200, 0.16)',
+              background: i <= step ? 'var(--ink)' : 'rgba(var(--iso-ink-rgb), 0.16)',
               border: 'none',
               transition: 'all 280ms cubic-bezier(0.34, 1.56, 0.64, 1)',
               cursor: 'pointer',
@@ -895,7 +912,7 @@ function ControlBar({
         className="iso-ui"
         style={{
           fontSize: 11,
-          color: 'rgba(232, 222, 200, 0.45)',
+          color: 'rgba(var(--iso-ink-rgb), 0.72)',
           whiteSpace: 'nowrap',
           textAlign: 'right',
         }}

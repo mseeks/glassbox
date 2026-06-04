@@ -23,6 +23,9 @@
   --ink-dim: #8398a4;
   --ink-faint: #56697450;
   --ink-faint2: #566974;
+  /* functional micro-labels share faint2's hue but lifted to WCAG AA on the
+     darkest grounds (panel2/well/bg); decorative faint2 uses stay un-lifted */
+  --ink-faint2-fn: #738692;
 
   --cyan: #38ddcb;
   --cyan-deep: #0c6b63;
@@ -37,6 +40,10 @@
   --coral-glow: rgba(255, 107, 107, 0.14);
   --mint: #4fd99b;
   --mint-glow: rgba(79, 217, 155, 0.14);
+
+  /* surfaces/ink painted inline in JSX (mirror the CSS code/prose flips) */
+  --gx-well: #060a0e; /* near-black data well (code/byte/schema surfaces) */
+  --gx-prose-ink: #b9cad3; /* prose body ink painted inline */
 
   font-family: 'Instrument Sans', system-ui, sans-serif;
   font-weight: 400;
@@ -525,7 +532,7 @@
   font-size: 9.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink-faint2);
+  color: var(--ink-faint2-fn);
   margin-top: 6px;
 }
 
@@ -770,4 +777,103 @@
   .gx .pil-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ─── Light theme — a signal scope in daylight ───
+   The same instrument deck, now under bench light: a cool pale grey-cyan
+   panel of calibrated glass, ink readouts instead of glowing traces. Where
+   the dark mode floats neon over black, daylight prints the graticule onto
+   the panel and lets each signal settle into a deep, saturated ink. The
+   signature signal cyan is deepened so it reads as confidently on the bright
+   panel as it glowed on black; the byte colour-code keeps every meaning
+   (amber tag / violet length / lime payload / coral sin / mint verified).
+   Every body, label, and value pair was solved in OKLCH for WCAG AA on the
+   ground it actually sits on. */
+[data-theme='light'] .gx {
+  --bg: #dce5e6;
+  --bg2: #d2dde0;
+  --panel: #e6eded;
+  --panel2: #dae4e5;
+  --panel3: #cdd9db;
+  --line: #b9c6c8;
+  --line2: #9fb0b3;
+  --line3: #7e9094;
+
+  --ink: #1f292d;
+  --ink-bright: #0d1417;
+  --ink-dim: #475459;
+  --ink-faint: #4d606740;
+  --ink-faint2: #4d6067;
+  /* in daylight the base faint2 already clears AA on its grounds — the
+     functional label needs no lift here, so it tracks faint2 */
+  --ink-faint2-fn: #4d6067;
+
+  --cyan: #04574f;
+  --cyan-deep: #5fb3a8;
+  --cyan-glow: rgba(4, 87, 79, 0.12);
+  --amber: #7a4904;
+  --amber-glow: rgba(122, 73, 4, 0.11);
+  --violet: #4a3a8e;
+  --violet-glow: rgba(74, 58, 142, 0.1);
+  --lime: #3d5a0e;
+  --lime-glow: rgba(61, 90, 14, 0.12);
+  --coral: #a32424;
+  --coral-glow: rgba(163, 36, 36, 0.1);
+  --mint: #0b603d;
+  --mint-glow: rgba(11, 96, 61, 0.11);
+
+  /* inline-painted surfaces/ink, retuned for daylight (match the CSS code/prose flips) */
+  --gx-well: #eef4f3; /* pale scope vellum — the readout well */
+  --gx-prose-ink: #2a3338;
+}
+
+/* atmosphere: on black the corner glows bloomed; on the daylit panel they
+   settle into soft cool tints, and the graticule reads as a printed grid */
+[data-theme='light'] .gx::after {
+  opacity: 0.42;
+}
+[data-theme='light'] .gx-noise {
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+}
+
+/* prose body ink (hardcoded literal, off-token) */
+[data-theme='light'] .gx-prose p {
+  color: #2a3338;
+}
+
+/* dropcap keeps the deepened signal cyan via --cyan */
+
+/* code surfaces: pale scope vellum instead of near-black glass */
+[data-theme='light'] .gx-code {
+  background: #eef4f3;
+  color: #2a3338;
+}
+[data-theme='light'] .gx-input {
+  background: #eef4f3;
+}
+
+/* range track sits on lighter line; thumb ring matches the panel bg via --bg */
+
+/* callouts: retune the hardcoded borders + text for the daylit panel
+   (each text colour solved to clear AA on its own glow-tinted ground) */
+[data-theme='light'] .gx-callout.warn {
+  border-color: #d09b9b;
+  color: #8f2020;
+}
+[data-theme='light'] .gx-callout.ok {
+  border-color: #7fbb9f;
+  color: #0d5d3c;
+}
+[data-theme='light'] .gx-callout.info {
+  border-color: #7cc1b7;
+  color: #04534b;
+}
+
+/* rpc response bar/tag: amber gradient + border literals (deepened for paper) */
+[data-theme='light'] .gx .rpc-bar.am {
+  background: linear-gradient(var(--amber), #c79a52);
+}
+[data-theme='light'] .gx .rpc-msg.res .rpc-tag {
+  border-color: #b98a3c;
 }

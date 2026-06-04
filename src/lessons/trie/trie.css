@@ -6,7 +6,7 @@
   --panel: #15241e;
   --ink: #e8efe8;
   --ink-2: #a7bcb1;
-  --ink-dim: #728a7f;
+  --ink-dim: #7d958a;
   --hair: #2a3e36;
   --hair-2: #22332c;
   --clay: #e58258;
@@ -395,7 +395,12 @@
   animation: pop 0.3s ease both;
 }
 .comp .pre {
-  color: var(--ink-dim);
+  /* Matched-prefix portion of a real completion word — functional text the
+     reader must read. In dark, --ink-dim (#7d958a) lands at 4.35:1 on the comp
+     chip's vermilion-tinted ground; nudged up one OKLCH lightness step (hue
+     held) to clear AA. A literal here (not the shared --ink-dim token) so the
+     token stays faint everywhere else. Light already clears AA — see below. */
+  color: #82998f;
 }
 @keyframes pop {
   from {
@@ -666,4 +671,122 @@ hr.rule {
 .trace-toggle .ic {
   font-size: 9px;
   letter-spacing: 0;
+}
+
+/* ─── Light theme — complementary to the dark default ─── */
+/* Sea-glass chart paper: a warm, slightly green-tinted aged-atlas ground.
+   The whole SVG map + inline-styled JSX read entirely from these tokens, so
+   redefining them re-skins the rendering; literals below catch the rest. */
+[data-theme='light'] .trie-root {
+  /* Sea-glass chart paper — a pale, green-tinted cream the colour of weathered
+     atlas stock. Routes are inked in pine; landfalls flag in vermilion. Every
+     ink/route token is solved in OKLCH to hold its hue while sitting at a
+     lightness that clears WCAG AA on the exact ground it lands on. */
+  --paper: #e7e3d4;
+  --paper-2: #ddd9c7;
+  --panel: #f1eee2;
+  --ink: #1b2a24;
+  --ink-2: #41554b;
+  --ink-dim: #4f6157;
+  --hair: #c5c1ad;
+  --hair-2: #d2cebc;
+  --clay: #9d4a1b;
+  --clay-d: #943f12;
+  --slate: #2f5d97;
+  --slate-d: #234c7e;
+  --ochre: #7e590f;
+  --plum: #8c3f74;
+  --pine: #0a5d47;
+  --signal: #ad2a19;
+  --signal-soft: #f2d8d1;
+  --gold: #7a590f;
+}
+[data-theme='light'] .trie-root::before {
+  /* The chart graticule: a fine pine ruling pressed into the paper, with a
+     subtle 8px sub-grid so the sheet reads as surveyed stock rather than a
+     bare grid. Engraved (a hairline dark line + a 1px light "lift" beneath)
+     so it sits in the paper instead of floating on it. */
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 39px,
+      rgba(45, 80, 66, 0.09) 39px 40px,
+      rgba(255, 252, 240, 0.5) 40px 41px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 39px,
+      rgba(45, 80, 66, 0.09) 39px 40px,
+      rgba(255, 252, 240, 0.5) 40px 41px
+    ),
+    repeating-linear-gradient(0deg, transparent 0 7px, rgba(60, 95, 80, 0.03) 7px 8px),
+    repeating-linear-gradient(90deg, transparent 0 7px, rgba(60, 95, 80, 0.03) 7px 8px);
+  mask-image: radial-gradient(ellipse 120% 80% at 50% 0%, #000 25%, transparent 85%);
+}
+[data-theme='light'] .trie-root::after {
+  /* Light analog of the dark mode's atmosphere: the pine top-glow becomes a
+     soft sea-glass wash bleeding down from the masthead, and the dark bottom
+     vignette becomes a warm fibrous paper-edge shadow — a tint, never a smudge.
+     A faint plate-tone radial off-centre keeps the sheet from going flat. */
+  background:
+    radial-gradient(ellipse 110% 62% at 50% -8%, rgba(15, 120, 96, 0.13), transparent 56%),
+    radial-gradient(ellipse 70% 50% at 82% 30%, rgba(47, 93, 151, 0.06), transparent 60%),
+    radial-gradient(ellipse 92% 58% at 50% 108%, rgba(86, 70, 44, 0.2), transparent 72%);
+}
+[data-theme='light'] .trie-root .tcode {
+  background: rgba(10, 93, 71, 0.12);
+  color: var(--pine);
+  border: 1px solid rgba(10, 93, 71, 0.28);
+}
+[data-theme='light'] .trie-root .card {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 14px 30px -22px rgba(40, 55, 48, 0.45);
+}
+[data-theme='light'] .trie-root .lab-tag {
+  color: var(--clay-d);
+  background: rgba(157, 74, 27, 0.13);
+  border: 1px solid rgba(157, 74, 27, 0.32);
+}
+[data-theme='light'] .trie-root .callout {
+  background: linear-gradient(180deg, rgba(126, 89, 15, 0.12), rgba(126, 89, 15, 0.04));
+  border: 1px solid rgba(122, 89, 15, 0.34);
+  border-left: 3px solid var(--gold);
+}
+[data-theme='light'] .trie-root .btn.sec:hover {
+  background: rgba(27, 42, 36, 0.07);
+}
+[data-theme='light'] .trie-root .verdict.found {
+  border-color: rgba(10, 93, 71, 0.45);
+  background: rgba(10, 93, 71, 0.13);
+}
+[data-theme='light'] .trie-root .verdict.miss {
+  border-color: rgba(173, 42, 25, 0.42);
+  background: rgba(173, 42, 25, 0.12);
+}
+[data-theme='light'] .trie-root .verdict.prefix {
+  border-color: rgba(122, 89, 15, 0.5);
+  background: rgba(126, 89, 15, 0.15);
+}
+[data-theme='light'] .trie-root .comp {
+  background: rgba(173, 42, 25, 0.12);
+  border: 1px solid rgba(173, 42, 25, 0.32);
+  color: var(--signal);
+}
+[data-theme='light'] .trie-root .comp .pre {
+  /* On the light comp chip's ground (#e9d6ca) the deepened --ink-dim (#4f6157)
+     already reads at 4.7:1, so the prefix portion clears AA without the dark
+     mode's literal lift — keep it on the token. */
+  color: var(--ink-dim);
+}
+[data-theme='light'] .trie-root .hero-panel {
+  background: linear-gradient(180deg, rgba(10, 93, 71, 0.08), transparent 42%), var(--panel);
+}
+[data-theme='light'] .trie-root .hero-panel::before {
+  background: radial-gradient(ellipse 65% 55% at 28% 0%, rgba(47, 93, 151, 0.14), transparent 60%);
+}
+[data-theme='light'] .trie-root .trace-toggle.on {
+  border-color: rgba(10, 93, 71, 0.45);
+  color: var(--pine);
+  background: rgba(10, 93, 71, 0.1);
 }

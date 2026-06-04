@@ -16,7 +16,7 @@ export function Welcome() {
           fontSize: 11,
           letterSpacing: '0.24em',
           textTransform: 'uppercase',
-          color: 'rgba(232, 222, 200, 0.45)',
+          color: 'color-mix(in srgb, var(--ink) 45%, transparent)',
           marginBottom: 18,
         }}
       >
@@ -29,7 +29,7 @@ export function Welcome() {
           fontWeight: 400,
           lineHeight: 1.0,
           margin: 0,
-          color: '#e8dec8',
+          color: 'var(--ink)',
           letterSpacing: '-0.025em',
         }}
       >
@@ -38,7 +38,7 @@ export function Welcome() {
           style={{
             fontStyle: 'italic',
             fontWeight: 300,
-            background: 'linear-gradient(180deg, #5eead4 0%, #34d399 100%)',
+            background: 'linear-gradient(180deg, var(--iso-teal) 0%, var(--iso-green) 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
@@ -55,7 +55,7 @@ export function Welcome() {
         style={{
           fontSize: 'clamp(17px, 1.8vw, 20px)',
           lineHeight: 1.6,
-          color: 'rgba(232, 222, 200, 0.82)',
+          color: 'color-mix(in srgb, var(--ink) 82%, transparent)',
           margin: 0,
           maxWidth: 600,
           marginInline: 'auto',
@@ -63,10 +63,10 @@ export function Welcome() {
       >
         Four letters. Four guarantees. Together they are the contract every database makes with the
         applications that trust it, and each one carries real weight.{' '}
-        <em style={{ color: '#e8dec8', fontStyle: 'italic' }}>Atomicity</em>,{' '}
-        <em style={{ color: '#e8dec8', fontStyle: 'italic' }}>Consistency</em>,{' '}
-        <em style={{ color: '#e8dec8', fontStyle: 'italic' }}>Isolation</em>,{' '}
-        <em style={{ color: '#e8dec8', fontStyle: 'italic' }}>Durability</em>: each addresses a
+        <em style={{ color: 'var(--ink)', fontStyle: 'italic' }}>Atomicity</em>,{' '}
+        <em style={{ color: 'var(--ink)', fontStyle: 'italic' }}>Consistency</em>,{' '}
+        <em style={{ color: 'var(--ink)', fontStyle: 'italic' }}>Isolation</em>,{' '}
+        <em style={{ color: 'var(--ink)', fontStyle: 'italic' }}>Durability</em>: each addresses a
         different kind of failure, with different machinery.
       </p>
       <p
@@ -74,7 +74,7 @@ export function Welcome() {
         style={{
           fontSize: 'clamp(15px, 1.6vw, 17px)',
           lineHeight: 1.6,
-          color: 'rgba(232, 222, 200, 0.6)',
+          color: 'color-mix(in srgb, var(--ink) 60%, transparent)',
           margin: '16px auto 0',
           maxWidth: 600,
         }}

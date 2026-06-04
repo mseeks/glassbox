@@ -105,8 +105,10 @@ export default function TreeSVG({
                   fontFamily="var(--font-mono)"
                   fontWeight="700"
                   fontSize={compact ? 12.5 : 14}
-                  fill={isMedian || isCmp ? '#fff' : 'var(--ink)'}
-                  style={{ transition: 'fill .25s' }}
+                  style={{
+                    fill: isMedian || isCmp ? 'var(--bt-on-accent)' : 'var(--ink)',
+                    transition: 'fill .25s',
+                  }}
                 >
                   {k}
                 </text>

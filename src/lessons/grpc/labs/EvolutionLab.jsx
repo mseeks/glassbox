@@ -130,7 +130,7 @@ function SchemaCard({ title, fields }) {
   return (
     <div
       style={{
-        background: '#060a0e',
+        background: 'var(--gx-well)',
         border: '1px solid var(--line)',
         borderRadius: 10,
         padding: 13,
@@ -142,7 +142,7 @@ function SchemaCard({ title, fields }) {
           fontSize: 9.5,
           letterSpacing: '0.14em',
           textTransform: 'uppercase',
-          color: 'var(--ink-faint2)',
+          color: 'var(--ink-faint2-fn)',
           marginBottom: 10,
         }}
       >

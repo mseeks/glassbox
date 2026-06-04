@@ -38,10 +38,10 @@ export const FPRMath = () => {
   return (
     <div className="bc-panel-elevated" style={{ padding: 32 }}>
       <div style={{ marginBottom: 24 }}>
-        <div className="bc-eyebrow" style={{ color: '#f5b942' }}>
+        <div className="bc-eyebrow" style={{ color: 'var(--bc-gold)' }}>
           LAB · FALSE POSITIVE CURVE
         </div>
-        <div className="bc-italic" style={{ fontSize: 26, color: '#f0e8d2', marginTop: 4 }}>
+        <div className="bc-italic" style={{ fontSize: 26, color: 'var(--bc-ink)', marginTop: 4 }}>
           The math, made tactile
         </div>
       </div>
@@ -49,8 +49,8 @@ export const FPRMath = () => {
       {/* Curve plot */}
       <div
         style={{
-          background: 'rgba(15, 19, 38, 0.6)',
-          border: '1px solid rgba(45, 52, 88, 0.5)',
+          background: 'var(--bc-inset-6)',
+          border: '1px solid var(--bc-rule)',
           borderRadius: 4,
           padding: '24px 28px',
           marginBottom: 20,
@@ -68,7 +68,7 @@ export const FPRMath = () => {
               y1={yScale(f)}
               x2={W}
               y2={yScale(f)}
-              stroke="rgba(45, 52, 88, 0.5)"
+              style={{ stroke: 'var(--bc-rule)' }}
               strokeDasharray="2 4"
               strokeWidth="1"
             />
@@ -80,19 +80,25 @@ export const FPRMath = () => {
               y1="0"
               x2={t * W}
               y2={H}
-              stroke="rgba(45, 52, 88, 0.4)"
+              style={{ stroke: 'var(--bc-rule-soft)' }}
               strokeDasharray="2 4"
               strokeWidth="1"
             />
           ))}
 
           {/* Curve */}
-          <path d={path} fill="none" stroke="#f5b942" strokeWidth="2.5" strokeLinecap="round" />
+          <path
+            d={path}
+            fill="none"
+            stroke="var(--bc-gold)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
           <path d={`${path} L ${W},${H} L 0,${H} Z`} fill="url(#bcCurveGrad)" opacity="0.25" />
           <defs>
             <linearGradient id="bcCurveGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#f5b942" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#f5b942" stopOpacity="0" />
+              <stop offset="0%" stopColor="var(--bc-gold)" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="var(--bc-gold)" stopOpacity="0" />
             </linearGradient>
           </defs>
 
@@ -101,8 +107,8 @@ export const FPRMath = () => {
             cx={xScale(weight)}
             cy={yScale(currentFPR)}
             r="8"
-            fill="#fb7185"
-            stroke="#0a0e1e"
+            fill="var(--bc-rose)"
+            style={{ stroke: 'var(--bc-ground)' }}
             strokeWidth="2"
           />
           <circle
@@ -110,7 +116,7 @@ export const FPRMath = () => {
             cy={yScale(currentFPR)}
             r="14"
             fill="none"
-            stroke="#fb7185"
+            stroke="var(--bc-rose)"
             strokeWidth="1"
             opacity="0.4"
           />
@@ -123,7 +129,7 @@ export const FPRMath = () => {
               y={yScale(f) + 4}
               fontSize="10"
               fontFamily="JetBrains Mono"
-              fill="#5e5747"
+              style={{ fill: 'var(--bc-ink-faint)' }}
               textAnchor="end"
             >
               {f === 0 ? '0' : f === 1 ? '1.0' : f.toFixed(2)}
@@ -138,7 +144,7 @@ export const FPRMath = () => {
               y={H + 16}
               fontSize="10"
               fontFamily="JetBrains Mono"
-              fill="#5e5747"
+              style={{ fill: 'var(--bc-ink-faint)' }}
               textAnchor="middle"
             >
               {t}
@@ -151,7 +157,7 @@ export const FPRMath = () => {
             y={H + 38}
             fontSize="11"
             fontFamily="JetBrains Mono"
-            fill="#a89e85"
+            style={{ fill: 'var(--bc-ink-muted)' }}
             textAnchor="middle"
             letterSpacing="0.1em"
           >
@@ -162,7 +168,7 @@ export const FPRMath = () => {
             y={H / 2}
             fontSize="11"
             fontFamily="JetBrains Mono"
-            fill="#a89e85"
+            style={{ fill: 'var(--bc-ink-muted)' }}
             textAnchor="middle"
             transform={`rotate(-90 -50 ${H / 2})`}
             letterSpacing="0.1em"
@@ -178,11 +184,11 @@ export const FPRMath = () => {
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
             <span
               className="bc-mono"
-              style={{ fontSize: 11, color: '#a89e85', letterSpacing: '0.1em' }}
+              style={{ fontSize: 11, color: 'var(--bc-ink-muted)', letterSpacing: '0.1em' }}
             >
               SLOTS · m
             </span>
-            <span className="bc-italic" style={{ fontSize: 20, color: '#f5b942' }}>
+            <span className="bc-italic" style={{ fontSize: 20, color: 'var(--bc-gold)' }}>
               {m}
             </span>
           </div>
@@ -202,11 +208,11 @@ export const FPRMath = () => {
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
             <span
               className="bc-mono"
-              style={{ fontSize: 11, color: '#a89e85', letterSpacing: '0.1em' }}
+              style={{ fontSize: 11, color: 'var(--bc-ink-muted)', letterSpacing: '0.1em' }}
             >
               HASHES · k
             </span>
-            <span className="bc-italic" style={{ fontSize: 20, color: '#f5b942' }}>
+            <span className="bc-italic" style={{ fontSize: 20, color: 'var(--bc-gold)' }}>
               {k}
             </span>
           </div>
@@ -225,11 +231,11 @@ export const FPRMath = () => {
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
             <span
               className="bc-mono"
-              style={{ fontSize: 11, color: '#a89e85', letterSpacing: '0.1em' }}
+              style={{ fontSize: 11, color: 'var(--bc-ink-muted)', letterSpacing: '0.1em' }}
             >
               WEIGHT
             </span>
-            <span className="bc-italic" style={{ fontSize: 20, color: '#f5b942' }}>
+            <span className="bc-italic" style={{ fontSize: 20, color: 'var(--bc-gold)' }}>
               {weight}
             </span>
           </div>
@@ -253,12 +259,12 @@ export const FPRMath = () => {
           padding: '18px 22px',
           background:
             currentFPR > 0.5
-              ? 'rgba(251, 113, 133, 0.06)'
+              ? 'var(--bc-rose-wash)'
               : currentFPR > 0.1
-                ? 'rgba(245, 185, 66, 0.06)'
-                : 'rgba(110, 231, 183, 0.06)',
-          border: `1px solid ${currentFPR > 0.5 ? 'rgba(251, 113, 133, 0.3)' : currentFPR > 0.1 ? 'rgba(245, 185, 66, 0.3)' : 'rgba(110, 231, 183, 0.3)'}`,
-          borderLeft: `4px solid ${currentFPR > 0.5 ? '#fb7185' : currentFPR > 0.1 ? '#f5b942' : '#6ee7b7'}`,
+                ? 'var(--bc-gold-wash)'
+                : 'var(--bc-emerald-wash)',
+          border: `1px solid ${currentFPR > 0.5 ? 'var(--bc-rose-edge)' : currentFPR > 0.1 ? 'var(--bc-gold-edge)' : 'var(--bc-emerald-edge)'}`,
+          borderLeft: `4px solid ${currentFPR > 0.5 ? 'var(--bc-rose)' : currentFPR > 0.1 ? 'var(--bc-gold)' : 'var(--bc-emerald)'}`,
           borderRadius: 3,
           display: 'flex',
           justifyContent: 'space-between',
@@ -275,13 +281,18 @@ export const FPRMath = () => {
             className="bc-display"
             style={{
               fontSize: 36,
-              color: currentFPR > 0.5 ? '#fb7185' : currentFPR > 0.1 ? '#f5b942' : '#6ee7b7',
+              color:
+                currentFPR > 0.5
+                  ? 'var(--bc-rose)'
+                  : currentFPR > 0.1
+                    ? 'var(--bc-gold)'
+                    : 'var(--bc-emerald)',
             }}
           >
             {(currentFPR * 100).toFixed(2)}%
           </div>
         </div>
-        <div style={{ fontSize: 14, color: '#c8bfa5', maxWidth: 360 }}>
+        <div style={{ fontSize: 14, color: 'var(--bc-ink-dim)', maxWidth: 360 }}>
           {currentFPR > 0.5 &&
             'Saturated. The structure is no longer reliable. Most "happens-before" verdicts will be wrong.'}
           {currentFPR > 0.1 &&
@@ -294,7 +305,7 @@ export const FPRMath = () => {
         </div>
       </div>
 
-      <Callout title="The formula" color="#f5b942">
+      <Callout title="The formula" color="var(--bc-gold)">
         For each of the k positions A occupies, the chance B has reached it through its own k×w_B
         independent increments is roughly <Code>1 − (1 − 1/m)^(k·w)</Code>. The chance B dominates A
         at <em>all</em> of A's k positions is that raised to the kth. Like a Bloom filter, but on

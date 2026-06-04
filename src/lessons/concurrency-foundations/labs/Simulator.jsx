@@ -122,7 +122,7 @@ export function Simulator() {
               ) : (
                 <span
                   style={{
-                    color: 'var(--ink-faint)',
+                    color: 'var(--ink-label)',
                     fontSize: '0.78rem',
                     fontFamily: 'JetBrains Mono',
                   }}
@@ -164,7 +164,7 @@ export function Simulator() {
               ) : (
                 <span
                   style={{
-                    color: 'var(--ink-faint)',
+                    color: 'var(--ink-label)',
                     fontSize: '0.78rem',
                     fontFamily: 'JetBrains Mono',
                   }}

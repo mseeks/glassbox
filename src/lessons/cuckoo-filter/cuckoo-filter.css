@@ -15,6 +15,12 @@
   --text-faint: #5c5851;
   --text-ghost: #3a3833;
 
+  /* legible faint — for soft labels a reader must still read
+     (citation caption, axis curve labels, empty-state instruction);
+     clears AA on every dark ground it lands on (incl. --bg-elev panels)
+     where bare --text-faint stays decorative */
+  --cf-label-faint: #86827a;
+
   /* ── Rules ─────────────────────────────────── */
   --line: #26292d;
   --line-2: #353940;
@@ -22,7 +28,7 @@
 
   /* ── The cuckoo: signal coral ──────────────── */
   --cuc: #ff5c3a;
-  --cuc-deep: #d63b1a;
+  --cuc-deep: #e5471f;
   --cuc-wash: rgba(255, 92, 58, 0.1);
   --cuc-glow: rgba(255, 92, 58, 0.28);
 
@@ -962,4 +968,82 @@ input.cf-input::placeholder {
   .cf-cell-strip > svg {
     min-width: var(--strip-min-sm, 340px);
   }
+}
+
+/* ═══════════════════════════════════════════════════
+       Light theme — a crisp technical white paper.
+       Cool porcelain bond stock, near-black printer's ink,
+       and one disciplined signal coral. Where the dark mode
+       glows, the paper takes a faint ink bloom; where it
+       reserves graphite, the paper reserves bond white.
+       Every text/UI/value pair clears WCAG AA on the ground
+       it actually sits on.
+       ═══════════════════════════════════════════════════ */
+[data-theme='light'] .cf-root {
+  /* ── Porcelain bond stock (cool, not beige) ──────── */
+  --bg: #f4f5f4;
+  --bg-1: #eceeec;
+  --bg-2: #e6e8e6;
+  --bg-3: #dde0dc;
+  --bg-elev: #fbfbfa;
+
+  /* ── Printer's ink on bond ───────────────────────── */
+  --text: #1a1a18;
+  --text-2: #3a3a36;
+  --text-mute: #5f5f57;
+  --text-faint: #6f6f65;
+  --text-ghost: #c4c8c3;
+
+  /* legible faint — soft label ink deepened just enough to clear AA on bond */
+  --cf-label-faint: #6e6e64;
+
+  /* ── Rules — fine ruled lines, restrained ────────── */
+  --line: #d8dad7;
+  --line-2: #c4c8c3;
+  --line-strong: #a8aca6;
+
+  /* ── The cuckoo: signal coral, struck into the page ─ */
+  --cuc: #c2330e;
+  --cuc-deep: #9e2607;
+  --cuc-wash: rgba(194, 51, 14, 0.08);
+  --cuc-glow: rgba(194, 51, 14, 0.18);
+
+  /* ── The partner: steel blue, deepened for bond ──── */
+  --steel: #1f6491;
+  --steel-wash: rgba(31, 100, 145, 0.09);
+
+  /* ── Resolution / eviction cost: deep ochre ──────── */
+  --gold: #85610f;
+  --gold-wash: rgba(133, 97, 15, 0.1);
+
+  /* ── Affirmative match: field green on paper ─────── */
+  --ok: #4f7320;
+}
+
+/* atmospheric backdrop — a faint coral/steel ink bloom on bond,
+   the light analog of the dark mode's corner glows */
+[data-theme='light'] .cf-root::before {
+  background:
+    radial-gradient(900px 600px at 18% -10%, rgba(194, 51, 14, 0.05), transparent 60%),
+    radial-gradient(800px 500px at 100% 50%, rgba(31, 100, 145, 0.045), transparent 62%);
+}
+
+/* paper tooth — a fine dark speckle reads as printed grain on bond */
+[data-theme='light'] .cf-root::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.6;
+}
+
+/* figure plate — on dark it lifts by glow; on bond it lifts by a soft
+   printed shadow, so the elevated stock reads as a plate on the page */
+[data-theme='light'] .cf-root .cf-fig-frame {
+  box-shadow:
+    0 1px 0 0 rgba(26, 26, 24, 0.04),
+    0 18px 38px -22px rgba(26, 26, 24, 0.22);
+}
+
+/* inline code — a tight, crisp inset on bond rather than a dark chip */
+[data-theme='light'] .cf-root .cf-body code {
+  background: var(--bg-elev);
+  border-color: var(--line-2);
 }

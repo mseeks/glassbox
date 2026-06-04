@@ -30,7 +30,7 @@ export function DiningPhilosophersDiagram() {
           cx={cx}
           cy={cy}
           r="50"
-          fill="rgba(251,191,36,0.05)"
+          style={{ fill: 'var(--cf-wash-table)' }}
           stroke="var(--border)"
           strokeDasharray="3 4"
         />

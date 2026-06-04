@@ -108,8 +108,8 @@ export default function ImbalanceVisual() {
             className="bt-chip"
             style={
               mode === 'vine'
-                ? { color: 'var(--stamp)', borderColor: 'rgba(178,55,40,.4)' }
-                : { color: 'var(--blue)', borderColor: 'rgba(30,79,98,.4)' }
+                ? { color: 'var(--stamp)', borderColor: 'var(--bt-chip-stamp-border)' }
+                : { color: 'var(--blue)', borderColor: 'var(--bt-chip-blue-border)' }
             }
           >
             longest path: {depth} {depth === 1 ? 'hop' : 'hops'}

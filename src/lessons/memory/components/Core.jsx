@@ -8,8 +8,8 @@ export default function Core({ on, size = 26, idx = 0, hue = 'amber' }) {
   const r = size * 0.3,
     c = size / 2;
   const col = hue === 'steel' ? 'var(--steel)' : 'var(--amber)';
-  const glow = hue === 'steel' ? 'rgba(115,188,207,.85)' : 'rgba(246,181,69,.85)';
-  const fill = hue === 'steel' ? 'rgba(155,214,228,.5)' : 'rgba(255,211,132,.5)';
+  const glow = hue === 'steel' ? 'var(--mw-steel-glow)' : 'var(--mw-amber-glow)';
+  const fill = hue === 'steel' ? 'var(--mw-steel-fill)' : 'var(--mw-amber-fill)';
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ display: 'block' }}>
       <line
@@ -44,9 +44,10 @@ export default function Core({ on, size = 26, idx = 0, hue = 'amber' }) {
         cy={c}
         r={r}
         fill="none"
-        stroke={on ? col : '#2c364f'}
         strokeWidth={on ? 2.4 : 1.6}
-        style={on ? { filter: `drop-shadow(0 0 5px ${glow})` } : {}}
+        style={
+          on ? { stroke: col, filter: `drop-shadow(0 0 5px ${glow})` } : { stroke: 'var(--mw-off)' }
+        }
       >
         {on && !reduced && (
           <animate

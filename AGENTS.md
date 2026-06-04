@@ -16,8 +16,12 @@
   a pure `engine/index.js`, and its own `<slug>.css`, all wired by a lean
   `<Name>Lesson.jsx` and re-exported from `index.js`.
 - `src/shared/` holds only cross-lesson primitives: `tokens.css` (design
-  tokens), `utilities.css` (shell-scoped utility classes + the global
-  reduced-motion override, imported once from `App.jsx`),
+  tokens, incl. the family-glue light/dark values keyed on `data-theme`),
+  `utilities.css` (shell-scoped utility classes + the global
+  reduced-motion override, imported once from `App.jsx`), `theme.js`
+  (the pure light/dark precedence model), `useTheme.js` (the store/hook that
+  applies it to `<html data-theme>` and tracks the OS), `ThemeToggle.jsx` (the
+  System/Light/Dark switch in the nav),
   `usePrefersReducedMotion.js`, `useInViewport.js` (pauses always-on animation
   loops when scrolled off-screen), `reveal.jsx` (`useRevealRoot` / `useReveal` /
   `<Reveal>`, all reveal-on-scroll), `useScrollSpy.js` (`useScrollSpy` +
@@ -59,10 +63,23 @@ intentionally unique:
 | Vantage-Point Trees     | amber `#ffb454`                 | Big Shoulders + Spectral      | acoustic-ranging sonar scope, abyssal teal ground and amber pings          |
 | TLS                     | aqua `#46d6c6`                  | Spectral + Schibsted Grotesk  | cipher channel on a dark switchboard, brass seals, vermilion attacker      |
 
-Shared family glue: dark warm-paper background (`#0a0a0f`), warm parchment ink
-(`#e8dec8` family), low-opacity noise grain, `JetBrains Mono` for every numeric
-/ credit / eyebrow. The mono is _not_ varied per-lesson. It is the single
-strongest piece of connective tissue across the collection.
+Shared family glue: warm-paper background, warm parchment ink, low-opacity
+noise grain, `JetBrains Mono` for every numeric / credit / eyebrow. The mono is
+_not_ varied per-lesson. It is the single strongest piece of connective tissue
+across the collection.
+
+The collection is **dual-mode**. The shell sets a `data-theme="light"|"dark"`
+attribute on `<html>` before first paint and the family-glue paper/ink flips with
+it (dark `#0a0a0f` / `#e8dec8` is the default; light is warm paper `#f4efe4` /
+warm-black ink). The switch — a System / Light / Dark cycle that follows the OS
+until the user picks, then persists their choice — lives in
+`src/shared/useTheme.js` + `ThemeToggle.jsx`, with the pure precedence model in
+`src/shared/theme.js` and the no-flash pre-paint script in `index.html`. Each
+lesson keeps its bespoke palette as its NATIVE mode and ships the complementary
+mode as a `[data-theme='…'] .<root>{}` override block in its own `<slug>.css`
+(b-trees and merkle-trees are light-native, so their complement is dark; every
+other lesson's complement is light). The `theme-parity` loop audits that every
+lesson has both.
 
 ## Vocabulary
 
@@ -126,7 +143,16 @@ npm run test:e2e      # playwright smoke (boots its own dev server)
 npm run lint          # eslint over the source tree
 npm run format        # prettier --write
 npm run format:check  # prettier --check (CI-friendly)
+npm run audit:contrast # rendered WCAG color-contrast audit, every lesson × light/dark
 ```
+
+`audit:contrast` (`scripts/contrast-audit.js`) is the dual-theme QA gate: it drives a
+headless browser over every lesson + the index in BOTH themes, scroll-reveals the
+page so axe-core measures fully-revealed content (not mid-fade), and reports each
+failing text/background pair. Run a `npm run preview` server first (defaults to
+`http://127.0.0.1:5180`). Like the runtime axe gate it surfaces _candidates_ —
+intentional decorative low-contrast (faint eyebrows, ghost chips) is for the human
+to keep; information text should clear AA.
 
 ## Many Hands Engineering loops (`agents/`)
 
@@ -154,6 +180,9 @@ npm run loop:promise-hygiene <scope>   # floating-promise / async-hazard map
 npm run loop:console-runtime <scope>   # console warnings fired during the test run
 npm run loop:motion-gate <scope>       # ungated JS/SMIL autoplay-on-mount motion map
 npm run loop:style-isolation <scope>   # CSS selectors that leak out of a lesson root
+npm run loop:theme-parity <scope>      # lessons missing a light or dark version of their design
+npm run loop:token-hygiene <scope>     # dangling / dead CSS custom properties (the var() knip can't see)
+npm run loop:contrast [ids…]           # rendered WCAG color-contrast map, every lesson × light/dark
 npm run loop:a11y-source <scope>       # source-level a11y debt (names + keyboard paths)
 npm run loop:content-accuracy [ids…]   # deep per-lesson accuracy review (opus·effort:max; heavy)
 ```

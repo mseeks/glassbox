@@ -11,6 +11,10 @@
   --bone: #ece2d0;
   --bone-dim: #a89b85;
   --bone-faint: #6d6253;
+  /* functional faint ink: shares bone-faint's hue (OKLCH ~75.6deg) lifted to clear
+     WCAG AA on the void grounds, for genuine label/caption text. Decorative
+     bone-faint uses (eyebrows, foot captions, ghost/pending chips) stay un-lifted. */
+  --bone-faint-fn: #857a6a;
   --copper: #e07a3c;
   --copper-bright: #f4a160;
   --copper-deep: #b75d28;
@@ -24,6 +28,14 @@
   --jade: #54c596;
   --jade-glow: rgba(84, 197, 150, 0.12);
   --gold: #d9a440;
+  /* inline-painted JSX colors (mirrored in [data-theme] so they flip too) */
+  --sha-body: #d8cdba; /* digest/body ink, == p.body */
+  --sha-cer-edge: rgba(245, 71, 111, 0.35); /* attacker-panel border */
+  --sha-cer-wash: rgba(245, 71, 111, 0.04); /* attacker-panel ground */
+  --sha-cop-edge: rgba(224, 122, 60, 0.4); /* sponge off-rate cell border */
+  --sha-cop-wash: rgba(224, 122, 60, 0.05); /* sponge off-rate cell ground */
+  --sha-ste-edge: rgba(141, 155, 176, 0.35); /* sponge capacity cell border */
+  --sha-ste-wash: rgba(141, 155, 176, 0.06); /* sponge capacity cell ground */
   --mono: var(--font-mono);
   --slab: 'Zilla Slab', Georgia, serif;
   --sans: 'Hanken Grotesk', system-ui, sans-serif;
@@ -236,7 +248,7 @@ p.body em {
 .figure-foot {
   padding: 11px 17px 15px;
   border-top: 1px dashed var(--line);
-  color: var(--bone-faint);
+  color: var(--bone-faint-fn);
   font-size: 13px;
   font-style: italic;
   line-height: 1.55;
@@ -480,4 +492,138 @@ input[type='range'].rng::-moz-range-thumb {
     opacity: 1 !important;
     animation: none !important;
   }
+}
+
+/* ─── Light theme — the drafting vellum / cyanotype plate ───
+   Not the warm beige twin of the dark void. This is a cool blueprint vellum:
+   a pale blue-grey rag paper, ruled with cyan hairlines, with the copper
+   plate-marks of an engraving pressed into it and cerise reserved for danger.
+   Where the dark mode glows, the paper takes a soft printed tint and a real
+   drop-shadow instead. Most of the design cascades from the redefined tokens;
+   the block after them re-presses the hardcoded literals (gradient stops,
+   the ruled cyan grid, plate shadows, button ink) for paper. */
+[data-theme='light'] .sha-root {
+  --void: #e4e9ee;
+  --void-2: #eef2f5;
+  --panel: #dde4ea;
+  --panel-2: #d3dce4;
+  --line: #bcc6d0;
+  --line-bright: #a4b1bf;
+  --ridge: #bdc8d3;
+  --bone: #1c2530;
+  --bone-dim: #475160;
+  --bone-faint: #586271;
+  /* light bone-faint already clears AA on the vellum grounds, so the functional
+     ink simply tracks it — no separate lift needed (parity with the dark -fn token). */
+  --bone-faint-fn: #586271;
+  --copper: #9c4a0d;
+  --copper-bright: #974309;
+  --copper-deep: #763809;
+  --copper-glow: rgba(156, 74, 13, 0.1);
+  --steel: #2f5a8c;
+  --steel-dim: #3c5a7e;
+  --steel-glow: rgba(47, 90, 140, 0.1);
+  --cerise: #b81243;
+  --cerise-bright: #b81243;
+  --cerise-glow: rgba(184, 18, 67, 0.1);
+  --jade: #056c44; /* deepened in OKLCH (hue held ~159deg) to clear AA on tinted panels */
+  --jade-glow: rgba(15, 112, 72, 0.1);
+  --gold: #8a5d0e;
+  /* inline-painted JSX colors, re-pressed for paper */
+  --sha-body: #2f3a47; /* mirrors the p.body light override */
+  --sha-cer-edge: rgba(184, 18, 67, 0.34);
+  --sha-cer-wash: rgba(184, 18, 67, 0.05);
+  --sha-cop-edge: rgba(156, 74, 13, 0.4);
+  --sha-cop-wash: rgba(156, 74, 13, 0.06);
+  --sha-ste-edge: rgba(47, 90, 140, 0.34);
+  --sha-ste-wash: rgba(47, 90, 140, 0.08);
+}
+
+/* atmosphere: a warm copper plate-mark pressed top-left, a cool cyanotype
+   wash pooling bottom-right — the dark mode's glows, inverted into printed tint. */
+[data-theme='light'] .sha-root::before {
+  background:
+    radial-gradient(58% 44% at 16% -4%, rgba(156, 74, 13, 0.07), transparent 62%),
+    radial-gradient(60% 52% at 90% 104%, rgba(47, 90, 140, 0.09), transparent 60%);
+}
+/* the blueprint: a ruled cyan grid printed into the vellum — finer minor squares
+   over heavier major rules, the way a drafting sheet is gridded. */
+[data-theme='light'] .sha-root::after {
+  opacity: 1;
+  background-image:
+    linear-gradient(rgba(47, 90, 140, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47, 90, 140, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(47, 90, 140, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47, 90, 140, 0.028) 1px, transparent 1px);
+  background-size:
+    46px 46px,
+    46px 46px,
+    11.5px 11.5px,
+    11.5px 11.5px;
+}
+
+/* inline code chip */
+[data-theme='light'] .sha-root .ic {
+  color: var(--copper-deep);
+  background: rgba(47, 90, 140, 0.06);
+  border-color: rgba(47, 90, 140, 0.22);
+}
+
+/* body copy literal (mirrors JSX #d8cdba spans, which CSS can't reach) */
+[data-theme='light'] .sha-root p.body {
+  color: #2f3a47;
+}
+
+/* the "plate" — pressed into the vellum and lifted off it with a cool,
+   cyanotype-blue drop shadow (paper shadows go cool here, never a grey smudge). */
+[data-theme='light'] .sha-root .figure {
+  background: linear-gradient(180deg, var(--panel), var(--void-2));
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 18px 40px -26px rgba(26, 48, 78, 0.42),
+    0 2px 5px -3px rgba(26, 48, 78, 0.18);
+}
+[data-theme='light'] .sha-root .figure-head {
+  background: rgba(47, 90, 140, 0.035);
+}
+
+/* progress rail: a copper plate-mark needs a cool-shadowed bloom on bright paper */
+[data-theme='light'] .sha-root .sha-rail {
+  box-shadow: 0 1px 6px rgba(156, 74, 13, 0.32);
+}
+
+/* primary button: warm vellum ink reads on the copper plate fill */
+[data-theme='light'] .sha-root .btn.primary {
+  color: #fbf3e6;
+}
+[data-theme='light'] .sha-root .btn.primary:hover {
+  color: #fbf3e6;
+}
+[data-theme='light'] .sha-root .btn:hover {
+  background: rgba(156, 74, 13, 0.08);
+}
+
+/* slider thumb ring sits against vellum now, not void */
+[data-theme='light'] .sha-root input[type='range'].rng::-webkit-slider-thumb {
+  border-color: var(--void-2);
+  box-shadow:
+    0 0 0 1px var(--copper-bright),
+    0 1px 4px rgba(118, 56, 9, 0.3);
+}
+[data-theme='light'] .sha-root input[type='range'].rng::-moz-range-thumb {
+  border-color: var(--void-2);
+}
+
+/* chips: retune the tinted borders to the new accents */
+[data-theme='light'] .sha-root .chip.cop {
+  border-color: rgba(156, 74, 13, 0.4);
+}
+[data-theme='light'] .sha-root .chip.ste {
+  border-color: rgba(47, 90, 140, 0.4);
+}
+[data-theme='light'] .sha-root .chip.cer {
+  border-color: rgba(184, 18, 67, 0.4);
+}
+[data-theme='light'] .sha-root .chip.jad {
+  border-color: rgba(15, 112, 72, 0.42);
 }

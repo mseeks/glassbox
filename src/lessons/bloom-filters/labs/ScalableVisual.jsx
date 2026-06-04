@@ -38,7 +38,7 @@ export function ScalableVisual() {
             style={{
               fontSize: '0.7rem',
               letterSpacing: '0.25em',
-              color: 'rgba(196, 181, 253, 0.7)',
+              color: 'var(--bf-violet-eyebrow)',
               textTransform: 'uppercase',
             }}
           >
@@ -46,7 +46,7 @@ export function ScalableVisual() {
           </div>
           <div
             className="bf-display"
-            style={{ fontSize: '1.5rem', color: '#f5e9d3', marginTop: '0.3rem' }}
+            style={{ fontSize: '1.5rem', color: 'var(--bf-ink-head)', marginTop: '0.3rem' }}
           >
             A chain that grows
           </div>
@@ -93,8 +93,8 @@ export function ScalableVisual() {
                 minWidth: '110px',
                 maxWidth: '180px',
                 padding: '0.85rem 0.85rem 0.7rem',
-                background: f.load > 0.95 ? 'rgba(251, 113, 133, 0.08)' : 'rgba(20, 20, 28, 0.6)',
-                border: `1px solid ${f.load > 0.95 ? 'rgba(251, 113, 133, 0.3)' : 'rgba(232, 222, 200, 0.08)'}`,
+                background: f.load > 0.95 ? 'rgba(251, 113, 133, 0.08)' : 'var(--bf-card)',
+                border: `1px solid ${f.load > 0.95 ? 'rgba(251, 113, 133, 0.3)' : 'var(--bf-line)'}`,
                 borderRadius: '3px',
               }}
             >
@@ -106,7 +106,7 @@ export function ScalableVisual() {
               </div>
               <div
                 className="bf-display"
-                style={{ fontSize: '1.15rem', color: '#ddd6fe', lineHeight: 1 }}
+                style={{ fontSize: '1.15rem', color: 'var(--bf-violet-ink)', lineHeight: 1 }}
               >
                 {(f.fprTarget * 100).toFixed(f.fprTarget < 0.01 ? 3 : 2)}%
                 <span
@@ -121,7 +121,7 @@ export function ScalableVisual() {
                 style={{
                   width: '100%',
                   height: '4px',
-                  background: 'rgba(232, 222, 200, 0.08)',
+                  background: 'var(--bf-line)',
                   borderRadius: '2px',
                   marginTop: '0.75rem',
                   overflow: 'hidden',
@@ -131,14 +131,14 @@ export function ScalableVisual() {
                   style={{
                     width: `${f.load * 100}%`,
                     height: '100%',
-                    background: f.load > 0.95 ? '#fb7185' : '#c4b5fd',
+                    background: f.load > 0.95 ? 'var(--bf-rose)' : 'var(--bf-violet)',
                     transition: 'width 280ms ease',
                   }}
                 />
               </div>
               <div
                 className="flex justify-between bf-mono bf-mark-muted mt-1"
-                style={{ fontSize: '0.65rem', opacity: 0.7 }}
+                style={{ fontSize: '0.65rem', opacity: 0.85 }}
               >
                 <span>
                   {f.stored} / {f.cap}
@@ -147,9 +147,7 @@ export function ScalableVisual() {
               </div>
             </div>
             {i < filters.length - 1 && (
-              <div
-                style={{ display: 'flex', alignItems: 'center', color: 'rgba(232, 222, 200, 0.3)' }}
-              >
+              <div style={{ display: 'flex', alignItems: 'center', color: 'var(--bf-line-3)' }}>
                 <ArrowRight style={{ width: 16, height: 16 }} />
               </div>
             )}
@@ -160,7 +158,7 @@ export function ScalableVisual() {
       <div className="grid md:grid-cols-3 gap-3 mt-4">
         <div
           className="bf-panel"
-          style={{ padding: '0.7rem 0.9rem', background: 'rgba(10, 10, 15, 0.4)' }}
+          style={{ padding: '0.7rem 0.9rem', background: 'var(--bf-well-soft)' }}
         >
           <div
             className="bf-ui bf-mark-muted"
@@ -168,13 +166,16 @@ export function ScalableVisual() {
           >
             chain length
           </div>
-          <div className="bf-display mt-1" style={{ fontSize: '1.25rem', color: '#ddd6fe' }}>
+          <div
+            className="bf-display mt-1"
+            style={{ fontSize: '1.25rem', color: 'var(--bf-violet-ink)' }}
+          >
             {filters.length}
           </div>
         </div>
         <div
           className="bf-panel"
-          style={{ padding: '0.7rem 0.9rem', background: 'rgba(10, 10, 15, 0.4)' }}
+          style={{ padding: '0.7rem 0.9rem', background: 'var(--bf-well-soft)' }}
         >
           <div
             className="bf-ui bf-mark-muted"
@@ -182,7 +183,10 @@ export function ScalableVisual() {
           >
             combined FPR (bound)
           </div>
-          <div className="bf-display mt-1" style={{ fontSize: '1.25rem', color: '#ddd6fe' }}>
+          <div
+            className="bf-display mt-1"
+            style={{ fontSize: '1.25rem', color: 'var(--bf-violet-ink)' }}
+          >
             {(totalFPR * 100).toFixed(3)}%
           </div>
           <div className="bf-mono bf-mark-muted mt-0.5" style={{ fontSize: '0.65rem' }}>
@@ -191,7 +195,7 @@ export function ScalableVisual() {
         </div>
         <div
           className="bf-panel"
-          style={{ padding: '0.7rem 0.9rem', background: 'rgba(10, 10, 15, 0.4)' }}
+          style={{ padding: '0.7rem 0.9rem', background: 'var(--bf-well-soft)' }}
         >
           <div
             className="bf-ui bf-mark-muted"
@@ -199,7 +203,10 @@ export function ScalableVisual() {
           >
             query cost
           </div>
-          <div className="bf-display mt-1" style={{ fontSize: '1.25rem', color: '#ddd6fe' }}>
+          <div
+            className="bf-display mt-1"
+            style={{ fontSize: '1.25rem', color: 'var(--bf-violet-ink)' }}
+          >
             {filters.length} filters
           </div>
           <div className="bf-mono bf-mark-muted mt-0.5" style={{ fontSize: '0.65rem' }}>

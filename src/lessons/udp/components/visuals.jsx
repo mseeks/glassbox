@@ -45,7 +45,7 @@ export const ConnectionlessVisual = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 0 16px var(--signal-soft)',
+              boxShadow: 'var(--udp-glow-box)',
             }}
           >
             <Cpu size={20} color="var(--signal)" />
@@ -77,7 +77,7 @@ export const ConnectionlessVisual = () => {
               style={{
                 position: 'relative',
                 height: 18,
-                borderBottom: '1px dashed rgba(232, 223, 199, 0.1)',
+                borderBottom: '1px dashed var(--rule-soft)',
               }}
             >
               {[0, 1].map((i) => {
@@ -93,9 +93,10 @@ export const ConnectionlessVisual = () => {
                       top: 1,
                       width: 12,
                       height: 12,
+                      color: 'var(--signal)',
                       background: 'var(--signal)',
                       borderRadius: 2,
-                      boxShadow: '0 0 8px var(--signal)',
+                      boxShadow: 'var(--udp-glow-soft)',
                       transform: 'translateX(-50%)',
                       transition: 'left 0.6s linear',
                       opacity: phase < 0.08 ? phase * 12 : phase > 0.92 ? (1.0 - phase) * 12 : 1,
@@ -119,7 +120,7 @@ export const ConnectionlessVisual = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 0 16px var(--signal-soft)',
+              boxShadow: 'var(--udp-glow-box)',
             }}
           >
             <Cpu size={20} color="var(--signal)" />
@@ -237,10 +238,13 @@ export const UnreliableVisual = () => {
                 transform: `translate(-50%, -50%) ${isDropped ? 'scale(0.7) rotate(45deg)' : 'scale(1)'}`,
                 width: 18,
                 height: 18,
+                // `color` feeds currentColor so the in-flight glow token reads it
+                // (emissive on dark, grounded cast shadow on paper).
+                color,
                 background: isDropped ? 'transparent' : color,
                 border: `1.5px solid ${color}`,
                 borderRadius: 3,
-                boxShadow: isDropped ? 'none' : `0 0 8px ${color}`,
+                boxShadow: isDropped ? 'none' : 'var(--udp-glow-soft)',
                 opacity: isDropped ? 0.5 : p.x < 0.05 ? p.x * 20 : 1,
                 transition: 'transform 0.3s, opacity 0.3s',
               }}
@@ -255,7 +259,7 @@ export const UnreliableVisual = () => {
           marginTop: 6,
           fontFamily: 'JetBrains Mono',
           fontSize: 10,
-          color: 'var(--ink-faint)',
+          color: 'var(--ink-faint-fn)',
         }}
       >
         <span>send()</span>
@@ -335,7 +339,7 @@ export const UnorderedVisual = () => {
           <div
             style={{
               fontSize: 11,
-              color: 'var(--ink-faint)',
+              color: 'var(--ink-faint-fn)',
               marginBottom: 8,
               fontFamily: 'JetBrains Mono',
               letterSpacing: '0.1em',
@@ -355,7 +359,7 @@ export const UnorderedVisual = () => {
             alignItems: 'center',
             justifyContent: 'center',
             gap: 8,
-            color: 'var(--ink-faint)',
+            color: 'var(--ink-faint-fn)',
             fontSize: 11,
             fontFamily: 'JetBrains Mono',
             letterSpacing: '0.1em',
@@ -369,7 +373,7 @@ export const UnorderedVisual = () => {
           <div
             style={{
               fontSize: 11,
-              color: 'var(--ink-faint)',
+              color: 'var(--ink-faint-fn)',
               marginBottom: 8,
               fontFamily: 'JetBrains Mono',
               letterSpacing: '0.1em',
@@ -443,7 +447,7 @@ const MsgColumn = ({ heading, color, sends, arrow, recvs, footer }) => (
     <div
       style={{
         textAlign: 'center',
-        color: 'var(--ink-faint)',
+        color: 'var(--ink-faint-fn)',
         fontSize: 10.5,
         fontFamily: 'JetBrains Mono',
         padding: '8px 0',
@@ -461,7 +465,7 @@ const MsgColumn = ({ heading, color, sends, arrow, recvs, footer }) => (
       <div
         style={{
           fontSize: 11,
-          color: 'var(--ink-faint)',
+          color: 'var(--ink-faint-fn)',
           fontStyle: 'italic',
           textAlign: 'center',
           marginTop: 6,

@@ -54,7 +54,7 @@ export default function WeaveByte() {
             <Core on={!!b} size={Math.min(34, 30)} idx={i} />
             <span
               className="mono"
-              style={{ fontSize: 9.5, color: b ? 'var(--amber-hi)' : 'var(--faint)' }}
+              style={{ fontSize: 9.5, color: b ? 'var(--amber-hi)' : 'var(--mw-faint-fn)' }}
             >
               {PLACE[i]}
             </span>
@@ -81,26 +81,26 @@ export default function WeaveByte() {
             style={{
               fontSize: 54,
               lineHeight: 1,
-              color: printable ? 'var(--amber-hi)' : 'var(--faint)',
+              color: printable ? 'var(--amber-hi)' : 'var(--mw-faint-fn)',
             }}
           >
             {ch}
           </div>
-          <div className="mono" style={{ fontSize: 10, color: 'var(--faint)', marginTop: 4 }}>
+          <div className="mono" style={{ fontSize: 10, color: 'var(--mw-faint-fn)', marginTop: 4 }}>
             {printable ? 'the letter' : '(non-printing)'}
           </div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           <div className="readout" style={{ fontSize: 13 }}>
-            <span style={{ color: 'var(--faint)' }}>binary</span>{' '}
+            <span style={{ color: 'var(--mw-faint-fn)' }}>binary</span>{' '}
             <span style={{ color: 'var(--steel)' }}>{bits.join('')}</span>
           </div>
           <div className="readout" style={{ fontSize: 13 }}>
-            <span style={{ color: 'var(--faint)' }}>decimal</span>{' '}
+            <span style={{ color: 'var(--mw-faint-fn)' }}>decimal</span>{' '}
             <span style={{ color: 'var(--ivory)' }}>{code}</span>
           </div>
           <div style={{ display: 'flex', gap: 6, marginTop: 4, alignItems: 'center' }}>
-            <span className="mono" style={{ fontSize: 10, color: 'var(--faint)' }}>
+            <span className="mono" style={{ fontSize: 10, color: 'var(--mw-faint-fn)' }}>
               set:
             </span>
             <input

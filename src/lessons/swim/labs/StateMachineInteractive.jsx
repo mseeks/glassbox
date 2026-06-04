@@ -182,7 +182,7 @@ export function StateMachineInteractive() {
             fontFamily="Cormorant Garamond, serif"
             fontSize="11"
             fontStyle="italic"
-            fill="var(--ink-faint)"
+            fill="var(--ink-label)"
           >
             (absorbing)
           </text>
@@ -203,7 +203,7 @@ export function StateMachineInteractive() {
               textAnchor="middle"
               fontSize="11"
               fontFamily="JetBrains Mono, monospace"
-              fill={state === 'alive' ? 'var(--alive)' : 'var(--ink-faint)'}
+              fill={state === 'alive' ? 'var(--alive)' : 'var(--ink-label)'}
               letterSpacing="0.12em"
             >
               ALIVE
@@ -223,7 +223,7 @@ export function StateMachineInteractive() {
               textAnchor="middle"
               fontSize="11"
               fontFamily="JetBrains Mono, monospace"
-              fill={state === 'suspect' ? 'var(--suspect)' : 'var(--ink-faint)'}
+              fill={state === 'suspect' ? 'var(--suspect)' : 'var(--ink-label)'}
               letterSpacing="0.12em"
             >
               SUSPECT
@@ -242,7 +242,7 @@ export function StateMachineInteractive() {
               textAnchor="middle"
               fontSize="11"
               fontFamily="JetBrains Mono, monospace"
-              fill={state === 'dead' ? 'var(--dead)' : 'var(--ink-faint)'}
+              fill={state === 'dead' ? 'var(--dead)' : 'var(--ink-label)'}
               letterSpacing="0.12em"
             >
               DEAD
@@ -255,7 +255,7 @@ export function StateMachineInteractive() {
               fontFamily="JetBrains Mono, monospace"
               fontSize="9.5"
               letterSpacing="0.16em"
-              fill="var(--ink-faint)"
+              fill="var(--ink-label)"
             >
               CURRENT
             </text>
@@ -282,7 +282,7 @@ export function StateMachineInteractive() {
           gap: 14,
         }}
       >
-        <div className="swim-label" style={{ color: 'var(--ink-faint)' }}>
+        <div className="swim-label" style={{ color: 'var(--ink-label)' }}>
           Events
         </div>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>

@@ -62,7 +62,7 @@ export function ActorDiagram() {
               width={14}
               height={14}
               rx={2}
-              fill={i === 0 ? 'rgba(94,234,212,0.25)' : 'rgba(94,234,212,0.1)'}
+              style={{ fill: i === 0 ? 'var(--cf-slot-teal-on)' : 'var(--cf-slot-teal-off)' }}
               stroke="var(--cyan)"
               strokeWidth="0.8"
             />
@@ -122,7 +122,7 @@ export function ActorDiagram() {
               width={14}
               height={14}
               rx={2}
-              fill={i === 0 ? 'rgba(251,191,36,0.25)' : 'rgba(251,191,36,0.1)'}
+              style={{ fill: i === 0 ? 'var(--cf-slot-gold-on)' : 'var(--cf-slot-gold-off)' }}
               stroke="var(--amber)"
               strokeWidth="0.8"
             />

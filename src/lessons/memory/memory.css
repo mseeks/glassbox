@@ -10,6 +10,14 @@
   --ivory: #ece3d0;
   --dim: #9a9cb4;
   --faint: #646a86;
+  /* functional mono readouts (scale labels, byte counts, axis ticks) carry
+     real information and must clear AA on every dark ground — including the
+     lab surface/surface2 gradient, which is lighter than the gallery and so
+     is the worst case. This lifts --faint's OKLCH lightness (hue + chroma
+     held) until it clears AA everywhere, while --faint itself stays at its
+     decorative weight for kickers, ghosts, and the inter-pill arrow. (Light
+     mode's --faint already clears AA, so there it simply mirrors --faint.) */
+  --mw-faint-fn: #7f86a3;
   --amber: #f6b545;
   --amber-hi: #ffd384;
   --amber-deep: #c8862a;
@@ -18,6 +26,36 @@
   --rose: #e88770;
   --sage: #a6c78c;
   --danger: #e2613f;
+  /* inline-painted, theme-dependent (flip in [data-theme='light']) */
+  --mw-lead: #d8d1c2;
+  --mw-body: #cdc7ba;
+  --mw-off: #2c364f;
+  --mw-off2: #2a3756;
+  --mw-stage-a: #0d1424;
+  --mw-stage-b: #070a12;
+  --mw-void-wash: rgba(6, 9, 15, 0.5);
+  --mw-ink-sheen: rgba(236, 227, 208, 0.6);
+  /* magnetised-ring glow + fill, theme-dependent. Dark: a lit core throws
+     light; Light: it is amber pigment with a faint warm bloom. */
+  --mw-amber-glow: rgba(246, 181, 69, 0.85);
+  --mw-amber-fill: rgba(255, 211, 132, 0.5);
+  --mw-amber-bloom: rgba(246, 181, 69, 0.4);
+  --mw-amber-haze: rgba(246, 181, 69, 0.16);
+  --mw-amber-area: rgba(246, 181, 69, 0.1);
+  --mw-amber-halo: rgba(246, 181, 69, 0.22);
+  --mw-amber-faint: rgba(246, 181, 69, 0.5);
+  --mw-amber-tint: rgba(246, 181, 69, 0.06);
+  --mw-speck-fill: rgba(255, 211, 132, 0.18);
+  --mw-steel-glow: rgba(115, 188, 207, 0.85);
+  --mw-steel-fill: rgba(155, 214, 228, 0.5);
+  --mw-steel-bloom: rgba(115, 188, 207, 0.4);
+  --mw-rose-bloom: rgba(232, 135, 112, 0.4);
+  --mw-rose-acc: #b8503a;
+  --mw-sage-panel: rgba(166, 199, 140, 0.1);
+  --mw-sage-edge: rgba(166, 199, 140, 0.4);
+  --mw-danger-panel: rgba(226, 97, 63, 0.12);
+  --mw-danger-edge: rgba(226, 97, 63, 0.5);
+  --mw-danger-glow: rgba(226, 97, 63, 0.6);
 }
 :where(.mw) * {
   box-sizing: border-box;
@@ -170,7 +208,7 @@ em.term {
   font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.06em;
-  color: var(--faint);
+  color: var(--mw-faint-fn);
   text-decoration: none;
   padding: 5px 9px;
   border-radius: 7px;
@@ -366,7 +404,7 @@ em.term {
 
 .footnote {
   font-size: 13.5px;
-  color: var(--faint);
+  color: var(--mw-faint-fn);
 }
 .footnote em {
   color: var(--dim);
@@ -380,4 +418,139 @@ em.term {
   50% {
     transform: translateY(-5px);
   }
+}
+
+/* ─── Light theme — a workbench note on oat-grey paper ───
+   Warm oat/grey lab paper under a midday desk lamp: a burnt-amber pool of
+   lamplight, steel-blue threading wires, ink the colour of a soft pencil.
+   The dark mode's glow becomes a printed warmth; its void becomes a recessed
+   well in the paper. Every accent is DEEPENED off black-mode pastel so it
+   reads as pigment on a page, not a light leaking through it. */
+[data-theme='light'] .mw {
+  --void: #eee9de;
+  --gallery: #e0d9c8;
+  --surface: #f3eee3;
+  --surface2: #ebe5d8;
+  --line: #c7ba9b;
+  --line2: #b19e76;
+  --ivory: #27221a;
+  --dim: #534b3a;
+  --faint: #675f4b;
+  --mw-faint-fn: #675f4b;
+  --amber: #835310;
+  --amber-hi: #7e4f12;
+  --amber-deep: #c98a28;
+  --steel: #216475;
+  --steel-dim: #6f9ba8;
+  --rose: #a53c23;
+  --sage: #456730;
+  --danger: #a3340f;
+  /* inline-painted, theme-dependent — light-ground complements */
+  --mw-lead: #403a2c;
+  --mw-body: #4a4334;
+  --mw-off: #bcad8d;
+  --mw-off2: #c2b393;
+  --mw-stage-a: #ebe4d4;
+  --mw-stage-b: #ddd2bb;
+  --mw-void-wash: rgba(120, 96, 48, 0.05);
+  --mw-ink-sheen: rgba(60, 46, 22, 0.42);
+  /* on paper a lit ring is burnt-amber pigment: deeper hue, a faint warm
+     bloom instead of a light leak, and a richer fill that reads against oat. */
+  --mw-amber-glow: rgba(173, 110, 24, 0.55);
+  --mw-amber-fill: rgba(176, 116, 30, 0.42);
+  --mw-amber-bloom: rgba(173, 110, 24, 0.4);
+  --mw-amber-haze: rgba(173, 110, 24, 0.16);
+  --mw-amber-area: rgba(173, 110, 24, 0.12);
+  --mw-amber-halo: rgba(173, 110, 24, 0.22);
+  --mw-amber-faint: rgba(150, 96, 18, 0.7);
+  --mw-amber-tint: rgba(173, 110, 24, 0.1);
+  --mw-speck-fill: rgba(176, 116, 30, 0.32);
+  --mw-steel-glow: rgba(33, 100, 117, 0.5);
+  --mw-steel-fill: rgba(46, 116, 134, 0.32);
+  --mw-steel-bloom: rgba(33, 100, 117, 0.32);
+  --mw-rose-bloom: rgba(165, 60, 35, 0.3);
+  --mw-rose-acc: #8a3219;
+  --mw-sage-panel: rgba(110, 150, 80, 0.12);
+  --mw-sage-edge: rgba(90, 128, 64, 0.5);
+  --mw-danger-panel: rgba(196, 76, 40, 0.16);
+  --mw-danger-edge: rgba(180, 70, 38, 0.5);
+  --mw-danger-glow: rgba(196, 76, 40, 0.4);
+}
+[data-theme='light'] .mw {
+  color: var(--ivory);
+}
+/* the desk lamp: a warm pool of light spilling from upper-left across the
+   note, with a cool steel cast where the threading wires would lie. The
+   dark mode's two radial glows invert into a midday lamplight + a faint
+   blue shadow. */
+[data-theme='light'] .mw::before {
+  background:
+    radial-gradient(ellipse 78% 60% at 28% -6%, rgba(201, 138, 40, 0.2), transparent 62%),
+    radial-gradient(ellipse 70% 50% at 90% 112%, rgba(33, 100, 117, 0.1), transparent 60%);
+}
+/* paper: faint horizontal ruling (a workbench note) over the fibre grain,
+   so the ground reads as a real sheet, never a flat wash. */
+[data-theme='light'] .mw::after {
+  opacity: 1;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 31px,
+      rgba(120, 96, 48, 0.055) 31px,
+      rgba(120, 96, 48, 0.055) 32px
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+}
+[data-theme='light'] .mw p.lead {
+  color: var(--mw-lead);
+}
+[data-theme='light'] .mw p {
+  color: var(--mw-body);
+}
+[data-theme='light'] .mw em.term {
+  color: var(--amber-hi);
+}
+[data-theme='light'] .mw .cnav {
+  background: linear-gradient(180deg, rgba(241, 235, 222, 0.95), rgba(241, 235, 222, 0.68));
+  border-bottom: 1px solid var(--line);
+}
+[data-theme='light'] .mw .cnav a:hover {
+  color: var(--amber-hi);
+  background: rgba(201, 138, 40, 0.14);
+}
+/* cards lift off the paper with a soft warm shadow + a bright top bevel,
+   the light analog of the dark mode's deep drop + inner sheen. */
+[data-theme='light'] .mw .lab {
+  box-shadow:
+    0 22px 50px -38px rgba(60, 46, 22, 0.45),
+    0 2px 6px -3px rgba(60, 46, 22, 0.12),
+    inset 0 1px 0 rgba(255, 252, 244, 0.7);
+}
+[data-theme='light'] .mw .btn.on {
+  background: rgba(201, 138, 40, 0.16);
+}
+[data-theme='light'] .mw .seg button.on {
+  background: var(--amber);
+  color: #fcf3de;
+}
+[data-theme='light'] .mw .seg.steel button.on {
+  background: var(--steel);
+  color: #eef7f9;
+}
+[data-theme='light'] :where(.mw) input[type='range']::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 1px var(--amber),
+    0 1px 4px rgba(60, 46, 22, 0.28);
+}
+[data-theme='light'] :where(.mw) input[type='range']::-moz-range-thumb {
+  box-shadow:
+    0 0 0 1px var(--amber),
+    0 1px 4px rgba(60, 46, 22, 0.28);
+}
+[data-theme='light'] .mw .callout {
+  background: rgba(201, 138, 40, 0.13);
+}
+[data-theme='light'] .mw .callout.steel {
+  background: rgba(33, 100, 117, 0.11);
 }

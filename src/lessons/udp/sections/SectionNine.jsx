@@ -155,7 +155,7 @@ export const SectionNine = () => {
                       className="udp-mono"
                       style={{
                         fontSize: 9.5,
-                        color: 'var(--ink-faint)',
+                        color: 'var(--ink-faint-fn)',
                         letterSpacing: '0.05em',
                         marginTop: 4,
                         whiteSpace: 'nowrap',
@@ -244,7 +244,7 @@ export const SectionNine = () => {
                       paddingLeft: 14,
                       fontFamily: 'JetBrains Mono',
                       fontSize: 11,
-                      color: '#1a1108',
+                      color: 'var(--udp-on-accent)',
                       fontWeight: 600,
                     }}
                   >

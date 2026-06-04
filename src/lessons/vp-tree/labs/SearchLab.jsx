@@ -252,14 +252,14 @@ export default function SearchLab() {
         <div className="vp-cmprow">
           <span className="lbl">VP tree</span>
           <div className="track">
-            <div className="fill" style={{ width: pct + '%', background: C.ping }} />
+            <div className="fill" style={{ width: pct + '%', background: 'var(--ping)' }} />
           </div>
           <span className="num">{F.comps}</span>
         </div>
         <div className="vp-cmprow">
           <span className="lbl">Brute force</span>
           <div className="track">
-            <div className="fill" style={{ width: '100%', background: 'rgba(255,106,114,0.5)' }} />
+            <div className="fill" style={{ width: '100%', background: 'var(--coral-fill)' }} />
           </div>
           <span className="num">{N}</span>
         </div>
@@ -288,8 +288,9 @@ export default function SearchLab() {
 
       <div className="vp-treewrap">
         <div className="vp-plabel" style={{ marginBottom: 8 }}>
-          <span className="dot" /> the descent · <span style={{ color: C.ping }}>visited</span> ·{' '}
-          <span style={{ color: C.coral }}>pruned</span>
+          <span className="dot" /> the descent ·{' '}
+          <span style={{ color: 'var(--ping)' }}>visited</span> ·{' '}
+          <span style={{ color: 'var(--coral)' }}>pruned</span>
         </div>
         <TreeDiagram
           root={TREE}
@@ -304,11 +305,11 @@ export default function SearchLab() {
         <span className="pip" /> tap the scope to drop the query anywhere
       </div>
       <div className="vp-caption">
-        The dashed <span style={{ color: C.amber }}>amber circle</span> is our current best range.
-        It shrinks as we find closer contacts. At each vantage point we descend toward the query
-        first, then ask of the other side: could anything in there beat what we already hold? If the
-        triangle inequality says no, the whole
-        <span style={{ color: C.coral }}> region is pruned</span>, skipped without a single
+        The dashed <span style={{ color: 'var(--amber)' }}>amber circle</span> is our current best
+        range. It shrinks as we find closer contacts. At each vantage point we descend toward the
+        query first, then ask of the other side: could anything in there beat what we already hold?
+        If the triangle inequality says no, the whole
+        <span style={{ color: 'var(--coral)' }}> region is pruned</span>, skipped without a single
         measurement. The pruning is provably safe. It only ever discards contacts that cannot win.
       </div>
     </div>
