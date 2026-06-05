@@ -22,11 +22,8 @@
   --gold: #dcae4e;
   --gold-bright: #f2cd6e;
   --vermilion: #dd5e3f;
-  --vermilion-bright: #ec7856;
   --verdigris: #54b596;
-  --verdigris-bright: #6fc9ab;
   --lapis: #719ce5;
-  --lapis-bright: #8fb4ef;
   --tint-done: #12241e;
   --tint-fail: #27130f;
   --tint-warn: #241710;
@@ -1247,4 +1244,105 @@
   font-style: italic;
   font-size: 18px;
   color: var(--ink-2);
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   LIGHT THEME — the complement: the same illuminated chronicle, now read
+   in daylight on the actual leaf. The dark mode is aged vellum seen by
+   candle; this is the vellum itself — warm undyed parchment (#f1e7d0),
+   iron-gall brown-black ink, the gilt still BURNISHED (deepened so it
+   reads on paper, not a pale yellow), the rubric vermilion still vivid,
+   verdigris and lapis the chronicler's two other ground pigments. The
+   aged-grain ::before is re-skinned from a soft-light lift to a multiply
+   stain so the tooth of the leaf darkens the cream the way fibre does.
+   Most of the page cascades from the redefined tokens below; the block
+   after re-paints the handful of rules that used LITERAL colors (the
+   page-ground gradient, the grain, gilt glows, selection, the alert
+   pulse). Scoped to .sg-root throughout — nothing leaks.
+   ════════════════════════════════════════════════════════════════════ */
+[data-theme='light'] .sg-root {
+  /* surfaces — undyed parchment, warmest at the page ground */
+  --vellum: #ece0c6;
+  --vellum-2: #e6d9bc;
+  --vellum-3: #e2d3b4;
+  --paper-hi: #e9ddc0;
+  --inset: #e3d6b6;
+  /* ink — iron-gall: a warm brown-black, fading to a sepia faint */
+  --ink: #2a2014;
+  --ink-2: #564934;
+  --ink-3: #665739;
+  /* gilt — burnished gold DEEPENED to a struck-leaf ochre that reads on cream */
+  --gold: #7d5206;
+  --gold-bright: #9c690e;
+  /* rubric — the corrector's vermilion, deepened just enough to clear AA */
+  --vermilion: #a92d18;
+  /* verdigris — the green earth, deepened for paper */
+  --verdigris: #1f6249;
+  /* lapis — ultramarine, deepened for paper */
+  --lapis: #2a4f9c;
+  /* state washes — pale tints of each pigment laid over the leaf */
+  --tint-done: #d6e8d2;
+  --tint-fail: #f0d7c2;
+  --tint-warn: #f1e0c0;
+  /* rules — iron-gall hairlines instead of bone */
+  --rule: rgba(42, 32, 20, 0.16);
+  --rule-2: rgba(42, 32, 20, 0.3);
+  /* shadows — warm cast on paper, not a black void */
+  --shadow-sm: 0 1px 2px rgba(58, 42, 18, 0.16);
+  --shadow: 0 8px 26px rgba(58, 42, 18, 0.18);
+}
+
+/* page ground — a faint vignette of warmer parchment, no candle-dark */
+[data-theme='light'] .sg-root {
+  background: radial-gradient(130% 92% at 50% -10%, #f4ead4 0%, #efe4cc 46%, #e8dcc0 100%);
+}
+
+/* aged-vellum grain — re-skin the soft-light lift (which only shows on dark)
+   to a multiply stain so the noise DARKENS the cream like the leaf's tooth */
+[data-theme='light'] .sg-root::before {
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+}
+
+/* gilt selection — keep the burnished-gold wash, a touch stronger on paper */
+[data-theme='light'] .sg-root ::selection {
+  background: rgba(125, 82, 6, 0.22);
+}
+
+/* dropcap — on paper the candle-glow halo becomes a soft gilt bloom */
+[data-theme='light'] .sg-root .sg-dropcap::first-letter {
+  text-shadow: 0 1px 1px rgba(125, 82, 6, 0.2);
+}
+
+/* hover washes were a light bone film over dark; on paper darken instead */
+[data-theme='light'] .sg-root .sg-seg button:hover,
+[data-theme='light'] .sg-root .sg-btn.ghost:hover {
+  background: rgba(42, 32, 20, 0.06);
+}
+
+/* gilt panel dot — its halo ring re-tuned to the deepened gold */
+[data-theme='light'] .sg-root .sg-panel-bar .dot {
+  box-shadow: 0 0 0 3px rgba(125, 82, 6, 0.16);
+}
+
+/* the active illumination — the gilt focus glow, recast for bright paper */
+[data-theme='light'] .sg-root .sg-st-active {
+  box-shadow:
+    0 0 0 3px rgba(156, 105, 14, 0.32),
+    0 0 18px rgba(156, 105, 14, 0.16);
+}
+
+/* blocked/contended pulse — swap the dark-tuned vermilion halo for a
+   deepened-rubric one so the alert reads against the leaf */
+[data-theme='light'] .sg-root .sg-is-blocked {
+  animation: sg-pulse-lt 1.6s ease infinite;
+}
+@keyframes sg-pulse-lt {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(169, 45, 24, 0.42);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(169, 45, 24, 0);
+  }
 }

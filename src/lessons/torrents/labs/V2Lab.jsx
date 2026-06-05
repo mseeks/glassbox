@@ -362,7 +362,14 @@ function MagnetResolve() {
                 </div>
                 {on && (
                   <>
-                    <div style={{ fontSize: 13, color: '#c3cad8', lineHeight: 1.55, marginTop: 5 }}>
+                    <div
+                      style={{
+                        fontSize: 13,
+                        color: 'var(--prose)',
+                        lineHeight: 1.55,
+                        marginTop: 5,
+                      }}
+                    >
                       {s.d}
                     </div>
                     <div

@@ -34,6 +34,11 @@
   --violet: #9d8cf2;
   --violet-2: #bcb0f7;
   --violet-dim: rgba(157, 140, 242, 0.15);
+  /* the two reading-prose ink tiers (lead + body). Tokenised so they flip with
+     the theme — --prose is also painted inline on the V2 step description, so
+     the inline style recolors via the token rather than a literal. */
+  --lead: #cdd3e0;
+  --prose: #c3cad8;
   --body: 'Sora', system-ui, sans-serif;
   --disp: 'Yeseva One', Georgia, serif;
 
@@ -270,14 +275,14 @@
 .tor-lead {
   font-size: clamp(1.12rem, 2vw, 1.32rem);
   line-height: 1.6;
-  color: #cdd3e0;
+  color: var(--lead);
   font-weight: 300;
   margin: 0 0 20px;
 }
 .tor-prose p {
   font-size: 1.045rem;
   line-height: 1.74;
-  color: #c3cad8;
+  color: var(--prose);
   font-weight: 300;
   margin: 0 0 18px;
 }
@@ -765,4 +770,149 @@
     width: 9.5px;
     font-size: 9px;
   }
+}
+
+/* ═══ Light theme — the observatory log in daylight ════════════════════════
+   The dark default is the night sky: points of light and luminous threads on a
+   void, the silver starfield twinkling overhead. Daylight does not invert that
+   into a glowing-on-white poster — it lifts the whole chart onto the table. So
+   the ground becomes warm star-chart paper (the family-glue --paper temperature,
+   not a cold white), the silver stars become INKED points pressed into the
+   paper, and the radial nebula-glows of the .bg-layer — which would wash out to
+   nothing on light — are reworked into two faint tinted soundings where the
+   teal/violet glows were, over a hairline so the paper reads as a ruled chart.
+   The four signal accents DEEPEN so they bite on paper: signal-teal → a deep
+   sea-teal, gold → a struck ochre, coral → a burnt vermilion, violet → an inked
+   indigo. Every token below is tuned to clear WCAG AA on the exact warm surface
+   it sits on (page #f4efe4 / panels / the recessed --void inset). ───────────── */
+[data-theme='light'] .tor-root {
+  /* surfaces lift to warm paper (the deepest --void is the recessed inset) */
+  --void: #ece3d0;
+  --bg: #f4efe4;
+  --bg2: #ece3d0;
+  --panel: #f7f2e7;
+  --panel-2: #efe7d6;
+  --line: rgba(42, 36, 24, 0.12);
+  --line-2: rgba(42, 36, 24, 0.2);
+  /* ink drops to a warm near-black; the dim tiers are warm browns, not greys */
+  --star: #241f17;
+  --mist: #5a5345;
+  --faint: #6c6453;
+  --faint-2: #6a6553;
+  /* reading prose tiers (also painted inline on the V2 step description) */
+  --lead: #3d3829;
+  --prose: #3d3829;
+  /* signal-teal: deepened to a sea-teal that holds as small mono on paper */
+  --signal: #0a7064;
+  --signal-2: #096258;
+  --signal-dim: rgba(10, 112, 100, 0.16);
+  /* gold: a struck ochre; gold-2 is the deeper strong/em tier */
+  --gold: #8a5d0a;
+  --gold-2: #7e560a;
+  --gold-dim: rgba(138, 93, 10, 0.16);
+  /* coral: a burnt vermilion for the failure register */
+  --coral: #b8331e;
+  --coral-2: #9f2917;
+  --coral-dim: rgba(184, 51, 30, 0.14);
+  /* violet: an inked indigo for the address space */
+  --violet: #5d49c4;
+  --violet-2: #4f3db0;
+  --violet-dim: rgba(93, 73, 196, 0.16);
+}
+
+/* selection: an inked point on a teal-tinted highlight (no white-on-teal) */
+[data-theme='light'] .tor-root ::selection {
+  background: rgba(10, 112, 100, 0.22);
+  color: var(--star);
+}
+
+/* the night-sky atmosphere reworked for daylight: the radial nebula-glows
+   become two faint warm soundings, the void-to-void gradient becomes paper,
+   and the whole thing sits over a hairline ruled chart-grid */
+[data-theme='light'] .tor-bg-layer {
+  background:
+    radial-gradient(1100px 700px at 78% -8%, rgba(93, 73, 196, 0.07), transparent 60%),
+    radial-gradient(900px 640px at 12% 8%, rgba(10, 112, 100, 0.06), transparent 58%),
+    radial-gradient(1200px 900px at 50% 118%, rgba(138, 93, 10, 0.05), transparent 60%),
+    repeating-linear-gradient(0deg, transparent 0 47px, rgba(42, 36, 24, 0.05) 47px 48px),
+    repeating-linear-gradient(90deg, transparent 0 47px, rgba(42, 36, 24, 0.05) 47px 48px),
+    linear-gradient(180deg, #f6f1e6 0%, #f4efe4 40%, #efe8d9 100%);
+}
+/* the grain inverts: an overlay blend lightens on dark but blows out on paper;
+   switch to multiply at low opacity so it presses faint flecks INTO the paper */
+[data-theme='light'] .tor-bg-grain {
+  opacity: 0.16;
+  mix-blend-mode: multiply;
+}
+/* the silver stars become inked points pressed into the chart paper */
+[data-theme='light'] .tor-star {
+  background: #2a2418;
+}
+
+/* progress rail: the teal→gold thread keeps its hue (via vars); soften the bloom */
+[data-theme='light'] .tor-rail {
+  box-shadow: 0 0 10px rgba(10, 112, 100, 0.35);
+}
+
+/* nav chrome / scrims become warm paper instead of night glass */
+[data-theme='light'] .tor-navbtn {
+  background: rgba(247, 242, 231, 0.78);
+}
+[data-theme='light'] .tor-navpanel {
+  background: rgba(244, 239, 228, 0.97);
+}
+[data-theme='light'] .tor-navscrim {
+  background: rgba(42, 36, 24, 0.32);
+}
+
+/* panel sheen: the white inset top-light reads as a dark hairline on paper */
+[data-theme='light'] .tor-panel::before {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* inline code chip: border tracks the deepened teal */
+[data-theme='light'] .tor-prose .tor-tk {
+  border-color: rgba(10, 112, 100, 0.32);
+}
+
+/* primary / gold buttons: re-skin the literal accent gradients + borders for paper */
+[data-theme='light'] .tor-btn.tor-primary {
+  background: linear-gradient(180deg, rgba(10, 112, 100, 0.18), rgba(10, 112, 100, 0.07));
+  border-color: rgba(10, 112, 100, 0.5);
+}
+[data-theme='light'] .tor-btn.tor-primary:hover {
+  box-shadow: 0 0 18px rgba(10, 112, 100, 0.22);
+}
+[data-theme='light'] .tor-btn.tor-gold {
+  background: linear-gradient(180deg, rgba(138, 93, 10, 0.16), rgba(138, 93, 10, 0.06));
+  border-color: rgba(138, 93, 10, 0.46);
+}
+
+/* segmented control: the white "on" sheen → faint dark relief; accent rings retuned */
+[data-theme='light'] .tor-seg button.tor-on {
+  box-shadow: 0 1px 0 rgba(42, 36, 24, 0.06);
+}
+[data-theme='light'] .tor-seg button.tor-on.tor-sig {
+  box-shadow: inset 0 0 0 1px rgba(10, 112, 100, 0.42);
+}
+[data-theme='light'] .tor-seg button.tor-on.tor-gld {
+  box-shadow: inset 0 0 0 1px rgba(138, 93, 10, 0.42);
+}
+
+/* range thumb: bloom keyed to the deepened teal */
+[data-theme='light'] .tor-root input[type='range']::-webkit-slider-thumb {
+  box-shadow: 0 0 10px rgba(10, 112, 100, 0.4);
+}
+
+/* badges: borders track the deepened accents on the paper washes */
+[data-theme='light'] .tor-badge.tor-ok {
+  border-color: rgba(10, 112, 100, 0.42);
+}
+[data-theme='light'] .tor-badge.tor-bad {
+  border-color: rgba(184, 51, 30, 0.44);
+}
+
+/* DHT "getting warmer" — the differing-bit cell wash tracks the burnt vermilion */
+[data-theme='light'] .tor-bcell.tor-d {
+  background: rgba(184, 51, 30, 0.14);
 }

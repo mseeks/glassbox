@@ -29,6 +29,13 @@
   --gold: #b3801c;
   --gold-bright: #caa033;
   --gold-wash: #f0e6cb;
+  /* dark ink that sits on the bright-gold "chosen" fills (chips, badges,
+     witness node, carved decree). Tokenised so the JSX inline color + the
+     CSS literals flip together; stays a warm near-black on gold in BOTH modes. */
+  --on-gold: #3a2c08;
+  /* crisp light label on the saturated aegean/sea fills (dots, buttons,
+     segmented toggle, badges). Stays near-white in both modes. */
+  --on-accent: #fff;
   --r: 14px;
 
   margin: 0;
@@ -321,7 +328,7 @@
 .pax-node.both {
   border-color: var(--gold);
   background: var(--gold-bright);
-  color: #3a2c08;
+  color: var(--on-gold);
   box-shadow: 0 0 0 4px var(--gold-wash);
   transform: scale(1.07);
 }
@@ -360,12 +367,12 @@
 .pax-dot.aOn {
   border-color: var(--aegean);
   background: var(--aegean);
-  color: #fff;
+  color: var(--on-accent);
 }
 .pax-dot.bOn {
   border-color: var(--sea);
   background: var(--sea);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 /* readout / insight */
@@ -479,7 +486,7 @@
   left: 50%;
   transform: translateX(-50%);
   background: var(--gold);
-  color: #3a2c08;
+  color: var(--on-gold);
   font-family: var(--font-mono);
   font-size: 7px;
   font-weight: 700;
@@ -497,14 +504,14 @@
   letter-spacing: 0.03em;
   padding: 2px 5px;
   border-radius: 6px;
-  color: #fff;
+  color: var(--on-accent);
 }
 .pax-leg .badge.bPrep {
   background: var(--aegean);
 }
 .pax-leg .badge.bVote {
   background: var(--gold);
-  color: #3a2c08;
+  color: var(--on-gold);
 }
 .pax-leg .badge.bRej {
   background: var(--terra);
@@ -618,7 +625,7 @@
   letter-spacing: 0.03em;
   border: 1px solid var(--aegean);
   background: var(--aegean);
-  color: #fff;
+  color: var(--on-accent);
   padding: 8px 14px;
   border-radius: 9px;
   cursor: pointer;
@@ -696,7 +703,7 @@
 }
 .pax-seg button.on {
   background: var(--aegean);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 /* multi-paxos log */
@@ -1008,4 +1015,131 @@
   .pax-section {
     padding: 60px 0 14px;
   }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   DARK THEME — the same marble chamber at night.
+   Complementary to the light Greek-marble default. The assembly hall after
+   the torches are lit: the marble stock drops to warm dark stone, the ink
+   lifts to parchment, the aegean is raised so structure stays legible against
+   the dark, the gold stays warm under lamplight on what is chosen, and the
+   terracotta of rejection keeps its heat. Almost the entire design cascades
+   from the redefined custom-properties below; the rules after them only
+   re-skin the handful of LITERAL-color spots (the atmosphere gradients + grain,
+   the dark-gold/dark-terra prose literals, the carved-decree gradient, washed
+   borders, shadows, frosted nav, and the meander SVG stroke) that don't read
+   off a token. All selectors stay scoped under .pax-root.
+   ════════════════════════════════════════════════════════════════════ */
+[data-theme='dark'] .pax-root {
+  --marble: #1a1712;
+  --marble-2: #221d17;
+  --marble-3: #2a241c;
+  --panel: #241f18;
+  --line: #3d3528;
+  --line-soft: #312a20;
+  --ink: #ede3cf;
+  --ink-soft: #b3a78d;
+  --ink-faint: #988c74;
+  /* aegean lifted off the dark: --aegean is the mid fill (dark on-accent text
+     reads on it), --aegean-deep is the BRIGHT stop used both as light-on-dark
+     heading/em text AND as the brighter button-hover fill. */
+  --aegean: #4fa6c8;
+  --aegean-deep: #7cc4e0;
+  --aegean-wash: rgba(79, 166, 200, 0.16);
+  --sea: #54bdab;
+  --sea-wash: rgba(84, 189, 171, 0.15);
+  --terra: #e07a5f;
+  --terra-wash: rgba(224, 122, 95, 0.16);
+  --gold: #cda44d;
+  --gold-bright: #e0bf63;
+  --gold-wash: rgba(205, 164, 77, 0.16);
+  /* the chosen-gold fills stay bright, so the ink on them stays a warm
+     near-black; the accent fills are now bright pastels, so their label flips
+     from white to a deep aegean-ink that reads on aegean/sea. */
+  --on-gold: #241a06;
+  --on-accent: #102530;
+
+  /* atmosphere: the warm gold pool and the cool aegean wash now glow up out of
+     the dark stone instead of tinting bright marble; the grain stays a faint
+     fractal tooth on the stone. */
+  background-image:
+    radial-gradient(1200px 600px at 78% -8%, rgba(224, 191, 99, 0.1), transparent 60%),
+    radial-gradient(900px 520px at -10% 8%, rgba(79, 166, 200, 0.09), transparent 55%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+}
+
+/* selection: the aegean glow reads brighter on dark stone */
+[data-theme='dark'] .pax-root ::selection {
+  background: rgba(79, 166, 200, 0.3);
+}
+
+/* nav hover wash: a warm stone tint instead of the light marble film */
+[data-theme='dark'] .pax-root .pax-nav-item:hover {
+  background: rgba(61, 53, 40, 0.55);
+}
+
+/* prose literals: the warm near-black body/lead/stage tones lift to the same
+   parchment ink the --ink token carries */
+[data-theme='dark'] .pax-root .pax-prose {
+  color: #e4dac4;
+}
+[data-theme='dark'] .pax-root .pax-lead {
+  color: #ede3cf;
+}
+[data-theme='dark'] .pax-root .pax-stage .d {
+  color: #e4dac4;
+}
+
+/* lab card shadow: drop the bright top inset, deepen the cast shadow into the
+   stone */
+[data-theme='dark'] .pax-root .pax-lab {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 14px 30px -22px rgba(0, 0, 0, 0.7);
+}
+
+/* insight callouts: the aegean variant rides --aegean-deep text (already bright);
+   the gold + terra variants used dark-gold/dark-terra literals that vanish on a
+   dark wash, so lift their text + retune the wash borders to translucent hues */
+[data-theme='dark'] .pax-root .pax-insight {
+  border-color: rgba(79, 166, 200, 0.34);
+}
+[data-theme='dark'] .pax-root .pax-insight.gold {
+  border-color: rgba(205, 164, 77, 0.4);
+  color: #e6c87a;
+}
+[data-theme='dark'] .pax-root .pax-insight.terra {
+  border-color: rgba(224, 122, 95, 0.4);
+  color: #f0a98f;
+}
+
+/* the slot value + leg value (chosen text) lift from dark-gold to warm gold */
+[data-theme='dark'] .pax-root .pax-slot .sv {
+  color: #e6c87a;
+}
+
+/* carved decree: the lamplit-marble gradient becomes a slab of warm dark gold;
+   text + label lift to a legible warm gold, and the rejected variant rides the
+   translucent terra wash with a lifted terra text */
+[data-theme='dark'] .pax-root .pax-carved {
+  background: linear-gradient(180deg, #3a3018, #2e2510);
+  border-color: #5a4a22;
+  color: #e6c87a;
+  box-shadow: 0 1px 0 rgba(255, 245, 214, 0.06) inset;
+}
+[data-theme='dark'] .pax-root .pax-carved.none {
+  background: var(--terra-wash);
+  border-color: rgba(224, 122, 95, 0.4);
+  color: #f0a98f;
+}
+
+/* mobile sticky nav: flip the light frosted marble to frosted dark stone */
+[data-theme='dark'] .pax-root .pax-nav {
+  background: rgba(26, 23, 18, 0.92);
+}
+
+/* the meander frieze stroke is a baked aegean literal in its SVG data-URI:
+   re-point it at the lifted aegean so the frieze reads at night */
+[data-theme='dark'] .pax-root .pax-meander {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='13' viewBox='0 0 52 13'%3E%3Cpath d='M1 12V4h8V1h8v8H9v3H1z' fill='none' stroke='%234fa6c8' stroke-width='1.4'/%3E%3C/svg%3E");
 }

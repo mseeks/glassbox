@@ -80,7 +80,7 @@ export default function GuessLab() {
               height: 18,
               left: `${pct(cur.lo)}%`,
               width: `${pct(cur.hi) - pct(cur.lo)}%`,
-              background: 'rgba(95,168,207,.20)',
+              background: 'var(--blue-wash-20)',
               borderLeft: '1.5px solid var(--blue)',
               borderRight: '1.5px solid var(--blue)',
               transition: 'all .5s',
@@ -160,7 +160,7 @@ export default function GuessLab() {
         <Legend
           items={[
             { c: 'var(--red)', t: 'this guess' },
-            { c: 'rgba(95,168,207,.55)', t: 'still possible' },
+            { c: 'var(--blue-wash-55)', t: 'still possible' },
             { c: 'var(--dim)', t: 'eliminated' },
           ]}
         />

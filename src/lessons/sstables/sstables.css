@@ -14,10 +14,8 @@
   --blood-ink: #6c1d27;
   --blood-wash: rgba(140, 39, 51, 0.09);
   --steel: #3a4a6b;
-  --steel-2: #56689a;
   --steel-wash: rgba(58, 74, 107, 0.1);
   --sage: #566a3c;
-  --sage-2: #7b8c52;
   --sage-wash: rgba(86, 106, 60, 0.12);
   --dead: #3a372f;
   --dead-2: #5b574c;
@@ -1467,4 +1465,76 @@
   .sst-pfx-store {
     display: none;
   }
+}
+
+/* ─── Dark theme — the same press under low light, complement to the light
+   type-specimen default ───
+   The composing room after hours: deep warm ink-black stock instead of bone,
+   the oxblood spot still rich (lifted a step so it glows on the dark stock and
+   clears AA), steel-indigo structure and sage "kept" both lifted out of the
+   shadow, graphite for the dead. The whole specimen cascades from the redefined
+   tokens below; the rules after them only re-skin the literals that don't flow
+   through a token — the laid-paper ::before lines, the ::after grain blend, and
+   the seal-stamp's translucent paper fill. */
+[data-theme='dark'] .sst-root {
+  /* Stock + recesses go warm ink-black, not cold grey, matching the family
+     glue's warm temperature. */
+  --paper: #15130d;
+  --paper-2: #1c1912;
+  --recess: #221e16;
+  --recess-2: #2a251b;
+  /* Ink ramp inverts to warm near-white → faint sepia. ink-3 sits at the
+     legible-faint stop (small mono labels/captions) so it clears AA on the
+     stock; ink-4 is the ghost/inactive tier (forme rows before the head, seg
+     ghosts) and stays below AA by design — it never carries reading text. */
+  --ink: #f0ead9;
+  --ink-2: #c6bea8;
+  --ink-3: #9c9482;
+  --ink-4: #6f685a;
+  /* Oxblood spot lifted so it stays rich and reads on black. It works double
+     duty — as small text (the eyebrow/kicker, readhead, dial lean, FP border)
+     AND as an accent fill carrying the now-dark --paper as its on-fill text
+     (primary button, keychip/badges). Tuned so both roles clear AA: as text it
+     hits 5.06:1 on the stock / 4.52:1 on recess, and the dark on-fill text hits
+     5.06:1 on the fill. blood-2 is the brighter hover; blood-ink is the inline-
+     code text colour — a warm rose that reads on the dark recess fill. */
+  --blood: #dd5a64;
+  --blood-2: #ec707a;
+  --blood-ink: #ef9aa1;
+  --blood-wash: rgba(221, 90, 100, 0.16);
+  /* Steel-indigo structure lifted out of shadow; steel itself must read as
+     small mono label text (idx labels, note labels) so it clears AA on stock. */
+  --steel: #8497c8;
+  --steel-wash: rgba(132, 151, 200, 0.16);
+  /* Sage "kept" lifted; sage carries the ledger labels + prose tint as text. */
+  --sage: #a2b67c;
+  --sage-wash: rgba(162, 182, 124, 0.16);
+  /* Graphite for the dead — a low warm grey on the dark stock. dead-2 carries
+     the prose "dead" tint as text, so it clears AA. */
+  --dead: #b3ab9a;
+  --dead-2: #948c7c;
+  --rule: rgba(240, 234, 217, 0.16);
+  --rule-2: rgba(240, 234, 217, 0.3);
+  --rule-soft: rgba(240, 234, 217, 0.07);
+}
+
+/* atmosphere — laid-paper lines: ink hairlines on light become faint
+   light-ink hairlines catching the lamp on the dark stock */
+[data-theme='dark'] .sst-root::before {
+  background-image:
+    repeating-linear-gradient(90deg, rgba(240, 234, 217, 0.03) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(0deg, rgba(240, 234, 217, 0.016) 0 1px, transparent 1px 28px);
+  opacity: 0.6;
+}
+/* grain — multiply vanishes on a dark ground, so lift it to screen and dial it
+   back to a faint phosphor speckle */
+[data-theme='dark'] .sst-root::after {
+  mix-blend-mode: screen;
+  opacity: 0.13;
+}
+
+/* seal-stamp — the translucent bone-paper plaque flips to a translucent
+   ink-stock plaque so the oxblood seal still sits on its own ground */
+[data-theme='dark'] .sst-root .sst-sealstamp {
+  background: rgba(21, 19, 13, 0.55);
 }

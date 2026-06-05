@@ -24,7 +24,7 @@ export default function QuorumExplorer() {
     return (
       <div key={i} className={`pax-node ${c}`} style={{ left: `${left}%`, top: `${top}%` }}>
         {i + 1}
-        {inA && inB && <small style={{ color: '#3a2c08' }}>witness</small>}
+        {inA && inB && <small style={{ color: 'var(--on-gold)' }}>witness</small>}
       </div>
     );
   };

@@ -21,12 +21,15 @@
   --blue: #5fa8cf;
   --blue-deep: #8fcdec;
   --red: #f86d4d;
-  --red-soft: #ff8e72;
   --sage: #74c48a;
   --gold: #dca63f;
   --line: #284a66;
   --hair: #223a52;
   --dim: #5d7e98;
+  /* blue washes (tints of --blue #5fa8cf) painted inline in GuessLab's
+     number-line band + legend swatch — tokenised so they flip with the theme */
+  --blue-wash-20: rgba(95, 168, 207, 0.2);
+  --blue-wash-55: rgba(95, 168, 207, 0.55);
 
   position: relative;
   background: var(--paper);
@@ -854,4 +857,83 @@
     height: 40px;
     font-size: 14px;
   }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   LIGHT THEME — the same drafting table, seen by daylight
+   The dark default is a blueprint lit from within (cyan lines on cyanotype
+   stock). Light mode is the real drafting table: warm vellum/paper, the
+   blueprint lines redrawn as BLUE INK on paper, the red pencil still red,
+   graphite for body ink. The graph-paper ::before grid stays legible by
+   redrawing it as faint blue ink rather than glowing line. Surfaces lift to
+   warm paper, the accents DEEPEN so they bite on the page (and so the light
+   --paper text that buttons/filled nodes paint on them still reads). Same
+   warm temperature as the family glue (tokens.css), not a cold grey.
+   ════════════════════════════════════════════════════════════════════ */
+[data-theme='light'] .bst-root {
+  --paper: #eee7d6;
+  --paper-2: #e4dcc7;
+  --panel: #f5f0e3;
+  --grid: rgba(40, 92, 130, 0.26);
+  --grid-major: rgba(40, 92, 130, 0.42);
+  --ink: #23201a;
+  --ink-2: #4f4838;
+  --ink-3: #685f4e;
+  --blue: #1c5c82;
+  --blue-deep: #184e6f;
+  --red: #b23a22;
+  --sage: #2a7146;
+  --gold: #7e580f;
+  --line: rgba(40, 92, 130, 0.32);
+  --hair: rgba(40, 70, 95, 0.2);
+  --dim: #8a8473;
+  /* blue washes redrawn as tints of the deepened blueprint ink (#1c5c82) so
+     they read on warm paper instead of glowing on cyanotype */
+  --blue-wash-20: rgba(28, 92, 130, 0.16);
+  --blue-wash-55: rgba(28, 92, 130, 0.6);
+}
+
+/* graph-paper ground: the grid tokens above already redraw the lines as blue
+   ink; lift the mask + opacity so the fainter paper grid still reads legibly */
+[data-theme='light'] .bst-root::before {
+  opacity: 0.85;
+  -webkit-mask-image: radial-gradient(150% 130% at 50% 30%, #000 60%, transparent 100%);
+  mask-image: radial-gradient(150% 130% at 50% 30%, #000 60%, transparent 100%);
+}
+/* paper warmth glow: a soft warm-blue wash up top instead of the dark bloom */
+[data-theme='light'] .bst-root::after {
+  background: radial-gradient(130% 100% at 50% -10%, rgba(40, 92, 130, 0.08), transparent 62%);
+}
+
+/* sticky bar: frosted warm paper instead of frosted blueprint */
+[data-theme='light'] .bst-bar {
+  background: rgba(238, 231, 214, 0.85);
+}
+
+/* lab shell: a soft cast shadow + faint warm top-highlight so the plate sits
+   ON the paper rather than the dark recessed glow */
+[data-theme='light'] .bst-lab {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 16px 36px -26px rgba(40, 55, 75, 0.4);
+}
+
+/* legend swatch hairline: a dark frame on paper, not a white one */
+[data-theme='light'] .bst-swatch {
+  border: 1px solid rgba(35, 32, 26, 0.2);
+}
+
+/* selection: red-pencil wash on paper */
+[data-theme='light'] .bst-root ::selection {
+  background: rgba(178, 58, 34, 0.22);
+}
+
+/* the code plate stays a dark blueprint print — a slip of cyanotype pinned to
+   the drafting table — but the dark-on-dark literals are re-tuned a touch so it
+   reads as a deliberate dark inset on the light page (its own dark ground keeps
+   the bright syntax tokens legible in both modes) */
+[data-theme='light'] .bst-code {
+  background: #11212e;
+  color: #d7e4ef;
+  box-shadow: 0 10px 26px -20px rgba(40, 55, 75, 0.5);
 }
