@@ -41,6 +41,37 @@ export function Closing() {
               rest on.
             </p>
           </div>
+          <div style={{ marginTop: 56 }}>
+            <div className="swim-eyebrow" style={{ marginBottom: 24, color: 'var(--brass)' }}>
+              Where to go next
+            </div>
+            <div className="swim-prose swim-mid" style={{ fontSize: 17, lineHeight: 1.75 }}>
+              <p>
+                <strong style={{ color: 'var(--brass)' }}>Lifeguard</strong>, if you intend to run
+                this. The three refinements from §09 — a node that <em>handicaps itself</em> when
+                its own health degrades, suspicion timeouts that decay as witnesses pile on, and a
+                word sent straight to the accused — are what turn the paper's clean object into
+                something that survives slow nodes and GC pauses. SWIM with Lifeguard is what ships
+                inside Serf, Consul, and Nomad.
+              </p>
+              <p>
+                <strong style={{ color: 'var(--brass)' }}>Raft, or Paxos</strong>, for the rung
+                above. Membership is not consensus, and SWIM was careful never to promise it. When
+                you need an ordered, linearizable decision about shared state, SWIM tells you who
+                the members <em>are</em> and a consensus log decides what they <em>agree to</em> —
+                the cheap eventual layer at the bottom, the expensive unanimous-now layer on top. It
+                is the same two-rung ladder the comparison in §10 ends on, and Consul is its
+                canonical shape.
+              </p>
+              <p>
+                <strong style={{ color: 'var(--brass)' }}>Anti-entropy gossip</strong>, for moving
+                more than just <em>who is here</em>. SWIM piggybacks membership deltas; its cousin
+                gossips arbitrary key-value state, with Merkle trees making the reconciliation diff
+                cheap. It is how Dynamo, Cassandra, and Riak keep replicas converging — the same
+                epidemic spread, pointed at data instead of liveness.
+              </p>
+            </div>
+          </div>
           <div style={{ marginTop: 64, display: 'flex', alignItems: 'center', gap: 16 }}>
             <span
               style={{

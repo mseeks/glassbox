@@ -2220,6 +2220,49 @@ CHAPTER 6: ACTOR DIAGRAM
   font-weight: 500;
 }
 
+/* The one idea — a single synthesis box. Built from the same card gradient and
+   tokens as .closing-card (so it tracks the same light/dark retune), but kept
+   visually distinct with an amber spine and centred max-width so it reads as the
+   single thing to remember rather than one card among several. */
+.cc-one-idea {
+  max-width: 38rem;
+  margin: 2rem 0 2.5rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--amber);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0) 46%), var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.cc-one-idea-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--amber);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.cc-one-idea-body {
+  font-family: 'Fraunces', serif;
+  font-variation-settings: 'opsz' 36;
+  font-weight: 400;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  letter-spacing: 0.002em;
+  color: var(--ink-dim);
+  margin: 0;
+  max-width: none;
+}
+
+.cc-one-idea-body em {
+  font-style: italic;
+  color: var(--ink);
+  font-weight: 500;
+}
+
 /* Footer */
 .footer {
   padding: 4.5rem 2rem 6.5rem;
@@ -2526,6 +2569,7 @@ CHAPTER 6: ACTOR DIAGRAM
 [data-theme='light'] .lesson-root .runtime-card,
 [data-theme='light'] .lesson-root .ref-card,
 [data-theme='light'] .lesson-root .closing-card,
+[data-theme='light'] .lesson-root .cc-one-idea,
 [data-theme='light'] .lesson-root .reorder-card,
 [data-theme='light'] .lesson-root .thread,
 [data-theme='light'] .lesson-root .memory,

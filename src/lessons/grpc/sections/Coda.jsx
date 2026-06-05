@@ -48,7 +48,25 @@ export default function Coda() {
         />
         <div className="gx-prose">
           <Reveal base="gx-fade">
-            <div className="gx-panel pad">
+            <div className="gx-coda">
+              <p className="gx-kicker">The one idea</p>
+              <p
+                style={{
+                  fontSize: 16.5,
+                  color: 'var(--ink-bright)',
+                  lineHeight: 1.5,
+                  margin: '10px 0 0',
+                }}
+              >
+                gRPC is a typed contract in Protocol Buffers, multiplexed over HTTP/2, that never
+                pretends the network isn&apos;t there. The schema makes the bytes mean something;
+                the transport runs many calls down one connection; and status codes, deadlines, and
+                cancellation exist precisely to admit you are calling across a wire, not a function.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal base="gx-fade">
+            <div className="gx-panel pad" style={{ marginTop: 26 }}>
               <div className="gx-panel-label">
                 <span className="dot" />
                 the right tool by job
@@ -99,9 +117,8 @@ export default function Coda() {
               Where to go next
             </h3>
             <p>
-              You now have the real model: a typed contract in Protocol Buffers, multiplexed streams
-              over HTTP/2, four call shapes with built-in backpressure, and a deliberately leaky
-              abstraction over the network. Threads worth pulling:
+              The model is yours now. The fastest way to set it is to build with it and to keep
+              pulling the threads that run off the edges. A few worth following:
             </p>
             <ul
               style={{ paddingLeft: 0, listStyle: 'none', display: 'grid', gap: 10, marginTop: 14 }}

@@ -12,6 +12,21 @@ export default function S7() {
           lede="The vantage-point tree is one answer to one question: proximity. Here is the neighbourhood it lives in."
         />
       </Reveal>
+      <Reveal base="rv" className="vp-prose">
+        <p style={{ marginTop: 22 }}>
+          Carry one thing away. Every structure below answers the same question —{' '}
+          <em>what is closest?</em> — and the vantage-point tree is the cleanest way to see the
+          machinery: a <span className="amber">landmark</span>, a{' '}
+          <span className="ping">distance shell</span>, and the triangle inequality{' '}
+          <span className="coral">pruning</span> whole regions you never have to look at. Learn that
+          one bargain and the rest of the family becomes legible.
+        </p>
+        <p>
+          Each cousin strikes the bargain differently. Some trade exactness for speed, some chase
+          higher dimensions, some pay more at build time so every later query runs cheaper. The
+          trade-offs differ; the shape does not.
+        </p>
+      </Reveal>
       <Reveal base="rv">
         <div className="vp-cards">
           <div className="vp-card">
@@ -63,15 +78,6 @@ export default function S7() {
             <span className="tag">approximate · high-dim</span>
           </div>
         </div>
-      </Reveal>
-      <Reveal base="rv" className="vp-prose">
-        <p style={{ marginTop: 26 }}>
-          One question runs under all of them: <em>what is closest?</em> Each structure strikes its
-          own bargain. Some trade exactness for speed, some chase higher dimensions, some pay more
-          at build time so that every later query runs faster. The trade-offs differ. The shape does
-          not. Knowing how the spheres and the triangle inequality work here is the lens that makes
-          the rest of the family legible.
-        </p>
       </Reveal>
 
       <footer className="vp-foot">

@@ -108,6 +108,190 @@ function SynthesisBody() {
             }}
           />
         </div>
+
+        <WhereToGoNext />
+      </div>
+    </div>
+  );
+}
+
+// Two concept families, each pointing outward from a single-node ACID database:
+// what it costs to keep the guarantees across machines, and what you trade them
+// for when you relax them. Each entry carries its own accent so the family reads
+// at a glance; the colours are the same flip-aware tokens the rest of the lesson
+// paints with, so the whole block themes for free in both modes.
+const NEXT_FAMILIES = [
+  {
+    label: 'Holding the line across machines',
+    blurb:
+      'Everything here assumed one box. Spread the data over many, and each letter has to be re-earned over a network that drops messages and partitions.',
+    accent: '--iso-teal',
+    items: [
+      [
+        'Distributed transactions',
+        'Two-phase commit and Saga patterns — how *all-or-nothing* survives when "all" is spread across several nodes that can each fail independently.',
+      ],
+      [
+        'Spanner & CockroachDB',
+        'Strict-serializable ACID *everywhere*, bought with synchronized clocks and Raft/Paxos consensus under every write. ACID as a global, not a local, contract.',
+      ],
+    ],
+  },
+  {
+    label: 'Trading the guarantees away',
+    blurb:
+      'Sometimes the full contract costs more than the workload can pay. These are the deliberate relaxations — and exactly which letter each one gives up.',
+    accent: '--iso-amber',
+    items: [
+      [
+        'Optimistic vs. pessimistic locking',
+        'Two ways to deliver Isolation: lock up front and serialize, or run free and abort on conflict at commit. The same I, two very different latency profiles.',
+      ],
+      [
+        'Eventual consistency & read repair',
+        'Drop linearizability for availability under partition (the CAP trade). Replicas reconcile after the fact instead of agreeing before the write returns.',
+      ],
+      [
+        'CRDTs',
+        'Conflict-free replicated data types: structure the data so concurrent writes *always* merge without coordination — convergence by algebra instead of by locks.',
+      ],
+    ],
+  },
+];
+
+function WhereToGoNext() {
+  return (
+    <div style={{ marginTop: 36 }}>
+      <div className="iso-rule-short" style={{ margin: '0 0 18px' }} />
+      <div
+        className="iso-ui"
+        style={{
+          fontSize: 10,
+          letterSpacing: '0.18em',
+          textTransform: 'uppercase',
+          color: 'rgba(var(--iso-ink-rgb), 0.72)',
+          marginBottom: 6,
+        }}
+      >
+        Where to go next
+      </div>
+      <h3
+        className="iso-display"
+        style={{
+          fontSize: 22,
+          fontWeight: 500,
+          color: 'var(--ink)',
+          margin: 0,
+          fontStyle: 'italic',
+        }}
+      >
+        Four guarantees, and the price of keeping them elsewhere
+      </h3>
+      <p
+        className="iso-body"
+        style={{
+          fontSize: 15,
+          lineHeight: 1.6,
+          color: 'rgba(var(--iso-ink-rgb), 0.85)',
+          margin: '14px 0 22px',
+        }}
+        dangerouslySetInnerHTML={{
+          __html: renderProseMarkdown(
+            'ACID is the contract a *single* database makes. The interesting questions start when you ask what it costs to keep that contract across many machines, or which letter you are willing to give up to go faster.',
+          ),
+        }}
+      />
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+        {NEXT_FAMILIES.map((family) => (
+          <NextFamily key={family.label} family={family} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function NextFamily({ family }) {
+  return (
+    <div
+      style={{
+        padding: '16px 18px',
+        borderRadius: 8,
+        background: `rgba(var(${family.accent}-rgb), 0.04)`,
+        border: `1px solid rgba(var(${family.accent}-rgb), 0.2)`,
+      }}
+    >
+      <div
+        className="iso-ui"
+        style={{
+          fontSize: 9,
+          letterSpacing: '0.16em',
+          textTransform: 'uppercase',
+          color: `var(${family.accent})`,
+          marginBottom: 8,
+          fontWeight: 600,
+        }}
+      >
+        {family.label}
+      </div>
+      <p
+        className="iso-body"
+        style={{
+          fontSize: 14,
+          lineHeight: 1.6,
+          color: 'rgba(var(--iso-ink-rgb), 0.85)',
+          margin: '0 0 14px',
+          fontStyle: 'italic',
+        }}
+      >
+        {family.blurb}
+      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {family.items.map(([topic, detail]) => (
+          <div
+            key={topic}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '6px 1fr',
+              alignItems: 'flex-start',
+              gap: 12,
+            }}
+          >
+            <div
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: '50%',
+                marginTop: 8,
+                background: `var(${family.accent})`,
+                flexShrink: 0,
+              }}
+            />
+            <div>
+              <span
+                className="iso-display"
+                style={{
+                  fontSize: 16,
+                  fontWeight: 600,
+                  color: 'var(--ink)',
+                  fontStyle: 'italic',
+                }}
+              >
+                {topic}
+              </span>
+              <p
+                className="iso-body"
+                style={{
+                  fontSize: 14,
+                  lineHeight: 1.55,
+                  color: 'rgba(var(--iso-ink-rgb), 0.82)',
+                  margin: '3px 0 0',
+                }}
+                dangerouslySetInnerHTML={{ __html: renderProseMarkdown(detail) }}
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

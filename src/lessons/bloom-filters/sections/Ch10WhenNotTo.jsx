@@ -20,17 +20,6 @@ export function Ch10WhenNotTo() {
         <strong>Static set, known in advance.</strong> A perfect hash function, an XOR filter, or a
         Ribbon filter beats Bloom filters on space. Use them when you can.
       </p>
-      <div className="bf-pullquote">
-        A Bloom filter is never the answer to a question. It is a fast way to know you can skip{' '}
-        <em>asking</em> the real answer.
-      </div>
-      <p>
-        The real answer always lives somewhere else: in the SSTable, the cache, the database, the
-        source of truth. The filter says "the source doesn't have it" or "the source <em>might</em>{' '}
-        have it; go check." Once you internalize that framing, every variant in the family makes
-        intuitive sense. They are all, every one of them, ways to skip work with bounded one-sided
-        error in bounded space.
-      </p>
     </Chapter>
   );
 }

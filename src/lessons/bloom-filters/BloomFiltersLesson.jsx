@@ -25,6 +25,7 @@ import { Ch07dRestOfFamily } from './sections/Ch07dRestOfFamily.jsx';
 import { Ch08TheCousins } from './sections/Ch08TheCousins.jsx';
 import { Ch09InProduction } from './sections/Ch09InProduction.jsx';
 import { Ch10WhenNotTo } from './sections/Ch10WhenNotTo.jsx';
+import { Coda } from './sections/Coda.jsx';
 
 function LabFrame({ children }) {
   return (
@@ -81,6 +82,7 @@ export default function BloomFiltersLesson() {
       <Ch08TheCousins />
       <Ch09InProduction />
       <Ch10WhenNotTo />
+      <Coda />
 
       <Footer />
     </div>
