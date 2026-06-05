@@ -99,16 +99,22 @@ describe('lesson catalog', () => {
   });
 
   it('has a default-exporting lesson module for every lesson id', async () => {
-    for (const lesson of lessons) {
-      const modulePath = `../src/lessons/${lesson.id}/index.js`;
-      const loadModule = lessonModules[modulePath];
+    // Import every lesson chunk in parallel. Awaiting all 23 lazy modules
+    // sequentially — each pulling in its whole component + CSS graph — blew the
+    // default 5s timeout under coverage instrumentation on the CI runner. The
+    // explicit timeout keeps margin as the collection grows.
+    await Promise.all(
+      lessons.map(async (lesson) => {
+        const modulePath = `../src/lessons/${lesson.id}/index.js`;
+        const loadModule = lessonModules[modulePath];
 
-      expect(loadModule, `${lesson.id} is missing ${modulePath}`).toEqual(expect.any(Function));
+        expect(loadModule, `${lesson.id} is missing ${modulePath}`).toEqual(expect.any(Function));
 
-      const module = await loadModule();
-      expect(module.default, `${lesson.id} is missing a default export`).toEqual(
-        expect.any(Function),
-      );
-    }
-  });
+        const module = await loadModule();
+        expect(module.default, `${lesson.id} is missing a default export`).toEqual(
+          expect.any(Function),
+        );
+      }),
+    );
+  }, 15000);
 });
