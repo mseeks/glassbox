@@ -9,26 +9,21 @@
  * canonical source named in its eyebrow (RFC 8446, Bayer & McCreight 1970,
  * Flajolet et al. 2007, …)?
  *
- * Unlike the scope-required mappers, this loop is PER-LESSON and runs the
- * lessons IN PARALLEL: one agent per lesson, each on the most capable model at
- * the highest reasoning effort (`opus` + `effort: "max"`), reading the lesson's
- * whole content corpus (sections/ prose, labs/ interactives, the pure engine/
- * logic that drives every visualization, components/, the engine's test suite,
- * and the catalog framing) and emitting a strict three-bucket map under a hard
- * cite-or-omit rule. It is READ-ONLY — it can investigate but never edits; the
- * human corrects what they agree with.
+ * It is PER-LESSON, fanned out in parallel on the per-lesson.ts scaffold: one
+ * agent per lesson, each on the most capable model at the highest reasoning
+ * effort (`opus` + `effort: "max"`), reading the lesson's whole content corpus
+ * and emitting a strict three-bucket map under a hard cite-or-omit rule. It is
+ * READ-ONLY — it can investigate but never edits; the human corrects what they
+ * agree with.
  *
  * This is the HEAVIEST loop by far (N max-effort Opus agents, each reading a
- * full lesson). It is NOT a routine loop — run it occasionally to stay honest,
- * or scope it to the lesson(s) you just touched. Cost scales with the number of
- * lessons; bound it with lesson-id args, `--limit N`, `--concurrency N`, and
- * `--budget N` (per-lesson USD cap).
+ * full lesson). NOT routine — run it occasionally, or scope it to the lesson(s)
+ * you just touched, and bound it with `--limit`, `--concurrency`, `--budget`.
  *
- * The outside reference here is not a test suite — accuracy is not something
- * vitest / eslint / vite can assert. The reference is the canonical literature
- * of each topic, brought by a domain-expert reviewer. So this loop, uniquely,
- * cannot "verify and revert"; it can only MAP, with every finding anchored to a
- * quoted line. That is exactly why it is read-only and why the human stays the
+ * The outside reference is not a test suite — accuracy is not something vitest /
+ * eslint / vite can assert. It is the canonical literature of each topic, brought
+ * by a domain-expert reviewer. So this loop can only MAP, with every finding
+ * anchored to a quoted line; that is why it is read-only and the human stays the
  * steward.
  *
  * Permissions: Read / Grep / Glob ONLY — structurally cannot edit a file.
@@ -39,160 +34,18 @@
  *   tsx content-accuracy.ts --concurrency 2   # cap parallel agents (default 3)
  *   tsx content-accuracy.ts --limit 3         # only the first 3 catalog lessons
  *   tsx content-accuracy.ts --budget 8        # per-lesson USD cap (default 6)
- *   tsx content-accuracy.ts --dry-run         # show the plan (lessons/files), spend nothing
+ *   tsx content-accuracy.ts --dry-run         # show the plan, spend nothing
  */
-import { existsSync, readFileSync, readdirSync } from "node:fs";
-import { relative, resolve } from "node:path";
-import { APP_ROOT, argLimit, report, runLoop } from "./lib.js";
-
-const ALLOWED_TOOLS = ["Read", "Grep", "Glob"];
-
-const LESSONS_DIR = "src/lessons";
-const CATALOG = "src/lesson-catalog.js";
-
-const SKIP_DIRS = new Set([
-  "node_modules",
-  ".git",
-  ".claude",
-  "coverage",
-  "dist",
-  "test-results",
-  "playwright-report",
-]);
-
-// A lesson's content is JS/JSX (prose, labs, engine, components) + its scoped CSS.
-const SCAN_EXT = /\.(?:js|jsx|mjs|cjs|css)$/;
-
-// ── Args ────────────────────────────────────────────────────────────────────
-interface Args {
-  ids: string[]; // explicit lesson ids (empty = all lessons)
-  concurrency: number;
-  budget: number;
-  limit: number | null;
-  dryRun: boolean;
-}
-
-function parseArgs(): Args {
-  const argv = process.argv.slice(2);
-  const ids: string[] = [];
-  let concurrency = 3;
-  let budget = 6;
-  let dryRun = false;
-  // Read a flag's value (`--flag=V` or `--flag V`), without swallowing a
-  // FOLLOWING flag as the value — so `--concurrency --limit 3` leaves
-  // concurrency at its default rather than eating `--limit`.
-  const readValue = (a: string, i: number): { value: string | undefined; i: number } => {
-    if (a.includes("=")) return { value: a.split("=").slice(1).join("="), i };
-    const nxt = argv[i + 1];
-    if (nxt !== undefined && !nxt.startsWith("--")) return { value: nxt, i: i + 1 };
-    return { value: undefined, i };
-  };
-  for (let i = 0; i < argv.length; i++) {
-    const a = argv[i];
-    if (a === "--dry-run") {
-      dryRun = true;
-    } else if (a === "--concurrency" || a.startsWith("--concurrency=")) {
-      const r = readValue(a, i);
-      i = r.i;
-      const n = Math.floor(Number(r.value)); // floor BEFORE the guard so 0.5 → 0 → rejected
-      if (Number.isFinite(n) && n > 0) concurrency = n;
-    } else if (a === "--budget" || a.startsWith("--budget=")) {
-      const r = readValue(a, i);
-      i = r.i;
-      const n = Number(r.value); // budget may be fractional (e.g. 0.5)
-      if (Number.isFinite(n) && n > 0) budget = n;
-    } else if (a === "--limit" || a.startsWith("--limit=")) {
-      // value is parsed by argLimit(); just don't mistake it for a lesson id
-      if (!a.includes("=")) i++;
-    } else if (a.startsWith("--")) {
-      // unknown flag — ignore (forward-compatible)
-    } else {
-      ids.push(a);
-    }
-  }
-  return { ids, concurrency, budget, limit: argLimit(), dryRun };
-}
-
-// ── Lesson enumeration (the deterministic signal) ─────────────────────────────
-interface Lesson {
-  id: string;
-  title: string;
-  eyebrow: string; // the per-lesson signature line — usually the canonical source/credit
-}
-
-/** Read a single-line, quoted object field from a catalog entry block. Handles
- *  both quote styles (eyebrows like "O'NEIL ET AL. · 1996" switch to double
- *  quotes to carry an apostrophe). */
-function field(block: string, name: string): string {
-  const m = block.match(new RegExp(`\\b${name}:\\s*(['"])([\\s\\S]*?)\\1`));
-  return m ? m[2].trim() : "";
-}
-
-/** Parse lesson-catalog.js — the single source of truth — into ordered metadata.
- *  Each lesson entry begins with `id: '<slug>'`; we slice between consecutive ids
- *  and pull title + eyebrow. The legacy aliases (`concurrency:`/`isolation:`) use
- *  different keys and are skipped; the `indexPage` entry (`id: 'index'`) survives
- *  parsing but is dropped later by the directory-existence filter. */
-function parseCatalog(): Lesson[] {
-  const text = readFileSync(resolve(APP_ROOT, CATALOG), "utf8");
-  const idRe = /\bid:\s*(['"])([^'"]+)\1/g;
-  const marks: { id: string; index: number }[] = [];
-  let m: RegExpExecArray | null;
-  while ((m = idRe.exec(text)) !== null) marks.push({ id: m[2], index: m.index });
-  const lessons: Lesson[] = [];
-  for (let i = 0; i < marks.length; i++) {
-    const start = marks[i].index;
-    const end = i + 1 < marks.length ? marks[i + 1].index : text.length;
-    const block = text.slice(start, end);
-    lessons.push({
-      id: marks[i].id,
-      title: field(block, "title") || marks[i].id,
-      eyebrow: field(block, "eyebrow"),
-    });
-  }
-  return lessons;
-}
-
-function lessonDir(id: string): string {
-  return resolve(APP_ROOT, LESSONS_DIR, id);
-}
-
-function lessonDirsOnDisk(): string[] {
-  const base = resolve(APP_ROOT, LESSONS_DIR);
-  if (!existsSync(base)) return [];
-  return readdirSync(base, { withFileTypes: true })
-    .filter((e) => e.isDirectory() && !SKIP_DIRS.has(e.name))
-    .map((e) => e.name)
-    .sort();
-}
-
-/** All reviewable files under a lesson directory, recursively. */
-function gatherFiles(dir: string): string[] {
-  const files: string[] = [];
-  const walk = (d: string) => {
-    for (const entry of readdirSync(d, { withFileTypes: true })) {
-      const full = resolve(d, entry.name);
-      if (entry.isDirectory()) {
-        if (SKIP_DIRS.has(entry.name)) continue;
-        walk(full);
-      } else if (SCAN_EXT.test(entry.name)) {
-        files.push(full);
-      }
-    }
-  };
-  walk(dir);
-  files.sort();
-  return files;
-}
+import { CATALOG, LESSONS_DIR, type Lesson, relList, runPerLessonLoop } from "./per-lesson.js";
+import { report } from "./lib.js";
 
 // ── Per-lesson context handed to the agent ────────────────────────────────────
-function lessonPrompt(lesson: Lesson, files: string[]): string {
-  const rel = files.map((f) => "  - " + relative(lessonDir(lesson.id), f)).join("\n");
+function userPrompt(lesson: Lesson, files: string[]): string {
   return `Lesson under review: \`${lesson.id}\` — "${lesson.title}".
 Claimed topic / canonical source (the lesson's eyebrow in ${CATALOG}): ${lesson.eyebrow || "(none stated)"}.
 
 All of this lesson's content lives under \`${LESSONS_DIR}/${lesson.id}/\`. Its ${files.length} files, relative to that directory — read EVERY one before you judge:
-${rel}
+${relList(lesson.id, files)}
 
 Also:
 - Read this lesson's framing in \`${CATALOG}\` (its title, subtitle, and pitch — the promises it makes the learner).
@@ -269,165 +122,18 @@ Output a structured map with exactly these three sections in this order:
 End with a final summary line: "<X> errors · <Y> verified · <Z> simplifications". Nothing after.`;
 }
 
-// ── Bounded-concurrency pool (the per-lesson parallelism) ─────────────────────
-async function runPool<T, R>(
-  items: T[],
-  limit: number,
-  fn: (item: T, index: number) => Promise<R>,
-): Promise<R[]> {
-  const results: R[] = new Array(items.length);
-  let next = 0;
-  const worker = async (): Promise<void> => {
-    for (;;) {
-      const i = next++;
-      if (i >= items.length) return;
-      results[i] = await fn(items[i], i);
-    }
-  };
-  const workers = Array.from({ length: Math.min(limit, items.length) }, () => worker());
-  await Promise.all(workers);
-  return results;
-}
-
-interface LessonResult {
-  lesson: Lesson;
-  fileCount: number;
-  agentRun: string;
-  agentSummary: string;
-}
-
-// ── Orchestration ─────────────────────────────────────────────────────────────
-async function main(): Promise<void> {
-  const args = parseArgs();
-  const catalog = parseCatalog();
-  const onDisk = new Set(lessonDirsOnDisk());
-
-  // Catalog entries that actually have a lesson directory (drops indexPage etc.).
-  const valid = catalog.filter((l) => onDisk.has(l.id));
-  const catalogIds = new Set(valid.map((l) => l.id));
-
-  // Deterministic integrity notes — surfaced regardless of the agent runs.
-  const warnings: string[] = [];
-  for (const dir of onDisk) {
-    if (!catalog.some((l) => l.id === dir)) {
-      warnings.push(`orphan: ${LESSONS_DIR}/${dir}/ exists but has no entry in ${CATALOG}`);
-    }
-  }
-  for (const l of catalog) {
-    if (l.id !== "index" && !onDisk.has(l.id)) {
-      warnings.push(`missing: ${CATALOG} lists '${l.id}' but ${LESSONS_DIR}/${l.id}/ is absent`);
-    }
-  }
-
-  // Selection: explicit ids (in the order given) or all lessons (catalog order).
-  let selected: Lesson[];
-  if (args.ids.length) {
-    const unknown = args.ids.filter((id) => !catalogIds.has(id) && !onDisk.has(id));
-    if (unknown.length) {
-      report([
-        `RESULT: CANNOT RUN — unknown lesson id(s): ${unknown.join(", ")}`,
-        "",
-        `Known lessons: ${valid.map((l) => l.id).join(", ")}`,
-      ]);
-      process.exit(1);
-    }
-    selected = args.ids.map(
-      (id) => valid.find((l) => l.id === id) ?? { id, title: id, eyebrow: "" },
-    );
-  } else {
-    selected = valid;
-  }
-  if (args.limit) selected = selected.slice(0, args.limit);
-
-  if (selected.length === 0) {
-    report([
-      `RESULT: CANNOT RUN — no lessons found under ${LESSONS_DIR}/ (catalog: ${catalog.length} entr${
-        catalog.length === 1 ? "y" : "ies"
-      }, on disk: ${onDisk.size}).`,
-    ]);
-    process.exit(1);
-  }
-
-  if (args.dryRun) {
-    report([
-      "Content-accuracy — DRY RUN (no agents launched, nothing spent)",
-      `Lessons selected:    ${selected.length}`,
-      `Concurrency:         ${args.concurrency}`,
-      `Per-lesson budget:   $${args.budget}  (worst-case ceiling: $${selected.length * args.budget})`,
-      ...(warnings.length ? ["", "Integrity notes:", ...warnings.map((w) => "  ! " + w)] : []),
-      "",
-      "Would review:",
-      ...selected.map((l) => {
-        const n = gatherFiles(lessonDir(l.id)).length;
-        return `  - ${l.id}  (${n} file${n === 1 ? "" : "s"})${l.eyebrow ? `  ·  ${l.eyebrow}` : ""}`;
-      }),
-      "",
-      "RESULT: PASS — dry run only. Drop --dry-run to launch the review.",
-    ]);
-    return;
-  }
-
-  console.log("Content-accuracy loop — deep per-lesson review (opus · effort:max), READ-ONLY.");
-  console.log(
-    `Lessons: ${selected.length} · concurrency: ${args.concurrency} · per-lesson budget: $${args.budget}`,
-  );
-  console.log(selected.map((l) => l.id).join(", "));
-  if (warnings.length) {
-    console.log("\nHarness integrity notes:");
-    for (const w of warnings) console.log("  ! " + w);
-  }
-  console.log(
-    "\n(Heavy: one max-effort Opus agent per lesson. Live `<lesson> · ToolName` markers below.)\n",
-  );
-
-  const results = await runPool<Lesson, LessonResult>(
-    selected,
-    args.concurrency,
-    async (lesson) => {
-      const files = gatherFiles(lessonDir(lesson.id));
-      const { agentRun, agentSummary } = await runLoop({
-        systemPrompt: systemPrompt(lesson),
-        allowedTools: ALLOWED_TOOLS,
-        prompt: lessonPrompt(lesson, files),
-        model: "opus",
-        effort: "max",
-        label: lesson.id,
-        maxTurns: 400,
-        maxBudgetUsd: args.budget,
-      });
-      console.log(`  ✓ ${lesson.id} — review complete (${agentRun})`);
-      return { lesson, fileCount: files.length, agentRun, agentSummary };
-    },
-  );
-
-  // Combined console report, in selection order — each agent already emitted a
-  // strict three-bucket map; we just frame each with a per-lesson header.
-  const blocks: string[] = [];
-  for (const r of results) {
-    blocks.push(
-      "",
-      "─".repeat(64),
-      `## ${r.lesson.id} — ${r.lesson.title}${r.lesson.eyebrow ? `  ·  ${r.lesson.eyebrow}` : ""}`,
-      `(files reviewed: ${r.fileCount} · agent: ${r.agentRun})`,
-      "",
-      r.agentSummary || "(no map produced — see streamed agent output above)",
-    );
-  }
-
-  report([
-    "Content-accuracy — deep per-lesson review (opus · effort:max)",
-    `Lessons reviewed:    ${selected.length}`,
-    `Concurrency:         ${args.concurrency}`,
-    `Per-lesson budget:   $${args.budget}`,
-    "(read-only — the working tree was not modified)",
-    ...(warnings.length ? ["", "Integrity notes:", ...warnings.map((w) => "  ! " + w)] : []),
-    ...blocks,
-    "",
-    `RESULT: PASS — maps above. Review each lesson's "Inaccuracy / error" section and correct what you agree with; treat "Pedagogical simplification" as judgment calls.`,
-  ]);
-}
-
-main().catch((err) => {
+runPerLessonLoop({
+  name: "Content-accuracy",
+  blurb: "deep per-lesson truth review (opus · effort:max), READ-ONLY",
+  systemPrompt,
+  userPrompt,
+  model: "opus",
+  effort: "max",
+  maxTurns: 400,
+  defaultBudget: 6,
+  resultLine: (scope) =>
+    `RESULT: PASS — maps above for ${scope}. Review each lesson's "Inaccuracy / error" section and correct what you agree with; treat "Pedagogical simplification" as judgment calls.`,
+}).catch((err: unknown) => {
   report([`RESULT: ERROR — ${err instanceof Error ? err.message : String(err)}`]);
   process.exitCode = 1;
 });

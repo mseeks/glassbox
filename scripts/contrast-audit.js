@@ -16,32 +16,25 @@
  */
 import AxeBuilder from '@axe-core/playwright';
 import { chromium } from '@playwright/test';
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
 
+const HERE = dirname(fileURLToPath(import.meta.url));
 const BASE = process.argv[2] || 'http://127.0.0.1:5180';
 const OUT = process.argv[3] || '/tmp/gb-contrast.json';
 const THEMES = ['dark', 'light'];
-// Inlined (avoids importing lesson-catalog.js → React in plain node).
-const LESSON_IDS = [
-  'concurrency-foundations',
-  'acid-lab',
-  'cap-pacelc',
-  'swim',
-  'udp',
-  'bloom-filters',
-  'bloom-clock',
-  'cuckoo-filter',
-  'lsm-trees',
-  'memory',
-  'merkle-trees',
-  'sha',
-  'trie',
-  'grpc',
-  'b-trees',
-  'hyperloglog',
-  'vp-tree',
-  'tls',
-];
+
+// Parse lesson ids straight from the catalog (regex — no React import in node),
+// so the sweep never goes stale as lessons are added.
+const LESSON_IDS = (() => {
+  const text = readFileSync(resolve(HERE, '..', 'src', 'lesson-catalog.js'), 'utf8');
+  const ids = [];
+  const re = /\bid:\s*(['"])([^'"]+)\1/g;
+  let m;
+  while ((m = re.exec(text)) !== null) if (m[2] !== 'index') ids.push(m[2]);
+  return ids;
+})();
 const pages = [
   { id: 'index', title: 'index', path: '/' },
   ...LESSON_IDS.map((id) => ({ id, title: id, path: `/?lesson=${id}` })),

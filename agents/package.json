@@ -22,6 +22,9 @@
     "contrast": "tsx contrast.ts",
     "a11y-source": "tsx a11y-source.ts",
     "content-accuracy": "tsx content-accuracy.ts",
+    "lab-fidelity": "tsx lab-fidelity.ts",
+    "collection-coherence": "tsx collection-coherence.ts",
+    "visual-sanity": "tsx visual-sanity.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
