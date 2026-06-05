@@ -1,0 +1,768 @@
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&family=Sora:wght@300;400;500;600;700&display=swap');
+
+/* ════════════════════════════════════════════════════════════════════════
+   THE SWARM — how torrents work, made interactive.
+   World: a night-sky observatory. Peers are points of light; transfers are
+   luminous threads; an infohash is a catalog designation; a DHT lookup is
+   celestial navigation toward a target by getting warmer. Signal teal for the
+   engine, gold for what is held, coral for failure, violet for the address
+   space. Yeseva One (titling) · Sora (reading) · JetBrains Mono (the readout
+   voice, via --font-mono). Everything is scoped to .tor-root so nothing leaks.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.tor-root {
+  --void: #06080f;
+  --bg: #090c15;
+  --bg2: #0b0f1a;
+  --panel: #0f1420;
+  --panel-2: #131a28;
+  --line: rgba(214, 224, 247, 0.085);
+  --line-2: rgba(214, 224, 247, 0.16);
+  --star: #ece9e1;
+  --mist: #9aa3b8;
+  --faint: #5c6680;
+  --faint-2: #404862;
+  --signal: #54d2c1;
+  --signal-2: #7fe3d6;
+  --signal-dim: rgba(84, 210, 193, 0.14);
+  --gold: #ecb95f;
+  --gold-2: #f6d18c;
+  --gold-dim: rgba(236, 185, 95, 0.14);
+  --coral: #f4715d;
+  --coral-2: #f99483;
+  --coral-dim: rgba(244, 113, 93, 0.14);
+  --violet: #9d8cf2;
+  --violet-2: #bcb0f7;
+  --violet-dim: rgba(157, 140, 242, 0.15);
+  --body: 'Sora', system-ui, sans-serif;
+  --disp: 'Yeseva One', Georgia, serif;
+
+  background: var(--bg);
+  color: var(--star);
+  font-family: var(--body);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.68;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
+.tor-root * {
+  box-sizing: border-box;
+}
+.tor-root ::selection {
+  background: rgba(84, 210, 193, 0.28);
+  color: #fff;
+}
+
+/* atmosphere */
+.tor-bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1100px 700px at 78% -8%, rgba(157, 140, 242, 0.1), transparent 60%),
+    radial-gradient(900px 640px at 12% 8%, rgba(84, 210, 193, 0.07), transparent 58%),
+    radial-gradient(1200px 900px at 50% 118%, rgba(236, 185, 95, 0.06), transparent 60%),
+    linear-gradient(180deg, #070a12 0%, #090c15 40%, #080b13 100%);
+}
+.tor-bg-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+.tor-star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: tor-tw 5s ease-in-out infinite;
+}
+@keyframes tor-tw {
+  0%,
+  100% {
+    opacity: var(--o);
+  }
+  50% {
+    opacity: calc(var(--o) * 0.32);
+  }
+}
+
+/* progress + nav */
+.tor-rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  z-index: 60;
+  background: linear-gradient(90deg, var(--signal), var(--gold));
+  box-shadow: 0 0 14px rgba(84, 210, 193, 0.5);
+  transition: width 0.12s linear;
+}
+.tor-navbtn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 62;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--star);
+  background: rgba(15, 20, 32, 0.72);
+  border: 1px solid var(--line-2);
+  backdrop-filter: blur(10px);
+  transition: 0.2s;
+}
+.tor-navbtn:hover {
+  border-color: var(--signal);
+  color: var(--signal);
+}
+.tor-navpanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(320px, 86vw);
+  z-index: 61;
+  background: rgba(9, 12, 21, 0.96);
+  border-left: 1px solid var(--line-2);
+  backdrop-filter: blur(16px);
+  transform: translateX(100%);
+  transition: transform 0.42s cubic-bezier(0.2, 0.8, 0.2, 1);
+  padding: 78px 26px 30px;
+  overflow: auto;
+}
+.tor-navpanel.tor-open {
+  transform: translateX(0);
+}
+.tor-navpanel button {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--mist);
+  font-family: var(--body);
+  font-weight: 300;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+  transition: 0.18s;
+}
+.tor-navpanel button:hover {
+  color: var(--star);
+  padding-left: 6px;
+}
+.tor-navpanel button .tor-nn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--signal);
+  min-width: 26px;
+}
+.tor-navpanel button.tor-act {
+  color: var(--signal-2);
+}
+.tor-navpanel button.tor-act .tor-nn {
+  color: var(--gold);
+}
+.tor-navscrim {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(4, 6, 11, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
+.tor-navscrim.tor-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* layout */
+.tor-content {
+  position: relative;
+  z-index: 5;
+}
+.tor-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+.tor-wrap-wide {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+.tor-section {
+  padding: clamp(56px, 9vw, 118px) 0;
+  position: relative;
+  scroll-margin-top: 64px;
+}
+.tor-rule {
+  height: 1px;
+  max-width: 1060px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, transparent, var(--line-2), transparent);
+}
+
+/* type */
+.tor-kicker {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--signal);
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 20px;
+}
+.tor-kicker::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: var(--signal);
+  opacity: 0.6;
+}
+.tor-disp {
+  font-family: var(--disp);
+  font-weight: 400;
+  font-size: clamp(2.9rem, 8.5vw, 6.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.005em;
+  margin: 0;
+  color: var(--star);
+}
+.tor-sec {
+  font-family: var(--disp);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.6vw, 3.35rem);
+  line-height: 1.06;
+  letter-spacing: -0.004em;
+  margin: 0 0 8px;
+  color: var(--star);
+}
+.tor-sec .tor-em {
+  color: var(--gold);
+}
+.tor-sub {
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: clamp(1.12rem, 2vw, 1.32rem);
+  line-height: 1.3;
+  margin: 0 0 10px;
+  color: var(--star);
+  letter-spacing: -0.01em;
+}
+.tor-lead {
+  font-size: clamp(1.12rem, 2vw, 1.32rem);
+  line-height: 1.6;
+  color: #cdd3e0;
+  font-weight: 300;
+  margin: 0 0 20px;
+}
+.tor-prose p {
+  font-size: 1.045rem;
+  line-height: 1.74;
+  color: #c3cad8;
+  font-weight: 300;
+  margin: 0 0 18px;
+}
+.tor-prose strong {
+  color: var(--star);
+  font-weight: 600;
+}
+.tor-prose em {
+  color: var(--gold-2);
+  font-style: italic;
+}
+.tor-prose .tor-tk {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--signal-2);
+  background: var(--signal-dim);
+  padding: 1px 6px;
+  border-radius: 5px;
+  border: 1px solid rgba(84, 210, 193, 0.22);
+}
+.tor-dim {
+  color: var(--mist);
+}
+.tor-pull {
+  font-family: var(--disp);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 3vw, 2.05rem);
+  line-height: 1.28;
+  color: var(--star);
+  margin: 34px 0;
+  padding-left: 24px;
+  border-left: 2px solid var(--gold);
+}
+.tor-pull .tor-g {
+  color: var(--gold);
+}
+.tor-pull .tor-t {
+  color: var(--signal);
+}
+
+/* panels / figures */
+.tor-panel {
+  background: linear-gradient(180deg, var(--panel), var(--bg2));
+  border: 1px solid var(--line-2);
+  border-radius: 16px;
+  padding: clamp(18px, 3vw, 26px);
+  position: relative;
+  overflow: hidden;
+}
+.tor-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.tor-figure {
+  margin: 30px 0;
+}
+.tor-figlabel {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--faint);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 12px;
+}
+.tor-figlabel b {
+  color: var(--signal);
+  font-weight: 500;
+}
+.tor-figcap {
+  font-size: 13.5px;
+  color: var(--mist);
+  line-height: 1.55;
+  margin-top: 14px;
+  font-weight: 300;
+}
+.tor-figcap b {
+  color: var(--star);
+  font-weight: 500;
+}
+
+/* controls */
+.tor-btn {
+  font-family: var(--body);
+  font-weight: 500;
+  font-size: 13.5px;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 15px;
+  border-radius: 9px;
+  color: var(--star);
+  background: var(--panel-2);
+  border: 1px solid var(--line-2);
+  transition: 0.16s;
+  user-select: none;
+}
+.tor-btn:hover {
+  border-color: var(--signal);
+  color: var(--signal-2);
+  transform: translateY(-1px);
+}
+.tor-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  border-color: var(--line);
+}
+.tor-btn.tor-primary {
+  background: linear-gradient(180deg, rgba(84, 210, 193, 0.2), rgba(84, 210, 193, 0.08));
+  border-color: rgba(84, 210, 193, 0.5);
+  color: var(--signal-2);
+}
+.tor-btn.tor-primary:hover {
+  border-color: var(--signal);
+  box-shadow: 0 0 22px rgba(84, 210, 193, 0.25);
+}
+.tor-btn.tor-gold {
+  background: linear-gradient(180deg, rgba(236, 185, 95, 0.18), rgba(236, 185, 95, 0.06));
+  border-color: rgba(236, 185, 95, 0.45);
+  color: var(--gold-2);
+}
+.tor-seg {
+  display: inline-flex;
+  background: var(--void);
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 3px;
+}
+.tor-seg button {
+  font-family: var(--body);
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--mist);
+  padding: 7px 15px;
+  border-radius: 7px;
+  transition: 0.16s;
+}
+.tor-seg button.tor-on {
+  background: var(--panel-2);
+  color: var(--star);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.tor-seg button.tor-on.tor-sig {
+  color: var(--signal-2);
+  box-shadow: inset 0 0 0 1px rgba(84, 210, 193, 0.4);
+}
+.tor-seg button.tor-on.tor-gld {
+  color: var(--gold-2);
+  box-shadow: inset 0 0 0 1px rgba(236, 185, 95, 0.4);
+}
+
+.tor-root input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--signal) var(--pct, 50%), var(--line-2) var(--pct, 50%));
+  outline: none;
+}
+.tor-root input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--star);
+  border: 3px solid var(--signal);
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(84, 210, 193, 0.5);
+  transition: 0.12s;
+}
+.tor-root input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+.tor-root input[type='range']::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--star);
+  border: 3px solid var(--signal);
+  cursor: pointer;
+}
+
+.tor-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  color: var(--mist);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--void);
+}
+.tor-chip .tor-dotc {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.tor-stat {
+  font-family: var(--font-mono);
+}
+.tor-stat .tor-v {
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.tor-stat .tor-l {
+  font-family: var(--body);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-top: 7px;
+}
+
+.tor-mono {
+  font-family: var(--font-mono);
+}
+.tor-hashbox {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  word-break: break-all;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+.tor-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 7px 13px;
+  border-radius: 9px;
+  letter-spacing: 0.03em;
+}
+.tor-badge.tor-ok {
+  background: var(--signal-dim);
+  color: var(--signal-2);
+  border: 1px solid rgba(84, 210, 193, 0.4);
+}
+.tor-badge.tor-bad {
+  background: var(--coral-dim);
+  color: var(--coral-2);
+  border: 1px solid rgba(244, 113, 93, 0.42);
+}
+
+.tor-textarea {
+  width: 100%;
+  min-height: 66px;
+  resize: vertical;
+  background: var(--void);
+  color: var(--star);
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.55;
+  outline: none;
+}
+
+/* reveal (driven by the shared useRevealRoot) */
+.tor-rv {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.tor-rv.tor-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* svg helpers */
+.tor-svgwrap {
+  width: 100%;
+}
+.tor-svgwrap > svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.tor-root text {
+  font-family: var(--font-mono);
+}
+
+.tor-grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.tor-grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.tor-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.tor-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* hero */
+.tor-hero {
+  min-height: 96vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 90px 0 60px;
+  position: relative;
+}
+.tor-hero-sub {
+  font-family: var(--font-mono);
+  font-size: clamp(13px, 2.2vw, 16px);
+  letter-spacing: 0.12em;
+  color: var(--signal-2);
+  margin: 20px 0 0;
+  font-weight: 400;
+}
+.tor-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  margin-top: 54px;
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  animation: tor-floaty 2.4s ease-in-out infinite;
+  cursor: pointer;
+  border: 0;
+  background: none;
+}
+@keyframes tor-floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+.tor-hn {
+  animation: tor-hpulse 3.4s ease-in-out infinite;
+}
+@keyframes tor-hpulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.tor-wp {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--mist);
+  border: 1px solid var(--line-2);
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--void);
+}
+.tor-coda-line {
+  font-family: var(--disp);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+  line-height: 1.32;
+  color: var(--star);
+  margin: 0 0 6px;
+}
+
+/* dht "getting warmer" bit rows */
+.tor-brow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.tor-blab {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--faint);
+  min-width: 74px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.tor-bbits {
+  display: flex;
+  gap: 1.5px;
+}
+.tor-bcell {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  width: 13px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 3px;
+  color: var(--faint);
+  transition: 0.2s;
+}
+.tor-bcell.tor-m {
+  color: var(--violet-2);
+  background: var(--violet-dim);
+  font-weight: 600;
+}
+.tor-bcell.tor-d {
+  color: var(--coral-2);
+  background: rgba(244, 113, 93, 0.14);
+}
+.tor-bhex {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 720px) {
+  .tor-grid2 {
+    grid-template-columns: 1fr;
+  }
+  .tor-grid3 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tor-pull {
+    padding-left: 16px;
+    margin: 26px 0;
+  }
+}
+@media (max-width: 560px) {
+  .tor-blab {
+    min-width: 0;
+    font-size: 9px;
+  }
+  .tor-bbits {
+    gap: 1px;
+  }
+  .tor-bcell {
+    width: 11px;
+    height: 16px;
+    font-size: 10px;
+  }
+  .tor-bhex {
+    display: none;
+  }
+}
+@media (max-width: 440px) {
+  .tor-grid3 {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 380px) {
+  .tor-bcell {
+    width: 9.5px;
+    font-size: 9px;
+  }
+}

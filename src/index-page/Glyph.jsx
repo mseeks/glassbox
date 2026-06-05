@@ -820,6 +820,207 @@ function Glyph({ kind, color }) {
         </svg>
       );
     }
+    case 'paxos': {
+      // Quorum overlap — two majorities of five drawn as arcs that must share a
+      // single node, the witness (filled), the hinge of Paxos's safety.
+      const xs = [12, 28, 44, 60, 76];
+      return (
+        <svg className="idx-card-glyph" viewBox="0 0 88 38" aria-hidden="true">
+          <path
+            d="M12 21 Q28 6 44 21"
+            fill="none"
+            stroke={color}
+            strokeOpacity="0.5"
+            strokeWidth="1.2"
+          />
+          <path
+            d="M44 21 Q60 36 76 21"
+            fill="none"
+            stroke={color}
+            strokeOpacity="0.5"
+            strokeWidth="1.2"
+          />
+          {xs.map((x, i) => (
+            <circle
+              key={x}
+              cx={x}
+              cy="21"
+              r={i === 2 ? 3.6 : 3}
+              fill={i === 2 ? color : 'none'}
+              stroke={color}
+              strokeOpacity={i === 2 ? 0 : 0.65}
+              strokeWidth="1"
+            />
+          ))}
+        </svg>
+      );
+    }
+    case 'binary-trees': {
+      // A drafting-table search descent: a small tree whose left branch is traced
+      // at full strength (the path taken) while the right branch is thrown away.
+      return (
+        <svg className="idx-card-glyph" viewBox="0 0 88 38" aria-hidden="true">
+          <line
+            x1="44"
+            y1="9"
+            x2="26"
+            y2="29"
+            stroke={color}
+            strokeOpacity="0.9"
+            strokeWidth="1.6"
+          />
+          <line
+            x1="44"
+            y1="9"
+            x2="62"
+            y2="29"
+            stroke={color}
+            strokeOpacity="0.28"
+            strokeWidth="1"
+          />
+          {[
+            { x: 44, y: 9, on: false },
+            { x: 26, y: 29, on: true },
+            { x: 62, y: 29, on: false },
+          ].map((n, i) => (
+            <circle
+              key={i}
+              cx={n.x}
+              cy={n.y}
+              r="4"
+              fill={n.on ? color : 'none'}
+              stroke={color}
+              strokeOpacity={n.on ? 0 : 0.6}
+              strokeWidth="1.1"
+            />
+          ))}
+        </svg>
+      );
+    }
+    case 'sstables': {
+      // A letterpress forme: a sparse index column, stacked sorted-key rows, a
+      // descending scan line, and a sealed footer stamp — the immutable page.
+      const ys = [9, 17, 25, 33];
+      return (
+        <svg className="idx-card-glyph" viewBox="0 0 88 38" aria-hidden="true">
+          {ys.map((y) => (
+            <circle key={`i-${y}`} cx="7" cy={y} r="1.6" fill={color} fillOpacity="0.85" />
+          ))}
+          {ys.map((y, i) => (
+            <line
+              key={`r-${y}`}
+              x1="15"
+              y1={y}
+              x2={[52, 60, 44, 56][i]}
+              y2={y}
+              stroke={color}
+              strokeOpacity="0.4"
+              strokeWidth="1.4"
+            />
+          ))}
+          <line x1="16" y1="5" x2="56" y2="37" stroke={color} strokeOpacity="0.7" strokeWidth="1" />
+          <rect
+            x="66"
+            y="11"
+            width="16"
+            height="16"
+            rx="2"
+            fill="none"
+            stroke={color}
+            strokeOpacity="0.75"
+            strokeWidth="1.1"
+          />
+          <path
+            d="M70 19 l3 3 l6 -7"
+            fill="none"
+            stroke={color}
+            strokeOpacity="0.85"
+            strokeWidth="1.2"
+          />
+        </svg>
+      );
+    }
+    case 'saga-thread': {
+      // The saga thread: four step-nodes on a forward line, the first three
+      // committed (filled), with a dashed compensation arc bending back to undo.
+      const xs = [11, 30, 49, 68];
+      return (
+        <svg className="idx-card-glyph" viewBox="0 0 88 38" aria-hidden="true">
+          <line
+            x1="11"
+            y1="26"
+            x2="68"
+            y2="26"
+            stroke={color}
+            strokeOpacity="0.5"
+            strokeWidth="1.2"
+          />
+          <path
+            d="M68 26 C68 6 11 6 11 26"
+            fill="none"
+            stroke={color}
+            strokeOpacity="0.6"
+            strokeWidth="1.1"
+            strokeDasharray="3 2.5"
+          />
+          <path
+            d="M15 22 l-4 4 l4 4"
+            fill="none"
+            stroke={color}
+            strokeOpacity="0.7"
+            strokeWidth="1.1"
+          />
+          {xs.map((x, i) => (
+            <rect
+              key={x}
+              x={x - 3.5}
+              y="22.5"
+              width="7"
+              height="7"
+              rx="1.5"
+              fill={i < 3 ? color : 'none'}
+              fillOpacity={i < 3 ? 0.85 : 1}
+              stroke={color}
+              strokeOpacity={i < 3 ? 0 : 0.7}
+              strokeWidth="1.1"
+            />
+          ))}
+        </svg>
+      );
+    }
+    case 'torrents-constellation': {
+      // A swarm as a constellation: one warm hub joined by thin signal threads to
+      // a scatter of peer-stars, two of the threads drawn as dashed live transfers.
+      const peers = [
+        { x: 12, y: 9, dash: false },
+        { x: 24, y: 31, dash: true },
+        { x: 66, y: 8, dash: false },
+        { x: 78, y: 27, dash: true },
+        { x: 58, y: 33, dash: false },
+        { x: 30, y: 6, dash: false },
+      ];
+      return (
+        <svg className="idx-card-glyph" viewBox="0 0 88 38" aria-hidden="true">
+          {peers.map((p, i) => (
+            <line
+              key={`t-${i}`}
+              x1="44"
+              y1="19"
+              x2={p.x}
+              y2={p.y}
+              stroke={color}
+              strokeOpacity="0.3"
+              strokeWidth="0.8"
+              strokeDasharray={p.dash ? '2 2' : undefined}
+            />
+          ))}
+          {peers.map((p, i) => (
+            <circle key={`p-${i}`} cx={p.x} cy={p.y} r="2" fill={color} fillOpacity="0.7" />
+          ))}
+          <circle cx="44" cy="19" r="3.4" fill={color} />
+        </svg>
+      );
+    }
     default:
       return null;
   }

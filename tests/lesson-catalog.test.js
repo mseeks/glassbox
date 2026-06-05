@@ -12,14 +12,14 @@ import {
 const lessonModules = import.meta.glob('../src/lessons/*/index.js');
 
 describe('lesson catalog', () => {
-  it('keeps the index page followed by the eighteen lessons', () => {
+  it('keeps the index page followed by the twenty-three lessons', () => {
     expect(defaultPageId).toBe('index');
     expect(indexPage).toMatchObject({
       id: 'index',
       label: 'Index',
       title: 'Glassbox',
     });
-    expect(lessons).toHaveLength(18);
+    expect(lessons).toHaveLength(23);
     expect(pages.map((page) => page.id)).toEqual([
       'index',
       'concurrency-foundations',
@@ -40,6 +40,11 @@ describe('lesson catalog', () => {
       'hyperloglog',
       'vp-tree',
       'tls',
+      'binary-trees',
+      'sstables',
+      'paxos',
+      'saga',
+      'torrents',
     ]);
   });
 

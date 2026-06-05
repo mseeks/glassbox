@@ -248,6 +248,71 @@ const lessonMeta = [
       'Two strangers who have never met, on a wire the whole world can read, build a room that is private, untampered, and provably to the right party.',
     glyph: 'tls',
   },
+  {
+    id: 'binary-trees',
+    label: 'Binary Trees',
+    title: 'Binary Trees',
+    accent: '#5fa8cf',
+    accentSoft: 'rgba(95, 168, 207, 0.14)',
+    displayFont: "'Syne', 'Arial Black', sans-serif",
+    eyebrow: 'A STRUCTURAL STUDY · TEN PLATES',
+    subtitle: 'Find one item among a million in a handful of steps.',
+    pitch:
+      'A way to keep a pile of data so you can find any item — among a thousand, or a million — in a handful of steps, while still adding and removing cheaply. Drop a value in and watch it get cornered, one comparison throwing away a whole branch.',
+    glyph: 'binary-trees',
+  },
+  {
+    id: 'sstables',
+    label: 'SSTables',
+    title: 'SSTables',
+    accent: '#b1303f',
+    accentSoft: 'rgba(177, 48, 63, 0.14)',
+    displayFont: "'Bodoni Moda', Georgia, serif",
+    eyebrow: 'SORTED STRING TABLES · THE IMMUTABLE PAGE',
+    subtitle: 'Set in order, locked for good.',
+    pitch:
+      'A file of sorted keys, written once and never altered. Almost everything good about it — one-seek lookups, lock-free reads, free snapshots, cheap k-way compaction — follows from that single refusal to change. The one bill it sends is write amplification.',
+    glyph: 'sstables',
+  },
+  {
+    id: 'paxos',
+    label: 'Paxos',
+    title: 'Paxos',
+    accent: '#2f8fb0',
+    accentSoft: 'rgba(47, 143, 176, 0.14)',
+    displayFont: "'Cinzel', Georgia, serif",
+    eyebrow: 'LESLIE LAMPORT · 1998',
+    subtitle: 'How a scattered assembly agrees on one thing.',
+    pitch:
+      'A part-time parliament agrees on a single decree that can never be contradicted — even as members wander off and messengers lose the mail. Quorum overlap does the real work; the rest is bookkeeping in its service.',
+    glyph: 'paxos',
+  },
+  {
+    id: 'saga',
+    label: 'Saga Pattern',
+    title: 'The Saga Pattern',
+    accent: '#dcae4e',
+    accentSoft: 'rgba(220, 174, 78, 0.14)',
+    displayFont: "'Marcellus', Georgia, serif",
+    eyebrow: 'GARCIA-MOLINA & SALEM · 1987',
+    subtitle: 'A long transaction, with an undo for every step.',
+    pitch:
+      'An illuminated chronicle of distributed transactions: trade the single atomic instant for an atomic outcome. Walk a checkout saga forward to commit and backward to compensate, watch two-phase commit freeze, and lose an update where isolation used to be.',
+    glyph: 'saga-thread',
+  },
+  {
+    id: 'torrents',
+    label: 'BitTorrent',
+    title: 'The Swarm',
+    accent: '#54d2c1',
+    accentSoft: 'rgba(84, 210, 193, 0.14)',
+    displayFont: "'Yeseva One', Georgia, serif",
+    eyebrow: 'BRAM COHEN · 2001',
+    subtitle: 'How a torrent turns a crowd into a server.',
+    pitch:
+      'Download from one server and every newcomer makes it slower. BitTorrent flips that single sentence — and almost its whole design falls out of the flip, ending in a self-verifying name for a file held entirely by strangers.',
+    glyph: 'torrents-constellation',
+  },
 ];
 
 export const lessons = lessonMeta.map((lesson) => ({

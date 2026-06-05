@@ -27,6 +27,11 @@ cracks them open.
 | HyperLogLog             | Counting distinct items in fixed, tiny memory                   | brass      | Big Shoulders       | Flajolet et al. · 2007            |
 | Vantage-Point Trees     | Nearest-neighbour search using only distance                    | amber      | Big Shoulders       | Peter Yianilos · 1993             |
 | TLS                     | A private, verified channel across a hostile public wire        | aqua       | Spectral            | IETF · RFC 8446                   |
+| Binary Trees            | Search, traversal, balance, and rotation, drawn as plates       | blueprint  | Syne                | A structural study                |
+| SSTables                | Immutable sorted tables: one-seek reads and k-way compaction    | oxblood    | Bodoni Moda         | Sorted String Tables              |
+| Paxos                   | Consensus on a single value a majority can never take back      | aegean     | Cinzel              | Leslie Lamport · 1998             |
+| The Saga Pattern        | Distributed transactions as local commits with compensations    | gold       | Marcellus           | Garcia-Molina & Salem · 1987      |
+| The Swarm               | BitTorrent: a crowd that becomes a server, named by its hash    | signal     | Yeseva One          | Bram Cohen · 2001                 |
 
 Each lesson lives under `src/lessons/<slug>/`. It ships its own prose and CSS,
 plus a few small interactive labs. They share a common paper (parchment ink,
@@ -101,7 +106,7 @@ src/
       sections/            prose chapters
       labs/                interactive widgets
       components/          lesson-local building blocks
-      engine/index.js      pure, unit-tested logic, no React/DOM (all 18)
+      engine/index.js      pure, unit-tested logic, no React/DOM (all 23)
       <slug>.css           the lesson's own type + accent system, both modes
 tests/
   <lesson>-engine.test.js  Vitest, one suite per engine

@@ -34,8 +34,8 @@
 - Each lesson ships its own display fonts (via `@import` at the top of its
   `<slug>.css`) and its own CSS class prefix (`hero-`, `iso-`, `cap-`, `swim-`,
   `udp-`, `bf-`, `bc-`, `cf-`, `lsm`, `mw`, `mk-`, `sha-`, `trie-`, `gx-`, `bt-`,
-  `hll`, `vp-`, `tls-`). Per-lesson
-  visual identity is intentional.
+  `hll`, `vp-`, `tls-`, `bst-`, `sst-`, `pax-`, `sg-`, `tor-`). Per-lesson visual
+  identity is intentional. (`bst-` is Binary Trees, distinct from b-trees' `bt-`.)
 
 ## Lesson grammar
 
@@ -62,6 +62,11 @@ intentionally unique:
 | HyperLogLog             | brass `#e3a13c`                 | Big Shoulders + Literata      | dark control-room instrument, phosphor-cyan readout, hot-magenta variance  |
 | Vantage-Point Trees     | amber `#ffb454`                 | Big Shoulders + Spectral      | acoustic-ranging sonar scope, abyssal teal ground and amber pings          |
 | TLS                     | aqua `#46d6c6`                  | Spectral + Schibsted Grotesk  | cipher channel on a dark switchboard, brass seals, vermilion attacker      |
+| Binary Trees            | blueprint blue `#5fa8cf`        | Syne + Newsreader             | drafting table: graph-paper vellum, blueprint structure, red-pencil path   |
+| SSTables                | oxblood `#b1303f`               | Bodoni Moda + Archivo         | letterpress type-specimen; sorted rows locked into an immutable page       |
+| Paxos                   | aegean `#2f8fb0`                | Cinzel + Newsreader           | a Greek island assembly carving law in marble; gold for what is chosen     |
+| The Saga Pattern        | gold `#dcae4e`                  | Marcellus + Cardo             | illuminated chronicle: gold saga thread, rubric-vermilion compensation     |
+| The Swarm               | signal teal `#54d2c1`           | Yeseva One + Sora             | night-sky observatory; peers are points of light, transfers luminous       |
 
 Shared family glue: warm-paper background, warm parchment ink, low-opacity
 noise grain, `JetBrains Mono` for every numeric / credit / eyebrow. The mono is
