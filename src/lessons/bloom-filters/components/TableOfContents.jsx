@@ -11,6 +11,7 @@ const TOC_CHAPTERS = [
   { num: '08', title: 'The Cousins', anchor: 'ch-08' },
   { num: '09', title: 'In Production', anchor: 'ch-09' },
   { num: '10', title: 'When Not To', anchor: 'ch-10' },
+  { num: '11', title: 'Coda', anchor: 'coda' },
 ];
 
 const TOC_IDS = TOC_CHAPTERS.map((c) => c.anchor);

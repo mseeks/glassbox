@@ -22,19 +22,7 @@ export function Footer() {
 
       <div className="text-center">
         <div
-          className="bf-display-italic"
-          style={{
-            fontSize: '1.35rem',
-            color: 'var(--bf-ink-muted)',
-            lineHeight: 1.45,
-            maxWidth: '36rem',
-            margin: '0 auto',
-          }}
-        >
-          The whole craft. The rest is parameters.
-        </div>
-        <div
-          className="bf-ui bf-mark-muted mt-12"
+          className="bf-ui bf-mark-muted"
           style={{
             fontSize: '0.72rem',
             letterSpacing: '0.2em',

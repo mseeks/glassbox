@@ -71,31 +71,11 @@ export default function AcidLabLesson() {
 
         <DurabilitySection ref={durabilityRef} />
 
+        {/* Colophon — "Four letters, four guarantees, one database that keeps
+            its promises." The lesson now closes in SynthesisSection (the ∴
+            Synthesis movement: takeaway + where-to-go-next), so this couplet no
+            longer renders as a second, competing closure. */}
         <SynthesisSection />
-
-        <div
-          style={{
-            textAlign: 'center',
-            marginTop: 32,
-            paddingTop: 32,
-            borderTop: '1px solid rgba(var(--iso-ink-rgb), 0.06)',
-          }}
-        >
-          <div
-            className="iso-display"
-            style={{
-              fontSize: 18,
-              fontStyle: 'italic',
-              color: 'rgba(var(--iso-ink-rgb), 0.72)',
-            }}
-          >
-            Four letters, four guarantees,
-            <br />
-            <span style={{ color: 'rgba(var(--iso-ink-rgb), 0.66)' }}>
-              one database that keeps its promises.
-            </span>
-          </div>
-        </div>
       </div>
     </div>
   );

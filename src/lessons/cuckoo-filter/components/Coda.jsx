@@ -52,9 +52,63 @@ export function Coda() {
             very little here. That is the point.
           </div>
 
+          <div style={{ maxWidth: 620, margin: '56px auto 0', textAlign: 'left' }}>
+            <div
+              className="cf-eyebrow"
+              style={{ marginBottom: 18, textAlign: 'center', letterSpacing: '0.28em' }}
+            >
+              Where to go next
+            </div>
+            <div className="cf-cols cf-cols-2">
+              {[
+                {
+                  title: 'Bloom filters',
+                  desc: 'The structure this one was built to beat. Pure bit arrays, smaller still, but no way to take a key back out.',
+                },
+                {
+                  title: 'Counting Bloom filters',
+                  desc: 'The other route to deletion: swap each bit for a small counter. It buys removal, but pays several times the space.',
+                },
+                {
+                  title: 'Quotient filters',
+                  desc: 'A cousin that also deletes, splitting each hash into a quotient and a remainder instead of kicking fingerprints between buckets.',
+                },
+                {
+                  title: 'Cuckoo hashing',
+                  desc: 'The table beneath the filter. Pagh and Rodler’s scheme, where the kick-and-rehome dance was born, before fingerprints ever entered.',
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  style={{
+                    padding: '18px 20px',
+                    border: '1px solid var(--line)',
+                    background: 'var(--bg-1)',
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: 'Fraunces',
+                      fontSize: 19,
+                      fontWeight: 400,
+                      letterSpacing: '-0.012em',
+                      color: 'var(--text)',
+                      marginBottom: 8,
+                    }}
+                  >
+                    {item.title}
+                  </div>
+                  <div className="cf-body" style={{ fontSize: 14, lineHeight: 1.55 }}>
+                    {item.desc}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div
             style={{
-              marginTop: 52,
+              marginTop: 56,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',

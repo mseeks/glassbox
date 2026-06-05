@@ -164,6 +164,26 @@
   font-size: clamp(28px, 5.4vw, 46px);
   margin: 16px 0 0;
 }
+
+/* coda one-idea: a framed synthesis block (mirrors .gx-eyebrow's mono/cyan
+   kicker, and the .gx-panel surface idiom). Tokens flip for light/dark. */
+.gx-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin: 0;
+}
+.gx-coda {
+  background: linear-gradient(180deg, var(--cyan-glow), transparent);
+  border: 1px solid var(--line2);
+  border-left: 2px solid var(--cyan);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin: 16px 0 0;
+}
 .gx-h3 {
   font-size: clamp(20px, 3.2vw, 26px);
   margin: 0 0 10px;
@@ -868,6 +888,13 @@
 [data-theme='light'] .gx-callout.info {
   border-color: #7cc1b7;
   color: #04534b;
+}
+
+/* coda block: on black the cyan glow bloomed off transparent; on the daylit
+   panel it settles into a soft cool tint that still reads against the vellum.
+   Border + kicker keep flipping via --line2 / --cyan tokens. */
+[data-theme='light'] .gx-coda {
+  background: linear-gradient(180deg, var(--cyan-glow), var(--panel));
 }
 
 /* rpc response bar/tag: amber gradient + border literals (deepened for paper) */

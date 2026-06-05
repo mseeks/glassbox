@@ -4,19 +4,21 @@
 
 const CodaPoint = ({ n, title, body }) => (
   <div>
-    <div
-      className="udp-display"
-      style={{
-        fontSize: 44,
-        fontStyle: 'italic',
-        fontWeight: 300,
-        color: 'var(--signal)',
-        lineHeight: 1,
-        marginBottom: 12,
-      }}
-    >
-      {n}
-    </div>
+    {n && (
+      <div
+        className="udp-display"
+        style={{
+          fontSize: 44,
+          fontStyle: 'italic',
+          fontWeight: 300,
+          color: 'var(--signal)',
+          lineHeight: 1,
+          marginBottom: 12,
+        }}
+      >
+        {n}
+      </div>
+    )}
     {title && (
       <div
         className="udp-mono"
@@ -182,6 +184,45 @@ export const Coda = () => (
         >
           UDP is the protocol that tells the truth about the network, and everything else (reliable,
           ordered, encrypted, multiplexed) is something you build on top of that truth.
+        </div>
+      </div>
+
+      <div style={{ marginTop: 88 }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 14,
+            fontFamily: 'JetBrains Mono',
+            fontSize: 11,
+            letterSpacing: '0.22em',
+            textTransform: 'uppercase',
+            color: 'var(--signal)',
+            marginBottom: 28,
+          }}
+        >
+          <span style={{ width: 28, height: 1, background: 'var(--signal)' }}></span>
+          Where to go next
+        </div>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: 28,
+          }}
+        >
+          <CodaPoint
+            title="QUIC"
+            body="The whole reliable, ordered, encrypted stack rebuilt as a library on UDP. Streams, loss recovery, congestion control, and TLS 1.3 — without the kernel's TCP. It carries HTTP/3."
+          />
+          <CodaPoint
+            title="DTLS"
+            body="TLS adapted to a transport that can lose and reorder. Authenticated encryption per datagram, with none of the reliability machinery bolted on. The honest way to make UDP private."
+          />
+          <CodaPoint
+            title="Multicast & broadcast"
+            body="One send, many receivers — addressing that TCP, with its single connected peer, cannot express. UDP's answer to discovery, streaming, and gossip across a network."
+          />
         </div>
       </div>
 

@@ -2,29 +2,64 @@ import { Reveal } from '../../../shared/reveal.jsx';
 import Section from '../components/Section.jsx';
 import Callout from '../components/Callout.jsx';
 
-// §IX — where this goes next. Three directions (concurrency, write-optimized
-// B-trees, deletion merge) and the answer to the question posed by the split
-// lab. Pure prose, no lab.
+// §IX — the one idea to carry away, then where to go next. The synthesis box
+// names what a B-tree *is*; the numbered list points at three real directions
+// (concurrency, write-optimized variants, deletion merge). Pure prose, no lab.
+const NEXT = [
+  [
+    'i',
+    'Concurrency',
+    'Many threads splitting and merging one tree without corrupting it. The trick is latch crabbing: you release a parent’s lock only once you’re sure the child won’t split into it.',
+  ],
+  [
+    'ii',
+    'Write-optimized variants',
+    'Bε-trees and fractal trees buffer writes inside the nodes, clawing back the LSM-tree’s write advantage without giving up the B-tree’s reads.',
+  ],
+  [
+    'iii',
+    'Deletion, in full',
+    'The symmetric move to splitting: when a node falls below half-full, it borrows a key from a sibling, or pulls one down from the parent and merges. Trees shrink from the top, too.',
+  ],
+];
+
 export default function Onward() {
   return (
     <Section roman="IX" kicker="Onward" title="Where this goes next">
       <Reveal base="bt-rev">
-        <p className="bt-p">
-          Three directions from here. <strong>Concurrency.</strong> How do many threads split and
-          merge one tree without corrupting it? The trick is called{' '}
-          <span className="bt-em">latch crabbing</span>: you release a parent&rsquo;s lock only once
-          you&rsquo;re sure the child won&rsquo;t split into it.{' '}
-          <strong>Write-optimized B-trees.</strong> The B&#949;-trees and fractal trees buffer
-          writes inside the nodes to claw back the LSM&rsquo;s advantage without giving up the
-          reads. And the <strong>deletion merge</strong> in full, if you want the symmetric move
-          made concrete.
-        </p>
+        <div className="bt-coda">
+          <p className="bt-kicker">The one idea</p>
+          <p className="bt-p bt-coda-lead">
+            A B-tree is one decision held to its limit:{' '}
+            <span className="bt-em">fill a node until it fills a disk page, then split</span>. Match
+            the branching factor to the hardware, and everything else follows &mdash; the few short
+            hops to any record, the ordered leaves that make a range a single walk, the tree that
+            stays balanced no matter the order things arrive. One forklift trip per node, and you
+            always load it full.
+          </p>
+        </div>
       </Reveal>
+
+      <Reveal base="bt-rev">
+        <p className="bt-kicker bt-coda-next-label">Where to go next</p>
+        <div className="bt-next">
+          {NEXT.map(([n, t, d]) => (
+            <div className="bt-next-item" key={n}>
+              <span className="bt-next-n">{n}</span>
+              <div>
+                <span className="bt-next-t">{t}</span>
+                <p className="bt-next-d">{d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+
       <Callout title="The question from before">
         Why did filing 80 make the tree <span className="bt-em">wider</span> but not{' '}
         <span className="bt-em">taller</span>? Because only a full root, splitting, can add a floor.
         Filing 80 split a leaf and sent a key up, but the root still had room to absorb it. The tree
-        grows at the top. And only when the top itself is full.
+        grows at the top &mdash; and only when the top itself is full.
       </Callout>
     </Section>
   );
