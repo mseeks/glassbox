@@ -142,7 +142,7 @@ export function Hero() {
             </span>
           </div>
           <div className="bf-mono bf-mark-muted" style={{ fontSize: '0.78rem' }}>
-            10 chapters · 7 interactive labs
+            10 chapters · 6 interactive labs
           </div>
         </div>
 

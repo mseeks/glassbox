@@ -373,3 +373,80 @@ and the prompt is built to keep the agent from flagging it as one.
   false positive of any loop, so it gets the deepest reasoning available).
 
 Run from the app root as `npm run loop:content-accuracy [ids…]`, or here as `npm run content-accuracy [ids…]`.
+
+### `npm run lab-fidelity [lesson-ids…]`: lab-fidelity loop
+
+**Read-only. The sibling of content-accuracy for the *interactive* half.** Prose
+is half the product; the labs are the other half, and were 0% automated-reviewed
+until this loop. Its question: is every lab actually driven by the lesson's pure
+`engine/`, or does it hardcode / fake the output it presents as computed? Does
+every control the reader can touch actually do something? And does the lab
+demonstrate the **claim its surrounding prose makes**?
+
+Its outside reference is unusually concrete: **`engine/index.js`**, the pure,
+unit-tested logic that is the source of truth for what every lab should compute /
+animate. A lab that bypasses the engine to hardcode its numbers, plays the
+engine's frames in the wrong order, wires a dead control, or demonstrates
+something other than its caption is a finding.
+
+- Per-lesson, parallel, **`opus` + `effort: "max"`**, **Read / Grep / Glob only**.
+  Three buckets: **Fidelity defect (cite-or-omit) / Verified live / Judgment**
+  (honest simplification — a fixed scenario, a seed, a capped range — is *not* a
+  defect; a hardcoded *output* the engine exists to compute is).
+- **No `<scope>`; default is all lessons.** Pass ids for a subset; bound with
+  `--limit` / `--concurrency` / `--budget` (default $5); `--dry-run` to preview.
+- Shares the per-lesson scaffold in `per-lesson.ts` with content-accuracy and
+  collection-coherence.
+
+Run from the app root as `npm run loop:lab-fidelity [ids…]`, or here as `npm run lab-fidelity [ids…]`.
+
+### `npm run collection-coherence [lesson-ids…]`: collection-coherence loop
+
+**Read-only. Judges each lesson against the *collection*, not the world.** Does it
+hit the shared **"anatomy of a complete lesson"** bar — signature hero · a
+motivating opening · a legible problem→idea→mechanism→limits→synthesis arc ·
+enough load-bearing labs · a real closing (names the one idea + where to go next)?
+And is it **consistent with its siblings** — a shared term defined compatibly
+across lessons, a cross-reference that names a real, correct neighbour?
+
+The reference is the rubric (in the prompt) + the catalog — not an external
+source — so it only ever **maps**, bucketing each shortfall **Gap (close) /
+Meets the bar / Intentional divergence**. The collection is deliberately unique
+per lesson; the third bucket exists to keep identity (a survey's length, an
+essay's brevity, a bespoke section grammar) from being mistaken for a gap. The
+test: a difference is intentional only if you can say *why* in one sentence.
+
+- Per-lesson, parallel, **`opus` + `effort: "max"`**, **Read / Grep / Glob only**.
+  Each agent grades its own lesson AND greps siblings for shared terms / cross-refs,
+  so cross-lesson drift surfaces from whichever side first notices it.
+- **No `<scope>`; default is all lessons.** Same `--limit` / `--concurrency` /
+  `--budget` (default $5) / `--dry-run` controls. Shares `per-lesson.ts`.
+
+Run from the app root as `npm run loop:collection-coherence [ids…]`, or here as `npm run collection-coherence [ids…]`.
+
+### `npm run visual-sanity [lesson-ids…]`: visual-sanity loop
+
+**Read-only. The render-defect gate.** 23 lessons × 2 themes × 2 viewports ≈ 92
+renders no human will eyeball. Like `contrast`, it can only be judged on the
+rendered page, so the harness is self-contained: it builds the app, boots
+`vite preview`, runs `scripts/render-audit.js` (scrolls each page, then MEASURES
+horizontal overflow + the elements causing it, broken images, an empty/failed
+main, and reveal-on-scroll blocks left stuck hidden), tears the server down, and
+hands the agent the per-(lesson,theme,viewport) defect signals. The agent Reads
+each cited element in the lesson's source and classifies it **Fix / Intentional
+decorative / Judgment** — so a deliberate full-bleed atmosphere isn't "fixed" and
+a real sideways-scroll is.
+
+- **Scope note.** This measures **deterministic layout breakage** — the reliable,
+  no-vision half of "does it look right". The aesthetic-judgment half (the model
+  actually *seeing* the screenshots) is deferred: the Agent SDK's Read-on-image
+  path is currently unreliable (anthropics/claude-code#35866), and the reliable
+  alternatives (Files API / base64) need an API key, which breaks the loops'
+  OAuth-only design. A Files-API or MCP variant can add true vision later; this
+  loop ships the breakage that matters most, 100% reliably.
+- `[lesson-ids…]` optional; default ALL lessons + the index. **`opus`**,
+  **Read / Grep / Glob only**. Mirrors `contrast`'s build→serve→measure shape (its
+  `render-audit.js`, like the refreshed `contrast-audit.js`, parses lesson ids from
+  the catalog so the sweep never goes stale).
+
+Run from the app root as `npm run loop:visual-sanity [ids…]`, or here as `npm run visual-sanity [ids…]`.

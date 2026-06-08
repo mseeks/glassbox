@@ -55,11 +55,12 @@ export default function Onward() {
         </div>
       </Reveal>
 
-      <Callout title="The question from before">
-        Why did filing 80 make the tree <span className="bt-em">wider</span> but not{' '}
-        <span className="bt-em">taller</span>? Because only a full root, splitting, can add a floor.
-        Filing 80 split a leaf and sent a key up, but the root still had room to absorb it. The tree
-        grows at the top &mdash; and only when the top itself is full.
+      <Callout title="Why most inserts widen but don't deepen">
+        Back in the split lab, only the key that overflowed a{' '}
+        <span className="bt-em">full root</span> ever added a floor. Every other insert split a leaf
+        and sent its median up, but the root still had room to absorb it &mdash; so the tree grew{' '}
+        <span className="bt-em">wider</span>, not <span className="bt-em">taller</span>. A B-tree
+        gains height only at the top, and only when the top itself is full.
       </Callout>
     </Section>
   );

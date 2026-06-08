@@ -189,7 +189,10 @@ npm run loop:theme-parity <scope>      # lessons missing a light or dark version
 npm run loop:token-hygiene <scope>     # dangling / dead CSS custom properties (the var() knip can't see)
 npm run loop:contrast [ids…]           # rendered WCAG color-contrast map, every lesson × light/dark
 npm run loop:a11y-source <scope>       # source-level a11y debt (names + keyboard paths)
-npm run loop:content-accuracy [ids…]   # deep per-lesson accuracy review (opus·effort:max; heavy)
+npm run loop:content-accuracy [ids…]      # deep per-lesson accuracy review (opus·effort:max; heavy)
+npm run loop:lab-fidelity [ids…]          # are the labs engine-driven & claim-honest (opus·effort:max; heavy)
+npm run loop:collection-coherence [ids…]  # each lesson vs the completeness rubric + sibling consistency (heavy)
+npm run loop:visual-sanity [ids…]         # rendered layout-defect map, every lesson × theme × desktop/mobile
 ```
 
 The loops verify their work against the app's **outside reference**:
@@ -206,6 +209,22 @@ simplification); the human fixes what they agree with. It is the heaviest loop, 
 not routine. Default is all lessons; pass ids (or `--limit` / `--concurrency` /
 `--budget`) to bound it, and `--dry-run` to preview scope and the cost ceiling.
 See `agents/README.md`.
+
+`loop:content-accuracy`, `loop:lab-fidelity`, and `loop:collection-coherence` are
+the **per-lesson family** — same shape (one opus·max read-only agent per lesson,
+cite-or-omit three-bucket map), so they share one scaffold in `agents/per-lesson.ts`
+(catalog parse, selection, dry-run, bounded-concurrency fan-out). They differ only
+in their outside reference: content-accuracy → the canonical literature of each
+topic; lab-fidelity → the lesson's own `engine/` (is each lab really engine-driven
+& claim-honest, or faking/dead?); collection-coherence → the shared "anatomy of a
+complete lesson" rubric + sibling consistency (does each lesson hit every beat;
+are terms/cross-refs consistent across lessons), bucketed intentional-vs-gap.
+`loop:visual-sanity` is contrast-shaped instead (build → `vite preview` → measure):
+it scrolls every lesson × theme × desktop/mobile and maps real layout breakage
+(overflow, broken images, empty mains, stuck reveals) vs intentional full-bleed
+atmosphere. Its aesthetic-judgment half (the model _seeing_ the screenshots) is
+deferred — the Agent SDK's Read-on-image path is currently unreliable — so it maps
+the deterministic breakage today, reliably.
 
 ## Known follow-ups
 

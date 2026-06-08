@@ -42,7 +42,7 @@ export function ScalableVisual() {
               textTransform: 'uppercase',
             }}
           >
-            Lab 07 · Scalable BF
+            Lab 06 · Scalable BF
           </div>
           <div
             className="bf-display"

@@ -6,7 +6,7 @@ export function Ch08TheCousins() {
       <p>A brief tour of structures that solve adjacent problems with the same machinery.</p>
       <p>
         <strong>HyperLogLog</strong> doesn't do membership. It counts. Given a stream, it estimates
-        the number of <em>distinct</em> items seen, using ~1.5 KB of memory regardless of how many
+        the number of <em>distinct</em> items seen, using ~12 KB of memory regardless of how many
         items have passed. The trick is recording the maximum number of leading zeros in the hash of
         any seen item. That count encodes the cardinality with logarithmic precision.
       </p>
