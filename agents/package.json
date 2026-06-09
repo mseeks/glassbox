@@ -26,6 +26,7 @@
     "collection-coherence": "tsx collection-coherence.ts",
     "visual-sanity": "tsx visual-sanity.ts",
     "constellation": "tsx constellation.ts",
+    "pedagogy": "tsx pedagogy.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
