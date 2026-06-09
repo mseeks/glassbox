@@ -52,6 +52,29 @@ export function Coda() {
             very little here. That is the point.
           </div>
 
+          <div
+            style={{
+              maxWidth: 580,
+              margin: '22px auto 0',
+              fontFamily: 'IBM Plex Serif',
+              fontSize: 16.5,
+              lineHeight: 1.65,
+              color: 'var(--text-2)',
+              fontWeight: 300,
+            }}
+          >
+            And one of those moves travels. The filter never records where a fingerprint’s second
+            home is; it recomputes it,{' '}
+            <span style={{ fontFamily: 'JetBrains Mono', fontSize: 14, color: 'var(--text)' }}>
+              i₂ = i₁ ⊕ hash(fp)
+            </span>
+            , so either bucket reaches the other with nothing stored between them.{' '}
+            <span style={{ fontStyle: 'italic', color: 'var(--text)' }}>
+              Derive what you can instead of keeping it.
+            </span>{' '}
+            That idea is older and wider than this filter, and it is the one to carry out.
+          </div>
+
           <div style={{ maxWidth: 620, margin: '56px auto 0', textAlign: 'left' }}>
             <div
               className="cf-eyebrow"
