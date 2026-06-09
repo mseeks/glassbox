@@ -1,4 +1,5 @@
 import { EyeOff, ShieldCheck, BadgeCheck } from 'lucide-react';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 // §8 — Coda. The three guarantees recapped, where to go next, and a closing
 // reflection on the one-way operation that makes the whole edifice possible.
@@ -24,7 +25,12 @@ export default function Coda() {
     },
   ];
   const next = [
-    ['QUIC / HTTP-3', 'TLS 1.3 fused directly into the transport, over UDP.'],
+    [
+      'QUIC / HTTP-3',
+      <>
+        TLS 1.3 fused directly into the transport, over <LessonLink to="udp">UDP</LessonLink>.
+      </>,
+    ],
     ['Mutual TLS', 'The client presents a certificate too. Both ends prove identity.'],
     [
       'Revocation',

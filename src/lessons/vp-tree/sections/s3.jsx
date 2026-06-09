@@ -1,4 +1,5 @@
 import { Reveal } from '../../../shared/reveal.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 import SecHead from '../components/SecHead.jsx';
 import BuildLab from '../labs/BuildLab.jsx';
 
@@ -28,9 +29,12 @@ export default function S3() {
           Choosing the <strong>median</strong> range as the boundary is what keeps the tree honest:
           half the points land inside, half outside, every time. Recurse into each half with a fresh
           vantage point and a fresh ring, and you get a{' '}
-          <span className="hl"> balanced binary tree</span> that costs roughly N·log N work to build
-          and then stands only about log&nbsp;N levels deep from then on. Cheap to build. Cheap to
-          query. Step through the partition below.
+          <span className="hl">
+            {' '}
+            balanced <LessonLink to="binary-trees">binary tree</LessonLink>
+          </span>{' '}
+          that costs roughly N·log N work to build and then stands only about log&nbsp;N levels deep
+          from then on. Cheap to build. Cheap to query. Step through the partition below.
         </p>
       </Reveal>
       <Reveal base="rv">

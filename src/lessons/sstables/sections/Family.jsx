@@ -1,18 +1,27 @@
 import { Database, Layers, AlignLeft, Filter, HardDrive, GitMerge } from 'lucide-react';
 import Section from '../components/Section.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 // §X — where the SSTable sits among its neighbours, where to go next, and the
 // sources. Broad-audience framing: general structures, no personalised links.
 const FAMILY = [
   {
     ic: Database,
-    t: 'The B-tree',
+    t: (
+      <>
+        The <LessonLink to="b-trees">B-tree</LessonLink>
+      </>
+    ),
     d: 'The mutable cousin. It edits pages in place and stays read-optimised — the other end of the reads-versus-writes dial.',
   },
   {
     ic: Layers,
-    t: 'The LSM tree',
+    t: (
+      <>
+        The <LessonLink to="lsm-trees">LSM tree</LessonLink>
+      </>
+    ),
     d: 'The system these files live inside: a memtable on top, levels of sorted tables beneath, compaction running underneath it all.',
   },
   {
@@ -22,7 +31,11 @@ const FAMILY = [
   },
   {
     ic: Filter,
-    t: 'The bloom filter',
+    t: (
+      <>
+        The <LessonLink to="bloom-filters">bloom filter</LessonLink>
+      </>
+    ),
     d: 'The doorman in section VI. A tiny probabilistic set that answers ‘definitely not’ or ‘maybe’, never a false ‘no’.',
   },
   {
@@ -85,7 +98,7 @@ export default function Family() {
         {FAMILY.map((f) => {
           const Ic = f.ic;
           return (
-            <div key={f.t} className="sst-gift">
+            <div key={f.d} className="sst-gift">
               <span
                 className="sst-gift-ic"
                 style={{

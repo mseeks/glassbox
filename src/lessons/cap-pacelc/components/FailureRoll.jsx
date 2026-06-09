@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { usePrefersReducedMotion } from '../../../shared/usePrefersReducedMotion.js';
 import { useInViewport } from '../../../shared/useInViewport.js';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 export function FailureRoll() {
   const reduced = usePrefersReducedMotion();
@@ -25,7 +26,14 @@ export function FailureRoll() {
     { t: 'NTP drift induced timeout', loc: 'cell-A' },
     { t: 'Buffer overflow at midplane', loc: 'core-switch-2' },
     { t: 'Cable damaged by squirrel', loc: 'pop-NYC-3' },
-    { t: 'TLS handshake clock skew', loc: 'leader-7' },
+    {
+      t: (
+        <>
+          <LessonLink to="tls">TLS</LessonLink> handshake clock skew
+        </>
+      ),
+      loc: 'leader-7',
+    },
   ];
 
   // Show 6 events. Only the topmost is the "new" one each cycle;

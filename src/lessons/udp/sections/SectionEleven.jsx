@@ -1,5 +1,6 @@
 import { AlertTriangle, Clock, Layers, Shuffle, Zap, Hash } from 'lucide-react';
 import { SectionHeading } from '../components/atoms.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 /* ───────────────────────────────────────────────────────────────────────
    §11 — PITFALLS
@@ -48,9 +49,9 @@ export const SectionEleven = () => {
         <>
           UDP has no equivalent of TLS-over-TCP. Anyone on the path can read and modify your
           datagrams. They are wide open. To encrypt UDP traffic you use
-          <code> DTLS </code>(Datagram TLS), a variant of TLS that has been carefully adapted for
-          the unreliable, unordered transport underneath it. Quietly different in some operational
-          details (no record-layer ordering, retry on handshake loss).
+          <code> DTLS </code>(Datagram TLS), a variant of <LessonLink to="tls">TLS</LessonLink> that
+          has been carefully adapted for the unreliable, unordered transport underneath it. Quietly
+          different in some operational details (no record-layer ordering, retry on handshake loss).
         </>
       ),
       mitigation: 'Use DTLS, SRTP, WireGuard, or QUIC for any non-trivial UDP application.',

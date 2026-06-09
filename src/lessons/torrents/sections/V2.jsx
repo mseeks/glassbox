@@ -1,6 +1,7 @@
 import { SectionHeader } from '../components/Section.jsx';
 import { LabFrame } from '../components/widgets.jsx';
 import V2Lab from '../labs/V2Lab.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 // §09 — version 2 & magnets: the whole tower from one hash (Merkle tree + magnet).
 export default function V2() {
@@ -16,9 +17,12 @@ export default function V2() {
         <div className="tor-prose tor-rv">
           <p>
             The second version of BitTorrent is almost exactly the natural endpoint of everything so
-            far. It replaces the aging SHA-1 with <strong>SHA-256</strong>, and instead of a flat
-            list of fingerprints it builds a <strong>Merkle tree</strong> per file — a tree of
-            hashes whose single root commits to the entire file.
+            far. It replaces the aging SHA-1 with{' '}
+            <strong>
+              <LessonLink to="sha">SHA-256</LessonLink>
+            </strong>
+            , and instead of a flat list of fingerprints it builds a <strong>Merkle tree</strong>{' '}
+            per file — a tree of hashes whose single root commits to the entire file.
           </p>
           <p>
             That one change pays for itself: you can verify any piece with a tiny proof, fetch

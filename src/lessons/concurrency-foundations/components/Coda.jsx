@@ -1,5 +1,7 @@
 import React from 'react';
 
+import LessonLink from '../../../shared/LessonLink.jsx';
+
 const NEXT = [
   {
     key: 'memory-models',
@@ -31,8 +33,8 @@ const NEXT = [
     body: (
       <React.Fragment>
         The same question across machines instead of threads: which observations of a shared value
-        are allowed when the wire can drop, delay, and reorder. Paxos and Raft are the canonical
-        answers.
+        are allowed when the wire can drop, delay, and reorder.{' '}
+        <LessonLink to="paxos">Paxos</LessonLink> and Raft are the canonical answers.
       </React.Fragment>
     ),
   },

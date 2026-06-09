@@ -1,4 +1,5 @@
 import { Reveal } from '../../../shared/reveal.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
 
 const APPS = [
@@ -16,7 +17,11 @@ const APPS = [
   ],
   [
     'Certificate Transparency',
-    'Public append-only logs of every TLS certificate. Browsers verify a certificate is logged, and that the log itself has not rewritten its own history, via two kinds of log-sized proof.',
+    <>
+      Public append-only logs of every <LessonLink to="tls">TLS</LessonLink> certificate. Browsers
+      verify a certificate is logged, and that the log itself has not rewritten its own history, via
+      two kinds of log-sized proof.
+    </>,
   ],
   [
     'IPFS & content addressing',

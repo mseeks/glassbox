@@ -1,4 +1,5 @@
 import { Chapter } from '../components/Chapter.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 const LABEL_STYLE = {
   fontSize: '0.72rem',
@@ -14,18 +15,26 @@ const NEXT = [
   ],
   [
     'The sketch family, formally.',
-    'HyperLogLog, Count-Min, and MinHash all trade exactness for bounded error in bounded space. ' +
-      'Read them as one toolkit and the membership filter stops looking like a special case.',
+    <>
+      <LessonLink to="hyperloglog">HyperLogLog</LessonLink>, Count-Min, and MinHash all trade
+      exactness for bounded error in bounded space. Read them as one toolkit and the membership
+      filter stops looking like a special case.
+    </>,
   ],
   [
-    'Filters inside an LSM tree.',
+    <>
+      Filters inside an <LessonLink to="lsm-trees">LSM tree</LessonLink>.
+    </>,
     'Trace one point lookup through RocksDB or Cassandra: the filter is what lets a read skip whole ' +
       'SSTables it knows it can ignore. The amplification math is where the savings become money.',
   ],
   [
     'The succinct-structures frontier.',
-    'Quotient, cuckoo, and ribbon filters push toward the information-theoretic floor for ' +
-      'approximate membership. That floor, and how close each design sits to it, is the open question.',
+    <>
+      Quotient, <LessonLink to="cuckoo-filter">cuckoo</LessonLink>, and ribbon filters push toward
+      the information-theoretic floor for approximate membership. That floor, and how close each
+      design sits to it, is the open question.
+    </>,
   ],
 ];
 
@@ -40,11 +49,12 @@ export function Coda() {
         <em>asking</em> the real answer.
       </div>
       <p>
-        The real answer always lives somewhere else: in the SSTable, the cache, the database, the
-        source of truth. The filter only ever says <strong>definitely not</strong> &mdash; trust it,
-        skip the lookup &mdash; or <strong>probably yes</strong> &mdash; don't trust it, go check.
-        Hold that asymmetry in mind and every variant in the family falls into place. They are all,
-        every one of them, ways to skip work with one-sided error in bounded space.
+        The real answer always lives somewhere else: in the{' '}
+        <LessonLink to="sstables">SSTable</LessonLink>, the cache, the database, the source of
+        truth. The filter only ever says <strong>definitely not</strong> &mdash; trust it, skip the
+        lookup &mdash; or <strong>probably yes</strong> &mdash; don't trust it, go check. Hold that
+        asymmetry in mind and every variant in the family falls into place. They are all, every one
+        of them, ways to skip work with one-sided error in bounded space.
       </p>
 
       <p
@@ -53,8 +63,8 @@ export function Coda() {
       >
         Where to go next
       </p>
-      {NEXT.map(([title, body]) => (
-        <p key={title}>
+      {NEXT.map(([title, body], i) => (
+        <p key={i}>
           <strong>{title}</strong> {body}
         </p>
       ))}

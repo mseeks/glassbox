@@ -1,4 +1,5 @@
 import { Reveal } from '../../../shared/reveal.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 import SectionHead from '../components/SectionHead.jsx';
 import Callout from '../components/Callout.jsx';
 import MultiplexScope from '../labs/MultiplexScope.jsx';
@@ -53,7 +54,8 @@ export default function Http2() {
               <b>The catch worth knowing.</b> HTTP/2 cures head-of-line blocking{' '}
               <em>in the application</em>, yet the streams still ride one TCP connection, so a
               single lost packet can still stall every one of them at the TCP layer. HTTP/3 fixes
-              that. It moves gRPC onto QUIC (over UDP) to close that last gap.
+              that. It moves gRPC onto QUIC (over <LessonLink to="udp">UDP</LessonLink>) to close
+              that last gap.
             </Callout>
           </Reveal>
         </div>

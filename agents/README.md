@@ -450,3 +450,34 @@ a real sideways-scroll is.
   the catalog so the sweep never goes stale).
 
 Run from the app root as `npm run loop:visual-sanity [ids…]`, or here as `npm run visual-sanity [ids…]`.
+
+### `npm run constellation`: cross-lesson link loop
+
+**Deterministic. No agent, no SDK — a test-suite you drive to green.** Every other
+loop reasons; this one just *measures*. The collection ships as 23 self-contained
+islands with **zero** links between them, yet the prose is full of dead-end mentions
+of sibling lessons (bloom-filters' coda names HyperLogLog and cuckoo; torrents leans
+on SHA-256 and Merkle trees; saga rests on ACID). This loop is the connective tissue:
+it scans every lesson's prose for a passage that **names a sibling lesson** (by a
+curated, distinctive catalog term) but renders it as plain text instead of a
+`<LessonLink>`, and prints a `RESULT: PASS / FAIL` map with `process.exitCode` set on
+FAIL (so it can gate CI later).
+
+- **The outside reference is a filesystem fact.** A term only ever resolves to a link
+  if that lesson's directory actually exists (`parseCatalog()` ∩ `lessonDirsOnDisk()`).
+  The loop can never propose a link to a topic that isn't a real lesson — a coda that
+  names "Count-Min" or "ribbon filters" (no sibling dir) is silently skipped. That is
+  the reference doing its job; it gates the *can-we* half deterministically. The
+  *should-we* half (is this mention worth a link) is yours.
+- **You drive it to green.** Run it, then for each finding either wire the deliberate
+  pointer with the shared `<LessonLink to="<id>">…</LessonLink>` (see
+  `src/shared/LessonLink.jsx`), or record an intentionally-plain / homonym mention in
+  `agents/constellation-ignore.json` as `{ "<lesson-id>": { "<term>": "why it stays
+  prose" } }`. Re-run until `PASS`. The count is the progress meter: a wired
+  `<LessonLink>` span is masked out of the scan, so it stops firing — the candidate
+  count drops monotonically as the constellation fills in.
+- **Scope:** `sections/` + `components/` prose (labs are widgets, skipped); `import`
+  lines and already-wired `<LessonLink>` spans are masked so neither false-fires.
+  Pure-node, reads nothing it shouldn't, mutates nothing — the human wires the links.
+
+Run from the app root as `npm run loop:constellation`, or here as `npm run constellation`.

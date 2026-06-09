@@ -3,6 +3,7 @@ import Section from '../components/Section.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
 import Plate from '../components/Plate.jsx';
 import Stat from '../components/Stat.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 // §II — the naive sorted slab and its seek tax. The ticks are a pure CSS
 // entrance animation, neutralized by the shell under reduced motion.
@@ -32,8 +33,9 @@ export default function Slab() {
           </p>
           <p>
             Thirty trips for one key, roughly a tenth of a second. We convicted that number once
-            already. The flat slab fights the disk in exactly the way a naive binary tree does. It
-            needs the same medicine — but a version built for a file that will never change.
+            already. The flat slab fights the disk in exactly the way a naive{' '}
+            <LessonLink to="binary-trees">binary tree</LessonLink> does. It needs the same medicine
+            — but a version built for a file that will never change.
           </p>
         </div>
         <div className="sst-reveal">

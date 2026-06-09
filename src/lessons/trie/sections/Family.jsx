@@ -1,4 +1,5 @@
 import { Reveal } from '../../../shared/reveal.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 import SectionHead from '../components/SectionHead.jsx';
 
 // §VII — A field guide to the family of trie variants.
@@ -26,9 +27,9 @@ export default function Family() {
             <div className="gt">Ternary search trie</div>
             <div className="gtag">pointer-thrifty</div>
             <p>
-              Each node keeps just three links (less, equal, greater), like a binary search tree
-              married to a trie. Far less memory than a slot-per-letter node, at a little extra
-              depth.
+              Each node keeps just three links (less, equal, greater), like a{' '}
+              <LessonLink to="binary-trees">binary search tree</LessonLink> married to a trie. Far
+              less memory than a slot-per-letter node, at a little extra depth.
             </p>
           </div>
           <div className="gcard">

@@ -26,7 +26,10 @@
   loops when scrolled off-screen), `reveal.jsx` (`useRevealRoot` / `useReveal` /
   `<Reveal>`, all reveal-on-scroll), `useScrollSpy.js` (`useScrollSpy` +
   reduced-motion-aware `scrollToId`), `useScrollProgress.js` (0–100 reading-bar
-  percent), and `lesson-kit/`, the token-driven structural UI kit (`Callout` /
+  percent), `NavContext.js` + `LessonLink.jsx` (the cross-lesson link primitive:
+  a soft-navigating, crawlable `?lesson=<id>` anchor, ink text with an
+  accent-tinted underline; the `constellation` loop scans prose for where it
+  belongs), and `lesson-kit/`, the token-driven structural UI kit (`Callout` /
   `Slider` / `SegmentedControl` / `Stat` / `StatGrid` / `Chip`, themed per lesson
   via the `--lk-*` contract; see `lesson-kit/README.md`). **Engines are colocated
   per lesson at `src/lessons/<slug>/engine/index.js`. There is no
@@ -193,7 +196,16 @@ npm run loop:content-accuracy [ids…]      # deep per-lesson accuracy review (o
 npm run loop:lab-fidelity [ids…]          # are the labs engine-driven & claim-honest (opus·effort:max; heavy)
 npm run loop:collection-coherence [ids…]  # each lesson vs the completeness rubric + sibling consistency (heavy)
 npm run loop:visual-sanity [ids…]         # rendered layout-defect map, every lesson × theme × desktop/mobile
+npm run loop:constellation                # unlinked cross-lesson mentions → wire <LessonLink> or ignore (drive to PASS)
 ```
+
+`loop:constellation` is the odd one out in shape: it launches **no agent**. It is a
+deterministic, pure-node scan (its "outside reference" is the on-disk sibling set —
+`parseCatalog() ∩ lessonDirsOnDisk()`, a filesystem fact) that prints a `PASS/FAIL`
+map of prose naming a sibling lesson but rendering it as dead text. You drive it to
+green: wire each deliberate pointer with the shared `<LessonLink to="<id>">`, and
+record an intentionally-plain or homonym mention in `agents/constellation-ignore.json`.
+It is the connective-tissue loop — the one that turns the 23 islands into a graph.
 
 The loops verify their work against the app's **outside reference**:
 `vitest run` + `eslint .` + `vite build`. For the mutating two, they leave any

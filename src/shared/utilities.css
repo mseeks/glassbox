@@ -183,6 +183,30 @@ body {
   scroll-margin-top: 64px;
 }
 
+/* Cross-lesson links (<LessonLink>). Text stays in the surrounding ink so it
+   always clears AA contrast in both themes; the active lesson's accent (set on
+   <main> as --lesson-link-color) only tints the underline, so the link never
+   relies on color alone. Hover/focus lift the whole word to the accent. */
+.lesson-shell .lesson-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--lesson-link-color, currentColor);
+  text-decoration-thickness: 0.07em;
+  text-underline-offset: 0.16em;
+  transition:
+    color 0.15s ease,
+    text-decoration-color 0.15s ease;
+}
+.lesson-shell .lesson-link:hover,
+.lesson-shell .lesson-link:focus-visible {
+  color: var(--lesson-link-color, currentColor);
+}
+.lesson-shell .lesson-link:focus-visible {
+  outline: 2px solid var(--lesson-link-color, currentColor);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 @media (min-width: 768px) {
   .lesson-shell .md\:px-12 {
     padding-left: 3rem;

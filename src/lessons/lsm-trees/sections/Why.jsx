@@ -2,6 +2,7 @@ import Movement from '../components/Movement.jsx';
 import Heading from '../components/Heading.jsx';
 import Prose from '../components/Prose.jsx';
 import AsymmetryFig from '../labs/AsymmetryFig.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 // §II — Why bother. The disk has a grain.
 export default function Why() {
@@ -24,11 +25,14 @@ export default function Why() {
       >
         <Prose dropcap>
           <p>
-            The classical way to keep sorted keys on disk is the <em>B-tree</em>: every key has a
-            fixed home page, and a write seeks to that page, edits it, and writes it back. Reads are
-            quick. But under heavy writes, the disk head spends its life leaping from page to page.
-            A leap on spinning rust is a seek of milliseconds, while flash pays in hidden
-            write-amplification as its controller rewrites whole erase blocks.
+            The classical way to keep sorted keys on disk is the{' '}
+            <LessonLink to="b-trees">
+              <em>B-tree</em>
+            </LessonLink>
+            : every key has a fixed home page, and a write seeks to that page, edits it, and writes
+            it back. Reads are quick. But under heavy writes, the disk head spends its life leaping
+            from page to page. A leap on spinning rust is a seek of milliseconds, while flash pays
+            in hidden write-amplification as its controller rewrites whole erase blocks.
           </p>
           <p>
             A purely sequential write avoids all of that. The head simply continues from where it
