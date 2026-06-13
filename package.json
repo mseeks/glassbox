@@ -36,7 +36,8 @@
     "loop:lab-fidelity": "npm --prefix agents run lab-fidelity",
     "loop:collection-coherence": "npm --prefix agents run collection-coherence",
     "loop:visual-sanity": "npm --prefix agents run visual-sanity",
-    "loop:constellation": "npm --prefix agents run constellation"
+    "loop:constellation": "npm --prefix agents run constellation",
+    "loop:pedagogy": "npm --prefix agents run pedagogy"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"

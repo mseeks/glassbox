@@ -481,3 +481,40 @@ FAIL (so it can gate CI later).
   Pure-node, reads nothing it shouldn't, mutates nothing — the human wires the links.
 
 Run from the app root as `npm run loop:constellation`, or here as `npm run constellation`.
+
+### `npm run pedagogy [lesson-ids…]`: pedagogy loop
+
+**Read-only. The "does it actually teach?" pass — the one loop that checks the
+product's reason to exist.** `content-accuracy` guards whether the prose is TRUE,
+`lab-fidelity` whether the labs are REAL, `collection-coherence` whether the
+structural beats are PRESENT. None asks whether a lesson actually **teaches**. This
+does.
+
+It is qualitative by design: asking an agent to *compute* the answer measures the
+agent, not the teaching (a capable model knows the formula regardless of how the
+lesson explains it). Instead a **panel** of independent evaluators (default 3) reads
+each lesson as a motivated newcomer and scores it against ONE fixed, shared rubric of
+named pedagogy practices (`agents/pedagogy-rubric.ts`) — and only that rubric. A
+teaching gap is reported only when a **majority** of the panel independently flags the
+same rubric item with a cited passage.
+
+- **The cap — why it converges instead of producing endless advice.** The fixed
+  rubric is the loop's entire universe of judgement; it cannot invent new criteria.
+  Each evaluator **defaults to "satisfied"** unless it can cite a specific shortfall,
+  and a finding needs majority agreement. A per-lesson **accept-list**
+  (`agents/pedagogy-accept.json`, keyed `lesson → rubric-item → reason`) absorbs
+  intentional deviations (a declared survey doesn't scaffold one hard step). Anything
+  off-rubric is a single **non-blocking note**. `RESULT: PASS` when every item is
+  clear or accepted; to raise the bar you add a rubric item, deliberately.
+- **Honest reference.** Teaching quality is judgement, so this **maps, it does not
+  gate** (propose-only, Read/Grep/Glob, never edits). Its rigor is the fixed rubric +
+  strict cite-or-omit + the agreement threshold + the accept-list, not a mechanical
+  truth. The evaluators see the **teaching surface** (prose, labs, components) but NOT
+  `engine/index.js` — they judge the teaching, not the underlying algorithm.
+- Per-lesson, parallel, **`opus` + `effort:max`**. **No `<scope>`; default is all
+  lessons.** Pass ids for a subset; `--panel=N` (default 3), `--concurrency=N`
+  (default 2), `--budget=N` (USD **per evaluator**, default 4; per-lesson ceiling =
+  panel × budget), `--dry-run` to preview the cost. Heavy and occasional, like
+  `content-accuracy`.
+
+Run from the app root as `npm run loop:pedagogy [ids…]`, or here as `npm run pedagogy [ids…]`.

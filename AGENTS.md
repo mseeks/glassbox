@@ -197,6 +197,7 @@ npm run loop:lab-fidelity [ids…]          # are the labs engine-driven & claim
 npm run loop:collection-coherence [ids…]  # each lesson vs the completeness rubric + sibling consistency (heavy)
 npm run loop:visual-sanity [ids…]         # rendered layout-defect map, every lesson × theme × desktop/mobile
 npm run loop:constellation                # unlinked cross-lesson mentions → wire <LessonLink> or ignore (drive to PASS)
+npm run loop:pedagogy [ids…]              # does each lesson actually TEACH? panel vs a fixed pedagogy rubric (opus·max; heavy)
 ```
 
 `loop:constellation` is the odd one out in shape: it launches **no agent**. It is a
@@ -206,6 +207,17 @@ map of prose naming a sibling lesson but rendering it as dead text. You drive it
 green: wire each deliberate pointer with the shared `<LessonLink to="<id>">`, and
 record an intentionally-plain or homonym mention in `agents/constellation-ignore.json`.
 It is the connective-tissue loop — the one that turns the 23 islands into a graph.
+
+`loop:pedagogy` is the deepest content loop: the **"does it actually teach?"** pass.
+A panel of independent `opus·max` evaluators reads each lesson as a newcomer and
+scores it against ONE fixed rubric of named teaching practices
+(`agents/pedagogy-rubric.ts`) — and only that rubric. A gap is reported only on
+**majority agreement** with a cited passage; intentional deviations go in
+`agents/pedagogy-accept.json`. That fixed rubric + the agreement threshold + the
+accept-list are the cap that keeps it converging to a quiet `PASS` instead of
+generating endless advice. It **maps, it does not gate** (teaching quality is
+judgement) — distinct from `collection-coherence`, which checks the beats are
+_present_; this checks whether each move actually _teaches_.
 
 The loops verify their work against the app's **outside reference**:
 `vitest run` + `eslint .` + `vite build`. For the mutating two, they leave any
