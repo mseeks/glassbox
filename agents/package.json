@@ -25,6 +25,7 @@
     "lab-fidelity": "tsx lab-fidelity.ts",
     "collection-coherence": "tsx collection-coherence.ts",
     "visual-sanity": "tsx visual-sanity.ts",
+    "constellation": "tsx constellation.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

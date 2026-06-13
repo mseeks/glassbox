@@ -1,5 +1,6 @@
 import { KeyRound, Binary, Layers, Scale } from 'lucide-react';
 import { Reveal } from '../../../shared/reveal.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
 import Plate from '../components/Plate.jsx';
 
@@ -14,7 +15,14 @@ const VARIANTS = [
     icon: Binary,
     name: 'Merkle Patricia Trie',
     tag: 'Ethereum state',
-    body: "A Merkle tree married to a radix trie. The structure follows the key's digits, so it is at once an indexed map and a commitment. Ethereum leans on this. It commits its entire world state, every balance and every contract, to one such root per block.",
+    body: (
+      <>
+        A Merkle tree married to a radix <LessonLink to="trie">trie</LessonLink>. The structure
+        follows the key&apos;s digits, so it is at once an indexed map and a commitment. Ethereum
+        leans on this. It commits its entire world state, every balance and every contract, to one
+        such root per block.
+      </>
+    ),
   },
   {
     icon: Layers,
@@ -37,9 +45,10 @@ export default function Variants() {
       <SectionHeader id="variants" kicker="The Family" title="Specialized descendants" />
       <Reveal base="mk-reveal" className="mk-prose">
         <p className="lead">
-          The plain binary tree is the seed. From it, real systems grow specialized forms that bend
-          the same idea toward whatever a particular workload demands. They prove absence, index by
-          key, append forever, or shrink the proofs themselves.
+          The plain <LessonLink to="binary-trees">binary tree</LessonLink> is the seed. From it,
+          real systems grow specialized forms that bend the same idea toward whatever a particular
+          workload demands. They prove absence, index by key, append forever, or shrink the proofs
+          themselves.
         </p>
       </Reveal>
       <Reveal base="mk-reveal">

@@ -1,4 +1,5 @@
 import { Reveal } from '../../../shared/reveal.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
 import AvalancheDemo from '../labs/AvalancheDemo.jsx';
 
@@ -56,9 +57,9 @@ export default function Hash() {
           className="mk-prose"
           style={{ marginTop: 16, fontSize: 15, color: 'var(--paper-faint)', fontStyle: 'italic' }}
         >
-          (Real systems use SHA-256 or BLAKE3, producing 256-bit digests. This lesson uses a small
-          12-character hash so the trees stay readable. Nothing else changes. The behavior is the
-          same.)
+          (Real systems use <LessonLink to="sha">SHA-256</LessonLink> or BLAKE3, producing 256-bit
+          digests. This lesson uses a small 12-character hash so the trees stay readable. Nothing
+          else changes. The behavior is the same.)
         </p>
       </Reveal>
     </section>

@@ -1,5 +1,6 @@
 import Movement from '../components/Movement.jsx';
 import Prose from '../components/Prose.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 // Where the survey continues — three real strata to drill next, each one
 // rooted in a chapter the reader just walked through. Colored with the
@@ -53,8 +54,9 @@ export default function Coda() {
             One rule carried us the whole way down.{' '}
             <em>Never overwrite; lay a newer layer on top; read the shallowest.</em> From it fell
             append-only writes that please the disk, a memtable and log to catch them, immutable
-            strata to keep them, Bloom filters to spare the reader, compaction to settle old debts,
-            and tombstones to mark the dead. Each one a consequence, not a separate invention.
+            strata to keep them, <LessonLink to="bloom-filters">Bloom filters</LessonLink> to spare
+            the reader, compaction to settle old debts, and tombstones to mark the dead. Each one a
+            consequence, not a separate invention.
           </p>
           <p>
             The same move, made elsewhere, becomes a write-ahead log, an event-sourced system, a

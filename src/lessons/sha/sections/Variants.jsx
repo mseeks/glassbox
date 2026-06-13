@@ -1,4 +1,5 @@
 import { useRevealRoot } from '../../../shared/reveal.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 import SectionHead from '../components/SectionHead.jsx';
 import Rule from '../components/Rule.jsx';
 import Figure from '../components/Figure.jsx';
@@ -16,7 +17,10 @@ const VARIANTS = [
   [
     'SHA-256',
     'SHA-2',
-    '32-bit words, 64 rounds. The universal default for fingerprints, Merkle trees, git, certificates.',
+    <>
+      32-bit words, 64 rounds. The universal default for fingerprints,{' '}
+      <LessonLink to="merkle-trees">Merkle trees</LessonLink>, git, certificates.
+    </>,
   ],
   [
     'SHA-512',

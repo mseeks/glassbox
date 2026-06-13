@@ -1,4 +1,5 @@
 import { Reveal } from '../../../shared/reveal.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 import Section from '../components/Section.jsx';
 import Callout from '../components/Callout.jsx';
 import FanoutLab from '../labs/FanoutLab.jsx';
@@ -20,8 +21,8 @@ export default function Problem() {
         <p className="bt-p">
           A hash table wins the first and loses the second outright: it shreds order into noise, so
           &ldquo;the next key after this one&rdquo; is meaningless. So you reach for a balanced
-          binary search tree. Sorted, logarithmic lookups, in-order traversal for free. Story over?
-          Not once the data lives on disk.
+          <LessonLink to="binary-trees">binary search tree</LessonLink>. Sorted, logarithmic
+          lookups, in-order traversal for free. Story over? Not once the data lives on disk.
         </p>
       </Reveal>
       <Reveal base="bt-rev">

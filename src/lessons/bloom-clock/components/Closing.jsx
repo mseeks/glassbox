@@ -1,4 +1,5 @@
 import { Eyebrow } from './atoms.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 // Real forward pointers — deliberately beyond what the chapters already cover
 // (saturation, aging, the family, and when-to-use are all handled in-text).
@@ -56,7 +57,8 @@ export const Closing = () => (
       className="bc-pullquote"
       style={{ fontSize: 'clamp(22px, 3.4vw, 38px)', lineHeight: 1.32 }}
     >
-      A Bloom clock is the structural dual of a Bloom filter (same hashing, same one-sided error,
+      A Bloom clock is the structural dual of a{' '}
+      <LessonLink to="bloom-filters">Bloom filter</LessonLink> (same hashing, same one-sided error,
       same fixed-size trick) applied to the
       <em style={{ color: 'var(--bc-gold)' }}> happens-before </em>
       partial order instead of set membership, where the

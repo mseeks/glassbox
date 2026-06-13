@@ -1,6 +1,8 @@
 // Closing — the single idea, the one distinction worth carrying away, and three
 // "where to go next" pointers. Mirrors the original closing block verbatim: a
 // plain `chapter foot` section (the original attached no reveal observer here).
+import LessonLink from '../../../shared/LessonLink.jsx';
+
 export default function Closing() {
   return (
     <section className="chapter foot">
@@ -13,10 +15,11 @@ export default function Closing() {
       </div>
       <p style={{ marginTop: 24 }}>
         One distinction worth carrying away. Some sketches give a <em className="k">one-sided</em>{' '}
-        guarantee. A Bloom filter is never wrong when it says "no." HyperLogLog is different. Its
-        error is <strong>two-sided and relative</strong>, roughly plus or minus a percent in either
-        direction, with no hard verdict at all. That is the right shape of error for a count.
-        Recognizing which shape a problem wants is half of choosing the right tool.
+        guarantee. <LessonLink to="bloom-filters">A Bloom filter</LessonLink> is never wrong when it
+        says "no." HyperLogLog is different. Its error is <strong>two-sided and relative</strong>,
+        roughly plus or minus a percent in either direction, with no hard verdict at all. That is
+        the right shape of error for a count. Recognizing which shape a problem wants is half of
+        choosing the right tool.
       </p>
       <h3
         style={{

@@ -7,6 +7,7 @@ import {
   pages,
 } from './lesson-catalog.js';
 import Nav from './shared/Nav.jsx';
+import { NavContext } from './shared/NavContext.js';
 import './shared/tokens.css';
 import './shared/utilities.css';
 
@@ -75,11 +76,13 @@ export default function App() {
         aria-live="polite"
         aria-atomic="false"
         aria-label={activePage.title}
-        style={{ outline: 'none' }}
+        style={{ outline: 'none', '--lesson-link-color': activeAccent || undefined }}
       >
-        <Suspense fallback={<LessonLoading accent={activeAccent} />}>
-          <ActivePage onSelectLesson={selectPage} />
-        </Suspense>
+        <NavContext.Provider value={selectPage}>
+          <Suspense fallback={<LessonLoading accent={activeAccent} />}>
+            <ActivePage onSelectLesson={selectPage} />
+          </Suspense>
+        </NavContext.Provider>
       </main>
     </div>
   );

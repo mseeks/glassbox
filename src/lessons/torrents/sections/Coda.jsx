@@ -1,4 +1,5 @@
 import HeroConstellation from '../components/HeroConstellation.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 // Coda — the three through-lines, and threads to keep pulling. Closes on the
 // same constellation glyph the hero opened with.
@@ -18,8 +19,8 @@ export default function Coda() {
             <p>
               <strong>Content addressing</strong> is the spine. A name derived from the bytes can't
               misrepresent them — so the same trick that identifies the file also proves each piece,
-              the metadata, and, through the Merkle root, the file as a whole. You trust the math,
-              never the stranger.
+              the metadata, and, through the <LessonLink to="merkle-trees">Merkle root</LessonLink>,
+              the file as a whole. You trust the math, never the stranger.
             </p>
             <p>
               <strong>Demand became supply.</strong> The single sentence BitTorrent flipped at the

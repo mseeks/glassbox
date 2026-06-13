@@ -3,6 +3,7 @@ import Heading from '../components/Heading.jsx';
 import Prose from '../components/Prose.jsx';
 import Anatomy from '../labs/Anatomy.jsx';
 import WriteLab from '../labs/WriteLab.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 // §III — The machine. Memtable + log + immutable strata.
 export default function Machine() {
@@ -20,9 +21,12 @@ export default function Machine() {
         <p>
           Type below and watch a write travel. It lands in two places at once: the{' '}
           <strong>memtable</strong>, kept sorted, and the <strong>log</strong>, appended. When the
-          memtable fills, it freezes into one immutable <strong>SSTable</strong>, a finished
-          stratum, and a fresh memtable opens to catch the next writes. That flush is one big
-          sequential write. The asymmetry of §II, banked.
+          memtable fills, it freezes into one immutable{' '}
+          <LessonLink to="sstables">
+            <strong>SSTable</strong>
+          </LessonLink>
+          , a finished stratum, and a fresh memtable opens to catch the next writes. That flush is
+          one big sequential write. The asymmetry of §II, banked.
         </p>
       </Prose>
       <WriteLab />

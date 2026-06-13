@@ -1,0 +1,75 @@
+{
+  "acid-lab": {
+    "CAP": "genuine CAP-theorem reference but rendered via dangerouslySetInnerHTML(renderProseMarkdown) — a JSX link can't be embedded; kept plain",
+    "Paxos": "rendered via dangerouslySetInnerHTML(renderProseMarkdown) — can't host a JSX link; kept plain",
+    "Saga": "rendered via dangerouslySetInnerHTML(renderProseMarkdown) — can't host a JSX link; kept plain"
+  },
+  "b-trees": {
+    "LSM": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "LSM-tree": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "binary search tree": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "binary tree": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer"
+  },
+  "bloom-clock": {
+    "Bloom filter": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "Bloom filters": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer"
+  },
+  "bloom-filters": {
+    "HyperLogLog": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "LSM": "kept plain (constellation): repeat, incidental, or short-alias of an already-handled mention — not a deliberate navigational pointer",
+    "LSM tree": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "LSM trees": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "SSTable": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "SSTables": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "cuckoo": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer"
+  },
+  "cap-pacelc": {
+    "Paxos": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer"
+  },
+  "cuckoo-filter": {
+    "Bloom filters": "string-prose whose title doubles as the React key — JSX-node conversion would break keying; kept plain"
+  },
+  "hyperloglog": {
+    "torrent": "homonym — \"a torrent of billions\" means a flood, not the BitTorrent (torrents) lesson"
+  },
+  "lsm-trees": {
+    "B-tree": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "B-trees": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "Bloom filter": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "SSTable": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "SSTables": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer"
+  },
+  "merkle-trees": {
+    "SHA": "kept plain (constellation): repeat, incidental, or short-alias of an already-handled mention — not a deliberate navigational pointer",
+    "SHA-1": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "SHA-256": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "Trie": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "binary tree": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer"
+  },
+  "saga": {
+    "ACID": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer"
+  },
+  "sha": {
+    "Merkle": "mostly \"Merkle–Damgård\" (the SHA construction, a homonym); the one genuine Merkle reference is wired at Variants.jsx — others kept plain"
+  },
+  "sstables": {
+    "B-tree": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "LSM": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "bloom filter": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer"
+  },
+  "swim": {
+    "Merkle": "kept plain (constellation): repeat, incidental, or short-alias of an already-handled mention — not a deliberate navigational pointer",
+    "Merkle trees": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "Paxos": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer"
+  },
+  "torrents": {
+    "Merkle": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "Merkle tree": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "SHA": "kept plain (constellation): repeat, incidental, or short-alias of an already-handled mention — not a deliberate navigational pointer",
+    "SHA-1": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer",
+    "SHA-256": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer"
+  },
+  "udp": {
+    "TLS": "kept plain (constellation): repeat, incidental, or unlinkable string-prose mention — not a deliberate navigational pointer"
+  }
+}

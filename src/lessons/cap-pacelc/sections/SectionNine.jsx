@@ -1,5 +1,6 @@
 import { SectionLabel } from '../components/SectionLabel.jsx';
 import { QuorumLab } from '../labs/QuorumLab.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 export function SectionNine() {
   return (
@@ -39,8 +40,11 @@ export function SectionNine() {
         offers no consistency guarantee. <code>W = N</code> means every write must reach every
         replica before it commits: high consistency, but a single failed replica kills writes.{' '}
         <code>R = W = ⌈(N+1)/2⌉</code>, read and write quora set to a strict majority, is the
-        canonical &ldquo;quorum&rdquo; setting, the same shape used by <strong>Paxos</strong> and{' '}
-        <strong>Raft</strong> (Paxos being the older, original consensus algorithm; Raft a more
+        canonical &ldquo;quorum&rdquo; setting, the same shape used by{' '}
+        <LessonLink to="paxos">
+          <strong>Paxos</strong>
+        </LessonLink>{' '}
+        and <strong>Raft</strong> (Paxos being the older, original consensus algorithm; Raft a more
         recent, more understandable reformulation). It tolerates ⌊(N-1)/2⌋ failures while staying
         strong. Different applications want different points on this surface, and many systems let
         the application pick per query. Strong for the checkout. Fast for the product listing.

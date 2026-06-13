@@ -1,6 +1,7 @@
 import { SectionHeader } from '../components/Section.jsx';
 import { LabFrame } from '../components/widgets.jsx';
 import NatLab from '../labs/NatLab.jsx';
+import LessonLink from '../../../shared/LessonLink.jsx';
 
 // §06 — reaching through the wall: NAT traversal by hole-punching.
 export default function Nat() {
@@ -23,9 +24,9 @@ export default function Nat() {
           <p>
             The escape is to have both peers punch <em>outward</em> to a shared rendezvous, so each
             router opens a mapping; then packets flow straight between them. Torrents increasingly
-            carry this over UDP with a transport that also notices when it's congesting your line
-            and backs off — so a download doesn't strangle a video call sharing the same connection.
-            Try the dial both ways:
+            carry this over <LessonLink to="udp">UDP</LessonLink> with a transport that also notices
+            when it's congesting your line and backs off — so a download doesn't strangle a video
+            call sharing the same connection. Try the dial both ways:
           </p>
         </div>
       </div>
