@@ -10,8 +10,7 @@ TypeScript run through `tsx`, kept fully isolated (`eslint`, `prettier`, and `kn
 all ignore `agents/`). The loops operate on the parent app repo (`..`). They only
 ever **propose** changes for a human to approve.
 
-> Framework: these are the Many Hands Engineering loops, ported in spirit from the
-> [`revisionist`](https://github.com/mseeks/revisionist) app. The human stays the
+> Framework: these are the Many Hands Engineering loops. The human stays the
 > **steward**. Agents propose, you approve and commit. Trust/track-record is tracked
 > manually for now; pacing (CI/cron), earned auto-merge, and persistent signal state
 > come later, on purpose. The fidelity is in the *shape* of each loop, not the
@@ -28,10 +27,9 @@ cp .env.example .env   # then paste the token into .env
 The loops authenticate with your **Claude Code subscription (OAuth)**, not an API
 key. Ensure `ANTHROPIC_API_KEY` is unset, or the SDK would use it instead.
 
-> **The outside reference.** Where the revisionist loops verified against
-> `vitest + nuxt typecheck`, these verify against **`vitest run` + `eslint .` +
-> `vite build`**: the JS-stack equivalent (behavior + the standing static lint gate
-> + a real compile/bundle). Style-only `prettier --check` is deliberately excluded.
+> **The verification gate.** These loops verify against **`vitest run` + `eslint .` +
+> `vite build`**: behavior + the standing static lint gate + a real compile/bundle.
+> Style-only `prettier --check` is deliberately excluded.
 > A dependency bump can't change our source formatting, and a stray unformatted file
 > shouldn't revert a good bump.
 
@@ -116,9 +114,9 @@ Run from the app root as `npm run loop:doc-coherence <scope>`, or here as `npm r
 
 ### `npm run suppression-debt <scope>`: suppression-debt loop
 
-**Read-only. Scope REQUIRED.** The JS adaptation of revisionist's *type-debt* loop.
-TypeScript escape hatches (`as any`, `@ts-ignore`, …) don't exist in a pure-JS
-codebase, but the loop's spirit does: find every place the static safety net was
+**Read-only. Scope REQUIRED.** A *type-debt* loop adapted for a pure-JS codebase.
+TypeScript escape hatches (`as any`, `@ts-ignore`, …) don't exist here, but the
+loop's spirit does: find every place the static safety net was
 deliberately weakened. Here that net is **ESLint**, so the harness sweeps for the
 **`eslint-disable` family**, the direct analog of `@ts-ignore` (`eslint-disable` /
 `eslint-disable-line` / `eslint-disable-next-line`). The agent (Read /

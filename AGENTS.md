@@ -165,7 +165,7 @@ to keep; information text should clear AA.
 ## Many Hands Engineering loops (`agents/`)
 
 `agents/` is a self-contained package of autonomous maintenance loops built on the
-Claude Agent SDK (ported in spirit from the `revisionist` app). Each loop is a
+Claude Agent SDK. Each loop is a
 deterministic signal → a locked-down agent → a strict cite-or-omit map → a
 test-style `PASS/FAIL` report. They only ever **propose**. The human stays the
 steward; nothing lands without your review. The package is fully isolated: its TS +

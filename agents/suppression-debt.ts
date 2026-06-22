@@ -1,7 +1,7 @@
 /**
  * Suppression-debt loop — Many Hands Engineering, loop #6.
  *
- * The JS adaptation of revisionist's *type-debt* loop. TypeScript escape hatches
+ * A *type-debt* loop adapted for a pure-JS codebase. TypeScript escape hatches
  * (`as any`, `@ts-ignore`, …) don't exist in a pure-JavaScript codebase — but the
  * loop's SPIRIT does: find every place the developer deliberately weakened the
  * static safety net, verify each, and map which can be removed. In this stack the
@@ -269,7 +269,7 @@ async function main(): Promise<void> {
     systemPrompt: systemPrompt(scope),
     allowedTools: ALLOWED_TOOLS,
     prompt: formatForAgent(findings, files),
-    // Like revisionist's type-debt loop, the clean-scan mode is the toughest
+    // For a type-debt loop, the clean-scan mode is the toughest
     // reliability case: with no deterministic candidates to verify, sonnet
     // over-indexes on its prior for "what suppression debt looks like" and
     // confabulates. Opus stays grounded in what it actually Read.

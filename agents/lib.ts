@@ -152,8 +152,7 @@ function suiteGreen(): boolean {
       return false;
     }
   };
-  // The JS-stack outside reference. Revisionist used `nuxt typecheck` as its
-  // static gate; glassbox is pure JS, so the standing static gates are
+  // glassbox is pure JS, so the standing static gates are
   // ESLint (the project's lint) and a real `vite build` (catches module-resolution
   // / transform breakage a dep bump can introduce, the nearest thing to a compile).
   // Style-only `prettier --check` is deliberately excluded — a dep bump can't
