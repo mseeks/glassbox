@@ -75,6 +75,20 @@ Playwright smoke on every push and pull request. The workflow lives in
 [`.github/workflows/ci.yml`](./.github/workflows/ci.yml). Node version is pinned
 in [`.nvmrc`](./.nvmrc).
 
+## Deploy
+
+The site is hosted on **Vercel** at **https://glassbox.mseeks.me**. Deploys ride
+Vercel's git integration: every push to `main` becomes a production deployment
+(and PRs get preview URLs) — there is nothing to run here. The Vercel project
+and custom domain themselves are managed by Terraform in the `zo` repo
+(`infra/vercel.tf`), alongside the DNS record.
+
+[`vercel.json`](./vercel.json) carries the serving rules the old nginx config
+used to own: content-hashed `/assets/*` cache for a year (immutable), the HTML
+entry is never cached (a stale `index.html` would point at assets that no
+longer exist), and unknown paths fall back to the app shell so a stray deep
+link or refresh never 404s (routing is client-side via `?lesson=`).
+
 ## Layout
 
 Each lesson is fully self-contained under `src/lessons/<slug>/`: prose
