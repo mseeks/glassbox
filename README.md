@@ -84,9 +84,10 @@ here.
 
 [`vercel.json`](./vercel.json) carries the two serving rules that matter: the
 content-hashed `/assets` are cached for a year (immutable), and unknown paths
-fall back to the app shell so a stray deep link or refresh never 404s (routing
-is client-side via `?lesson=`). Compression, TLS, and HTML revalidation are
-Vercel defaults.
+outside `/assets` fall back to the app shell so a stray deep link or refresh
+never 404s (routing is client-side via `?lesson=`). A hashed asset that no
+longer exists stays a plain 404, as it was under nginx. Compression, TLS, and
+HTML revalidation are Vercel defaults.
 
 ## Layout
 
