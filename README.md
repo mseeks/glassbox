@@ -75,6 +75,20 @@ Playwright smoke on every push and pull request. The workflow lives in
 [`.github/workflows/ci.yml`](./.github/workflows/ci.yml). Node version is pinned
 in [`.nvmrc`](./.nvmrc).
 
+## Deploy
+
+The site is hosted on **Vercel** at **https://glassbox.mseeks.me**. Deploys
+ride Vercel's git integration: every push to `main` becomes the production
+deployment, and every pull request gets a preview URL. There is nothing to run
+here.
+
+[`vercel.json`](./vercel.json) carries the two serving rules that matter: the
+content-hashed `/assets` are cached for a year (immutable), and unknown paths
+outside `/assets` fall back to the app shell so a stray deep link or refresh
+never 404s (routing is client-side via `?lesson=`). A hashed asset that no
+longer exists stays a plain 404, as it was under nginx. Compression, TLS, and
+HTML revalidation are Vercel defaults.
+
 ## Layout
 
 Each lesson is fully self-contained under `src/lessons/<slug>/`: prose
